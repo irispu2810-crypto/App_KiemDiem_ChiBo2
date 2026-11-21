@@ -1029,6 +1029,13 @@
               <i class="fa-solid fa-shield-halved text-emerald-600"></i>
               <span>Nguyên tắc Điều lệ Đảng: Mỗi đảng viên chỉ bỏ phiếu 01 lần duy nhất</span>
             </div>
+            <div class="pt-2">
+              <button type="button" onclick="allowMemberReVote()"
+                class="btn-3d px-4 py-2 bg-white hover:bg-slate-50 border border-emerald-400 hover:border-emerald-600 text-emerald-800 rounded-xl text-xs font-bold shadow-sm transition inline-flex items-center gap-1.5">
+                <i class="fa-solid fa-rotate-left text-emerald-600"></i>
+                <span>Bỏ Phiếu Lại (Khi Bí Thư Yêu Cầu Bầu Lại)</span>
+              </button>
+            </div>
           </div>
 
           <!-- BANNER 2: THÔNG BÁO ĐẢNG VIÊN DỰ BỊ KHÔNG BỎ PHIẾU (ĐIỀU 3 ĐIỀU LỆ ĐẢNG) -->
@@ -1820,6 +1827,30 @@
         .replace(/đ/g, 'd').replace(/Đ/g, 'D')
         .toLowerCase()
         .replace(/[^a-z0-9]/g, '');
+    }
+
+    function generateUsername(name) {
+      return toUsernameSlug(name);
+    }
+
+    function getCurrentUser() {
+      const u = appData.members.find(m => m.id === appData.current_user_id) || appData.members.find(m => m.role_party === 'Bí thư Chi bộ') || appData.members[0];
+      if (u && !u.username) {
+        u.username = toUsernameSlug(u.name);
+      }
+      return u;
+    }
+
+    function saveLocalBackup() {
+      try {
+        localStorage.setItem('vtb_chibo2_data', JSON.stringify(appData));
+        localStorage.setItem('chibo2_data_2026', JSON.stringify(appData));
+        if (appData.ballots) {
+          localStorage.setItem('chi_bo_2_ballots', JSON.stringify(appData.ballots));
+        }
+      } catch (e) {
+        console.warn('Lỗi ghi localStorage:', e);
+      }
     }
 
     function checkUserSession() {
@@ -3945,12 +3976,15 @@
       const isBiThu = (cur.username === 'nguyenthithao' || cur.id === 6 || cur.role_party === 'Bí thư Chi bộ');
 
       if (!isBiThu) {
-        showToast('Chỉ đồng chí Bí thư Chi bộ (nguyenthithao) mới có quyền xóa phiếu bầu và cho bầu lại!', 'warning');
+        alert('Chỉ đồng chí Bí thư Chi bộ (nguyenthithao) mới có quyền xóa toàn bộ phiếu bầu!');
         return;
       }
 
       const confirmMsg = "⚠️ ĐỒNG CHÍ BÍ THƯ XÁC NHẬN:\n\nĐồng chí có chắc chắn muốn XÓA TOÀN BỘ PHIẾU BẦU để tất cả đảng viên bầu chọn lại?\n\n- Toàn bộ kết quả phiếu bầu của Tập thể và 12 Đảng viên sẽ được thiết lập về 0.\n- Tất cả các đồng chí Đảng viên sẽ được mở khóa để bỏ phiếu lại từ đầu.\n- Hòm phiếu kín sẽ được chuyển về trạng thái 'Đang mở'.\n\nNhấn OK để thực hiện xóa phiếu!";
       if (!confirm(confirmMsg)) return;
+
+      // Thực hiện xóa và cập nhật giao diện ngay lập tức
+      doLocalResetBallots();
 
       const payload = {
         pin: '686789',
@@ -3958,7 +3992,7 @@
         username: cur.username || 'nguyenthithao'
       };
 
-      // 1. Thử gửi lên máy chủ backend Python nếu có
+      // Gửi lên máy chủ backend Python nếu có
       fetch('/api/reset_ballot', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -3966,21 +4000,33 @@
       })
         .then(res => res.json())
         .then(data => {
-          if (data.status === 'success') {
-            appData.ballots = data.ballots;
-            doLocalResetBallots();
-            showToast('Đã xóa toàn bộ phiếu bầu thành công! Tất cả đảng viên có thể bỏ phiếu lại.', 'success');
-          } else {
-            // Nếu API báo lỗi, vẫn thực hiện reset client-side nếu đúng Bí thư
-            doLocalResetBallots();
-            showToast('Đã xóa phiếu bầu trên thiết bị thành công! Tất cả đảng viên có thể bỏ phiếu lại.', 'success');
-          }
+          console.log('Server reset response:', data);
         })
         .catch(err => {
-          // Hoạt động offline / GitHub Pages: Reset client-side an toàn
-          doLocalResetBallots();
-          showToast('Đã xóa toàn bộ phiếu bầu thành công! Tất cả đảng viên có thể bỏ phiếu lại.', 'success');
+          console.log('Client-side reset completed (Offline / GitHub Pages).');
         });
+
+      showToast('Đã xóa toàn bộ phiếu bầu thành công! Tất cả đảng viên có thể bỏ phiếu lại từ đầu.', 'success');
+      alert('Đã xóa toàn bộ phiếu bầu thành công!\n\nHòm phiếu đã được mở lại để 11 đồng chí đảng viên chính thức tiến hành bỏ phiếu lại từ đầu.');
+    }
+
+    function allowMemberReVote() {
+      const cur = getCurrentUser();
+      const confirmMsg = `Đồng chí ${cur.name} có chắc chắn muốn hủy lá phiếu cũ để tiến hành bỏ phiếu lại theo yêu cầu của Bí thư Chi bộ?`;
+      if (!confirm(confirmMsg)) return;
+
+      const voterKey = String(cur.id);
+      if (appData.ballots && appData.ballots.voters) {
+        delete appData.ballots.voters[voterKey];
+        delete appData.ballots.voters[cur.id];
+      }
+      localStorage.removeItem('chi_bo_2_voted_user');
+      localStorage.removeItem('chi_bo_2_my_vote');
+      saveLocalBackup();
+      saveAllDataToServer();
+      renderSecretBallotSection();
+      renderVoterStatusList();
+      showToast('Đã mở khóa lá phiếu! Đồng chí có thể tiến hành bỏ phiếu lại.', 'success');
     }
 
     function doLocalResetBallots() {
@@ -4000,11 +4046,10 @@
       }
       localStorage.removeItem('chi_bo_2_voted_user');
       localStorage.removeItem('chi_bo_2_my_vote');
-      localStorage.setItem('chibo2_data_2026', JSON.stringify(appData));
-      localStorage.setItem('chi_bo_2_ballots', JSON.stringify(appData.ballots));
-      
+      saveLocalBackup();
       saveAllDataToServer();
       renderSecretBallotSection();
+      renderVoterStatusList();
       renderTallyTable();
       refreshMinutesContent();
     }
