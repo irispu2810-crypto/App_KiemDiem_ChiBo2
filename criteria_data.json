@@ -1,0 +1,1996 @@
+{
+  "tap_the": [
+    {
+      "stt": "I",
+      "name": "CÁC TIÊU CHÍ CHUNG",
+      "max_score": "30",
+      "note": ""
+    },
+    {
+      "stt": "1",
+      "name": "Kết quả công tác xây dựng, chỉnh đốn Đảng; củng cố, xây dựng tổ chức đảng và hệ thống chính trị; nâng cao chất lượng đội ngũ cán bộ, đảng viên theo nghị quyết, kế hoạch, chỉ tiêu được giao.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "2",
+      "name": "Năng lực lãnh đạo của cấp ủy; hiệu quả lãnh đạo, chỉ đạo của cấp ủy đối với chính quyền, Mặt trận Tổ quốc và các tổ chức chính trị - xã hội; hiệu quả trong phối hợp công tác; xây dựng đoàn kết nội bộ.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "3",
+      "name": "Hiệu quả trong công tác thanh tra, kiểm tra, giám sát và kỷ luật đảng; thực hiện các quy định về kiểm soát quyền lực; không để xảy ra tham nhũng, lãng phí, tiêu cực, suy thoái về tư tưởng chính trị, đạo đức, lối sống, \"tự diễn biến\", \"tự chuyển hoá\" trong nội bộ.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "4",
+      "name": "Kết quả thực hiện các nguyên tắc tổ chức và hoạt động của Đảng, nhất là nguyên tắc tập trung dân chủ, tự phê bình và phê bình; việc chấp hành quy chế làm việc, nội quy, chế độ công tác; phân công nhiệm vụ, tổ chức thực hiện hiệu quả.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "5",
+      "name": "Kết quả lãnh đạo, chỉ đạo, kiểm tra, giám sát việc thực hiện nhiệm vụ chính trị; xây dựng bộ máy tinh gọn, tinh giản biên chế, hoạt động hiệu năng, hiệu lực, hiệu quả; thực hiện cải cách hành chính, chuyển đổi số, đẩy mạnh ứng dụng khoa học, công nghệ, phương pháp quản lý gắn với xây dựng văn hoá công vụ trong hoạt động quản lý, điều hành tổ chức, cơ quan, đơn vị.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "6",
+      "name": "Tinh thần tự phê bình và phê bình, tự soi, tự sửa của tập thể; kết quả khắc phục những hạn chế, yếu kém, khuyết điểm đã được chỉ ra trong các kỳ kiểm điểm trước hoặc qua thanh tra, kiểm tra, giám sát.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "II",
+      "name": "NHÓM TIÊU CHÍ VỀ KẾT QUẢ THỰC HIỆN NHIỆM VỤ",
+      "max_score": "70 ĐIỂM",
+      "note": ""
+    },
+    {
+      "stt": "1",
+      "name": "Đối với các cấp ủy, đảng bộ",
+      "max_score": "70",
+      "note": "Mỗi nội dung, nhiệm vụ trễ hạn, không đạt chỉ tiêu, kế hoạch giao hoặc bị cấp có thẩm quyền nhắc nhở, phê bình bị trừ 2 điểm."
+    },
+    {
+      "stt": "1",
+      "name": "(1) Việc cụ thể hoá nghị quyết, chương trình, kế hoạch công tác của cấp ủy hoặc cấp có thẩm quyền.",
+      "max_score": "10",
+      "note": "Mỗi nội dung, nhiệm vụ trễ hạn, không đạt chỉ tiêu, kế hoạch giao hoặc bị cấp có thẩm quyền nhắc nhở, phê bình bị trừ 2 điểm."
+    },
+    {
+      "stt": "1",
+      "name": "(2) Kết quả lãnh đạo, chỉ đạo trên các lĩnh vực được phân công, phụ trách.",
+      "max_score": "10",
+      "note": "Mỗi nội dung, nhiệm vụ trễ hạn, không đạt chỉ tiêu, kế hoạch giao hoặc bị cấp có thẩm quyền nhắc nhở, phê bình bị trừ 2 điểm."
+    },
+    {
+      "stt": "1",
+      "name": "(3) Kết quả tổ chức thực hiện hiệu quả các mục tiêu, chỉ tiêu, nhiệm vụ được đề ra trong nghị quyết đại hội, kế hoạch, chương trình công tác năm được cấp có thẩm quyền giao, phê duyệt.",
+      "max_score": "40",
+      "note": "Mỗi nội dung, nhiệm vụ trễ hạn, không đạt chỉ tiêu, kế hoạch giao hoặc bị cấp có thẩm quyền nhắc nhở, phê bình bị trừ 2 điểm."
+    },
+    {
+      "stt": "1",
+      "name": "(4) Kết quả đánh giá, xếp loại đối với các lĩnh vực, địa phương, cơ quan, đơn vị do tập thể phụ trách (nếu có); kết quả đánh giá chất lượng đối với các tổ chức trực thuộc và cá nhân liên quan trực tiếp.",
+      "max_score": "10",
+      "note": "Mỗi nội dung, nhiệm vụ trễ hạn, không đạt chỉ tiêu, kế hoạch giao hoặc bị cấp có thẩm quyền nhắc nhở, phê bình bị trừ 2 điểm."
+    },
+    {
+      "stt": "2",
+      "name": "Khối cơ quan tham mưu của Đảng:",
+      "max_score": "70",
+      "note": "Mỗi nội dung, nhiệm vụ trễ hạn, không đạt chỉ tiêu, kế hoạch giao hoặc bị cấp có thẩm quyền nhắc nhở, phê bình bị trừ 2 điểm."
+    },
+    {
+      "stt": "2",
+      "name": "(1) Việc cụ thể hoá nghị quyết, chương trình, kế hoạch công tác của cấp ủy hoặc cấp có thẩm quyền.",
+      "max_score": "10",
+      "note": "Mỗi nội dung, nhiệm vụ trễ hạn, không đạt chỉ tiêu, kế hoạch giao hoặc bị cấp có thẩm quyền nhắc nhở, phê bình bị trừ 2 điểm."
+    },
+    {
+      "stt": "2",
+      "name": "(2) Kết quả lãnh đạo, chỉ đạo trên các lĩnh vực tổ chức xây dựng Đảng theo lĩnh vực được phân công.",
+      "max_score": "30",
+      "note": "Mỗi nội dung, nhiệm vụ trễ hạn, không đạt chỉ tiêu, kế hoạch giao hoặc bị cấp có thẩm quyền nhắc nhở, phê bình bị trừ 2 điểm."
+    },
+    {
+      "stt": "2",
+      "name": "(3) Tổ chức thực hiện các nhiệm vụ nghiên cứu, tham mưu, đề xuất, ban hành, sơ kết, tổng kết các chủ trương, đường lối, chính sách, đề án của cấp ủy thuộc phạm vi phụ trách.",
+      "max_score": "20",
+      "note": "Mỗi nội dung, nhiệm vụ trễ hạn, không đạt chỉ tiêu, kế hoạch giao hoặc bị cấp có thẩm quyền nhắc nhở, phê bình bị trừ 2 điểm."
+    },
+    {
+      "stt": "2",
+      "name": "(4) Kết quả đánh giá, xếp loại đối với các lĩnh vực, địa phương, cơ quan, đơn vị do tập thể phụ trách (nếu có); kết quả đánh giá chất lượng đối với các tổ chức trực thuộc và cá nhân liên quan trực tiếp.",
+      "max_score": "10",
+      "note": "Mỗi nội dung, nhiệm vụ trễ hạn, không đạt chỉ tiêu, kế hoạch giao hoặc bị cấp có thẩm quyền nhắc nhở, phê bình bị trừ 2 điểm."
+    },
+    {
+      "stt": "3",
+      "name": "Khối cơ quan hành chính nhà nước:",
+      "max_score": "70",
+      "note": "Mỗi nội dung, nhiệm vụ trễ hạn, không đạt chỉ tiêu, kế hoạch giao hoặc bị cấp có thẩm quyền nhắc nhở, phê bình bị trừ 2 điểm."
+    },
+    {
+      "stt": "3",
+      "name": "(1) Việc cụ thể hoá nghị quyết, chương trình, kế hoạch công tác của cấp ủy hoặc cấp có thẩm quyền.",
+      "max_score": "10",
+      "note": "Mỗi nội dung, nhiệm vụ trễ hạn, không đạt chỉ tiêu, kế hoạch giao hoặc bị cấp có thẩm quyền nhắc nhở, phê bình bị trừ 2 điểm."
+    },
+    {
+      "stt": "3",
+      "name": "(2) Kết quả thực hiện các mục tiêu, chỉ tiêu, nhiệm vụ được theo ngành, lĩnh vực; phát triển kinh tế - xã hội (tốc độ tăng trưởng GRDP, GRDP bình quân đầu người; tốc độ tăng thu ngân sách nhà nước; tỉ lệ giải ngân vốn đầu tư công; thu hút, cải thiện môi trường đầu tư kinh doanh, hỗ trợ doanh nghiệp, thúc đẩy kinh tế tư nhân phát triển; cải cách hành chính; phát triển khoa học, công nghệ, đổi mới sáng tạo và chuyển đổi số; hiệu quả quản trị xã hội, chỉ số phát triển con người; phòng, chống ô nhiễm môi trường; an sinh xã hội; tỷ lệ giảm nghèo bền vững;...), đối ngoại, bảo đảm quốc phòng - an ninh theo chức năng nhiệm vụ được giao (kết quả được lượng hoá bằng sản phấm, tiến độ, chất lượng hoặc chỉ số đo lường hiệu quả công việc).",
+      "max_score": "50",
+      "note": "Mỗi nội dung, nhiệm vụ trễ hạn, không đạt chỉ tiêu, kế hoạch giao hoặc bị cấp có thẩm quyền nhắc nhở, phê bình bị trừ 2 điểm."
+    },
+    {
+      "stt": "3",
+      "name": "(3) Kết quả đánh giá, xếp loại đối với các lĩnh vực, địa phương, cơ quan, đơn vị do tập thể phụ trách (nếu có); kết quả đánh giá chất lượng đối với các tổ chức trực thuộc và cá nhân liên quan trực tiếp.",
+      "max_score": "10",
+      "note": "Mỗi nội dung, nhiệm vụ trễ hạn, không đạt chỉ tiêu, kế hoạch giao hoặc bị cấp có thẩm quyền nhắc nhở, phê bình bị trừ 2 điểm."
+    },
+    {
+      "stt": "4",
+      "name": "Khối cơ quan dân cử:",
+      "max_score": "70",
+      "note": "Mỗi nội dung, nhiệm vụ trễ hạn, không đạt chỉ tiêu, kế hoạch giao hoặc bị cấp có thẩm quyền nhắc nhở, phê bình bị trừ 2 điểm."
+    },
+    {
+      "stt": "4",
+      "name": "(1) Việc cụ thể hoá nghị quyết, chương trình, kế hoạch công tác của cấp ủy hoặc cấp có thẩm quyền.",
+      "max_score": "10",
+      "note": "Mỗi nội dung, nhiệm vụ trễ hạn, không đạt chỉ tiêu, kế hoạch giao hoặc bị cấp có thẩm quyền nhắc nhở, phê bình bị trừ 2 điểm."
+    },
+    {
+      "stt": "4",
+      "name": "(2) Kết quả tham mưu, tổ chức thực hiện nhiệm vụ lập pháp, giám sát, phản biện, quyết định các vấn đề quan trọng; tiếp xúc cử tri, đôn đốc giải quyết, trả lời kiến nghị của cử tri; tiếp công dân, tiếp nhận và xử lý đơn, thư khiếu nại, tố cáo, kiến nghị của công dân... theo chức năng, nhiệm vụ được giao.",
+      "max_score": "50",
+      "note": "Mỗi nội dung, nhiệm vụ trễ hạn, không đạt chỉ tiêu, kế hoạch giao hoặc bị cấp có thẩm quyền nhắc nhở, phê bình bị trừ 2 điểm."
+    },
+    {
+      "stt": "4",
+      "name": "(3) Kết quả đánh giá, xếp loại đối với các lĩnh vực, địa phương, cơ quan, đơn vị do tập thể phụ trách (nếu có); kết quả đánh giá chất lượng đối với các tổ chức trực thuộc và cá nhân liên quan trực tiếp.",
+      "max_score": "10",
+      "note": "Mỗi nội dung, nhiệm vụ trễ hạn, không đạt chỉ tiêu, kế hoạch giao hoặc bị cấp có thẩm quyền nhắc nhở, phê bình bị trừ 2 điểm."
+    },
+    {
+      "stt": "5",
+      "name": "Khối cơ quan Mặt trận Tổ quốc và các tổ chức chính trị - xã hội:",
+      "max_score": "70",
+      "note": "Mỗi nội dung, nhiệm vụ trễ hạn, không đạt chỉ tiêu, kế hoạch giao hoặc bị cấp có thẩm quyền nhắc nhở, phê bình bị trừ 2 điểm."
+    },
+    {
+      "stt": "5",
+      "name": "(1) Việc cụ thể hoá nghị quyết, chương trình, kế hoạch công tác của cấp ủy hoặc cấp có thẩm quyền.",
+      "max_score": "10",
+      "note": "Mỗi nội dung, nhiệm vụ trễ hạn, không đạt chỉ tiêu, kế hoạch giao hoặc bị cấp có thẩm quyền nhắc nhở, phê bình bị trừ 2 điểm."
+    },
+    {
+      "stt": "5",
+      "name": "(2) Kết quả vận động đoàn viên, hội viên và Nhân dân, xây dựng khối đại đoàn kết toàn dân tộc; về giám sát, phản biện xã hội,... theo chức năng, nhiệm vụ được giao.",
+      "max_score": "50",
+      "note": "Mỗi nội dung, nhiệm vụ trễ hạn, không đạt chỉ tiêu, kế hoạch giao hoặc bị cấp có thẩm quyền nhắc nhở, phê bình bị trừ 2 điểm."
+    },
+    {
+      "stt": "5",
+      "name": "Kết quả đánh giá, xếp loại đối với các lĩnh vực, địa phương, cơ quan, đơn vị do tập thể phụ trách (nếu có); kết quả đánh giá chất lượng đối với các tổ chức trực thuộc và cá nhân liên quan trực tiếp.",
+      "max_score": "10",
+      "note": "Mỗi nội dung, nhiệm vụ trễ hạn, không đạt chỉ tiêu, kế hoạch giao hoặc bị cấp có thẩm quyền nhắc nhở, phê bình bị trừ 2 điểm."
+    },
+    {
+      "stt": "6",
+      "name": "Khối lực lượng vũ trang:",
+      "max_score": "70",
+      "note": "Mỗi nội dung, nhiệm vụ trễ hạn, không đạt chỉ tiêu, kế hoạch giao hoặc bị cấp có thẩm quyền nhắc nhở, phê bình bị trừ 2 điểm."
+    },
+    {
+      "stt": "6",
+      "name": "(1) Việc cụ thể hoá nghị quyết, chương trình, kế hoạch công tác của cấp ủy hoặc cấp có thẩm quyền.",
+      "max_score": "10",
+      "note": "Mỗi nội dung, nhiệm vụ trễ hạn, không đạt chỉ tiêu, kế hoạch giao hoặc bị cấp có thẩm quyền nhắc nhở, phê bình bị trừ 2 điểm."
+    },
+    {
+      "stt": "6",
+      "name": "(2) Tập trung vào kết quả thực hiện nhiệm vụ quân sự, quốc phòng, bảo vệ Tổ quốc, bảo vệ an ninh quốc gia, bảo đảm trật tự, an toàn xã hội; xây dựng lực lượng cách mạng, chính quy, tinh nhuệ, hiện đại, sẵn sàng chiến đấu,... theo chức năng, nhiệm vụ được giao.",
+      "max_score": "50",
+      "note": "Mỗi nội dung, nhiệm vụ trễ hạn, không đạt chỉ tiêu, kế hoạch giao hoặc bị cấp có thẩm quyền nhắc nhở, phê bình bị trừ 2 điểm."
+    },
+    {
+      "stt": "6",
+      "name": "(3) Kết quả đánh giá, xếp loại đối với các lĩnh vực, địa phương, cơ quan, đơn vị do tập thể phụ trách (nếu có); kết quả đánh giá chất lượng đối với các tổ chức trực thuộc và cá nhân liên quan trực tiếp",
+      "max_score": "10",
+      "note": "Mỗi nội dung, nhiệm vụ trễ hạn, không đạt chỉ tiêu, kế hoạch giao hoặc bị cấp có thẩm quyền nhắc nhở, phê bình bị trừ 2 điểm."
+    },
+    {
+      "stt": "7",
+      "name": "Khối cơ quan tư pháp:",
+      "max_score": "70",
+      "note": "Mỗi nội dung, nhiệm vụ trễ hạn, không đạt chỉ tiêu, kế hoạch giao hoặc bị cấp có thẩm quyền nhắc nhở, phê bình bị trừ 2 điểm."
+    },
+    {
+      "stt": "7",
+      "name": "(1) Việc cụ thể hoá nghị quyết, chương trình, kế hoạch công tác của cấp ủy hoặc cấp có thẩm quyền.",
+      "max_score": "10",
+      "note": "Mỗi nội dung, nhiệm vụ trễ hạn, không đạt chỉ tiêu, kế hoạch giao hoặc bị cấp có thẩm quyền nhắc nhở, phê bình bị trừ 2 điểm."
+    },
+    {
+      "stt": "7",
+      "name": "(2) Tập trung vào kết quả điều tra, truy tố, xét xử, thi hành án; bảo đảm công lý, không để xảy ra oan sai, tiêu cực hoặc vi phạm nghiêm trọng trong hoạt động tố tụng.",
+      "max_score": "50",
+      "note": "Mỗi nội dung, nhiệm vụ trễ hạn, không đạt chỉ tiêu, kế hoạch giao hoặc bị cấp có thẩm quyền nhắc nhở, phê bình bị trừ 2 điểm."
+    },
+    {
+      "stt": "7",
+      "name": "(3) Kết quả đánh giá, xếp loại đối với các lĩnh vực, địa phương, cơ quan, đơn vị do tập thể phụ trách (nếu có); kết quả đánh giá chất lượng đối với các tổ chức trực thuộc và cá nhân liên quan trực tiếp",
+      "max_score": "10",
+      "note": "Mỗi nội dung, nhiệm vụ trễ hạn, không đạt chỉ tiêu, kế hoạch giao hoặc bị cấp có thẩm quyền nhắc nhở, phê bình bị trừ 2 điểm."
+    },
+    {
+      "stt": "8",
+      "name": "Khối đơn vị sự nghiệp công lập:",
+      "max_score": "70",
+      "note": "Mỗi nội dung, nhiệm vụ trễ hạn, không đạt chỉ tiêu, kế hoạch giao hoặc bị cấp có thẩm quyền nhắc nhở, phê bình bị trừ 2 điểm."
+    },
+    {
+      "stt": "8",
+      "name": "(1) Việc cụ thể hoá nghị quyết, chương trình, kế hoạch công tác của cấp ủy hoặc cấp có thẩm quyền.",
+      "max_score": "10",
+      "note": "Mỗi nội dung, nhiệm vụ trễ hạn, không đạt chỉ tiêu, kế hoạch giao hoặc bị cấp có thẩm quyền nhắc nhở, phê bình bị trừ 2 điểm."
+    },
+    {
+      "stt": "8",
+      "name": "(2) Tập trung vào kết quả quản lý chuyên môn, chất lượng dịch vụ công, huy động và sử dụng hiệu quả các nguồn lực; quản lý tổ chức bộ máy, nhân sự; mức độ hài lòng của người dân và tổ chức, doanh nghiệp... theo chức năng, nhiệm vụ được giao.",
+      "max_score": "50",
+      "note": "Mỗi nội dung, nhiệm vụ trễ hạn, không đạt chỉ tiêu, kế hoạch giao hoặc bị cấp có thẩm quyền nhắc nhở, phê bình bị trừ 2 điểm."
+    },
+    {
+      "stt": "8",
+      "name": "(3) Kết quả đánh giá, xếp loại đối với các lĩnh vực, địa phương, cơ quan, đơn vị do tập thể phụ trách (nếu có); kết quả đánh giá chất lượng đối với các tổ chức trực thuộc và cá nhân liên quan trực tiếp.",
+      "max_score": "10",
+      "note": "Mỗi nội dung, nhiệm vụ trễ hạn, không đạt chỉ tiêu, kế hoạch giao hoặc bị cấp có thẩm quyền nhắc nhở, phê bình bị trừ 2 điểm."
+    },
+    {
+      "stt": "9",
+      "name": "Khối doanh nghiệp nhà nước:",
+      "max_score": "70",
+      "note": "Mỗi nội dung, nhiệm vụ trễ hạn, không đạt chỉ tiêu, kế hoạch giao hoặc bị cấp có thẩm quyền nhắc nhở, phê bình bị trừ 2 điểm."
+    },
+    {
+      "stt": "9",
+      "name": "(1) Việc cụ thể hoá nghị quyết, chương trình, kế hoạch công tác của cấp ủy hoặc cấp có thẩm quyền.",
+      "max_score": "10",
+      "note": "Mỗi nội dung, nhiệm vụ trễ hạn, không đạt chỉ tiêu, kế hoạch giao hoặc bị cấp có thẩm quyền nhắc nhở, phê bình bị trừ 2 điểm."
+    },
+    {
+      "stt": "9",
+      "name": "(2) Kết quả thực hiện nhiệm vụ được giao (nếu có); kết quả sản xuất kinh doanh; về quản lý tài chính, tài sản; về quản trị doanh nghiệp, tổ chức bộ máy, nhân sự; xây dựng văn hoá doanh nghiệp; việc chăm lo đời sống người lao động; phòng, chống tham nhũng, lãng phí, tiêu cực... theo chức năng, nhiệm vụ được giao.",
+      "max_score": "50",
+      "note": "Mỗi nội dung, nhiệm vụ trễ hạn, không đạt chỉ tiêu, kế hoạch giao hoặc bị cấp có thẩm quyền nhắc nhở, phê bình bị trừ 2 điểm."
+    },
+    {
+      "stt": "9",
+      "name": "(3) Kết quả đánh giá, xếp loại đối với các lĩnh vực, địa phương, cơ quan, đơn vị do tập thể phụ trách (nếu có); kết quả đánh giá chất lượng đối với các tổ chức trực thuộc và cá nhân liên quan trực tiếp.",
+      "max_score": "10",
+      "note": "Mỗi nội dung, nhiệm vụ trễ hạn, không đạt chỉ tiêu, kế hoạch giao hoặc bị cấp có thẩm quyền nhắc nhở, phê bình bị trừ 2 điểm."
+    },
+    {
+      "stt": "10",
+      "name": "Khối cơ quan các hội quần chúng được Đảng và Nhà nước giao nhiệm vụ:",
+      "max_score": "70",
+      "note": "Mỗi nội dung, nhiệm vụ trễ hạn, không đạt chỉ tiêu, kế hoạch giao hoặc bị cấp có thẩm quyền nhắc nhở, phê bình bị trừ 2 điểm."
+    },
+    {
+      "stt": "10",
+      "name": "(1) Việc cụ thể hoá nghị quyết, chương trình, kế hoạch công tác của cấp ủy hoặc cấp có thẩm quyền.",
+      "max_score": "10",
+      "note": "Mỗi nội dung, nhiệm vụ trễ hạn, không đạt chỉ tiêu, kế hoạch giao hoặc bị cấp có thẩm quyền nhắc nhở, phê bình bị trừ 2 điểm."
+    },
+    {
+      "stt": "10",
+      "name": "(2) Tập trung vào kết quả thực hiện nhiệm vụ tổ chức các hoạt động chuyên môn, xây dựng đoàn kết nội bộ, vận động và phát triển, quản lý hội viên; về quản lý tài chính, tài sản,... theo chức năng, nhiệm vụ được giao.",
+      "max_score": "50",
+      "note": "Mỗi nội dung, nhiệm vụ trễ hạn, không đạt chỉ tiêu, kế hoạch giao hoặc bị cấp có thẩm quyền nhắc nhở, phê bình bị trừ 2 điểm."
+    },
+    {
+      "stt": "10",
+      "name": "(3) Kết quả đánh giá, xếp loại đối với các lĩnh vực, địa phương, cơ quan, đơn vị do tập thể phụ trách (nếu có); kết quả đánh giá chất lượng đối với các tổ chức trực thuộc và cá nhân liên quan trực tiếp.",
+      "max_score": "10",
+      "note": "Mỗi nội dung, nhiệm vụ trễ hạn, không đạt chỉ tiêu, kế hoạch giao hoặc bị cấp có thẩm quyền nhắc nhở, phê bình bị trừ 2 điểm."
+    }
+  ],
+  "phu_luc_4_lanh_dao": [
+    {
+      "stt": "I",
+      "name": "CÁC TIÊU CHÍ CHUNG",
+      "max_score": "30",
+      "note": ""
+    },
+    {
+      "stt": "1",
+      "name": "Về chính trị, tư tưởng",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "a)",
+      "name": "Tuyệt đối trung thành với Đảng, với Tổ quốc và Nhân dân; kiên định lý tưởng cách mạng, chủ nghĩa Mác - Lênin, tư tưởng Hồ Chí Minh, mục tiêu độc lập dân tộc, chủ nghĩa xã hội và đường lối đổi mới của Đảng.",
+      "max_score": "1",
+      "note": ""
+    },
+    {
+      "stt": "b)",
+      "name": "Có lập trường, quan điểm, bản lĩnh chính trị vững vàng, không dao động trước mọi khó khăn, thách thức; kiên quyết bảo vệ nền tảng tư tưởng, Cương lĩnh, đường lối của Đảng, Hiến pháp và pháp luật của Nhà nước; nhận thức và hành động thống nhất về tư tưởng chính trị, tổ chức và đạo đức; đấu tranh phản bác các quan điểm sai trái, luận điệu xuyên tạc của các thế lực thù địch. Giữ nghiêm kỷ luật phát ngôn theo đúng nguyên tắc, quy định của Đảng.",
+      "max_score": "1",
+      "note": ""
+    },
+    {
+      "stt": "c)",
+      "name": "Có tinh thần yêu nước sâu sắc, tận tuy phục vụ Nhân dân, sâu sát cơ sở, luôn hành động vì lợi ích của Nhân dân, đặt lợi ích của Đảng, quốc gia, dân tộc, Nhân dân, tập thể lên trên lợi ích cá nhân; sẵn sàng hy sinh vì sự nghiệp của Đảng, vì độc lập, tự do của Tổ quốc, vì hạnh phúc của Nhân dân.",
+      "max_score": "1",
+      "note": ""
+    },
+    {
+      "stt": "d)",
+      "name": "Tuyệt đối chấp hành sự phân công của tổ chức, yên tâm công tác và hoàn thành tốt mọi nhiệm vụ được giao.",
+      "max_score": "1",
+      "note": ""
+    },
+    {
+      "stt": "đ",
+      "name": "Tích cực nghiên cứu, học tập các chủ trương, nghị quyết của Đảng, chính sách, pháp luật của Nhà nước; thường xuyên bồi dưỡng, cập nhật kiến thức mới và vận dụng sáng tạo vào thực tiễn.",
+      "max_score": "0,5",
+      "note": ""
+    },
+    {
+      "stt": "e)",
+      "name": "Có năng lực tư duy và tầm nhìn đáp ứng với yêu cầu thay đổi của tình hình thực tiễn; phát huy tinh thần chủ động, đổi mới, sáng tạo; phấn đấu vì mục tiêu phát triển của tổ chức, cơ quan, đơn vị, đóng góp vào mục tiêu chung của đất nước.",
+      "max_score": "0,5",
+      "note": ""
+    },
+    {
+      "stt": "2",
+      "name": "Về phẩm chất đạo đức và ý thức tổ chức kỷ luật",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "a)",
+      "name": "Có phẩm chất đạo đức, lối sống trong sáng, trung thực, khiêm tốn, chân thành, giản dị; cần, kiệm, liêm, chính, chí công vô tư; chấp hành nghiêm quy định về trách nhiệm nêu gương; không vi phạm Quy định về những điều đảng viên không được làm. Không vi phạm đạo đức, lối sống đến mức bị xử lý kỷ luật trong 5 năm gần nhất.",
+      "max_score": "1",
+      "note": ""
+    },
+    {
+      "stt": "b)",
+      "name": "Không tham ô, tham nhũng, tiêu cực, quan liêu, hách dịch, cửa quyền, vụ lợi; không để người thân, người quen lợi dụng chức vụ, quyền hạn của mình để trục lợi. Không có biểu hiện suy thoái về tư tưởng chính trị, đạo đức, lối sống, những biểu hiện \"tự diễn biến\", \"tự chuyển hoá\" trong nội bộ. Kiên quyết đấu tranh chống quan liêu, cửa quyền, tham nhũng, xa hoa, lãng phí, tiêu cực, chủ nghĩa cá nhân, lối sống cơ hội, thực dụng, bè phái, lợi ích nhóm, nói không đi đôi với làm.",
+      "max_score": "1",
+      "note": ""
+    },
+    {
+      "stt": "c)",
+      "name": "Có ý thức tự giác học tập, tu dưỡng, rèn luyện đạo đức bản thân; có tinh thần, trách nhiệm cao với công việc; cần cù, chịu khó, năng động, sáng tạo, dám nghĩ, dám nói, dám làm, dám chịu trách nhiệm, dám đương đầu với khó khăn, thử thách, dám hy sinh vì lợi ích chung.",
+      "max_score": "1",
+      "note": ""
+    },
+    {
+      "stt": "d)",
+      "name": "Thực hiện nghiêm các nguyên tắc tổ chức và hoạt động của Đảng, nhất là nguyên tắc tập trung dân chủ, tự phê bình và phê bình; thực hiện đúng, đầy đủ quyền hạn, trách nhiệm và chỉ đạo thực hiện các quy định, quy chế, nội quy của tổ chức, cơ quan, đơn vị nơi công tác; kiên quyết đấu tranh với những biểu hiện, việc làm trái với các quy định của Đảng, Nhà nước trong công tác cán bộ.",
+      "max_score": "1",
+      "note": ""
+    },
+    {
+      "stt": "đ",
+      "name": "Thực hiện việc kê khai và công khai tài sản, thu nhập theo quy định.",
+      "max_score": "0,5",
+      "note": ""
+    },
+    {
+      "stt": "e)",
+      "name": "Báo cáo đầy đủ, trung thực, cung cấp thông tin chính xác, khách quan về những nội dung liên quan đến việc thực hiện chức trách, nhiệm vụ được giao và hoạt động của tổ chức, cơ quan, đơn vị với cấp trên khi được yếu cầu.",
+      "max_score": "0,5",
+      "note": ""
+    },
+    {
+      "stt": "3",
+      "name": "Năng lực lãnh đạo, quản lý và năng lực chuyên môn, nghiệp vụ theo yêu cầu của vị trí việc làm; khả năng đáp ứng yêu cầu thực thi nhiệm vụ được giao; thái độ công tác trong thực hiện nhiệm vụ; tinh thần đổi mới sáng tạo, dám nghĩ, dám làm, dám chịu trách nhiệm vì lợi ích chung",
+      "max_score": "10",
+      "note": ""
+    },
+    {
+      "stt": "a)",
+      "name": "Năng lực lãnh đạo, quản lý",
+      "max_score": "2",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Có tư duy, khả năng hoạch định đường lối, chính sách và lãnh đạo, chi đạo tổ chức thực hiện đóng góp vào mục tiêu phát triển chung của địa phương, tổ chức, cơ quan, đơn vị; lãnh đạo, chỉ đạo xây dựng, củng cố, kiện toàn tổ chức đảng, đoàn thể trong sạch, vững mạnh.",
+      "max_score": "0,5",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Có tầm nhìn, phương pháp làm việc khoa học; có năng lực tổng hợp, phân tích và dự báo.",
+      "max_score": "0,5",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Có năng lực, kinh nghiệm thực tiễn để cụ thể hoá và tổ chức thực hiện có hiệu quả đường lối, chủ trương của Đảng, chính sách, pháp luật của Nhà nước ở lĩnh vực, địa bàn công tác được phân công phụ trách.",
+      "max_score": "0,5",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Có khả năng chỉ đạo, điều hành hoạt động của tổ chức, cơ quan, đơn vị, phân công công việc khoa học, giám sát chặt chẽ, giữ gìn kỷ cương, kỷ luật.",
+      "max_score": "0,5",
+      "note": ""
+    },
+    {
+      "stt": "b)",
+      "name": "Năng lực chuyên môn, nghiệp vụ theo vị trí việc làm.",
+      "max_score": "2",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Có kiến thức chuyên sâu về lĩnh vực công tác được phân công; am hiểu quy định pháp luật, quy trình nghiệp vụ có liên quan đến vị trí việc làm.",
+      "max_score": "1",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Có khả năng phát hiện các vấn đề mới, khó và những hạn chế, bất cập trong thực tiễn; chủ động đề xuất chủ trương, chính sách, nhiệm vụ, giải pháp phù hợp, khả thi, hiệu quả để tháo gỡ điểm nghẽn, thúc đẩy phát triển.",
+      "max_score": "0,5",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Có kỹ năng xử lý công việc độc lập, làm việc nhóm hiệu quả.",
+      "max_score": "0,5",
+      "note": ""
+    },
+    {
+      "stt": "c)",
+      "name": "Khả năng đáp ứng yêu cầu thực thi nhiệm vụ được giao",
+      "max_score": "2",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Nhiệm vụ thường xuyên: Vận dụng hiệu quả kiến thức chuyên môn, nghiệp vụ để xử lý công việc chuyên môn theo kế hoạch định kỳ; duy trì ổn định chất lượng chuyên môn.",
+      "max_score": "1",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Nhiệm vụ đột xuất: Chủ động đề xuất giải pháp, thực hiện hiệu quả các công việc phát sinh; có khả năng phản ứng kịp thời, đáp ứng với yêu cầu, nhiệm vụ cụ thể.",
+      "max_score": "1",
+      "note": ""
+    },
+    {
+      "stt": "d)",
+      "name": "Thái độ công tác trong thực hiện nhiệm vụ",
+      "max_score": "2",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Tinh thần trách nhiệm cao trong công việc; chủ động tiếp cận kiến thức mới để kịp thời điều chỉnh, đề xuất cải tiến quy trình hoặc giải pháp nâng cao hiệu quả công việc.",
+      "max_score": "1",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Có thái độ đúng mực, phong cách làm việc chuẩn mực, lề lối hành chính chuyên nghiệp trong quan hệ công tác.",
+      "max_score": "0,5",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Phối hợp có hiệu quả với tập thể, cá nhân có liên quan trong việc triển khai thực hiện các nhiệm vụ được phân công.",
+      "max_score": "0,5",
+      "note": ""
+    },
+    {
+      "stt": "đ)",
+      "name": "Tinh thần đổi mới sáng tạo, dám nghĩ, dám làm, dám chịu trách nhiệm vì lợi ích chung",
+      "max_score": "2",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Có sáng kiến, mô hình cách làm mới hoặc đề xuất giải pháp hiệu quả, mang tính đột phá hoặc tạo chuyển biến, được áp dụng trong thực tiễn thuộc phạm vi, lĩnh vực phụ trách và được cấp có thẩm quyền ghi nhận, đánh giá cao.",
+      "max_score": "0,5",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Sẵn sàng tham gia thực hiện nhiệm vụ chính trị đặc biệt quan trọng, nhiệm vụ có tính chất đột xuất, phức tạp hoặc trong điều kiện khó khăn.",
+      "max_score": "0,5",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Có tinh thần chịu trách nhiệm trước kết quả công việc; chủ động nhận trách nhiệm khi có sai sót và có biện pháp khắc phục rõ ràng, cụ thể.",
+      "max_score": "0,5",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Quyết đoán, kịp thời đưa ra quyết định trong phạm vi thẩm quyền, không né tránh; có tinh thần tiên phong trong thực hiện những nhiệm vụ mới.",
+      "max_score": "0,5",
+      "note": ""
+    },
+    {
+      "stt": "4",
+      "name": "Về mức độ tín nhiệm, uy tín và khả năng quy tụ đoàn kết",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "a)",
+      "name": "Có uy tín trong nội bộ, gương mẫu, gắn bó mật thiết với Nhân dân; được cán bộ, đảng viên, quần chúng nhân dân ở địa phương, tổ chức, cơ quan, đơn vị tin tưởng, tín nhiệm cao.",
+      "max_score": "2,5",
+      "note": ""
+    },
+    {
+      "stt": "b)",
+      "name": "Có khả năng quy tụ, đoàn kết nội bộ; xây dựng tập thể vững mạnh về chính trị, tư tưởng, tổ chức và đạo đức; phát huy được sức mạnh tập thể; xây dựng đội ngũ cán bộ, công chức đoàn kết, chuyên nghiệp, đáp ứng yêu cầu, nhiệm vụ.",
+      "max_score": "2,5",
+      "note": ""
+    },
+    {
+      "stt": "5",
+      "name": "Về tự phê bình và phê bình, tự soi, tự sửa, khắc phục hạn chế, khuyết điểm",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Tinh thần tự phê bình, tự soi, tự sửa của cá nhân lãnh đạo, quản lý; sự chủ động nhận diện thiếu sót trong công tác lãnh đạo, chỉ đạo; kết quả khắc phục những hạn chế, khuyết điểm đã được chỉ ra của bản thân và trong phạm vi lãnh đạo, quản lý.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "II",
+      "name": "NHÓM TIÊU CHÍ VỀ KẾT QUẢ THỰC HIỆN CHỨC TRÁCH, NHIỆM VỤ ĐƯỢC GIAO",
+      "max_score": "70",
+      "note": ""
+    },
+    {
+      "stt": "1",
+      "name": "Khối cơ quan tham mưu của Đảng:",
+      "max_score": "70",
+      "note": ""
+    },
+    {
+      "stt": "1.1.",
+      "name": "Kết quả thực hiện chức trách, nhiệm vụ được giao",
+      "max_score": "40",
+      "note": ""
+    },
+    {
+      "stt": "a)",
+      "name": "Tổ chức thực hiện các nhiệm vụ nghiên cứu, tham mưu, sơ kết, tổng kết, đề xuất, ban hành các chủ trương, đường lối, chính sách, giải pháp của cấp ủy về công tác xây dựng Đảng, xây dựng hệ thống chính trị và nhiệm vụ chính trị theo lĩnh vực, chuyên môn được giao theo đúng quy định, bám sát yêu cầu, nhiệm vụ.",
+      "max_score": "10",
+      "note": ""
+    },
+    {
+      "stt": "b)",
+      "name": "Tham mưu về chủ trương, chính sách công tác đảng, về công tác chính trị - tư tưởng, tổ chức - cán bộ, kiểm tra, nội chính, dân vận, văn phòng cấp ủy theo lĩnh vực được phân công bảo đảm hiệu quả, giải quyết được các yêu cầu đặt ra của lý luận và tình hình thực tiễn.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "c)",
+      "name": "Hướng dẫn và tổ chức kiểm tra, giám sát việc thực hiện nhiệm vụ theo lĩnh vực được phân công, góp phần ngăn ngừa khuyết điểm, vi phạm, kịp thời phát hiện và xử lý các vấn đề phát sinh.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "d)",
+      "name": "Thẩm định, thẩm tra các nghị quyết, chính sách, giải pháp của cấp ủy về công tác xây dựng Đảng, xây dựng hệ thống chính trị và các nhiệm vụ chính trị được giao bảo đảm chất lượng, đúng quy định, không để xảy ra sai sót.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "đ)",
+      "name": "Thực hiện hiệu quả chuyển đổi số, cải cách hành chính, chế độ công chức, công vụ gắn với các đề xuất hoặc giải pháp phù hợp với tổ chức, cơ quan, đơn vị quản lý.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "e)",
+      "name": "Phân tích, tổng hợp, đánh giá và tham mưu cấp ủy ban hành các văn bản theo lĩnh vực công tác đạt yêu cầu về nội dung, hình thức và tiến độ; sử dụng thành thạo hệ thống quản lý điều hành văn bản; tổ chức thực hiện hiệu quả chuyển đổi số trong công tác đảng.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "g)",
+      "name": "Biên tập, phát biểu, báo cáo thuyết minh đề án, đề tài đúng yêu cầu; thể hiện rõ vai trò điều phối trong công tác phối hợp tốt với các đơn vị để tổ chức các cuộc họp, hội nghị của cấp ủy.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "1.2.",
+      "name": "Kết quả lãnh đạo, chỉ đạo, điều hành, tổ chức thực hiện nhiệm vụ trong phạm vi phụ trách",
+      "max_score": "20",
+      "note": ""
+    },
+    {
+      "stt": "a)",
+      "name": "Lãnh đạo, chỉ đạo, điều hành, tổ chức thực hiện hiệu quả nghị quyết, chỉ thị, kết luận, quy định, hướng dẫn của Trung ương và cấp trên.",
+      "max_score": "10",
+      "note": ""
+    },
+    {
+      "stt": "b)",
+      "name": "Chủ động phát hiện, đề xuất các giải pháp đổi mới, tổng kết thực tiễn phù hợp với đường lối, chủ trương của Đảng và tình hình địa phương, tổ chức, cơ quan, đơn vị.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "c)",
+      "name": "Chủ động xây dựng và lãnh đạo, chỉ đạo thực hiện có hiệu quả kế hoạch, chương trình công tác, đề án, quy chế, quy định thuộc lĩnh vực phụ trách gắn với kế hoạch, chương trình công tác và tình hình thực tiễn của tổ chức, cơ quan, đơn vị.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "1.3.",
+      "name": "Kết quả đánh giá, xếp loại chất lượng của tập thể cơ quan, đơn vị và của đội ngũ cản bộ, đảng viên thuộc quyền quản lý trực tiếp của cá nhân (nếu có)",
+      "max_score": "10",
+      "note": "Nếu trường hợp không có nội dung này thì cộng 10 điểm vào mục a (20 điểm), 1.1 (50 điểm)."
+    },
+    {
+      "stt": "2",
+      "name": "Khối cơ quan hành chính nhà nước:",
+      "max_score": "70",
+      "note": ""
+    },
+    {
+      "stt": "2.1.",
+      "name": "Kết quả thực hiện chức trách, nhiệm vụ được giao",
+      "max_score": "40",
+      "note": ""
+    },
+    {
+      "stt": "a)",
+      "name": "Chỉ đạo hoàn thành các chỉ tiêu, kế hoạch công tác năm theo ngành, lĩnh vực, địa bàn được phân công.",
+      "max_score": "10",
+      "note": ""
+    },
+    {
+      "stt": "b)",
+      "name": "Thực hiện chức năng quản lý nhà nước bảo đảm hiệu năng, hiệu lực, hiệu quả, chuyên nghiệp, công khai, minh bạch; tổ chức và theo dõi việc thi hành, thanh tra, kiểm tra và kịp thời đưa ra giải pháp xử lý theo quy định của pháp luật đối với ngành, lĩnh vực, địa bàn được phân công.",
+      "max_score": "10",
+      "note": ""
+    },
+    {
+      "stt": "c)",
+      "name": "Tổ chức triển khai kịp thời, đúng tiến độ các văn bản pháp luật, chương trình hành động, đề án phát triển ngành, địa phương; các nhiệm vụ về quản lý nhà nước, phát triển kinh tế - xã hội, bảo đảm quốc phòng, an ninh, an sinh xã hội; tốc độ tăng trưởng GRDP, GRDP bình quân đầu người; tỉ lệ giải ngân vốn đầu tư công, tốc độ tăng thu ngân sách nhà nước; kết quả thu hút, cải thiện môi trường đầu tư kinh doanh, hỗ trợ doanh nghiệp, thúc đẩy kinh tế tư nhân; phát triển khoa học, công nghệ, đổi mới sáng tạo và chuyển đổi số; hiệu quả trong quản trị xã hội và cải cách hành chính theo nhiệm vụ được giao.",
+      "max_score": "10",
+      "note": ""
+    },
+    {
+      "stt": "d)",
+      "name": "Không để xảy ra sai phạm trong lĩnh vực phụ trách; nếu có khiếu kiện, phải được xử lý dứt điểm, đúng pháp luật.",
+      "max_score": "10",
+      "note": ""
+    },
+    {
+      "stt": "2.2.",
+      "name": "Kết quả lãnh đạo, chỉ đạo, điều hành, tổ chức thực hiện nhiệm vụ trong phạm vi phụ trách",
+      "max_score": "20",
+      "note": ""
+    },
+    {
+      "stt": "a)",
+      "name": "Chỉ đạo, điều hành hoạt động của đơn vị; phân công công việc khoa học, giám sát chặt chẽ, giữ được kỷ cương hành chính.",
+      "max_score": "10",
+      "note": ""
+    },
+    {
+      "stt": "b)",
+      "name": "Phối hợp tốt với các tổ chức, cơ quan, đơn vị liên quan, phát huy hiệu quả quản lý đa ngành, liên thông; tổ chức bộ máy tinh gọn, hiệu lực.",
+      "max_score": "10",
+      "note": ""
+    },
+    {
+      "stt": "2.3.",
+      "name": "Kết quả đánh giá, xếp loại chất lượng của tập thể cơ quan, đơn vị và của đội ngũ cản bộ, đảng viên thuộc quyền quản lý trực tiếp của cá nhân (nếu có)",
+      "max_score": "10",
+      "note": "Nếu trường hợp không có nội dung này thì cộng 10 điểm vào mục a (20 điểm), 2.1 (50 điểm)."
+    },
+    {
+      "stt": "3",
+      "name": "Khối cơ quan dân cử:",
+      "max_score": "70",
+      "note": ""
+    },
+    {
+      "stt": "3.1.",
+      "name": "Kết quả thực hiện chức trách, nhiệm vụ được giao",
+      "max_score": "40",
+      "note": ""
+    },
+    {
+      "stt": "a)",
+      "name": "Lãnh đạo công tác tham mưu xây dựng, thẩm định, thẩm tra các văn bản quy phạm pháp luật theo thẩm quyền, đúng quy trình, thể thức; ban hành đúng thời hạn, không để xảy ra sai sót.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "b)",
+      "name": "Tham mưu, góp ý, phản biện chính sách, pháp luật, nghị quyết, chương trình, kế hoạch liên quan đến lĩnh vực quản lý bảo đảm tính hợp pháp, khả thi, phù hợp với đường lối, chủ trương của Đảng và thực tiễn địa phương.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "c)",
+      "name": "Tham mưu để cơ quan có thẩm quyền quyết định những vấn đề, quyết sách quan trọng của địa phương góp phần cụ thể hoá và triển khai chủ trương, chính sách của Đảng, pháp luật của Nhà nước.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "d)",
+      "name": "Thực hiện chức năng giám sát, phản biện, chất vấn rõ ràng, đúng quy định, đúng thẩm quyền, đưa ra những kiến nghị cụ thể được tiếp thu hoặc xem xét.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "đ)",
+      "name": "Tiếp xúc cử tri, tiếp công dân và đôn đốc giải quyết, trả lời đơn, thư, phản ánh, kiến nghị của tổ chức, cá nhân đầy đủ, đúng thời hạn, không để tồn đọng, kéo dài.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "e)",
+      "name": "Phối hợp với các cơ quan có trách nhiệm tổ chức tiếp xúc, chuẩn bị các tình huống giải đáp thắc mắc, giải quyết các kiến nghị hợp pháp, chính đáng của cử tri bảo đảm nội dung và thời hạn, không phát sinh điểm nóng hoặc phản ứng tiêu cực.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "g)",
+      "name": "Tổ chức thực hiện hiệu quả chuyển đổi số, cải cách hành chính, chế độ công chức, công vụ.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "h)",
+      "name": "Chỉ đạo ban hành nghị quyết, kết luận, báo cáo bảo đảm chất lượng; theo dõi, giám sát việc tổ chức thực hiện đạt kết quả thiết thực.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "3.2.",
+      "name": "Kết quả lãnh đạo, chỉ đạo, điều hành, tổ chức thực hiện nhiệm vụ trong phạm vi phụ trách",
+      "max_score": "20",
+      "note": ""
+    },
+    {
+      "stt": "a)",
+      "name": "Tổ chức, điều hành các phiên họp, hội nghị, giám sát theo chuyên đề, tiếp xúc cử tri theo lĩnh vực, nhóm đối tượng cử tri, nhóm vấn đề cử tri và nhân dân quan tâm bảo đảm khoa học, kỷ cương, phát huy hiệu quả của các cơ quan chuyên môn, tổ giúp việc.",
+      "max_score": "10",
+      "note": ""
+    },
+    {
+      "stt": "b)",
+      "name": "Thực hiện tốt công tác phối hợp với các cơ quan chính quyền, tư pháp và các tổ chức có liên quan.",
+      "max_score": "10",
+      "note": ""
+    },
+    {
+      "stt": "3.3.",
+      "name": "Kết quả đánh giá, xếp loại chất lượng của tập thể cơ quan, đơn vị và của đội ngũ cản bộ, đảng viên thuộc quyền quản lý trực tiếp của cá nhân (nếu có)",
+      "max_score": "10",
+      "note": "Nếu trường hợp không có nội dung này thì cộng 05 điểm vào mục a (10 điểm) và 05 điểm vào mục b (10 điểm), 3.1 (50 điểm)."
+    },
+    {
+      "stt": "4",
+      "name": "Khối cơ quan Mặt trận Tổ quốc và các tổ chức chính trị - xã hội",
+      "max_score": "70",
+      "note": ""
+    },
+    {
+      "stt": "4.1.",
+      "name": "Kết quả thực hiện chức trách, nhiệm vụ được giao",
+      "max_score": "40",
+      "note": ""
+    },
+    {
+      "stt": "a)",
+      "name": "Nắm chắc tình hình nhân dân và các tổ chức trong khối mặt trận; cung cấp thông tin kịp thời, đầy đủ thông qua các báo cáo định kỳ hoặc đột xuất để nghiên cứu, đề xuất các chủ trương, giải pháp thiết thực, phù hợp với cấp ủy, chính quyền cùng cấp trong việc thực hiện chức năng, nhiệm vụ của Mặt trận Tổ quốc, các tổ chức chính trị-xã hội và các nhiệm vụ khác.",
+      "max_score": "10",
+      "note": ""
+    },
+    {
+      "stt": "b)",
+      "name": "Duy trì việc tổ chức thực hiện hoạt động giám sát và phản biện xã hội; giữ mối liên hệ và gắn bó với Nhân dân, là cầu nối giữa Nhân dân với Đảng; tham gia xây dựng Đảng và chính quyền; tổ chức tập hợp xây dựng liên minh chính trị và xây dựng khối đại đoàn kết toàn dân tộc; thu hút sự tham gia tích cực của Nhân dân.",
+      "max_score": "10",
+      "note": ""
+    },
+    {
+      "stt": "c)",
+      "name": "Tổ chức triển khai hướng dẫn, kiểm tra, giám sát việc thực hiện các nghị quyết, chương trình, kế hoạch nhằm bảo đảm quyền và lợi ích hợp pháp, chính đáng của tổ chức, đoàn viên, hội viên và tầng lớp nhân dân.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "d)",
+      "name": "Tổ chức, tổng kết các phong trào thi đua, các cuộc vận động; thuyết phục, tập họp khối đại đoàn kết; xây dựng và phát huy các giá trị văn hoá dân tộc; khơi dậy và phát huy tinh thần yêu nước, ý chí tự lực, tự cường, sức mạnh đại đoàn kết toàn dân tộc và khát vọng phát triển đất nước của đoàn viên, hội viên, quần chúng và các tầng lớp nhân dân.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "đ)",
+      "name": "Tiếp công dân, tiếp xúc cử tri, xử lý đơn, thư, kiến nghị, khiếu nại bảo đảm tính minh bạch, đúng quy định; bảo vệ quyền, lợi ích hợp pháp, chính đáng của tổ chức và cá nhân.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "e)",
+      "name": "Chỉ đạo, tổ chức các hoạt động chuyên môn đúng điều lệ, đúng tôn chỉ, mục đích và có hiệu quả.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "4.2.",
+      "name": "Kết quả lãnh đạo, chỉ đạo, điều hành, tổ chức thực hiện nhiệm vụ trong phạm vi phụ trách",
+      "max_score": "20",
+      "note": ""
+    },
+    {
+      "stt": "a)",
+      "name": "Thực hiện việc quản lý, điều phối hoạt động của hệ thống tổ chức Mặt trận Tổ quốc và các tầng lớp nhân dân, thúc đẩy sự tham gia chủ động của Nhân dân trong các phong trào, hoạt động xã hội.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "b)",
+      "name": "Chỉ đạo xây dựng kế hoạch công tác, chương trình hành động phù hợp với lĩnh vực được phân công.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "c)",
+      "name": "Điều hành, tổ chức các hội nghị, phiên họp, hoạt động giám sát, chương trình hành động của Mặt trận Tổ quốc và các tổ chức chính trị-xã hội đúng tiến độ, có báo cáo được cấp trên đánh giá, ghi nhận.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "d)",
+      "name": "Duy trì việc kiểm soát công việc, xử lý kịp thời các tình huống, vấn đề nhạy cảm, bức thiết của Nhân dân, không để xảy ra khiếu nại kéo dài hoặc phản ánh tiêu cực.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "4.3.",
+      "name": "Kết quả đánh giá, xếp loại chất lượng của tập thể cơ quan, đơn vị và của đội ngũ cản bộ, đảng viên thuộc quyền quản lý trực tiếp của cá nhân (nếu có)",
+      "max_score": "10",
+      "note": "Nếu trường hợp không có nội dung này thì cộng 5 điểm vào mục c (10 điểm) và 05 điểm vào mục d (10 điểm), 4.1 (50 điểm)."
+    },
+    {
+      "stt": "5",
+      "name": "Khối lực lượng vũ trang:",
+      "max_score": "70",
+      "note": ""
+    },
+    {
+      "stt": "5.1.",
+      "name": "Kết quả thực hiện chức trách, nhiệm vụ được giao",
+      "max_score": "40",
+      "note": ""
+    },
+    {
+      "stt": "5.1.1",
+      "name": "Đối với lực lượng Quân đội nhân dân",
+      "max_score": "40",
+      "note": ""
+    },
+    {
+      "stt": "a)",
+      "name": "Quán triệt, cụ thể hoá và thực hiện đường lối, chủ trương của Đảng, chính sách, pháp luật của Nhà nước, nghị quyết, chỉ thị, quy định của Quân ủy Trung ương, Bộ Quốc phòng, hướng dẫn của cơ quan cấp trên tại cơ quan, đơn vị.",
+      "max_score": "10",
+      "note": ""
+    },
+    {
+      "stt": "b)",
+      "name": "Thực hiện chức năng quản lý nhà nước về quốc phòng; lãnh đạo, chỉ đạo, tham mưu, tổ chức thực hiện nhiệm vụ quân sự, quốc phòng theo chức trách, nhiệm vụ được giao; xây dựng tổ chức đảng trong sạch, vững mạnh, cơ quan, đơn vị, các tổ chức quần chúng vững mạnh toàn diện; chỉ đạo thực hiện công tác cải cách hành chính, phòng, chống tham nhũng, lãng phí, tiêu cực tại cơ quan, đơn vị, lĩnh vực, ngành mình phụ trách.",
+      "max_score": "10",
+      "note": ""
+    },
+    {
+      "stt": "c)",
+      "name": "Lãnh đạo, chỉ đạo, tổ chức kiểm tra, thanh tra, giám sát; sơ kết, tổng kết rút kinh nghiệm việc thực hiện đường lối, chủ trương của Đảng, chính sách, pháp luật của Nhà nước, nghị quyết, chi thị, quy định, hướng dẫn của Quân ủy Trung ương, Bộ Quốc phòng, cấp ủy, chỉ huy các cấp.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "d)",
+      "name": "Quan tâm chăm lo đời sống vật chất, tinh thần cho cán bộ, nhân viên, chiến sĩ, người lao động trong cơ quan, đơn vị.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "đ)",
+      "name": "Giải quyết tốt các mối quan hệ trong công tác, đoàn kết, thống nhất trong cấp ủy, chỉ huy, cơ quan, đơn vị.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "e)",
+      "name": "Xây dựng và thực hiện chương trình hành động hằng năm của cá nhân để tập thể chi bộ góp ý và kiểm tra, giám sát thực hiện.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "5.1.2",
+      "name": "Đối với lực lượng Công an nhân dân",
+      "max_score": "40",
+      "note": ""
+    },
+    {
+      "stt": "a)",
+      "name": "Việc chỉ đạo thực hiện công tác cải cách hành chính, phòng, chống tham nhũng, tiêu cực, lãng phí tại đơn vị.",
+      "max_score": "10",
+      "note": ""
+    },
+    {
+      "stt": "b)",
+      "name": "Quán triệt, cụ thể hoá và thực hiện đường lối, chủ trương của Đảng, chính sách, pháp luật của Nhà nước và của Bộ Công an tại đơn vị.",
+      "max_score": "10",
+      "note": ""
+    },
+    {
+      "stt": "c)",
+      "name": "Lãnh đạo, chỉ đạo, tổ chức kiểm tra, thanh tra, giám sát.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "d)",
+      "name": "Sơ kết, tổng kết rút kinh nghiệm việc thực hiện đường lối, chủ trương của Đảng, chính sách, pháp luật của Nhà nước và của Bộ Công an.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "đ)",
+      "name": "Quan tâm chăm lo đời sống vật chất, tinh thần cho cán bộ, chiến sĩ trong đơn vị.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "e)",
+      "name": "Quan hệ phối hợp với các thành viên khác trong cấp ủy, lãnh đạo đơn vị, sự đoàn kết, thống nhất trong nội bộ.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "5.2.",
+      "name": "Kết quả lãnh đạo, chỉ đạo, điều hành, tổ chức thực hiện nhiệm vụ trong phạm vi phụ trách",
+      "max_score": "20",
+      "note": ""
+    },
+    {
+      "stt": "a)",
+      "name": "Năng lực nghiên cứu, dự báo, phân tích, nhận định, đánh giá, tham mưu đề xuất, xử lý các vấn đề nảy sinh trong thực tiễn.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "b)",
+      "name": "Năng lực lãnh đạo, chỉ huy, quản lý, cụ thể hoá nghị quyết, chỉ thị, hướng dẫn của cấp trên và cấp mình; tính sáng tạo, phương pháp làm việc trong tổ chức thực hiện các đường lối, chủ trương của Đảng, chính sách, pháp luật của Nhà nước, nhiệm vụ quân sự - quốc phòng theo chức trách (đối với Quân đội nhân dân).",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "c)",
+      "name": "Kết quả tham mưu hoặc trực tiếp tổ chức thực hiện các chủ trương, nghị quyết của Đảng, quy định của Nhà nước, chỉ đạo của Bộ Công an và của cấp trên về nhiệm vụ bảo vệ an ninh quốc gia, bảo đảm trật tự, an toàn xã hội, đấu tranh phòng, chống tội phạm và xây dựng lực lượng Công an nhân dân; chất lượng, hiệu quả công tác lãnh đạo, chỉ huy, chỉ đạo thực hiện các mặt công tác thuộc chức năng, nhiệm vụ của đơn vị, lĩnh vực được phân công phụ trách (đối với Công an nhân dân).",
+      "max_score": "2,5",
+      "note": ""
+    },
+    {
+      "stt": "d)",
+      "name": "Việc nắm nguyên tắc công tác; kinh nghiệm trong lãnh đạo, chỉ huy, quản lý; quy tụ đoàn kết trong cấp ủy, chỉ huy cơ quan, đơn vị.",
+      "max_score": "2,5",
+      "note": ""
+    },
+    {
+      "stt": "đ)",
+      "name": "Giải quyết các mối quan hệ phối hợp công tác đối với các cơ quan, đơn vị, tổ chức, đoàn thể trong và ngoài Quân đội.",
+      "max_score": "2,5",
+      "note": ""
+    },
+    {
+      "stt": "e)",
+      "name": "Kết quả hoàn thành nhiệm vụ của cơ quan, đơn vị thuộc quyền.",
+      "max_score": "2,5",
+      "note": ""
+    },
+    {
+      "stt": "5.3.",
+      "name": "Kết quả đánh giá, xếp loại chất lượng của tập thể cơ quan, đơn vị và của đội ngũ cán bộ, đảng viên thuộc quyền quản lý trực tiếp của cá nhân (nếu có)",
+      "max_score": "10",
+      "note": "Nếu trường hợp không có nội dung này thì cộng 05 điểm vào mục c (10 điểm) và 05 điểm vào mục d (10 điểm), 5.1.1 (50 điểm) và 5.1.2 (50 điểm)."
+    },
+    {
+      "stt": "6",
+      "name": "Khối cơ quan tư pháp:",
+      "max_score": "70",
+      "note": ""
+    },
+    {
+      "stt": "6.1.",
+      "name": "Kết quả thực hiện chức trách, nhiệm vụ được giao",
+      "max_score": "40",
+      "note": ""
+    },
+    {
+      "stt": "a)",
+      "name": "Phân tích hồ sơ, chứng cứ, đối chiếu pháp lý, tư duy tổng hợp, lập luận và đưa ra quyết định, kết luận vụ án, vụ việc công minh, khách quan, chính xác; trường hợp bị yêu cầu xem xét lại bản án, quyết định đã có hiệu lực pháp luật thì phải bảo đảm tổng số bản án, quyết định bị hủy, sửa do nguyên nhân chủ quan không vượt quá tỉ lệ theo nghị quyết của Quốc hội.",
+      "max_score": "10",
+      "note": ""
+    },
+    {
+      "stt": "b)",
+      "name": "Không để xảy ra oan sai, tiêu cực hoặc vi phạm nghiêm trọng trong hoạt động tố tụng điều tra, xét xử; các quyết định bảo đảm phù hợp với quy định của pháp luật, kết luận vụ án chính xác, bảo vệ quyền lợi hợp pháp theo ghi nhận qua các đợt kiểm tra, giám sát định kỳ và đột xuất.",
+      "max_score": "10",
+      "note": ""
+    },
+    {
+      "stt": "c)",
+      "name": "Thực hiện nghiêm trách nhiệm trong hoạt động tố tụng; phát hiện kịp thời sai phạm trong hoạt động tư pháp, kiến nghị phù hợp với quy định pháp luật.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "d)",
+      "name": "Triển khai các biện pháp cần thiết để giải quyết mâu thuẫn, xung đột trên cơ sở pháp lý và thực tiễn; các phương án giải quyết bảo đảm nguyên tắc công bằng, minh bạch và tuân thủ pháp luật trong hoạt động của các cơ quan tư pháp.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "đ)",
+      "name": "Các văn bản pháp lý được biên soạn, thẩm định có nội dung rõ ràng, đúng quy định; không phát sinh sai sót nghiêm trọng về nội dung hoặc hình thức.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "e)",
+      "name": "Tổ chức rút kinh nghiệm, tổng kết chuyên đề; kiến nghị hoàn thiện pháp luật có tính thực tiễn; hướng dẫn áp dụng pháp luật kịp thời.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "6.2.",
+      "name": "Kết quả lãnh đạo, chỉ đạo, điều hành, tổ chức thực hiện nhiệm vụ trong phạm vi phụ trách",
+      "max_score": "20",
+      "note": ""
+    },
+    {
+      "stt": "a)",
+      "name": "Chỉ đạo, điều hành hoạt động của đơn vị bảo đảm tính khoa học, dân chủ, công tâm; bảo đảm chất lượng xử lý công việc và thống nhất áp dụng pháp luật.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "b)",
+      "name": "Phối hợp chặt chẽ với cơ quan điều tra, thi hành án và các cơ quan, đơn vị, tổ chức có liên quan khác trong các hoạt động truy tố, xét xử, giám sát.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "c)",
+      "name": "Tổ chức và thực hiện kiểm tra, thanh tra nội bộ, giám sát về chuyên môn nghiệp vụ trong cơ quan tư pháp, bảo đảm việc tuân thủ quy định pháp luật.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "d)",
+      "name": "Quản lý nguồn lực tài chính, vật chất và nhân lực bảo đảm nguyên tắc phân bổ hợp lý, công bằng trong các hoạt động tư pháp.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "6.3.",
+      "name": "Kết quả đánh giá, xếp loại chất lượng của tập thể cơ quan, đơn vị và của đội ngũ cản bộ, đảng viên thuộc quyền quản lý trực tiếp của cá nhân (nếu có)",
+      "max_score": "10",
+      "note": "Nếu trường hợp không có nội dung này thì cộng 05 điểm vào mục c (10 điểm) và  05 điểm vào mục d (10 điểm), 6.1 (50 điểm)."
+    },
+    {
+      "stt": "7",
+      "name": "Khối đơn vị sự nghiệp công lập:",
+      "max_score": "70",
+      "note": ""
+    },
+    {
+      "stt": "7.1.",
+      "name": "Kết quả thực hiện chức trách, nhiệm vụ được giao",
+      "max_score": "40",
+      "note": ""
+    },
+    {
+      "stt": "a)",
+      "name": "Các hoạt động chuyên môn được triển khai đầy đủ, đúng quy định, đạt mục tiêu đề ra; các báo cáo kiểm tra, giám sát thể hiện chất lượng cao, được cấp trên ghi nhận; không có vi phạm nghiêm trọng về quy định pháp luật trong quá trình thực hiện.",
+      "max_score": "10",
+      "note": ""
+    },
+    {
+      "stt": "b)",
+      "name": "Các phân tích, nghiên cứu các vấn đề mới thuộc chuyên ngành; đổi mới, cập nhật công nghệ, phương pháp kỹ thuật hiện đại trong triển khai nhiệm vụ của đơn vị sự nghiệp theo hướng tự chủ, nâng cao hiệu lực, hiệu quả của ngành, lĩnh vực.",
+      "max_score": "10",
+      "note": ""
+    },
+    {
+      "stt": "c)",
+      "name": "Thực hiện tốt việc tổng hợp, phân tích, dự báo tình hình và đề xuất các giải pháp hiệu quả, phù hợp với thực tiễn của ngành, lĩnh vực phụ trách.",
+      "max_score": "10",
+      "note": ""
+    },
+    {
+      "stt": "d)",
+      "name": "Các nguồn lực (nhân lực, tài chính, cơ sở vật chất) được quản lý minh bạch, hiệu quả, tuân thủ quy định; các chương trình, dự án được triển khai đúng tiến độ, đạt mục tiêu đề ra, nhận được phản hồi tích cực của các đơn vị liên quan; kết quả dự án, đề tài được cấp trên đánh giá cao, góp phần nâng cao chất lượng dịch vụ công.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "đ)",
+      "name": "Xây dựng và phát triển hiệu quả mối hợp tác với các tổ chức trong và ngoài nước theo lĩnh vực quản lý; xử lý linh hoạt và hiệu quả các tình huống phát sinh trong quá trình phối hợp, bảo đảm tuân thủ đúng quy định; không để xảy ra mâu thuẫn hoặc vi phạm nghiêm trọng; các thoả thuận hợp tác được thực hiện hiệu quả, có sản phẩm cụ thể.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "7.2.",
+      "name": "Kết quả lãnh đạo, chỉ đạo, điều hành, tổ chức thực hiện nhiệm vụ trong phạm vi phụ trách",
+      "max_score": "20",
+      "note": ""
+    },
+    {
+      "stt": "a)",
+      "name": "Quản lý tài chính công khai, minh bạch; phân công điều hành bộ máy hiệu quả.",
+      "max_score": "10",
+      "note": ""
+    },
+    {
+      "stt": "b)",
+      "name": "Tổ chức, điều hành hoạt động của đơn vị sự nghiệp theo hướng tự chủ, nâng cao hiệu lực, hiệu quả, chuyên nghiệp.",
+      "max_score": "10",
+      "note": ""
+    },
+    {
+      "stt": "7.3.",
+      "name": "Kết quả đánh giá, xếp loại chất lượng của tập thể cơ quan, đơn vị và của đội ngũ cản bộ, đảng viên thuộc quyền quản lý trực tiếp của cá nhân (nếu có)",
+      "max_score": "10",
+      "note": "Nếu trường hợp không có nội dung này thì cộng 05 điểm vào mục d (10 điểm) và  05 điểm vào mục đ (10 điểm), 7.1 (50 điểm)."
+    },
+    {
+      "stt": "8",
+      "name": "Khối doanh nghiệp nhà nước:",
+      "max_score": "",
+      "note": ""
+    },
+    {
+      "stt": "8.1.",
+      "name": "Kết quả thực hiện chức trách, nhiệm vụ được giao",
+      "max_score": "40",
+      "note": ""
+    },
+    {
+      "stt": "a)",
+      "name": "Các báo cáo phân tích, đánh giá hiệu quả đầu tư và kinh doanh được thực hiện chính xác, đầy đủ. Chiến lược phát triển doanh nghiệp rõ ràng, khả thi, được triển khai hiệu quả. Đội ngũ nhân sự được xây dựng theo hướng chuyên nghiệp, đáp ứng tốt yêu cầu hoạt động, nhận phản hồi tích cực từ nội bộ và đối tác.",
+      "max_score": "10",
+      "note": ""
+    },
+    {
+      "stt": "b)",
+      "name": "Dự báo tình hình kinh doanh mang tính thực tiễn, được áp dụng hiệu quả trong kế hoạch hoạt động. Các vấn đề phức tạp, tranh chấp, khiếu nại được giải quyết kịp thời, đúng quy định pháp luật, nhận được sự đồng thuận từ các bên liên quan. Các giải pháp đề xuất có tác dụng rõ rệt nâng cao hiệu quả hoạt động của doanh nghiệp.",
+      "max_score": "10",
+      "note": ""
+    },
+    {
+      "stt": "c)",
+      "name": "Các bộ phận trong doanh nghiệp phối hợp đồng bộ, chặt chẽ. Quan hệ với cơ quan nhà nước được duy trì minh bạch, tuân thủ quy định, nhận được phản hồi tích cực; các báo cáo, hồ sơ phối hợp được hoàn thành đầy đủ, đúng thời hạn, không có sai sót.",
+      "max_score": "10",
+      "note": ""
+    },
+    {
+      "stt": "d)",
+      "name": "Mức độ hoàn thành kế hoạch sản xuất - kinh doanh (doanh thu, lợi nhuận, cổ tức, bảo toàn và phát triển vốn nhà nước). Doanh nghiệp nộp ngân sách đúng, đủ và đúng hạn. Không có khoản bị truy thu hoặc bị xử phạt hành chính do gian lận; không để xảy ra tình trạng thua lỗ kéo dài, mất vốn nhà nước, mất khả năng thanh toán. Tỉ lệ giải quyết kiến nghị, khiếu nại nội bộ và từ người lao động bảo đảm theo quy định.",
+      "max_score": "10",
+      "note": ""
+    },
+    {
+      "stt": "8.2.",
+      "name": "Kết quả lãnh đạo, chỉ đạo, điều hành, tổ chức thực hiện nhiệm vụ trong phạm vi phụ trách",
+      "max_score": "20",
+      "note": ""
+    },
+    {
+      "stt": "a)",
+      "name": "Thiết lập hệ thống quản trị hiện đại: Quy trình vận hành rõ ràng, có thiết lập cơ chế kiểm soát nội bộ, góp phần giảm chi phí hoạt động cho doanh nghiệp.",
+      "max_score": "10",
+      "note": ""
+    },
+    {
+      "stt": "b)",
+      "name": "Chủ động tái cấu trúc, cổ phần hoá đúng lộ trình, không gây xáo trộn lớn; phát hiện rủi ro sớm và có biện pháp ứng phó, khắc phục phù hợp.",
+      "max_score": "10",
+      "note": ""
+    },
+    {
+      "stt": "8.3.",
+      "name": "Kết quả đánh giá, xếp loại chất lượng của tập thể cơ quan, đơn vị và của đội ngũ cản bộ, đảng viên thuộc quyền quản lý trực tiếp của cá nhân (nếu có)",
+      "max_score": "10",
+      "note": "Nếu trường hợp không có nội dung này thì cộng 10 điểm vào mục  d (20 điểm), 8.1 (50 điểm)."
+    },
+    {
+      "stt": "9",
+      "name": "Khối cơ quan các hội quần chúng được Đảng và Nhà nước giao nhiệm vụ:",
+      "max_score": "",
+      "note": ""
+    },
+    {
+      "stt": "9.1.",
+      "name": "Kết quả thực hiện chức trách, nhiệm vụ được giao",
+      "max_score": "40",
+      "note": ""
+    },
+    {
+      "stt": "a)",
+      "name": "Chỉ đạo tổ chức các hoạt động chuyên môn đúng điều lệ, nghị quyết, chương trình, kế hoạch công tác của hội đạt hiệu quả: Hội thảo, tọa đàm, diễn đàn nghề nghiệp.",
+      "max_score": "15",
+      "note": ""
+    },
+    {
+      "stt": "b)",
+      "name": "Tỉ lệ hội viên tham gia hoạt động của hội; phát triển hội viên mới.",
+      "max_score": "10",
+      "note": ""
+    },
+    {
+      "stt": "c)",
+      "name": "Tham gia giám sát, phản biện, tư vấn phản ánh được dư luận, có sản phẩm kiến nghị cụ thể.",
+      "max_score": "15",
+      "note": ""
+    },
+    {
+      "stt": "9.2.",
+      "name": "Kết quả lãnh đạo, chỉ đạo, điều hành, tổ chức thực hiện nhiệm vụ trong phạm vi phụ trách",
+      "max_score": "20",
+      "note": ""
+    },
+    {
+      "stt": "a)",
+      "name": "Duy trì chế độ họp, sinh hoạt hội đều đặn, đúng quy định; không có đơn, thư, khiếu kiện nội bộ. Các chương trình, quy chế hoạt động được xây dựng rõ ràng, khả thi; các chính sách đề xuất mang tính thực tiễn, phù hợp với quy định pháp luật, được ghi nhận và áp dụng hiệu quả.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "b)",
+      "name": "Các báo cáo phân tích, đánh giá thể hiện sự chính xác, sâu sắc góp phần nâng cao uy tín và hiệu quả hoạt động của hội.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "c)",
+      "name": "Tham mưu và tổ chức được các hoạt động nghề nghiệp có giá trị, được cấp ủy, cơ quan chủ quản ghi nhận.",
+      "max_score": "10",
+      "note": ""
+    },
+    {
+      "stt": "9.3.",
+      "name": "Kết quả đánh giá, xếp loại chất lượng của tập thể cơ quan, đơn vị và của đội ngũ cản bộ, đảng viên thuộc quyền quản lý trực tiếp của cá nhân (nếu có)",
+      "max_score": "10",
+      "note": "Nếu trường hợp không có nội dung này thì cộng 05 điểm vào mục a (20 điểm) và  05 điểm vào mục b (15 điểm), 9.1 (50 điểm)."
+    }
+  ],
+  "phu_luc_5_cap_uy": [
+    {
+      "stt": "I",
+      "name": "CÁC TIÊU CHÍ CHUNG",
+      "max_score": "30",
+      "note": ""
+    },
+    {
+      "stt": "1",
+      "name": "Về chính trị, tư tưởng",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "a)",
+      "name": "Tuyệt đối trung thành với Đảng, với Tổ quốc và Nhân dân; kiên định lý tưởng cách mạng, chủ nghĩa Mác - Lênin, tư tưởng Hồ Chí Minh, mục tiêu độc lập dân tộc, chủ nghĩa xã hội và đường lối đổi mới của Đảng.",
+      "max_score": "1",
+      "note": ""
+    },
+    {
+      "stt": "b)",
+      "name": "Có lập trường, quan điểm, bản lĩnh chính trị vững vàng, không dao động trước mọi khó khăn, thách thức; kiên quyết bảo vệ nền tảng tư tưởng, Cương lĩnh, đường lối của Đảng, Hiến pháp và pháp luật của Nhà nước; nhận thức và hành động thống nhất về tư tưởng chính trị, tổ chức và đạo đức; đấu tranh phản bác các quan điểm sai trái, luận điệu xuyên tạc của các thế lực thù địch. Giữ nghiêm kỷ luật phát ngôn theo đúng nguyên tắc, quy định của Đảng.",
+      "max_score": "1",
+      "note": ""
+    },
+    {
+      "stt": "c)",
+      "name": "Có tinh thần yêu nước, tận tuy phục vụ Nhân dân, luôn hành động vì lợi ích của Nhân dân, đặt lợi ích của Đảng, quốc gia, dân tộc, Nhân dân, tập thể lên trên lợi ích cá nhân; sẵn sàng hy sinh vì sự nghiệp của Đảng, vì độc lập, tự do của Tổ quốc, vì hạnh phúc của Nhân dân.",
+      "max_score": "1",
+      "note": ""
+    },
+    {
+      "stt": "d)",
+      "name": "Tuyệt đối chấp hành sự phân công của tổ chức và hoàn thành tốt mọi nhiệm vụ được giao.",
+      "max_score": "1",
+      "note": ""
+    },
+    {
+      "stt": "đ",
+      "name": "Tích cực nghiên cứu, học tập các chủ trương, nghị quyết của Đảng, chính sách, pháp luật của Nhà nước; thường xuyên bồi dưỡng, cập nhật kiến thức mới và vận dụng sáng tạo vào thực tiễn.",
+      "max_score": "0,5",
+      "note": ""
+    },
+    {
+      "stt": "e)",
+      "name": "Có năng lực tư duy và tầm nhìn đáp ứng với yêu cầu thay đổi của tình hình thực tiễn; phát huy tinh thần chủ động, đổi mới, sáng tạo; phấn đấu vì mục tiêu phát triển của chi bộ, đóng góp vào mục tiêu chung của đất nước.",
+      "max_score": "0,5",
+      "note": ""
+    },
+    {
+      "stt": "2",
+      "name": "Về phẩm chất đạo đức và ý thức tổ chức kỷ luật",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "a)",
+      "name": "Có phẩm chất đạo đức, lối sống trong sáng, trung thực, khiêm tốn, chân thành, giản dị; cần, kiệm, liêm, chính, chí công vô tư; chấp hành nghiêm quy định về trách nhiệm nêu gương; không vi phạm Quy định về những điều đảng viên không được làm. Không vi phạm đạo đức, lối sống đến mức bị xử lý kỷ luật trong 5 năm gần nhất.",
+      "max_score": "1",
+      "note": ""
+    },
+    {
+      "stt": "b)",
+      "name": "Không tham ô, tham nhũng, tiêu cực, quan liêu, hách dịch, cửa quyền, vụ lợi; không để người thân, người quen lợi dụng chức vụ, quyền hạn của mình để trục lợi. Không có biểu hiện suy thoái về tư tưởng chính trị, đạo đức, lối sống, những biểu hiện \"tự diễn biến\", \"tự chuyển hoá\" trong nội bộ. Kiên quyết đấu tranh chống quan liêu, cửa quyền, tham nhũng, xa hoa, lãng phí, tiêu cực, chủ nghĩa cá nhân, lối sống cơ hội, thực dụng, bè phái, lợi ích nhóm, nói không đi đôi với làm.",
+      "max_score": "1",
+      "note": ""
+    },
+    {
+      "stt": "c)",
+      "name": "Có ý thức tự giác học tập, tu dưỡng, rèn luyện đạo đức bản thân; có tinh thần, trách nhiệm cao với công việc; cần cù, chịu khó, năng động, sáng tạo, dám nghĩ, dám nói, dám làm, dám chịu trách nhiệm, dám đương đầu với khó khăn, thử thách, dám hy sinh vì lợi ích chung.",
+      "max_score": "1",
+      "note": ""
+    },
+    {
+      "stt": "d)",
+      "name": "Thực hiện nghiêm các nguyên tắc tổ chức và hoạt động của Đảng, nhất là nguyên tắc tập trung dân chủ, tự phê bình và phê bình; thực hiện đúng, đầy đủ quyền hạn, trách nhiệm và chỉ đạo thực hiện các quy định, quy chế, nội quy của tổ chức, cơ quan, đơn vị nơi công tác; kiên quyết đấu tranh với những biểu hiện, việc làm trái với các quy định của Đảng, Nhà nước trong công tác cán bộ.",
+      "max_score": "1",
+      "note": ""
+    },
+    {
+      "stt": "đ",
+      "name": "Thực hiện việc kê khai và công khai tài sản, thu nhập theo quy định.",
+      "max_score": "0,5",
+      "note": ""
+    },
+    {
+      "stt": "e)",
+      "name": "Báo cáo đầy đủ, trung thực, cung cấp thông tin chính xác, khách quan về những nội dung liên quan đến việc thực hiện chức trách, nhiệm vụ được giao và hoạt động của  chi bộ với Đảng ủy khi được yếu cầu.",
+      "max_score": "0,5",
+      "note": ""
+    },
+    {
+      "stt": "3",
+      "name": "Năng lực lãnh đạo, quản lý và năng lực chuyên môn, nghiệp vụ theo yêu cầu của vị trí việc làm; khả năng đáp ứng yêu cầu thực thi nhiệm vụ được giao; thái độ công tác trong thực hiện nhiệm vụ; tinh thần đổi mới sáng tạo, dám nghĩ, dám làm, dám chịu trách nhiệm vì lợi ích chung",
+      "max_score": "10",
+      "note": ""
+    },
+    {
+      "stt": "a)",
+      "name": "Năng lực lãnh đạo, quản lý",
+      "max_score": "2",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Có khả năng lãnh đạo, chi đạo tổ chức thực hiện đóng góp vào mục tiêu phát triển chung của phường; lãnh đạo, chỉ đạo xây dựng, củng cố, kiện toàn chi bộ, đoàn thể trong sạch, vững mạnh.",
+      "max_score": "0,5",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Có phương pháp làm việc khoa học; có năng lực tổng hợp, phân tích và dự báo.",
+      "max_score": "0,5",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Có năng lực, kinh nghiệm thực tiễn để cụ thể hoá và tổ chức thực hiện có hiệu quả đường lối, chủ trương của Đảng, chính sách, pháp luật của Nhà nước ở lĩnh vực công tác được phân công phụ trách.",
+      "max_score": "0,5",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Có khả năng chỉ đạo, điều hành hoạt động của chi bộ, phân công công việc khoa học, giám sát chặt chẽ, giữ gìn kỷ cương, kỷ luật.",
+      "max_score": "0,5",
+      "note": ""
+    },
+    {
+      "stt": "b)",
+      "name": "Năng lực chuyên môn, nghiệp vụ",
+      "max_score": "2",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Có kiến thức về lĩnh vực công tác được phân công",
+      "max_score": "1",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Có khả năng phát hiện các vấn đề mới và những hạn chế, khó khăn trong thực tiễn; chủ động đề xuất nhiệm vụ, giải pháp phù hợp, khả thi, hiệu quả để tháo gỡ",
+      "max_score": "0,5",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Có kỹ năng xử lý công việc độc lập và phối hợp thực hiện công việc",
+      "max_score": "0,5",
+      "note": ""
+    },
+    {
+      "stt": "c)",
+      "name": "Khả năng đáp ứng yêu cầu thực thi nhiệm vụ được giao",
+      "max_score": "2",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Nhiệm vụ thường xuyên: Vận dụng hiệu quả kiến thức để xử lý công việc theo chương trình, kế hoạch, phân công nhiệm vụ của Chi bộ",
+      "max_score": "1",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Nhiệm vụ đột xuất: Chủ động đề xuất giải pháp, thực hiện hiệu quả các công việc phát sinh; có khả năng phản ứng kịp thời, đáp ứng với yêu cầu, nhiệm vụ cụ thể.",
+      "max_score": "1",
+      "note": ""
+    },
+    {
+      "stt": "d)",
+      "name": "Thái độ công tác trong thực hiện nhiệm vụ",
+      "max_score": "2",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Tinh thần trách nhiệm cao trong công việc; chủ động tiếp cận kiến thức mới để kịp thời điều chỉnh, đề xuất giải pháp nâng cao hiệu quả công việc.",
+      "max_score": "1",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Có thái độ đúng mực, phong cách làm việc chuẩn mực",
+      "max_score": "0,5",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Phối hợp có hiệu quả với tập thể, cá nhân có liên quan trong việc triển khai thực hiện các nhiệm vụ được phân công.",
+      "max_score": "0,5",
+      "note": ""
+    },
+    {
+      "stt": "đ)",
+      "name": "Tinh thần đổi mới sáng tạo, dám nghĩ, dám làm, dám chịu trách nhiệm vì lợi ích chung",
+      "max_score": "2",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Có cách làm mới hoặc đề xuất giải pháp hiệu quả, được áp dụng trong thực tiễn",
+      "max_score": "0,5",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Sẵn sàng tham gia thực hiện nhiệm vụ chính trị có tính chất đột xuất, phức tạp.",
+      "max_score": "0,5",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Có tinh thần chịu trách nhiệm trước kết quả công việc; chủ động nhận trách nhiệm khi có sai sót và có biện pháp khắc phục rõ ràng, cụ thể.",
+      "max_score": "0,5",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Quyết đoán, kịp thời đưa ra quyết định trong phạm vi thẩm quyền, không né tránh; có tinh thần tiên phong trong thực hiện những nhiệm vụ mới.",
+      "max_score": "0,5",
+      "note": ""
+    },
+    {
+      "stt": "4",
+      "name": "Về mức độ tín nhiệm, uy tín và khả năng quy tụ đoàn kết",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "a)",
+      "name": "Có uy tín trong nội bộ, gương mẫu, gắn bó mật thiết với Nhân dân; được cán bộ, đảng viên, quần chúng nhân dân tin tưởng, tín nhiệm cao.",
+      "max_score": "2,5",
+      "note": ""
+    },
+    {
+      "stt": "b)",
+      "name": "Có khả năng quy tụ, đoàn kết nội bộ; xây dựng tập thể vững mạnh về chính trị, tư tưởng, tổ chức và đạo đức; phát huy được sức mạnh tập thể",
+      "max_score": "2,5",
+      "note": ""
+    },
+    {
+      "stt": "5",
+      "name": "Về tự phê bình và phê bình, tự soi, tự sửa, khắc phục hạn chế, khuyết điểm",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Tinh thần tự phê bình, tự soi, tự sửa; sự chủ động nhận diện thiếu sót trong công tác lãnh đạo, chỉ đạo; kết quả khắc phục những hạn chế, khuyết điểm đã được chỉ ra của bản thân và trong phạm vi lãnh đạo.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "II",
+      "name": "NHÓM TIÊU CHÍ VỀ KẾT QUẢ THỰC HIỆN CHỨC TRÁCH, NHIỆM VỤ ĐƯỢC GIAO",
+      "max_score": "70",
+      "note": ""
+    },
+    {
+      "stt": "1",
+      "name": "Kết quả thực hiện chức trách, nhiệm vụ được giao",
+      "max_score": "40",
+      "note": ""
+    },
+    {
+      "stt": "a)",
+      "name": "Tổ chức quán triệt, tuyên truyền các chủ trương, đường lối của Đảng, Nhà nước, làm tốt công tác giáo dục chính trị tư tưởng.",
+      "max_score": "10",
+      "note": ""
+    },
+    {
+      "stt": "b)",
+      "name": "Nghiên cứu, tham mưu, đề xuất, ban hành các giải pháp của cấp ủy về thực hiện nhiệm vụ chính trị của Chi bộ",
+      "max_score": "10",
+      "note": ""
+    },
+    {
+      "stt": "c)",
+      "name": "Hướng dẫn và tổ chức kiểm tra, giám sát việc thực hiện nhiệm vụ chính trị, góp phần ngăn ngừa khuyết điểm, vi phạm, kịp thời phát hiện và xử lý các vấn đề phát sinh.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "d)",
+      "name": "Tổ chức sơ kết, tổng kết các chỉ thị, nghị quyết của Trung ương, Tỉnh  ủy,  Đảng ủy",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "đ)",
+      "name": "Thực hiện hiệu quả chuyển đổi số, ứng dụng công nghệ trong quản lý, điều hành hoạt động của Chi bộ",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "e)",
+      "name": "Chuẩn bị, điều hành, tổ chức các cuộc họp, hội nghị của cấp ủy đảm bảo theo quy định.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "2",
+      "name": "Kết quả lãnh đạo, chỉ đạo, điều hành, tổ chức thực hiện nhiệm vụ trong phạm vi phụ trách",
+      "max_score": "20",
+      "note": ""
+    },
+    {
+      "stt": "a)",
+      "name": "Lãnh đạo, chỉ đạo, điều hành, tổ chức thực hiện hiệu quả nghị quyết, chỉ thị, kết luận, quy định, hướng dẫn của Trung ương, Tỉnh ủy, Đảng ủy.",
+      "max_score": "10",
+      "note": ""
+    },
+    {
+      "stt": "b)",
+      "name": "Chủ động phát hiện, đề xuất các giải pháp đổi mới phù hợp với đường lối, chủ trương của Đảng và tình hình của phường",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "c)",
+      "name": "Chủ động xây dựng và lãnh đạo, chỉ đạo thực hiện có hiệu quả kế hoạch, chương trình công tác, quy chế làm việc của Chi ủy, Chi bộ",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "3.",
+      "name": "Kết quả đánh giá, xếp loại chất lượng của tập thể và của đội ngũ đảng viên thuộc quyền quản lý trực tiếp của cấp ủy",
+      "max_score": "10",
+      "note": ""
+    }
+  ],
+  "phu_luc_6_dang_vien": [
+    {
+      "stt": "I",
+      "name": "CÁC TIÊU CHÍ CHUNG",
+      "max_score": "30",
+      "note": ""
+    },
+    {
+      "stt": "1",
+      "name": "Về chính trị, phẩm chất đạo đức và ý thức tổ chức kỷ luật",
+      "max_score": "10",
+      "note": ""
+    },
+    {
+      "stt": "a)",
+      "name": "Có quan điểm, bản lĩnh chính trị vững vàng; kiên định lập trường; không dao động trước mọi khó khăn, thách thức.",
+      "max_score": "1",
+      "note": ""
+    },
+    {
+      "stt": "b)",
+      "name": "Thực hiện nghiêm các nguyên tắc tổ chức và hoạt động của Đảng, nhất là nguyên tắc tập trung dân chủ, tự phê bình và phê bình. Chấp hành đường lối, chủ trưong của Đảng, chính sách, pháp luật của Nhà nước; thực hiện nghiêm về kỷ luật phát ngôn, bảo vệ bí mật nhà nước.",
+      "max_score": "1",
+      "note": ""
+    },
+    {
+      "stt": "c)",
+      "name": "Có ý thức nghiên cứu, học tập, vận dụng chủ nghĩa Mác - Lênin, tư tưởng Hồ Chí Minh, nghị quyết, chỉ thị, quyết định và các văn bản của Đảng.",
+      "max_score": "1",
+      "note": ""
+    },
+    {
+      "stt": "d)",
+      "name": "Giữ gìn phẩm chất đạo đức, lối sống trong sáng, trung thực, khiêm tốn, chân thành, giản dị; có ý thức tham gia công tác đấu tranh phòng, chống tham nhũng, lãng phí, tiêu cực; không có biểu hiện suy thoái về tư tưởng chính trị, đạo đức, lối sống, \"tự diễn biến\", \"tự chuyển hoá\"; không vi phạm Quy định về những điều đảng viên không được làm.",
+      "max_score": "1",
+      "note": ""
+    },
+    {
+      "stt": "đ",
+      "name": "Không tham ô, tham nhũng, tiêu cực, quan liêu, hách dịch, cửa quyền, vụ lợi; không để người thân, người quen lợi dụng quyền hạn của mình để trục lợi.",
+      "max_score": "1",
+      "note": ""
+    },
+    {
+      "stt": "e)",
+      "name": "Có ý thức tổ chức kỷ luật, tinh thần trách nhiệm trong công tác; chấp hành sự phân công của tổ chức; thực hiện các quy định, quy chế, nội quy của tổ chức, cơ quan, đơn vị nơi công tác.",
+      "max_score": "1",
+      "note": ""
+    },
+    {
+      "stt": "g)",
+      "name": "Thực hiện việc kê khai và công khai tài sản, thu nhập theo quy định.",
+      "max_score": "1",
+      "note": ""
+    },
+    {
+      "stt": "h)",
+      "name": "Báo cáo đầy đủ, trung thực, cung cấp thông tin chính xác, khách quan về những nội dung liên quan đến việc thực hiện chức trách, nhiệm vụ được giao và hoạt động của tổ chức, cơ quan, đon vị với cấp trên khi được yêu cầu.",
+      "max_score": "1",
+      "note": ""
+    },
+    {
+      "stt": "i)",
+      "name": "Giữ gìn đoàn kết nội bộ; có quan hệ tốt với đồng chí, đồng nghiệp; tích cực tham gia xây dựng tổ chức đảng, đoàn thể và các hoạt động xã hội, cộng đồng và phong trào tập thể do tổ chức, cơ quan, đơn vị tổ chức.",
+      "max_score": "1",
+      "note": ""
+    },
+    {
+      "stt": "k)",
+      "name": "Gần gũi, sâu sát với cơ sở; thực hiện tốt việc giữ mối liên hệ với cấp ủy và Nhân dân nơi cư trú.",
+      "max_score": "1",
+      "note": ""
+    },
+    {
+      "stt": "2",
+      "name": "Năng lực chuyên môn, nghiệp vụ theo yêu cầu của vị trí việc làm; khả năng đáp ứng yêu cầu thực thi nhiệm vụ được giao; thái độ công tác trong thực hiện nhiệm vụ; tinh thần đổi mới sáng tạo, dám nghĩ, dám làm, dám chịu trách nhiệm vì lợi ích chung",
+      "max_score": "15",
+      "note": ""
+    },
+    {
+      "stt": "a)",
+      "name": "Năng lực chuyên môn, nghiệp vụ theo yêu cầu của vị trí việc làm",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Có hiểu biết đầy đủ về lĩnh vực công tác được phân công; nắm vững quy định pháp luật, quy trình nghiệp vụ có liên quan đến vị trí việc làm.",
+      "max_score": "2",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Thường xuyên cập nhật kiến thức mới, có khả năng nghiên cứu, phân tích, tổng hợp và vận dụng sáng tạo vào công việc; đáp ứng yêu cầu đổi mới, cải cách hành chính.",
+      "max_score": "1",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Có kỹ năng xử lý công việc độc lập, làm việc nhóm hiệu quả.",
+      "max_score": "1",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Khả năng sử dụng công nghệ thông tin, áp dụng vào công việc chuyên môn.",
+      "max_score": "1",
+      "note": ""
+    },
+    {
+      "stt": "b)",
+      "name": "Khả năng đáp ứng yêu cầu thực thi nhiệm vụ được giao",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Nhiệm vụ thường xuyên: Có khả năng vận dụng thành thạo kiến thức chuyên môn, nghiệp vụ để xử lý công việc chuyên môn theo kế hoạch định kỳ; duy trì ổn định chất lượng chuyên môn.",
+      "max_score": "3",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Nhiệm vụ đột xuất: Có khả năng đề xuất giải pháp, thực hiện hiệu quả các công việc phát sinh; có khả năng phản ứng kịp thời, đáp ứng với yêu cầu, nhiệm vụ cụ thể.",
+      "max_score": "2",
+      "note": ""
+    },
+    {
+      "stt": "c)",
+      "name": "Thái độ công tác trong thực hiện nhiệm vụ",
+      "max_score": "2,5",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Tinh thần trách nhiệm, tích cực trong công việc; kịp thời tiếp cận kiến thức mới để điều chỉnh, đề xuất cải tiến quy trình hoặc giải pháp nâng cao hiệu quả công việc.",
+      "max_score": "1",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Có thái độ đúng mực, phong cách làm việc chuẩn mực, lề lối hành chính chuyên nghiệp trong quan hệ công tác.",
+      "max_score": "1",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Phối hợp có hiệu quả với tập thể, cá nhân có liên quan trong việc triển khai thực hiện các nhiệm vụ được phân công.",
+      "max_score": "0,5",
+      "note": ""
+    },
+    {
+      "stt": "d)",
+      "name": "Tinh thần đổi mới sáng tạo, dám nghĩ, dám làm, dám chịu trách nhiệm vì lợi ích chung",
+      "max_score": "2,5",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Có sản phẩm, giải pháp đột phá, sáng tạo đem lại giá trị, hiệu quả thiết thực, tác động tích cực đến kết quả thực hiện nhiệm vụ của tổ chức, cơ quan, đơn vị.",
+      "max_score": "1",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Sẵn sàng tham gia thực hiện nhiệm vụ chính trị, nhiệm vụ có tính chất đột xuất, phức tạp hoặc trong điều kiện khó khăn.",
+      "max_score": "1",
+      "note": ""
+    },
+    {
+      "stt": "-",
+      "name": "Có tinh thần chịu trách nhiệm trước kết quả công việc; sẵn sàng nhận trách nhiệm khi có sai sót và có biện pháp khắc phục rõ ràng, cụ thể.",
+      "max_score": "0,5",
+      "note": ""
+    },
+    {
+      "stt": "3",
+      "name": "Về tự phê bình và phê bình, khắc phục hạn chế, khuyết điểm",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "",
+      "name": "Tinh thần tự phê bình, tự soi, tự sửa của cá nhân; mức độ tự giác nhận diện hạn chế, khuyết điểm của bản thân và kết quả khắc phục những hạn chế, khuyết điểm đã được chỉ ra.",
+      "max_score": "5",
+      "note": ""
+    },
+    {
+      "stt": "II",
+      "name": "NHÓM TIÊU CHÍ VỀ KẾT QUẢ THỰC HIỆN NHIỆM VỤ",
+      "max_score": "70",
+      "note": ""
+    },
+    {
+      "stt": "",
+      "name": "Đánh giá mức độ hoàn thành các chỉ tiêu, nhiệm vụ được giao, kết quả được lượng hoá bằng sản phẩm, tiến độ, chất lượng hoặc chỉ số đo lường hiệu quả công việc theo chức năng, nhiệm vụ của từng tổ chức, cơ quan, đơn vị, cụ thể như sau:",
+      "max_score": "",
+      "note": ""
+    },
+    {
+      "stt": "1",
+      "name": "Khối cơ quan tham mưu của Đảng:",
+      "max_score": "70",
+      "note": ""
+    },
+    {
+      "stt": "a)",
+      "name": "Mức độ hoàn thành đúng hạn, có chất lượng các nhiệm vụ được giao, đáp ứng tốt yêu cầu, nhiệm vụ, có sản phẩm cụ thể.",
+      "max_score": "40",
+      "note": ""
+    },
+    {
+      "stt": "b)",
+      "name": "Tham gia đóng góp ý kiến xây dựng nội dung tham mưu báo cáo, đề án bảo đảm tiến độ, chất lượng.",
+      "max_score": "20",
+      "note": ""
+    },
+    {
+      "stt": "c)",
+      "name": "Phối hợp hiệu quả với đồng nghiệp; có tinh thần trách nhiệm, không đùn đẩy công việc.",
+      "max_score": "10",
+      "note": ""
+    },
+    {
+      "stt": "2",
+      "name": "Khối cơ quan hành chính nhà nước:",
+      "max_score": "70",
+      "note": ""
+    },
+    {
+      "stt": "a)",
+      "name": "Mức độ hoàn thành đúng tiến độ, đạt chất lượng các công việc được giao theo kế hoạch.",
+      "max_score": "40",
+      "note": ""
+    },
+    {
+      "stt": "b)",
+      "name": "Tỉ lệ hồ sơ xử lý đúng hạn; có sản phẩm cụ thể được lãnh đạo phê duyệt; không để xảy ra sai sót ảnh hưởng đen kết quả chung của đơn vị.",
+      "max_score": "20",
+      "note": ""
+    },
+    {
+      "stt": "c)",
+      "name": "Công tác phối hợp với đồng nghiệp; không để xảy ra thiếu trách nhiệm, đùn đẩy công việc.",
+      "max_score": "10",
+      "note": ""
+    },
+    {
+      "stt": "3",
+      "name": "Khối cơ quan dân cử:",
+      "max_score": "70",
+      "note": ""
+    },
+    {
+      "stt": "a)",
+      "name": "Soạn thảo, thẩm tra, tổng hợp, tham mưu văn bản bảo đảm chất lượng, đúng tiến độ; có kết quả cụ thể.",
+      "max_score": "50",
+      "note": ""
+    },
+    {
+      "stt": "b)",
+      "name": "Phối hợp tổ chức tiếp xúc cử tri, kỳ họp, phiên họp, hoạt động giám sát đầy đủ, hiệu quả; không để xảy ra sai sót nghiệp vụ.",
+      "max_score": "20",
+      "note": ""
+    },
+    {
+      "stt": "4",
+      "name": "Khối cơ quan Mặt trận Tổ quốc và các tổ chức chính trị - xã hội:",
+      "max_score": "70",
+      "note": ""
+    },
+    {
+      "stt": "a)",
+      "name": "Mức độ hoàn thành đúng hạn, có chất lượng các nhiệm vụ, có sản phẩm rõ ràng theo kế hoạch được giao.",
+      "max_score": "50",
+      "note": ""
+    },
+    {
+      "stt": "b)",
+      "name": "Kết quả giám sát, phản biện xã hội; vận động, tập họp Nhân dân; xây dựng khối đại đoàn kết; tổ chức phong trào thi đua; tham gia góp ý xây dựng Đảng, chính quyền.",
+      "max_score": "20",
+      "note": ""
+    },
+    {
+      "stt": "5",
+      "name": "Khối lực lượng vũ trang:",
+      "max_score": "70",
+      "note": ""
+    },
+    {
+      "stt": "a)",
+      "name": "Kết quả thực hiện các nhiệm vụ về huấn luyện, sẵn sàng chiến đấu, công tác nghiệp vụ, quản lý hậu cần, kỹ thuật, chuyên môn được lượng hoá bằng sản phẩm, khối lượng, chất lượng, tiến độ, hiệu quả thực hiện.",
+      "max_score": "50",
+      "note": ""
+    },
+    {
+      "stt": "b)",
+      "name": "Tinh thần cảnh giác, đấu tranh phòng, chống tội phạm, kết quả công tác quản lý địa bàn, lĩnh vực, đối tượng theo chức trách, nhiệm vụ được giao.",
+      "max_score": "20",
+      "note": ""
+    },
+    {
+      "stt": "6",
+      "name": "Khối cơ quan tư pháp:",
+      "max_score": "70",
+      "note": ""
+    },
+    {
+      "stt": "a)",
+      "name": "Hoàn thành đúng tiến độ, bảo đảm chất lượng các công việc chuyên môn theo quy định của ngành hoặc theo sự phân công của lãnh đạo (kiểm sát, xét xử, nghiệp vụ thống kê...).",
+      "max_score": "30",
+      "note": ""
+    },
+    {
+      "stt": "b)",
+      "name": "Lãnh đạo, chi đạo hoàn thành các chỉ tiêu công tác theo yêu cầu tại các nghị quyết của Quốc hội đối với cơ quan tư pháp.",
+      "max_score": "20",
+      "note": ""
+    },
+    {
+      "stt": "c)",
+      "name": "Việc giải quyết các vụ án, vụ việc không để xảy ra oan sai, tiêu cực; Bảo đảm đúng thời hạn, thời hiệu theo quy định của pháp luật, đúng và đủ chỉ tiêu theo quy định của ngành.",
+      "max_score": "20",
+      "note": ""
+    },
+    {
+      "stt": "7",
+      "name": "Khối đơn vị sự nghiệp công lập:",
+      "max_score": "70",
+      "note": ""
+    },
+    {
+      "stt": "a)",
+      "name": "Mức độ hoàn thành nhiệm vụ chuyên môn được cấp có thẩm quyền giao. Tham gia bồi dưỡng nghiệp vụ, cập nhật kiến thức.",
+      "max_score": "50",
+      "note": ""
+    },
+    {
+      "stt": "b)",
+      "name": "Giao tiếp chuẩn mực, văn minh; hợp tác tốt với đồng nghiệp.",
+      "max_score": "20",
+      "note": ""
+    },
+    {
+      "stt": "8",
+      "name": "Khối doanh nghiệp nhà nước:",
+      "max_score": "70",
+      "note": ""
+    },
+    {
+      "stt": "",
+      "name": "Mức độ hoàn thành nhiệm vụ theo định mức, vị trí công việc; không để phát sinh lỗi kỹ thuật, sai sót ảnh hưởng đến hiệu quả sản xuất, kinh doanh, sản phẩm, dịch vụ.",
+      "max_score": "70",
+      "note": ""
+    },
+    {
+      "stt": "9",
+      "name": "Khối cơ quan các hội quần chúng được Đảng và Nhà nước giao nhiệm vụ:",
+      "max_score": "70",
+      "note": ""
+    },
+    {
+      "stt": "a)",
+      "name": "Mức độ hoàn thành đúng hạn, chất lượng nội dung công việc được giao. Các văn bản quy phạm pháp luật, chính sách, văn bản chuyên môn được lãnh đạo có thẩm quyền ký duyệt, ban hành; các bài báo,... để phù hợp với đặc thù hoạt động của các hội quần chúng.",
+      "max_score": "50",
+      "note": ""
+    },
+    {
+      "stt": "b)",
+      "name": "Ý thức tham gia các hoạt động, hội thảo chuyên đề, toạ đàm, sinh hoạt nghề nghiệp.",
+      "max_score": "20",
+      "note": ""
+    }
+  ]
+}

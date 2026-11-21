@@ -1,0 +1,492 @@
+{
+  "meeting": {
+    "title": "Hội nghị kiểm điểm, đánh giá, xếp loại chất lượng Chi bộ 2 năm 2026",
+    "time": "14:00",
+    "date": "28/11/2026",
+    "loc": "Hội trường Tầng 3 - VietinBank CN Bảo Lộc",
+    "host_name": "NGUYỄN THI THAO",
+    "secretary_name": "NGÔ THỊ KIM NGÂN"
+  },
+  "members": [
+    {
+      "id": 1,
+      "name": "BÙI KHẮC DUY",
+      "phone": "0912345601",
+      "status": "Chính thức",
+      "role_party": "Đảng viên",
+      "title_pro": "Cán bộ",
+      "dept": "Chi nhánh Bảo Lộc",
+      "pin": "681234",
+      "present": true,
+      "self_score": 95,
+      "self_ranking": "Hoàn thành tốt nhiệm vụ",
+      "self_good": "Lập trường tư tưởng vững vàng, chấp hành tốt nội quy ngân hàng và quy chế Đảng.",
+      "self_limit": "Cần tích cực phát biểu xây dựng chi bộ hơn trong các buổi sinh hoạt.",
+      "self_sol": "Nâng cao năng lực chuyên môn và tinh thần tự phê bình và phê bình.",
+      "receptive_note": "Nghiêm túc tiếp thu toàn bộ ý kiến đóng góp của các đồng chí.",
+      "host_conclusion": "Đồng chí hoàn thành tốt nhiệm vụ được giao."
+    },
+    {
+      "id": 2,
+      "name": "VŨ HOÀNG NGUYÊN",
+      "phone": "0912345602",
+      "status": "Chính thức",
+      "role_party": "Đảng viên",
+      "title_pro": "Cán bộ",
+      "dept": "Chi nhánh Bảo Lộc",
+      "pin": "682345",
+      "present": true,
+      "self_score": 95,
+      "self_ranking": "Hoàn thành tốt nhiệm vụ",
+      "self_good": "Nêu cao tinh thần trách nhiệm, luôn hoàn thành các chỉ tiêu nghiệp vụ được giao.",
+      "self_limit": "Cần chủ động trao đổi nghiệp vụ hơn giữa các phòng ban bộ phận.",
+      "self_sol": "Tiếp tục phát huy năng lực chuyên môn và tinh thần đoàn kết nội bộ.",
+      "receptive_note": "Tiếp thu ý kiến đóng góp.",
+      "host_conclusion": "Đồng chí hoàn thành tốt nhiệm vụ."
+    },
+    {
+      "id": 3,
+      "name": "LÊ THANH NGHỊ",
+      "phone": "0912345603",
+      "status": "Chính thức",
+      "role_party": "Đảng viên",
+      "title_pro": "Cán bộ",
+      "dept": "Chi nhánh Bảo Lộc",
+      "pin": "683456",
+      "present": true,
+      "self_score": 95,
+      "self_ranking": "Hoàn thành tốt nhiệm vụ",
+      "self_good": "Chấp hành nghiêm chỉnh chủ trương, chính sách của Đảng và quy chế VietinBank.",
+      "self_limit": "Cần sắp xếp thời gian hợp lý hơn để tham gia các hoạt động phong trào.",
+      "self_sol": "Cân đối công việc chuyên môn và công tác đoàn thể.",
+      "receptive_note": "Tiếp thu góp ý của chi bộ.",
+      "host_conclusion": "Đồng chí hoàn thành tốt nhiệm vụ."
+    },
+    {
+      "id": 4,
+      "name": "HOÀNG THỊ THỦY",
+      "phone": "0912345604",
+      "status": "Chính thức",
+      "role_party": "Đảng viên",
+      "title_pro": "Cán bộ",
+      "dept": "Chi nhánh Bảo Lộc",
+      "pin": "684567",
+      "present": true,
+      "self_score": 95,
+      "self_ranking": "Hoàn thành tốt nhiệm vụ",
+      "self_good": "Tận tụy với công việc, phục vụ khách hàng chu đáo, bảo đảm an toàn nghiệp vụ.",
+      "self_limit": "Đôi lúc còn e ngại trong đóng góp ý kiến tự phê bình và phê bình.",
+      "self_sol": "Mạnh dạn phát biểu xây dựng chi bộ trong các kỳ sinh hoạt.",
+      "receptive_note": "Nghiêm túc tiếp thu ý kiến của chi bộ.",
+      "host_conclusion": "Đồng chí hoàn thành tốt nhiệm vụ."
+    },
+    {
+      "id": 5,
+      "name": "NGUYỄN THỊ TỐ NGA",
+      "phone": "0912345605",
+      "status": "Chính thức",
+      "role_party": "Đảng viên",
+      "title_pro": "Cán bộ",
+      "dept": "Chi nhánh Bảo Lộc",
+      "pin": "685678",
+      "present": true,
+      "self_score": 95,
+      "self_ranking": "Hoàn thành tốt nhiệm vụ",
+      "self_good": "Gương mẫu trong công tác, hoàn thành tốt nhiệm vụ chuyên môn và nghĩa vụ đảng viên.",
+      "self_limit": "Cần tăng cường cập nhật kiến thức về các sản phẩm dịch vụ mới của ngân hàng.",
+      "self_sol": "Chủ động tự đào tạo và học hỏi thêm từ đồng nghiệp.",
+      "receptive_note": "Tiếp thu và quyết tâm rèn luyện, hoàn thiện bản thân hơn nữa.",
+      "host_conclusion": "Đồng chí hoàn thành tốt nhiệm vụ."
+    },
+    {
+      "id": 6,
+      "name": "NGUYỄN THI THAO",
+      "phone": "0912345606",
+      "status": "Chính thức",
+      "role_party": "Bí thư Chi bộ",
+      "title_pro": "Lãnh đạo quản lý",
+      "dept": "Ban Chi ủy Chi bộ 2",
+      "pin": "686789",
+      "present": true,
+      "self_score": 98,
+      "self_ranking": "Hoàn thành xuất sắc nhiệm vụ",
+      "self_good": "Gương mẫu nêu gương, lãnh đạo chi bộ đoàn kết, chỉ đạo điều hành hoàn thành xuất sắc các chỉ tiêu công tác Đảng và nhiệm vụ chính trị năm 2026.",
+      "self_limit": "Khối lượng công việc quản lý nhiều nên đôi lúc đổi mới sinh hoạt chuyên đề còn hạn chế.",
+      "self_sol": "Đẩy mạnh số hóa sinh hoạt Đảng, phân công nhiệm vụ khoa học hơn trong Chi ủy.",
+      "receptive_note": "Nghiêm túc tiếp thu ý kiến đóng góp của toàn thể đảng viên trong chi bộ.",
+      "host_conclusion": "Đồng chí Bí thư Chi bộ hoàn thành xuất sắc nhiệm vụ được giao."
+    },
+    {
+      "id": 7,
+      "name": "VÕ VĂN MẠNH",
+      "phone": "0912345607",
+      "status": "Chính thức",
+      "role_party": "Chi ủy viên",
+      "title_pro": "Lãnh đạo quản lý",
+      "dept": "Ban Chi ủy Chi bộ 2",
+      "pin": "687890",
+      "present": true,
+      "self_score": 96,
+      "self_ranking": "Hoàn thành tốt nhiệm vụ",
+      "self_good": "Trách nhiệm cao, phối hợp tốt cùng Bí thư và Phó Bí thư trong công tác kiểm tra giám sát và quản trị chi bộ.",
+      "self_limit": "Cần sâu sát hơn nữa đến việc nắm bắt tâm tư, nguyện vọng của từng đảng viên.",
+      "self_sol": "Tăng cường gặp gỡ, trao đổi, lắng nghe ý kiến của cán bộ đảng viên.",
+      "receptive_note": "Tiếp thu ý kiến đóng góp của các đồng chí.",
+      "host_conclusion": "Đồng chí Chi ủy viên hoàn thành tốt nhiệm vụ."
+    },
+    {
+      "id": 8,
+      "name": "NGÔ THỊ KIM NGÂN",
+      "phone": "0912345608",
+      "status": "Chính thức",
+      "role_party": "Phó Bí thư Chi bộ",
+      "title_pro": "Lãnh đạo quản lý",
+      "dept": "Ban Chi ủy Chi bộ 2",
+      "pin": "688901",
+      "present": true,
+      "self_score": 97,
+      "self_ranking": "Hoàn thành xuất sắc nhiệm vụ",
+      "self_good": "Tham mưu đắc lực cho Bí thư, ghi chép và chuẩn bị hồ sơ tài liệu sinh hoạt chi bộ đầy đủ, chính xác, điều hành công việc chuyên môn an toàn.",
+      "self_limit": "Đôi khi việc đôn đốc nộp bản tự kiểm điểm cuối năm của một số đồng chí còn chậm.",
+      "self_sol": "Lập lịch thông báo sớm và ứng dụng công nghệ để nhắc nhở nộp hồ sơ đúng hạn.",
+      "receptive_note": "Tiếp thu toàn bộ ý kiến để nâng cao chất lượng công tác chi bộ.",
+      "host_conclusion": "Đồng chí Phó Bí thư Chi bộ hoàn thành xuất sắc nhiệm vụ."
+    },
+    {
+      "id": 9,
+      "name": "NGUYỄN VĂN CHÂU",
+      "phone": "0912345609",
+      "status": "Chính thức",
+      "role_party": "Đảng viên",
+      "title_pro": "Cán bộ",
+      "dept": "Chi nhánh Bảo Lộc",
+      "pin": "689012",
+      "present": true,
+      "self_score": 95,
+      "self_ranking": "Hoàn thành tốt nhiệm vụ",
+      "self_good": "Kiên định lập trường, chấp hành nghiêm túc quy chế, hoàn thành tốt nhiệm vụ được phân công.",
+      "self_limit": "Cần chủ động hơn trong công tác phát biểu tham luận tại các buổi sinh hoạt chi bộ.",
+      "self_sol": "Tích cực nghiên cứu nghị quyết và đóng góp ý kiến xây dựng chi bộ.",
+      "receptive_note": "Tiếp thu ý kiến nhắc nhở của đồng chí Bí thư.",
+      "host_conclusion": "Đồng chí hoàn thành tốt nhiệm vụ."
+    },
+    {
+      "id": 10,
+      "name": "TRẦN ĐÌNH TIẾN DŨNG",
+      "phone": "0912345610",
+      "status": "Chính thức",
+      "role_party": "Đảng viên",
+      "title_pro": "Cán bộ",
+      "dept": "Chi nhánh Bảo Lộc",
+      "pin": "680123",
+      "present": true,
+      "self_score": 95,
+      "self_ranking": "Hoàn thành tốt nhiệm vụ",
+      "self_good": "Tác phong công tác nhanh nhẹn, tinh thần đồng đội cao, không ngại khó trong các nhiệm vụ đột xuất.",
+      "self_limit": "Cần chú ý cẩn trọng hơn trong các khâu kiểm tra đối chiếu nghiệp vụ chi tiết.",
+      "self_sol": "Rà soát kỹ lưỡng quy trình trước khi bàn giao công việc.",
+      "receptive_note": "Tiếp thu ý kiến đóng góp của các đồng chí.",
+      "host_conclusion": "Đồng chí hoàn thành tốt nhiệm vụ."
+    },
+    {
+      "id": 11,
+      "name": "ĐỖ THU HIỀN",
+      "phone": "0912345611",
+      "status": "Chính thức",
+      "role_party": "Đảng viên",
+      "title_pro": "Cán bộ",
+      "dept": "Chi nhánh Bảo Lộc",
+      "pin": "681122",
+      "present": true,
+      "self_score": 95,
+      "self_ranking": "Hoàn thành tốt nhiệm vụ",
+      "self_good": "Chăm chỉ, trách nhiệm, thực hiện tốt văn hóa doanh nghiệp VietinBank và kỷ cương của Đảng.",
+      "self_limit": "Đôi lúc cần linh hoạt hơn trong xử lý các tình huống phát sinh.",
+      "self_sol": "Rèn luyện bản lĩnh và học tập thêm kinh nghiệm từ các đồng chí đi trước.",
+      "receptive_note": "Tiếp thu góp ý của chi bộ.",
+      "host_conclusion": "Đồng chí hoàn thành tốt nhiệm vụ."
+    },
+    {
+      "id": 12,
+      "name": "NGUYỄN DUY LỢI",
+      "phone": "0912345612",
+      "status": "Chính thức",
+      "role_party": "Đảng viên",
+      "title_pro": "Cán bộ",
+      "dept": "Chi nhánh Bảo Lộc",
+      "pin": "682233",
+      "present": true,
+      "self_score": 95,
+      "self_ranking": "Hoàn thành tốt nhiệm vụ",
+      "self_good": "Gắn bó với tập thể, hoàn thành các nhiệm vụ được giao, giữ gìn đoàn kết nội bộ.",
+      "self_limit": "Cần chủ động đề xuất các sáng kiến cải tiến nghiệp vụ trong công tác.",
+      "self_sol": "Tích cực nghiên cứu công nghệ và cải tiến quy trình công việc.",
+      "receptive_note": "Tiếp thu ý kiến.",
+      "host_conclusion": "Đồng chí hoàn thành tốt nhiệm vụ."
+    }
+  ],
+  "assignments": {
+    "1": [
+      2,
+      3
+    ],
+    "2": [
+      3,
+      4
+    ],
+    "3": [
+      4,
+      5
+    ],
+    "4": [
+      5,
+      6
+    ],
+    "5": [
+      6,
+      7
+    ],
+    "6": [
+      7,
+      8
+    ],
+    "7": [
+      8,
+      9
+    ],
+    "8": [
+      9,
+      10
+    ],
+    "9": [
+      10,
+      11
+    ],
+    "10": [
+      11,
+      12
+    ],
+    "11": [
+      12,
+      1
+    ],
+    "12": [
+      1,
+      2
+    ]
+  },
+  "reviews": {
+    "1": [
+      {
+        "reviewer_id": 11,
+        "reviewer_name": "ĐỖ THU HIỀN",
+        "good": "Đồng chí BÙI KHẮC DUY luôn gương mẫu, chấp hành tốt kỷ luật tác nghiệp, đoàn kết nội bộ.",
+        "limit": "Cần chủ động trao đổi nghiệp vụ hơn giữa các phòng ban bộ phận.",
+        "solution": "Tiếp tục phát huy thế mạnh chuyên môn để hỗ trợ chi nhánh hoàn thành tốt nhiệm vụ."
+      },
+      {
+        "reviewer_id": 12,
+        "reviewer_name": "NGUYỄN DUY LỢI",
+        "good": "Đồng chí BÙI KHẮC DUY luôn gương mẫu, chấp hành tốt kỷ luật tác nghiệp, đoàn kết nội bộ.",
+        "limit": "Cần chủ động trao đổi nghiệp vụ hơn giữa các phòng ban bộ phận.",
+        "solution": "Tiếp tục phát huy thế mạnh chuyên môn để hỗ trợ chi nhánh hoàn thành tốt nhiệm vụ."
+      }
+    ],
+    "2": [
+      {
+        "reviewer_id": 1,
+        "reviewer_name": "BÙI KHẮC DUY",
+        "good": "Đồng chí VŨ HOÀNG NGUYÊN luôn gương mẫu, chấp hành tốt kỷ luật tác nghiệp, đoàn kết nội bộ.",
+        "limit": "Cần chủ động trao đổi nghiệp vụ hơn giữa các phòng ban bộ phận.",
+        "solution": "Tiếp tục phát huy thế mạnh chuyên môn để hỗ trợ chi nhánh hoàn thành tốt nhiệm vụ."
+      },
+      {
+        "reviewer_id": 12,
+        "reviewer_name": "NGUYỄN DUY LỢI",
+        "good": "Đồng chí VŨ HOÀNG NGUYÊN luôn gương mẫu, chấp hành tốt kỷ luật tác nghiệp, đoàn kết nội bộ.",
+        "limit": "Cần chủ động trao đổi nghiệp vụ hơn giữa các phòng ban bộ phận.",
+        "solution": "Tiếp tục phát huy thế mạnh chuyên môn để hỗ trợ chi nhánh hoàn thành tốt nhiệm vụ."
+      }
+    ],
+    "3": [
+      {
+        "reviewer_id": 1,
+        "reviewer_name": "BÙI KHẮC DUY",
+        "good": "Đồng chí LÊ THANH NGHỊ luôn gương mẫu, chấp hành tốt kỷ luật tác nghiệp, đoàn kết nội bộ.",
+        "limit": "Cần chủ động trao đổi nghiệp vụ hơn giữa các phòng ban bộ phận.",
+        "solution": "Tiếp tục phát huy thế mạnh chuyên môn để hỗ trợ chi nhánh hoàn thành tốt nhiệm vụ."
+      },
+      {
+        "reviewer_id": 2,
+        "reviewer_name": "VŨ HOÀNG NGUYÊN",
+        "good": "Đồng chí LÊ THANH NGHỊ luôn gương mẫu, chấp hành tốt kỷ luật tác nghiệp, đoàn kết nội bộ.",
+        "limit": "Cần chủ động trao đổi nghiệp vụ hơn giữa các phòng ban bộ phận.",
+        "solution": "Tiếp tục phát huy thế mạnh chuyên môn để hỗ trợ chi nhánh hoàn thành tốt nhiệm vụ."
+      }
+    ],
+    "4": [
+      {
+        "reviewer_id": 2,
+        "reviewer_name": "VŨ HOÀNG NGUYÊN",
+        "good": "Đồng chí HOÀNG THỊ THỦY luôn gương mẫu, chấp hành tốt kỷ luật tác nghiệp, đoàn kết nội bộ.",
+        "limit": "Cần chủ động trao đổi nghiệp vụ hơn giữa các phòng ban bộ phận.",
+        "solution": "Tiếp tục phát huy thế mạnh chuyên môn để hỗ trợ chi nhánh hoàn thành tốt nhiệm vụ."
+      },
+      {
+        "reviewer_id": 3,
+        "reviewer_name": "LÊ THANH NGHỊ",
+        "good": "Đồng chí HOÀNG THỊ THỦY luôn gương mẫu, chấp hành tốt kỷ luật tác nghiệp, đoàn kết nội bộ.",
+        "limit": "Cần chủ động trao đổi nghiệp vụ hơn giữa các phòng ban bộ phận.",
+        "solution": "Tiếp tục phát huy thế mạnh chuyên môn để hỗ trợ chi nhánh hoàn thành tốt nhiệm vụ."
+      }
+    ],
+    "5": [
+      {
+        "reviewer_id": 3,
+        "reviewer_name": "LÊ THANH NGHỊ",
+        "good": "Đồng chí NGUYỄN THỊ TỐ NGA luôn gương mẫu, chấp hành tốt kỷ luật tác nghiệp, đoàn kết nội bộ.",
+        "limit": "Cần chủ động trao đổi nghiệp vụ hơn giữa các phòng ban bộ phận.",
+        "solution": "Tiếp tục phát huy thế mạnh chuyên môn để hỗ trợ chi nhánh hoàn thành tốt nhiệm vụ."
+      },
+      {
+        "reviewer_id": 4,
+        "reviewer_name": "HOÀNG THỊ THỦY",
+        "good": "Đồng chí NGUYỄN THỊ TỐ NGA luôn gương mẫu, chấp hành tốt kỷ luật tác nghiệp, đoàn kết nội bộ.",
+        "limit": "Cần chủ động trao đổi nghiệp vụ hơn giữa các phòng ban bộ phận.",
+        "solution": "Tiếp tục phát huy thế mạnh chuyên môn để hỗ trợ chi nhánh hoàn thành tốt nhiệm vụ."
+      }
+    ],
+    "6": [
+      {
+        "reviewer_id": 4,
+        "reviewer_name": "HOÀNG THỊ THỦY",
+        "good": "Đồng chí NGUYỄN THI THAO luôn gương mẫu, chấp hành tốt kỷ luật tác nghiệp, đoàn kết nội bộ.",
+        "limit": "Cần chủ động trao đổi nghiệp vụ hơn giữa các phòng ban bộ phận.",
+        "solution": "Tiếp tục phát huy thế mạnh chuyên môn để hỗ trợ chi nhánh hoàn thành tốt nhiệm vụ."
+      },
+      {
+        "reviewer_id": 5,
+        "reviewer_name": "NGUYỄN THỊ TỐ NGA",
+        "good": "Đồng chí NGUYỄN THI THAO luôn gương mẫu, chấp hành tốt kỷ luật tác nghiệp, đoàn kết nội bộ.",
+        "limit": "Cần chủ động trao đổi nghiệp vụ hơn giữa các phòng ban bộ phận.",
+        "solution": "Tiếp tục phát huy thế mạnh chuyên môn để hỗ trợ chi nhánh hoàn thành tốt nhiệm vụ."
+      }
+    ],
+    "7": [
+      {
+        "reviewer_id": 5,
+        "reviewer_name": "NGUYỄN THỊ TỐ NGA",
+        "good": "Đồng chí VÕ VĂN MẠNH luôn gương mẫu, chấp hành tốt kỷ luật tác nghiệp, đoàn kết nội bộ.",
+        "limit": "Cần chủ động trao đổi nghiệp vụ hơn giữa các phòng ban bộ phận.",
+        "solution": "Tiếp tục phát huy thế mạnh chuyên môn để hỗ trợ chi nhánh hoàn thành tốt nhiệm vụ."
+      },
+      {
+        "reviewer_id": 6,
+        "reviewer_name": "NGUYỄN THI THAO",
+        "good": "Đồng chí VÕ VĂN MẠNH luôn gương mẫu, chấp hành tốt kỷ luật tác nghiệp, đoàn kết nội bộ.",
+        "limit": "Cần chủ động trao đổi nghiệp vụ hơn giữa các phòng ban bộ phận.",
+        "solution": "Tiếp tục phát huy thế mạnh chuyên môn để hỗ trợ chi nhánh hoàn thành tốt nhiệm vụ."
+      }
+    ],
+    "8": [
+      {
+        "reviewer_id": 6,
+        "reviewer_name": "NGUYỄN THI THAO",
+        "good": "Đồng chí NGÔ THỊ KIM NGÂN luôn gương mẫu, chấp hành tốt kỷ luật tác nghiệp, đoàn kết nội bộ.",
+        "limit": "Cần chủ động trao đổi nghiệp vụ hơn giữa các phòng ban bộ phận.",
+        "solution": "Tiếp tục phát huy thế mạnh chuyên môn để hỗ trợ chi nhánh hoàn thành tốt nhiệm vụ."
+      },
+      {
+        "reviewer_id": 7,
+        "reviewer_name": "VÕ VĂN MẠNH",
+        "good": "Đồng chí NGÔ THỊ KIM NGÂN luôn gương mẫu, chấp hành tốt kỷ luật tác nghiệp, đoàn kết nội bộ.",
+        "limit": "Cần chủ động trao đổi nghiệp vụ hơn giữa các phòng ban bộ phận.",
+        "solution": "Tiếp tục phát huy thế mạnh chuyên môn để hỗ trợ chi nhánh hoàn thành tốt nhiệm vụ."
+      }
+    ],
+    "9": [
+      {
+        "reviewer_id": 7,
+        "reviewer_name": "VÕ VĂN MẠNH",
+        "good": "Đồng chí NGUYỄN VĂN CHÂU luôn gương mẫu, chấp hành tốt kỷ luật tác nghiệp, đoàn kết nội bộ.",
+        "limit": "Cần chủ động trao đổi nghiệp vụ hơn giữa các phòng ban bộ phận.",
+        "solution": "Tiếp tục phát huy thế mạnh chuyên môn để hỗ trợ chi nhánh hoàn thành tốt nhiệm vụ."
+      },
+      {
+        "reviewer_id": 8,
+        "reviewer_name": "NGÔ THỊ KIM NGÂN",
+        "good": "Đồng chí NGUYỄN VĂN CHÂU luôn gương mẫu, chấp hành tốt kỷ luật tác nghiệp, đoàn kết nội bộ.",
+        "limit": "Cần chủ động trao đổi nghiệp vụ hơn giữa các phòng ban bộ phận.",
+        "solution": "Tiếp tục phát huy thế mạnh chuyên môn để hỗ trợ chi nhánh hoàn thành tốt nhiệm vụ."
+      }
+    ],
+    "10": [
+      {
+        "reviewer_id": 8,
+        "reviewer_name": "NGÔ THỊ KIM NGÂN",
+        "good": "Đồng chí TRẦN ĐÌNH TIẾN DŨNG luôn gương mẫu, chấp hành tốt kỷ luật tác nghiệp, đoàn kết nội bộ.",
+        "limit": "Cần chủ động trao đổi nghiệp vụ hơn giữa các phòng ban bộ phận.",
+        "solution": "Tiếp tục phát huy thế mạnh chuyên môn để hỗ trợ chi nhánh hoàn thành tốt nhiệm vụ."
+      },
+      {
+        "reviewer_id": 9,
+        "reviewer_name": "NGUYỄN VĂN CHÂU",
+        "good": "Đồng chí TRẦN ĐÌNH TIẾN DŨNG luôn gương mẫu, chấp hành tốt kỷ luật tác nghiệp, đoàn kết nội bộ.",
+        "limit": "Cần chủ động trao đổi nghiệp vụ hơn giữa các phòng ban bộ phận.",
+        "solution": "Tiếp tục phát huy thế mạnh chuyên môn để hỗ trợ chi nhánh hoàn thành tốt nhiệm vụ."
+      }
+    ],
+    "11": [
+      {
+        "reviewer_id": 9,
+        "reviewer_name": "NGUYỄN VĂN CHÂU",
+        "good": "Đồng chí ĐỖ THU HIỀN luôn gương mẫu, chấp hành tốt kỷ luật tác nghiệp, đoàn kết nội bộ.",
+        "limit": "Cần chủ động trao đổi nghiệp vụ hơn giữa các phòng ban bộ phận.",
+        "solution": "Tiếp tục phát huy thế mạnh chuyên môn để hỗ trợ chi nhánh hoàn thành tốt nhiệm vụ."
+      },
+      {
+        "reviewer_id": 10,
+        "reviewer_name": "TRẦN ĐÌNH TIẾN DŨNG",
+        "good": "Đồng chí ĐỖ THU HIỀN luôn gương mẫu, chấp hành tốt kỷ luật tác nghiệp, đoàn kết nội bộ.",
+        "limit": "Cần chủ động trao đổi nghiệp vụ hơn giữa các phòng ban bộ phận.",
+        "solution": "Tiếp tục phát huy thế mạnh chuyên môn để hỗ trợ chi nhánh hoàn thành tốt nhiệm vụ."
+      }
+    ],
+    "12": [
+      {
+        "reviewer_id": 10,
+        "reviewer_name": "TRẦN ĐÌNH TIẾN DŨNG",
+        "good": "Đồng chí NGUYỄN DUY LỢI luôn gương mẫu, chấp hành tốt kỷ luật tác nghiệp, đoàn kết nội bộ.",
+        "limit": "Cần chủ động trao đổi nghiệp vụ hơn giữa các phòng ban bộ phận.",
+        "solution": "Tiếp tục phát huy thế mạnh chuyên môn để hỗ trợ chi nhánh hoàn thành tốt nhiệm vụ."
+      },
+      {
+        "reviewer_id": 11,
+        "reviewer_name": "ĐỖ THU HIỀN",
+        "good": "Đồng chí NGUYỄN DUY LỢI luôn gương mẫu, chấp hành tốt kỷ luật tác nghiệp, đoàn kết nội bộ.",
+        "limit": "Cần chủ động trao đổi nghiệp vụ hơn giữa các phòng ban bộ phận.",
+        "solution": "Tiếp tục phát huy thế mạnh chuyên môn để hỗ trợ chi nhánh hoàn thành tốt nhiệm vụ."
+      }
+    ]
+  },
+  "ballots": {
+    "is_closed": false,
+    "voters": {},
+    "collective": {
+      "HTXSNV": 12,
+      "HTTNV": 0,
+      "HTNV": 0,
+      "KHTNV": 0
+    },
+    "members": {}
+  },
+  "collective_evaluation": {
+    "score": 97,
+    "ranking": "Hoàn thành xuất sắc nhiệm vụ",
+    "good": "Chi bộ đã lãnh đạo toàn diện chi nhánh hoàn thành vượt mức 100% các chỉ tiêu kinh doanh VietinBank giao năm 2026. Công tác xây dựng Đảng, kiểm tra giám sát, phòng chống tiêu cực được thực hiện nghiêm túc; tập thể đoàn kết vững chắc.",
+    "limit": "Việc tổ chức sinh hoạt chuyên đề theo quý có lúc còn chưa sinh động, tài liệu sinh hoạt gửi cho đảng viên đôi khi sát ngày.",
+    "sol": "Đổi mới nội dung sinh hoạt, đẩy mạnh ứng dụng công nghệ thông tin trong quản lý văn bản và sinh hoạt Đảng."
+  },
+  "opinions_visible": true,
+  "current_user_id": 6
+}

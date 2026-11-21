@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cổng Chia Sẻ & Mã QR - Kiểm Điểm Đảng Viên Chi Bộ 2 VietinBank</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    .vtb-navy { background-color: #002D62; }
+    .text-vtb-navy { color: #002D62; }
+    .vtb-red { background-color: #DA251D; }
+    .text-vtb-red { color: #DA251D; }
+    .vtb-gold { color: #F59E0B; }
+    .bg-vtb-gold { background-color: #F59E0B; }
+    .card-3d {
+      background: linear-gradient(145deg, #ffffff 0%, #fbfcfe 100%);
+      border: 1px solid rgba(226, 232, 240, 0.95);
+      box-shadow: 0 10px 25px -5px rgba(0, 45, 98, 0.12), 0 8px 10px -6px rgba(0, 45, 98, 0.08), inset 0 1px 0 rgba(255, 255, 255, 1);
+      transition: all 0.25s ease;
+    }
+    .card-3d:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 30px -8px rgba(0, 45, 98, 0.18), inset 0 1px 0 rgba(255, 255, 255, 1);
+    }
+    .qr-glow {
+      box-shadow: 0 0 35px rgba(0, 45, 98, 0.22);
+    }
+    .btn-3d {
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    }
+    .btn-3d:hover {
+      transform: translateY(-1.5px);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+    }
+    .btn-3d:active {
+      transform: translateY(1px);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 font-sans min-h-screen flex flex-col justify-between text-slate-800">
+
+  <!-- HEADER CHÍNH -->
+  <header class="vtb-navy text-white shadow-xl border-b-4 border-amber-400 sticky top-0 z-40">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-3">
+      <div class="flex items-center space-x-3.5">
+        <div class="bg-white text-vtb-red font-black px-3.5 py-1.5 rounded-xl text-lg tracking-wider shadow border border-white/50">
+          VietinBank
+        </div>
+        <!-- Cờ Đảng -->
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-red-600 to-rose-800 flex items-center justify-center shadow border border-amber-300/60">
+          <span class="text-amber-300 text-lg">☭</span>
+        </div>
+        <div>
+          <h1 class="text-base sm:text-lg font-black uppercase tracking-wide flex items-center gap-2">
+            <span>CỔNG KẾT NỐI & CHIA SẺ MÃ QR CHI BỘ 2</span>
+          </h1>
+          <p class="text-xs text-blue-200 font-medium">Đảng bộ VietinBank CN Bảo Lộc • Hội nghị Kiểm điểm & Đánh giá Đảng viên 2026</p>
+        </div>
+      </div>
+      <div class="flex items-center space-x-2">
+        <span class="inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-400/40 shadow-sm">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping mr-2"></span>
+          Máy Chủ Đang Mở (LAN Online)
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- NỘI DUNG CHÍNH -->
+  <main class="max-w-6xl mx-auto px-4 py-8 flex-1 w-full space-y-8">
+
+    <!-- GRID 2 CỘT: MÃ QR (TRÁI) & LIÊN KẾT TRUY CẬP (PHẢI) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+      <!-- CỘT 1: THẺ MÃ QR CODE CHUẨN VIETINBANK (5 COLS) -->
+      <div class="lg:col-span-5 bg-white rounded-3xl p-6 card-3d text-center space-y-4">
+        <div class="inline-block px-3.5 py-1.5 bg-blue-50 text-vtb-navy rounded-full text-xs font-black uppercase tracking-wider border border-blue-200">
+          <i class="fa-solid fa-mobile-screen mr-1.5"></i> Quét Mã Bằng Điện Thoại / iPad
+        </div>
+
+        <!-- KHUNG ẢNH QR CODE -->
+        <div class="relative mx-auto w-64 h-64 p-3 bg-white rounded-2xl qr-glow border-2 border-slate-200 flex items-center justify-center group shadow-md">
+          <img id="qrImage" src="qr_share.png?v=20261121" alt="Mã QR Truy Cập Chi Bộ 2" class="w-full h-full object-contain rounded-xl transition duration-300 group-hover:scale-105">
+        </div>
+
+        <div class="space-y-1">
+          <p class="text-sm font-extrabold text-slate-800">Mã QR Mạng Nội Bộ (LAN / Wi-Fi)</p>
+          <p class="text-xs text-slate-500">Mở Camera iPhone/Android hoặc Zalo quét để truy cập tức thì</p>
+        </div>
+
+        <div class="pt-2 flex justify-center gap-2">
+          <a href="Ma_QR_ChiBo2_VietinBank.png" download="Ma_QR_ChiBo2_VietinBank.png" class="btn-3d px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl text-xs flex items-center gap-2 border border-slate-300">
+            <i class="fa-solid fa-download"></i> Tải Ảnh QR
+          </a>
+          <button onclick="copyToClipboard('http://192.168.0.106:8080')" class="btn-3d px-4 py-2 bg-blue-50 hover:bg-blue-100 text-vtb-navy font-bold rounded-xl text-xs flex items-center gap-2 border border-blue-200 cursor-pointer">
+            <i class="fa-regular fa-copy"></i> Copy Link Gốc
+          </button>
+        </div>
+      </div>
+
+      <!-- CỘT 2: DANH SÁCH ĐƯỜNG LINK TRUY CẬP TRỰC TIẾP (7 COLS) -->
+      <div class="lg:col-span-7 space-y-5">
+
+        <!-- CARD 1: ỨNG DỤNG KIỂM ĐIỂM ĐẢNG VIÊN CHI BỘ 2 -->
+        <div class="bg-white rounded-2xl p-5 card-3d border-l-4 border-red-600 space-y-3">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-2.5">
+              <span class="w-8 h-8 rounded-lg bg-red-100 text-vtb-red flex items-center justify-center text-sm font-black">
+                ☭
+              </span>
+              <h3 class="text-base font-bold text-slate-900">1. Ứng Dụng Kiểm Điểm & Đánh Giá Đảng Viên Chi Bộ 2</h3>
+            </div>
+            <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-red-100 text-red-800">Chính Thức</span>
+          </div>
+
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Hệ thống sinh hoạt chi bộ toàn diện: Điểm danh 12 đồng chí, Tự chấm điểm 100đ, Phân công & Nhận xét chéo, Bỏ phiếu kín điện tử tức thì và Xuất Biên bản cuộc họp Word (.docx) chuẩn Nghị định 30.
+          </p>
+
+          <!-- KHUNG LINK VÀ NÚT THAO TÁC -->
+          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-2.5">
+            <div class="font-mono text-xs text-slate-700 truncate w-full sm:w-auto font-bold select-all">
+              http://192.168.0.106:8080/app_kiem_diem_chi_bo_2.html
+            </div>
+            <div class="flex items-center space-x-2 w-full sm:w-auto flex-shrink-0">
+              <button onclick="copyToClipboard('http://192.168.0.106:8080/app_kiem_diem_chi_bo_2.html')" class="btn-3d flex-1 sm:flex-initial px-3 py-1.5 bg-white hover:bg-slate-100 text-slate-700 font-bold rounded-lg text-xs border border-slate-300 flex items-center justify-center gap-1.5 cursor-pointer">
+                <i class="fa-regular fa-copy"></i> <span>Copy Link</span>
+              </button>
+              <a href="http://192.168.0.106:8080/app_kiem_diem_chi_bo_2.html" target="_blank" class="btn-3d flex-1 sm:flex-initial px-3.5 py-1.5 bg-gradient-to-r from-red-600 to-rose-700 hover:from-red-700 hover:to-rose-800 text-white font-bold rounded-lg text-xs shadow flex items-center justify-center gap-1.5">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> <span>Mở Ngay</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 2: HƯỚNG DẪN 3 BƯỚC CHO 12 ĐỒNG CHÍ ĐẢNG VIÊN -->
+        <div class="bg-white rounded-2xl p-5 card-3d border-l-4 border-emerald-600 space-y-3">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-2.5">
+              <span class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center text-sm font-black">
+                <i class="fa-solid fa-list-check"></i>
+              </span>
+              <h3 class="text-base font-bold text-slate-900">2. Hướng Dẫn Kết Nối 3 Bước Đơn Giản</h3>
+            </div>
+            <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800">1-Click</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+              <span class="font-extrabold text-vtb-navy block">Bước 1: Bật Wi-Fi</span>
+              <p class="text-slate-600">Kết nối cùng mạng Wi-Fi tại cơ quan (hoặc nhà) cùng dải mạng với máy tính Bí thư.</p>
+            </div>
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+              <span class="font-extrabold text-emerald-700 block">Bước 2: Quét Mã QR</span>
+              <p class="text-slate-600">Bật Camera điện thoại hoặc Zalo quét mã bên trái để mở ứng dụng ngay trên trình duyệt.</p>
+            </div>
+            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-1">
+              <span class="font-extrabold text-amber-700 block">Bước 3: Đăng Nhập</span>
+              <p class="text-slate-600">Tên đăng nhập: viết liền không dấu (vd: <strong>nguyenthithao</strong>). Mật khẩu: <strong>123456</strong>.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 3: BẢNG TRA CỨU TÀI KHOẢN ĐĂNG NHẬP 12 ĐỒNG CHÍ -->
+        <div class="bg-white rounded-2xl p-5 card-3d border-l-4 border-vtb-navy space-y-3">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-2.5">
+              <span class="w-8 h-8 rounded-lg bg-blue-100 text-vtb-navy flex items-center justify-center text-sm font-black">
+                <i class="fa-solid fa-users"></i>
+              </span>
+              <h3 class="text-base font-bold text-slate-900">3. Danh Sách Tên Đăng Nhập Của 12 Đồng Chí (Mật khẩu: 123456)</h3>
+            </div>
+            <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-blue-100 text-vtb-navy">Tài Khoản Chuẩn</span>
+          </div>
+
+          <div class="overflow-x-auto max-h-56 overflow-y-auto rounded-xl border border-slate-200">
+            <table class="w-full text-xs text-left">
+              <thead class="bg-slate-100 text-slate-700 font-bold sticky top-0 border-b">
+                <tr>
+                  <th class="p-2.5 text-center w-10">STT</th>
+                  <th class="p-2.5">Họ và Tên</th>
+                  <th class="p-2.5">Chức Vụ</th>
+                  <th class="p-2.5 text-vtb-navy">Tên Đăng Nhập</th>
+                  <th class="p-2.5 text-center">Mật Khẩu</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100">
+                <tr class="hover:bg-slate-50">
+                  <td class="p-2 text-center text-slate-500">1</td>
+                  <td class="p-2 font-bold text-slate-800">BÙI KHẮC DUY</td>
+                  <td class="p-2 text-slate-600">Đảng viên</td>
+                  <td class="p-2 font-mono font-bold text-vtb-navy">buikhacduy</td>
+                  <td class="p-2 text-center font-mono text-slate-600">123456</td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-2 text-center text-slate-500">2</td>
+                  <td class="p-2 font-bold text-slate-800">VŨ HOÀNG NGUYÊN</td>
+                  <td class="p-2 text-slate-600">Đảng viên</td>
+                  <td class="p-2 font-mono font-bold text-vtb-navy">vuhoangnguyen</td>
+                  <td class="p-2 text-center font-mono text-slate-600">123456</td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-2 text-center text-slate-500">3</td>
+                  <td class="p-2 font-bold text-slate-800">LÊ THANH NGHỊ</td>
+                  <td class="p-2 text-slate-600">Đảng viên</td>
+                  <td class="p-2 font-mono font-bold text-vtb-navy">lethanhnghi</td>
+                  <td class="p-2 text-center font-mono text-slate-600">123456</td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-2 text-center text-slate-500">4</td>
+                  <td class="p-2 font-bold text-slate-800">HOÀNG THỊ THỦY</td>
+                  <td class="p-2 text-slate-600">Đảng viên</td>
+                  <td class="p-2 font-mono font-bold text-vtb-navy">hoangthithuy</td>
+                  <td class="p-2 text-center font-mono text-slate-600">123456</td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-2 text-center text-slate-500">5</td>
+                  <td class="p-2 font-bold text-slate-800">NGUYỄN THỊ TỐ NGA</td>
+                  <td class="p-2 text-slate-600">Đảng viên</td>
+                  <td class="p-2 font-mono font-bold text-vtb-navy">nguyenthitonga</td>
+                  <td class="p-2 text-center font-mono text-slate-600">123456</td>
+                </tr>
+                <tr class="hover:bg-amber-50/60 bg-amber-50/30">
+                  <td class="p-2 text-center text-amber-700 font-bold">6</td>
+                  <td class="p-2 font-extrabold text-vtb-navy">NGUYỄN THI THAO</td>
+                  <td class="p-2 font-bold text-amber-800">Bí thư Chi bộ</td>
+                  <td class="p-2 font-mono font-black text-vtb-red">nguyenthithao</td>
+                  <td class="p-2 text-center font-mono text-slate-600">123456</td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-2 text-center text-slate-500">7</td>
+                  <td class="p-2 font-bold text-slate-800">VÕ VĂN MẠNH</td>
+                  <td class="p-2 text-slate-600">Chi ủy viên</td>
+                  <td class="p-2 font-mono font-bold text-vtb-navy">vovanmanh</td>
+                  <td class="p-2 text-center font-mono text-slate-600">123456</td>
+                </tr>
+                <tr class="hover:bg-blue-50/60 bg-blue-50/30">
+                  <td class="p-2 text-center text-blue-700 font-bold">8</td>
+                  <td class="p-2 font-extrabold text-vtb-navy">NGÔ THỊ KIM NGÂN</td>
+                  <td class="p-2 font-bold text-blue-800">Phó Bí thư Chi bộ</td>
+                  <td class="p-2 font-mono font-bold text-vtb-navy">ngothikimngan</td>
+                  <td class="p-2 text-center font-mono text-slate-600">123456</td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-2 text-center text-slate-500">9</td>
+                  <td class="p-2 font-bold text-slate-800">NGUYỄN VĂN CHÂU</td>
+                  <td class="p-2 text-slate-600">Đảng viên</td>
+                  <td class="p-2 font-mono font-bold text-vtb-navy">nguyenvanchau</td>
+                  <td class="p-2 text-center font-mono text-slate-600">123456</td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-2 text-center text-slate-500">10</td>
+                  <td class="p-2 font-bold text-slate-800">TRẦN ĐÌNH TIẾN DŨNG</td>
+                  <td class="p-2 text-slate-600">Đảng viên</td>
+                  <td class="p-2 font-mono font-bold text-vtb-navy">trandinhtiendung</td>
+                  <td class="p-2 text-center font-mono text-slate-600">123456</td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-2 text-center text-slate-500">11</td>
+                  <td class="p-2 font-bold text-slate-800">ĐỖ THU HIỀN</td>
+                  <td class="p-2 text-slate-600">Đảng viên</td>
+                  <td class="p-2 font-mono font-bold text-vtb-navy">dothuhien</td>
+                  <td class="p-2 text-center font-mono text-slate-600">123456</td>
+                </tr>
+                <tr class="hover:bg-slate-50">
+                  <td class="p-2 text-center text-slate-500">12</td>
+                  <td class="p-2 font-bold text-slate-800">NGUYỄN DUY LỢI</td>
+                  <td class="p-2 text-slate-600">Đảng viên</td>
+                  <td class="p-2 font-mono font-bold text-vtb-navy">nguyenduyloi</td>
+                  <td class="p-2 text-center font-mono text-slate-600">123456</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- CARD 3: THÔNG SỐ KẾT NỐI MẠNG NỘI BỘ -->
+        <div class="bg-blue-50/70 rounded-2xl p-4 border border-blue-200 grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+          <div class="p-2.5 bg-white rounded-xl shadow-xs border border-blue-100">
+            <div class="text-[11px] text-slate-500 font-medium">Địa chỉ IPv4 LAN</div>
+            <div class="text-sm font-mono font-bold text-vtb-navy">192.168.0.106</div>
+          </div>
+          <div class="p-2.5 bg-white rounded-xl shadow-xs border border-blue-100">
+            <div class="text-[11px] text-slate-500 font-medium">Cổng Dịch Vụ</div>
+            <div class="text-sm font-mono font-bold text-emerald-700">8080 (HTTP)</div>
+          </div>
+          <div class="p-2.5 bg-white rounded-xl shadow-xs border border-blue-100">
+            <div class="text-[11px] text-slate-500 font-medium">Số Lượng Đảng Viên</div>
+            <div class="text-sm font-bold text-amber-700">12 Đồng Chí</div>
+          </div>
+          <div class="p-2.5 bg-white rounded-xl shadow-xs border border-blue-100">
+            <div class="text-[11px] text-slate-500 font-medium">Đồng Bộ Dữ Liệu</div>
+            <div class="text-sm font-bold text-blue-700">Tự Động 100%</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-900 text-slate-400 text-xs py-4 border-t border-slate-800 text-center">
+    <div class="max-w-6xl mx-auto px-4">
+      <p class="font-medium">© 2026 Chi bộ 2 - Đảng bộ Ngân hàng TMCP Công thương Việt Nam - Chi nhánh Bảo Lộc</p>
+      <p class="text-[11px] text-slate-500 mt-0.5">Hệ Thống Kiểm Điểm, Đánh Giá, Xếp Loại Đảng Viên & Xuất Biên Bản Nghị Định 30/2020/NĐ-CP</p>
+    </div>
+  </footer>
+
+  <!-- FLOATING TOAST -->
+  <div id="toastNotification" class="fixed bottom-6 right-6 z-50 bg-slate-900/95 backdrop-blur-md text-white px-4 py-3 rounded-2xl shadow-2xl flex items-center space-x-3 text-xs transform transition-all duration-300 translate-y-20 opacity-0 pointer-events-none border border-slate-700/60">
+    <div id="toastIcon" class="w-7 h-7 rounded-xl bg-emerald-500 flex items-center justify-center text-white flex-shrink-0 shadow-md">
+      <i class="fa-solid fa-check text-xs"></i>
+    </div>
+    <span id="toastMessage" class="font-bold">Đã sao chép liên kết vào bộ nhớ tạm!</span>
+  </div>
+
+  <script>
+    let toastTimeout = null;
+    function showToast(message) {
+      const toast = document.getElementById('toastNotification');
+      const toastMsg = document.getElementById('toastMessage');
+      if (!toast || !toastMsg) return;
+      toastMsg.innerText = message;
+      toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+      if (toastTimeout) clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+      }, 2500);
+    }
+
+    function copyToClipboard(text) {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(() => {
+          showToast('Đã sao chép đường link: ' + text);
+        }).catch(() => {
+          fallbackCopy(text);
+        });
+      } else {
+        fallbackCopy(text);
+      }
+    }
+
+    function fallbackCopy(text) {
+      const input = document.createElement('input');
+      input.value = text;
+      document.body.appendChild(input);
+      input.select();
+      document.execCommand('copy');
+      document.body.removeChild(input);
+      showToast('Đã sao chép đường link: ' + text);
+    }
+  </script>
+</body>
+</html>
