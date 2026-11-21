@@ -17,6 +17,7 @@ from http.server import HTTPServer, SimpleHTTPRequestHandler
 from urllib.parse import urlparse, parse_qs
 from xuat_bien_ban_word import create_bien_ban_docx
 from xuat_ban_tu_cham_diem import create_single_evaluation_docx, create_all_evaluations_docx
+from xuat_phieu_bau_word import create_ballot_docx
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_FILE = os.path.join(BASE_DIR, 'app_data.json')
@@ -122,6 +123,23 @@ class AppRequestHandler(SimpleHTTPRequestHandler):
                     self.wfile.write(f.read())
             else:
                 self.send_error(404, "Không tìm thấy file mẫu Excel")
+            return
+
+        elif parsed.path == '/api/download_ballot_docx':
+            query = parse_qs(parsed.query)
+            filename = query.get('file', ['Phieu_Bau_Kiem_Diem_Chi_Bo_2_2026.docx'])[0]
+            docx_path = os.path.join(BASE_DIR, filename)
+            if os.path.exists(docx_path):
+                self.send_response(200)
+                self.send_header('Content-Type', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document')
+                self.send_header('Content-Disposition', f'attachment; filename="{filename}"')
+                self.send_header('Content-Length', str(os.path.getsize(docx_path)))
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                with open(docx_path, 'rb') as f:
+                    self.wfile.write(f.read())
+            else:
+                self.send_error(404, f"Không tìm thấy file {filename}")
             return
 
         return super().do_GET()
@@ -261,6 +279,58 @@ class AppRequestHandler(SimpleHTTPRequestHandler):
                 self.wfile.write(json.dumps({'status': 'error', 'message': str(e)}).encode('utf-8'))
             return
 
+        elif parsed.path == '/api/export_ballot_docx':
+            try:
+                import re, unicodedata
+                def slugify(text):
+                    if not text: return 'dangvien'
+                    t = unicodedata.normalize('NFD', text)
+                    t = re.sub(r'[\u0300-\u036f]', '', t)
+                    t = t.replace('đ', 'd').replace('Đ', 'D')
+                    return re.sub(r'[^a-zA-Z0-9]+', '_', t).strip('_')
+
+                payload = json.loads(body.decode('utf-8'))
+                mode = payload.get('mode', 'blank') # 'blank' or 'personal'
+                voter_id = int(payload.get('voter_id', 0))
+                
+                with open(DATA_FILE, 'r', encoding='utf-8') as f:
+                    db = json.load(f)
+                    
+                if mode == 'personal' and voter_id > 0:
+                    voter = next((m for m in db.get('members', []) if m.get('id') == voter_id), None)
+                    voter_name = voter.get('name', f'DangVien_{voter_id}') if voter else f'DangVien_{voter_id}'
+                    voter_choices = payload.get('choices')
+                    if not voter_choices:
+                        voter_choices = db.get('ballots', {}).get('voters', {}).get(str(voter_id), {}).get('ballot', None)
+                        
+                    docx_name = f'Phieu_Bau_Ca_Nhan_{slugify(voter_name)}.docx'
+                    docx_path = os.path.join(BASE_DIR, docx_name)
+                    create_ballot_docx(db, docx_path, voter_member=voter, voted_choices=voter_choices)
+                    msg = f"Đã kết xuất Phiếu bầu của đồng chí {voter_name}!"
+                else:
+                    docx_name = 'Phieu_Bau_Kiem_Diem_Chi_Bo_2_2026.docx'
+                    docx_path = os.path.join(BASE_DIR, docx_name)
+                    create_ballot_docx(db, docx_path)
+                    msg = "Đã kết xuất Phôi phiếu bầu Tập thể & Đảng viên chuẩn mẫu biểu Đảng!"
+                    
+                self.send_response(200)
+                self.send_header('Content-Type', 'application/json; charset=utf-8')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                self.wfile.write(json.dumps({
+                    'status': 'success',
+                    'message': msg,
+                    'file': docx_name,
+                    'download_url': f'/api/download_ballot_docx?file={docx_name}'
+                }).encode('utf-8'))
+            except Exception as e:
+                self.send_response(500)
+                self.send_header('Content-Type', 'application/json; charset=utf-8')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                self.wfile.write(json.dumps({'status': 'error', 'message': str(e)}).encode('utf-8'))
+            return
+
         elif parsed.path == '/api/vote':
             try:
                 from datetime import datetime
@@ -329,7 +399,11 @@ class AppRequestHandler(SimpleHTTPRequestHandler):
                 voters[voter_key] = {
                     'voted_at': now_str,
                     'name': member.get('name'),
-                    'role_party': member.get('role_party')
+                    'role_party': member.get('role_party'),
+                    'ballot': {
+                        'collective_vote': collective_vote,
+                        'member_votes': member_votes
+                    }
                 }
 
                 coll_dict = ballots.setdefault('collective', {'HTXSNV': 0, 'HTTNV': 0, 'HTNV': 0, 'KHTNV': 0})

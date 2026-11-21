@@ -49,15 +49,28 @@
         visibility: hidden;
       }
 
-      #printable-area,
-      #printable-area *,
-      #eval-print-sheet,
-      #eval-print-sheet * {
+      body.printing-ballot #ballot-print-sheet,
+      body.printing-ballot #ballot-print-sheet * {
+        visibility: visible;
+      }
+
+      body.printing-eval #eval-print-sheet,
+      body.printing-eval #eval-print-sheet * {
+        visibility: visible;
+      }
+
+      body:not(.printing-ballot):not(.printing-eval) #printable-area,
+      body:not(.printing-ballot):not(.printing-eval) #printable-area *,
+      body:not(.printing-ballot):not(.printing-eval) #eval-print-sheet,
+      body:not(.printing-ballot):not(.printing-eval) #eval-print-sheet *,
+      body:not(.printing-ballot):not(.printing-eval) #ballot-print-sheet,
+      body:not(.printing-ballot):not(.printing-eval) #ballot-print-sheet * {
         visibility: visible;
       }
 
       #printable-area,
-      #eval-print-sheet {
+      #eval-print-sheet,
+      #ballot-print-sheet {
         position: absolute;
         left: 0;
         top: 0;
@@ -980,6 +993,25 @@
             <span>Quyền khóa hòm phiếu & công bố kết quả thuộc về <strong>Bí thư / Chủ trì kỳ họp</strong></span>
           </div>
 
+          <!-- KHU VỰC IN PHIẾU BẦU CHUẨN MẪU BIỂU ĐẢNG -->
+          <div class="border-t pt-3 space-y-2">
+            <span class="text-xs font-bold text-slate-700 flex items-center justify-between">
+              <span><i class="fa-solid fa-print text-vtb-navy mr-1"></i> In Phiếu Bầu (Mẫu Biểu Đảng):</span>
+            </span>
+            <div class="grid grid-cols-1 gap-2">
+              <button type="button" onclick="openBallotPrintModal('blank')"
+                class="btn-3d w-full bg-slate-800 hover:bg-slate-900 text-white text-xs font-bold py-2.5 px-3 rounded-xl shadow transition flex items-center justify-center gap-1.5">
+                <i class="fa-solid fa-file-invoice text-amber-300"></i>
+                <span>In Phôi Phiếu Bầu Trắng (A4/Word)</span>
+              </button>
+              <button type="button" onclick="openBallotPrintModal('personal')"
+                class="btn-3d w-full bg-blue-700 hover:bg-blue-800 text-white text-xs font-bold py-2.5 px-3 rounded-xl shadow transition flex items-center justify-center gap-1.5">
+                <i class="fa-solid fa-id-card-clip text-blue-200"></i>
+                <span>In Lá Phiếu Bầu Từng Đảng Viên</span>
+              </button>
+            </div>
+          </div>
+
           <!-- Bảng theo dõi ai đã bỏ phiếu -->
           <div class="border-t pt-3 space-y-2">
             <span class="text-xs font-bold text-slate-700 block">Tiến độ bỏ phiếu 12 đồng chí:</span>
@@ -1029,7 +1061,17 @@
               <i class="fa-solid fa-shield-halved text-emerald-600"></i>
               <span>Nguyên tắc Điều lệ Đảng: Mỗi đảng viên chỉ bỏ phiếu 01 lần duy nhất</span>
             </div>
-            <div class="pt-2">
+            <div class="pt-3 flex flex-wrap items-center justify-center gap-2.5">
+              <button type="button" onclick="printMyBallot()"
+                class="btn-3d px-4 py-2 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-xs font-bold shadow transition inline-flex items-center gap-1.5">
+                <i class="fa-solid fa-print"></i>
+                <span>In Lá Phiếu Bầu Của Tôi (A4/PDF)</span>
+              </button>
+              <button type="button" onclick="exportMyBallotWord()"
+                class="btn-3d px-4 py-2 bg-blue-700 hover:bg-blue-800 text-white rounded-xl text-xs font-bold shadow transition inline-flex items-center gap-1.5">
+                <i class="fa-solid fa-file-word"></i>
+                <span>Tải Phiếu Word (.docx)</span>
+              </button>
               <button type="button" onclick="allowMemberReVote()"
                 class="btn-3d px-4 py-2 bg-white hover:bg-slate-50 border border-emerald-400 hover:border-emerald-600 text-emerald-800 rounded-xl text-xs font-bold shadow-sm transition inline-flex items-center gap-1.5">
                 <i class="fa-solid fa-rotate-left text-emerald-600"></i>
@@ -1535,6 +1577,66 @@
         <div id="eval-print-sheet"
           class="bg-white text-slate-900 p-8 sm:p-12 shadow-2xl rounded-sm w-full max-w-[210mm] min-h-[297mm] font-serif leading-relaxed text-sm border border-slate-200">
           <!-- Injected dynamically by previewAndPrintEvaluation() -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL XEM TRƯỚC VÀ IN PHIẾU BẦU CHUẨN MẪU BIỂU ĐẢNG -->
+  <div id="ballot-print-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-2 sm:p-4">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-5xl h-[92vh] flex flex-col overflow-hidden border border-slate-700">
+      <!-- Modal Header -->
+      <div class="px-6 py-4 bg-gradient-to-r from-vtb-navy to-slate-900 border-b border-slate-800 flex flex-wrap items-center justify-between gap-3">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-party-red/20 border border-party-red text-party-gold flex items-center justify-center text-lg">
+            <i class="fa-solid fa-file-signature"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-white tracking-wide" id="ballot-modal-title">Xem Trước & In Phiếu Bầu Chi Bộ 2</h3>
+            <p class="text-[11px] text-slate-300">Chuẩn mẫu biểu Hướng dẫn của Đảng ủy • Khổ A4</p>
+          </div>
+        </div>
+
+        <!-- Bộ chọn chế độ và đảng viên -->
+        <div class="flex flex-wrap items-center gap-2">
+          <div class="flex items-center bg-slate-800/90 rounded-lg p-1 border border-slate-700 text-xs text-white">
+            <button type="button" id="btn-mode-blank" onclick="switchBallotPrintMode('blank')"
+              class="px-3 py-1 rounded font-bold transition bg-vtb-navy text-white">
+              Phôi Trắng
+            </button>
+            <button type="button" id="btn-mode-personal" onclick="switchBallotPrintMode('personal')"
+              class="px-3 py-1 rounded font-bold transition text-slate-300 hover:text-white">
+              Lá Phiếu Cá Nhân
+            </button>
+          </div>
+
+          <select id="ballot-voter-select" onchange="onBallotVoterChange()"
+            class="hidden text-xs bg-slate-800 border border-slate-700 text-white rounded-lg px-2.5 py-1.5 font-bold focus:ring-1 focus:ring-amber-400">
+            <!-- Rendered dynamically -->
+          </select>
+
+          <button type="button" onclick="printBallotSheet()"
+            class="btn-3d px-3.5 py-1.5 bg-amber-500 hover:bg-amber-600 text-slate-900 rounded-lg text-xs font-bold shadow transition flex items-center gap-1.5">
+            <i class="fa-solid fa-print"></i>
+            <span>In / Lưu PDF</span>
+          </button>
+          <button type="button" onclick="exportBallotDocxModal()"
+            class="btn-3d px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-bold shadow transition flex items-center gap-1.5">
+            <i class="fa-solid fa-file-word"></i>
+            <span>Tải Word (.docx)</span>
+          </button>
+          <button type="button" onclick="closeBallotPrintModal()"
+            class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center text-xs transition">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Vùng hiển thị mô phỏng tờ giấy A4 -->
+      <div class="flex-1 overflow-y-auto p-4 sm:p-8 bg-slate-200/70 custom-scrollbar flex justify-center">
+        <div id="ballot-print-sheet"
+          class="bg-white text-slate-900 p-8 sm:p-12 shadow-2xl rounded-sm w-full max-w-[210mm] min-h-[297mm] font-serif leading-relaxed text-sm border border-slate-200 space-y-6">
+          <!-- Injected dynamically by renderBallotSheet() -->
         </div>
       </div>
     </div>
@@ -3880,7 +3982,16 @@
           console.warn('Backend chưa sẵn sàng, ghi nhận cục bộ:', err);
           const nowStr = new Date().toLocaleTimeString('vi-VN') + ' ' + new Date().toLocaleDateString('vi-VN');
           if (!appData.ballots.voters) appData.ballots.voters = {};
-          appData.ballots.voters[voterKey] = { voted_at: nowStr, name: cur.name, role_party: cur.role_party };
+          appData.ballots.voters[voterKey] = {
+            voted_at: nowStr,
+            name: cur.name,
+            role_party: cur.role_party,
+            ballot: {
+              collective_vote: collVote,
+              member_votes: memberVotes
+            }
+          };
+          localStorage.setItem('chi_bo_2_my_vote', JSON.stringify({ collective_vote: collVote, member_votes: memberVotes }));
 
           // Lưu phiếu
           appData.ballots.collective[collVote] = (appData.ballots.collective[collVote] || 0) + 1;
@@ -4440,6 +4551,387 @@
       document.getElementById('progress-bar-fill').style.width = score + '%';
       document.getElementById('progress-percent').textContent = score + '%';
       document.getElementById('progress-text').textContent = `Đã hoàn thành ${score}% quy trình kiểm điểm (Điểm danh: ${presentCount}/${totalMembers}, Nhận xét chéo: ${revKeys.length}/${totalMembers}, Bỏ phiếu: ${voterCount})`;
+    }
+
+    // =========================================================================
+    // XỬ LÝ IN VÀ KẾT XUẤT PHIẾU BẦU CHUẨN MẪU BIỂU ĐẢNG (TẬP THỂ & CÁ NHÂN)
+    // =========================================================================
+    let currentBallotPrintMode = 'blank';
+    let currentBallotVoterId = null;
+
+    function openBallotPrintModal(mode = 'blank', voterId = null) {
+      currentBallotPrintMode = mode;
+      
+      const officialMembers = appData.members.filter(m => m.status === 'Chính thức');
+      const select = document.getElementById('ballot-voter-select');
+      if (select) {
+        select.innerHTML = '';
+        officialMembers.forEach(m => {
+          const opt = document.createElement('option');
+          opt.value = m.id;
+          const vKey = String(m.id);
+          const hasVoted = appData.ballots.voters && (appData.ballots.voters[vKey] || appData.ballots.voters[m.id]);
+          opt.textContent = `${m.name} (${m.role_party || 'Đảng viên'})${hasVoted ? ' - Đã bỏ phiếu' : ''}`;
+          select.appendChild(opt);
+        });
+
+        if (voterId) {
+          currentBallotVoterId = voterId;
+          select.value = voterId;
+        } else if (appData.current_user_id && officialMembers.some(m => m.id === appData.current_user_id)) {
+          currentBallotVoterId = appData.current_user_id;
+          select.value = appData.current_user_id;
+        } else {
+          currentBallotVoterId = officialMembers[0]?.id || 1;
+          select.value = currentBallotVoterId;
+        }
+      }
+
+      switchBallotPrintMode(mode);
+
+      const modal = document.getElementById('ballot-print-modal');
+      if (modal) modal.classList.remove('hidden');
+    }
+
+    function closeBallotPrintModal() {
+      const modal = document.getElementById('ballot-print-modal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function switchBallotPrintMode(mode) {
+      currentBallotPrintMode = mode;
+      const btnBlank = document.getElementById('btn-mode-blank');
+      const btnPersonal = document.getElementById('btn-mode-personal');
+      const voterSelect = document.getElementById('ballot-voter-select');
+      const modalTitle = document.getElementById('ballot-modal-title');
+
+      if (mode === 'blank') {
+        if (btnBlank) btnBlank.className = 'px-3 py-1 rounded font-bold transition bg-vtb-navy text-white';
+        if (btnPersonal) btnPersonal.className = 'px-3 py-1 rounded font-bold transition text-slate-300 hover:text-white';
+        if (voterSelect) voterSelect.classList.add('hidden');
+        if (modalTitle) modalTitle.textContent = 'Phôi Phiếu Bầu Trắng Tập Thể & Đảng Viên (Chuẩn Mẫu Biểu Đảng)';
+      } else {
+        if (btnPersonal) btnPersonal.className = 'px-3 py-1 rounded font-bold transition bg-vtb-navy text-white';
+        if (btnBlank) btnBlank.className = 'px-3 py-1 rounded font-bold transition text-slate-300 hover:text-white';
+        if (voterSelect) voterSelect.classList.remove('hidden');
+        if (modalTitle) modalTitle.textContent = 'Lá Phiếu Bầu Cá Nhân Của Từng Đảng Viên (Chi Bộ 2)';
+      }
+
+      renderBallotSheet();
+    }
+
+    function onBallotVoterChange() {
+      const select = document.getElementById('ballot-voter-select');
+      if (select) {
+        currentBallotVoterId = select.value;
+      }
+      renderBallotSheet();
+    }
+
+    function renderBallotSheet() {
+      const sheet = document.getElementById('ballot-print-sheet');
+      if (!sheet) return;
+
+      const dateStr = appData.meeting.date || '2026-11-21';
+      const parts = dateStr.split('-');
+      const yyyy = parts[0] || '2026';
+      const mm = parts[1] || '11';
+      const dd = parts[2] || '21';
+
+      const isPersonal = (currentBallotPrintMode === 'personal');
+      const voterIdNum = Number(currentBallotVoterId || appData.current_user_id || 1);
+      const voter = appData.members.find(m => m.id === voterIdNum) || appData.members[0];
+
+      let voterChoices = null;
+      if (isPersonal) {
+        const vKey = String(voter.id);
+        const vInfo = appData.ballots.voters ? (appData.ballots.voters[vKey] || appData.ballots.voters[voter.id]) : null;
+        if (vInfo && vInfo.ballot) {
+          voterChoices = vInfo.ballot;
+        } else if (voter.id === appData.current_user_id) {
+          voterChoices = JSON.parse(localStorage.getItem('chi_bo_2_my_vote') || 'null');
+        }
+      }
+
+      const collVote = (voterChoices && voterChoices.collective_vote) ? voterChoices.collective_vote : '';
+      const memVotes = (voterChoices && voterChoices.member_votes) ? voterChoices.member_votes : {};
+
+      const officialMembers = appData.members.filter(m => m.status === 'Chính thức');
+
+      function renderCheckMark(isChecked) {
+        if (!isPersonal) {
+          return '<span style="display:inline-block; width:16px; height:16px; border:1.5px solid #000; vertical-align:middle;"></span>';
+        }
+        if (isChecked) {
+          return '<span style="display:inline-block; width:18px; height:18px; border:1.5px solid #000; font-weight:bold; line-height:16px; text-align:center; vertical-align:middle; background-color:#eff6ff;">X</span>';
+        }
+        return '<span style="display:inline-block; width:16px; height:16px; border:1px solid #94a3b8; vertical-align:middle;"></span>';
+      }
+
+      sheet.innerHTML = `
+        <!-- ========================================== -->
+        <!-- PHIẾU SỐ 01: TẬP THỂ CHI BỘ -->
+        <!-- ========================================== -->
+        <div class="ballot-page space-y-3 pb-6">
+          <div class="grid grid-cols-2 gap-4 pb-2">
+            <div class="text-center font-bold text-[11pt] leading-tight font-serif">
+              <p class="font-normal text-[10.5pt]">ĐẢNG BỘ NHCT VIỆT NAM</p>
+              <p class="text-[10.5pt]">ĐẢNG BỘ CN BẢO LỘC</p>
+              <p class="pt-0.5 text-[11pt]">CHI BỘ 2</p>
+              <div class="w-16 h-[1px] bg-black mx-auto my-1"></div>
+            </div>
+            <div class="text-center leading-tight font-serif">
+              <p class="font-bold text-[11pt] uppercase">ĐẢNG CỘNG SẢN VIỆT NAM</p>
+              <p class="italic text-[11pt] pt-1">Bảo Lộc, ngày ${dd} tháng ${mm} năm ${yyyy}</p>
+            </div>
+          </div>
+
+          <div class="text-center pt-1">
+            <h2 class="text-[13pt] font-extrabold uppercase tracking-wide text-black font-serif">
+              PHIẾU ĐÁNH GIÁ, XẾP LOẠI CHẤT LƯỢNG TỔ CHỨC ĐẢNG NĂM 2026
+            </h2>
+            <p class="text-[11pt] font-bold italic font-serif">(Đối với Tập thể Chi bộ 2)</p>
+            ${isPersonal ? `
+              <div class="mt-2 inline-block bg-blue-50 border border-blue-200 text-blue-900 px-3 py-1 rounded text-xs font-sans">
+                Lá phiếu của đồng chí: <strong>${voter.name}</strong> - Chức vụ: ${voter.role_party || 'Đảng viên'}
+                ${!collVote ? '<span class="text-amber-700 font-bold ml-1">(Chưa ghi nhận phiếu bầu)</span>' : '<span class="text-emerald-700 font-bold ml-1">(Đã bỏ phiếu kín)</span>'}
+              </div>
+            ` : ''}
+          </div>
+
+          <p class="text-[10pt] italic font-serif leading-snug">
+            * Hướng dẫn: Đánh dấu [X] vào 01 ô tương ứng với mức xếp loại tín nhiệm đối với Tập thể Chi bộ 2.
+          </p>
+
+          <table class="w-full border-collapse border border-black text-center text-[10.5pt] font-serif">
+            <thead>
+              <tr class="bg-slate-100 font-bold">
+                <th class="border border-black p-2 w-10">STT</th>
+                <th class="border border-black p-2 text-left">Đối tượng đánh giá</th>
+                <th class="border border-black p-2 w-28">Hoàn thành xuất sắc nhiệm vụ</th>
+                <th class="border border-black p-2 w-28">Hoàn thành tốt nhiệm vụ</th>
+                <th class="border border-black p-2 w-28">Hoàn thành nhiệm vụ</th>
+                <th class="border border-black p-2 w-28">Không hoàn thành nhiệm vụ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="border border-black p-2 font-bold">1</td>
+                <td class="border border-black p-2 text-left font-bold">Tập thể Chi bộ 2</td>
+                <td class="border border-black p-2">${renderCheckMark(collVote === 'HTXSNV')}</td>
+                <td class="border border-black p-2">${renderCheckMark(collVote === 'HTTNV')}</td>
+                <td class="border border-black p-2">${renderCheckMark(collVote === 'HTNV')}</td>
+                <td class="border border-black p-2">${renderCheckMark(collVote === 'KHTNV')}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- ĐƯỜNG CẮT PHÔI PHIẾU -->
+        <div class="my-4 border-t-2 border-dashed border-slate-400 relative text-center no-print">
+          <span class="bg-white px-3 text-[11px] text-slate-500 font-sans italic relative -top-3">
+            ✂ Đường cắt phôi phiếu (khi in phát giấy tại hội nghị)
+          </span>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- PHIẾU SỐ 02: TỪNG ĐẢNG VIÊN (11 Đ/C CHÍNH THỨC) -->
+        <!-- ========================================== -->
+        <div class="ballot-page space-y-3 pt-2">
+          <div class="grid grid-cols-2 gap-4 pb-2">
+            <div class="text-center font-bold text-[11pt] leading-tight font-serif">
+              <p class="font-normal text-[10.5pt]">ĐẢNG BỘ NHCT VIỆT NAM</p>
+              <p class="text-[10.5pt]">ĐẢNG BỘ CN BẢO LỘC</p>
+              <p class="pt-0.5 text-[11pt]">CHI BỘ 2</p>
+              <div class="w-16 h-[1px] bg-black mx-auto my-1"></div>
+            </div>
+            <div class="text-center leading-tight font-serif">
+              <p class="font-bold text-[11pt] uppercase">ĐẢNG CỘNG SẢN VIỆT NAM</p>
+              <p class="italic text-[11pt] pt-1">Bảo Lộc, ngày ${dd} tháng ${mm} năm ${yyyy}</p>
+            </div>
+          </div>
+
+          <div class="text-center pt-1">
+            <h2 class="text-[13pt] font-extrabold uppercase tracking-wide text-black font-serif">
+              PHIẾU ĐÁNH GIÁ, XẾP LOẠI CHẤT LƯỢNG ĐẢNG VIÊN NĂM 2026
+            </h2>
+            <p class="text-[11pt] font-bold italic font-serif">(Áp dụng cho 11 đồng chí Đảng viên chính thức Chi bộ 2)</p>
+            ${isPersonal ? `
+              <div class="mt-2 inline-block bg-blue-50 border border-blue-200 text-blue-900 px-3 py-1 rounded text-xs font-sans">
+                Lá phiếu của đồng chí: <strong>${voter.name}</strong> - Chức vụ: ${voter.role_party || 'Đảng viên'}
+              </div>
+            ` : ''}
+          </div>
+
+          <div class="text-[9.5pt] italic font-serif leading-snug space-y-0.5">
+            <p>* Hướng dẫn: Đánh dấu [X] vào 01 ô tương ứng với mức xếp loại tín nhiệm đối với từng đồng chí đảng viên.</p>
+            <p>* Lưu ý: Mức "Hoàn thành xuất sắc nhiệm vụ" không vượt quá 20% tổng số đảng viên được xếp loại "Hoàn thành tốt nhiệm vụ" (tối đa không quá 02 đồng chí). Đảng viên dự bị không tham gia bỏ phiếu và không xếp loại theo phiếu này (theo Điều 3 Điều lệ Đảng).</p>
+          </div>
+
+          <table class="w-full border-collapse border border-black text-center text-[10pt] font-serif">
+            <thead>
+              <tr class="bg-slate-100 font-bold">
+                <th class="border border-black p-1.5 w-8">STT</th>
+                <th class="border border-black p-1.5 text-left w-48">Họ và tên</th>
+                <th class="border border-black p-1.5 text-left w-36">Chức vụ Đảng / CQ</th>
+                <th class="border border-black p-1.5 w-24">Hoàn thành xuất sắc nhiệm vụ</th>
+                <th class="border border-black p-1.5 w-24">Hoàn thành tốt nhiệm vụ</th>
+                <th class="border border-black p-1.5 w-24">Hoàn thành nhiệm vụ</th>
+                <th class="border border-black p-1.5 w-24">Không hoàn thành nhiệm vụ</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${officialMembers.map((m, idx) => {
+                const votedRank = memVotes[String(m.id)];
+                return `
+                  <tr>
+                    <td class="border border-black p-1.5 text-center">${idx + 1}</td>
+                    <td class="border border-black p-1.5 text-left font-bold">${m.name}</td>
+                    <td class="border border-black p-1.5 text-left text-[9pt]">${m.role_party || 'Đảng viên'}${m.role_title ? ' - ' + m.role_title : ''}</td>
+                    <td class="border border-black p-1.5">${renderCheckMark(votedRank === 'HTXSNV')}</td>
+                    <td class="border border-black p-1.5">${renderCheckMark(votedRank === 'HTTNV')}</td>
+                    <td class="border border-black p-1.5">${renderCheckMark(votedRank === 'HTNV')}</td>
+                    <td class="border border-black p-1.5">${renderCheckMark(votedRank === 'KHTNV')}</td>
+                  </tr>
+                `;
+              }).join('')}
+            </tbody>
+          </table>
+        </div>
+      `;
+    }
+
+    function printBallotSheet() {
+      document.body.classList.add('printing-ballot');
+      window.print();
+      setTimeout(() => document.body.classList.remove('printing-ballot'), 1000);
+    }
+
+    function printMyBallot() {
+      const cur = getCurrentUser();
+      openBallotPrintModal('personal', cur.id);
+    }
+
+    function exportMyBallotWord() {
+      const cur = getCurrentUser();
+      exportBallotDocxAction('personal', cur.id);
+    }
+
+    function exportBallotDocxModal() {
+      exportBallotDocxAction(currentBallotPrintMode, currentBallotVoterId);
+    }
+
+    function exportBallotDocxAction(mode, voterId) {
+      showToast('Đang kết xuất Phiếu bầu Word chuẩn mẫu biểu Đảng...', 'info');
+
+      const voter = appData.members.find(m => m.id === Number(voterId)) || getCurrentUser();
+      let voterChoices = null;
+
+      if (mode === 'personal') {
+        const vKey = String(voter.id);
+        const vInfo = appData.ballots.voters ? (appData.ballots.voters[vKey] || appData.ballots.voters[voter.id]) : null;
+        if (vInfo && vInfo.ballot) {
+          voterChoices = vInfo.ballot;
+        } else if (voter.id === appData.current_user_id) {
+          voterChoices = JSON.parse(localStorage.getItem('chi_bo_2_my_vote') || 'null');
+        }
+      }
+
+      const payload = {
+        mode: mode,
+        voter_id: voter.id,
+        choices: voterChoices
+      };
+
+      fetch('/api/export_ballot_docx', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.status === 'success') {
+            showToast(data.message, 'success');
+            window.location.href = data.download_url;
+          } else {
+            console.warn('Server error, fallback client-side:', data.message);
+            downloadBallotDocxClientSide(mode, voter.id);
+          }
+        })
+        .catch(err => {
+          console.warn('Backend chưa sẵn sàng hoặc file:/// -> Xuất Word phía trình duyệt:', err);
+          downloadBallotDocxClientSide(mode, voter.id);
+        });
+    }
+
+    function downloadBallotDocxClientSide(mode, voterId) {
+      const sheet = document.getElementById('ballot-print-sheet');
+      if (!sheet) return;
+
+      const voter = appData.members.find(m => m.id === Number(voterId));
+      let slug = 'Chuan_Mau_Bieu_Dang';
+      if (mode === 'personal' && voter) {
+        slug = voter.name.replace(/[^a-zA-Z0-9\u00C0-\u1EF9]/g, '_');
+      }
+      const filename = `Phieu_Bau_${slug}_2026.doc`;
+
+      const htmlDoc = `
+        <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+        <head>
+          <meta charset='utf-8'>
+          <title>Phiếu Bầu Kiểm Điểm Chi Bộ 2</title>
+          <!--[if gte mso 9]>
+          <xml>
+            <w:WordDocument>
+              <w:View>Print</w:View>
+              <w:Zoom>100</w:Zoom>
+              <w:DoNotOptimizeForBrowser/>
+            </w:WordDocument>
+          </xml>
+          <![endif]-->
+          <style>
+            @page {
+              size: 21.0cm 29.7cm; /* A4 */
+              margin: 2.0cm 1.5cm 2.0cm 2.5cm;
+            }
+            body {
+              font-family: 'Times New Roman', serif;
+              font-size: 11pt;
+              line-height: 1.25;
+              color: #000;
+            }
+            table {
+              border-collapse: collapse;
+              width: 100%;
+              margin: 6pt 0;
+            }
+            th, td {
+              border: 1px solid #000;
+              padding: 4pt 5pt;
+              font-size: 10pt;
+            }
+            .text-center { text-align: center; }
+            .font-bold { font-weight: bold; }
+            .uppercase { text-transform: uppercase; }
+            .italic { font-style: italic; }
+          </style>
+        </head>
+        <body>
+          ${sheet.innerHTML}
+        </body>
+        </html>
+      `;
+
+      const blob = new Blob(['\ufeff', htmlDoc], { type: 'application/msword;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast(`Đã tải xuống ${filename}!`, 'success');
     }
   </script>
   <!-- Toast thông báo nhanh (Floating Toast chuẩn Chi bộ 2) -->
