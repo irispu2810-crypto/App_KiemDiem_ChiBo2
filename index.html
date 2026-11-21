@@ -1332,27 +1332,95 @@
 
   </main>
 
-  <!-- MODAL: MÃ QR CHO ĐIỆN THOẠI QUÉT QUA MẠNG LAN -->
-  <div id="qr-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl max-w-sm w-full p-6 space-y-4 shadow-2xl text-center border-4 border-vtb-gold">
-      <div class="flex items-center justify-between border-b pb-2">
-        <h3 class="font-extrabold text-vtb-navy text-base">Quét QR Bằng Điện Thoại</h3>
-        <button onclick="closeQRModal()" class="text-slate-400 hover:text-slate-600 text-lg font-bold">✕</button>
+  <!-- MODAL: MÃ QR CODE TRUY CẬP (ONLINE 24/7 & LAN NỘI BỘ) -->
+  <div id="qr-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-5 sm:p-6 space-y-4 shadow-2xl text-center border-2 border-slate-200">
+      <div class="flex items-center justify-between border-b pb-3">
+        <div class="flex items-center space-x-2.5 text-left">
+          <div class="w-9 h-9 rounded-xl bg-vtb-navy text-amber-400 flex items-center justify-center font-bold text-sm shadow">
+            <i class="fa-solid fa-qrcode"></i>
+          </div>
+          <div>
+            <h3 class="font-extrabold text-vtb-navy text-sm sm:text-base">Mã QR Code Truy Cập Ứng Dụng</h3>
+            <p class="text-[11px] text-slate-500">Chi bộ 2 - VietinBank Chi nhánh Bảo Lộc</p>
+          </div>
+        </div>
+        <button onclick="closeQRModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center font-bold transition">✕</button>
       </div>
-      <p class="text-xs text-slate-600">Đảng viên kết nối cùng mạng Wi-Fi cơ quan/hội trường và mở Camera quét mã để vào
-        ứng dụng:</p>
-      <div class="bg-white p-3 rounded-xl border-2 border-slate-200 inline-block shadow-inner">
-        <img src="qr_lan_app.png" alt="QR Code LAN" class="w-48 h-48 mx-auto"
-          onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=200x200&data='+encodeURIComponent(window.location.origin)">
+
+      <!-- Tab Switcher: Online 24/7 vs LAN -->
+      <div class="flex p-1 bg-slate-100 rounded-xl text-xs font-bold border border-slate-200">
+        <button type="button" id="tab-qr-github" onclick="switchQRTab('github')" class="flex-1 py-2 px-3 rounded-lg transition bg-vtb-navy text-white shadow-sm flex items-center justify-center gap-1.5">
+          <i class="fa-solid fa-globe text-emerald-400"></i>
+          <span>Online 24/7 (Khuyến nghị)</span>
+        </button>
+        <button type="button" id="tab-qr-lan" onclick="switchQRTab('lan')" class="flex-1 py-2 px-3 rounded-lg transition text-slate-600 hover:text-slate-900 flex items-center justify-center gap-1.5">
+          <i class="fa-solid fa-wifi text-blue-600"></i>
+          <span>Mạng LAN (Wi-Fi)</span>
+        </button>
       </div>
-      <div class="bg-blue-50 p-2.5 rounded-lg border border-blue-200 text-xs text-vtb-navy font-mono break-all"
-        id="qr-modal-url">
-        http://192.168.0.106:8080
+
+      <!-- Nội dung Tab 1: GitHub Pages 24/7 -->
+      <div id="content-qr-github" class="space-y-3">
+        <span class="inline-block text-[11px] font-bold px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200">
+          ✓ Truy cập mọi lúc mọi nơi từ 4G/5G/Wi-Fi • Kể cả khi tắt máy tính
+        </span>
+        <div class="bg-white p-3 rounded-2xl border-2 border-emerald-200 inline-block shadow-inner">
+          <img src="qr_github.png" alt="Mã QR Online 24/7" class="w-48 h-48 mx-auto rounded-lg object-contain"
+            onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Firispu2810-crypto.github.io%2FApp_KiemDiem_ChiBo2%2F'">
+        </div>
+        <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200 text-xs text-slate-800 font-mono break-all font-bold select-all">
+          https://irispu2810-crypto.github.io/App_KiemDiem_ChiBo2/
+        </div>
+        <div class="flex items-center justify-center gap-2 pt-1">
+          <button onclick="copyToClipboard('https://irispu2810-crypto.github.io/App_KiemDiem_ChiBo2/', 'Đã sao chép link Online 24/7!')" class="btn-3d px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 shadow">
+            <i class="fa-regular fa-copy"></i>
+            <span>Sao Chép Link</span>
+          </button>
+          <a href="Ma_QR_GitHub_ChiBo2_VietinBank.png" download="Ma_QR_GitHub_ChiBo2_VietinBank.png" class="btn-3d px-3.5 py-2 bg-slate-800 hover:bg-slate-900 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 shadow">
+            <i class="fa-solid fa-download text-amber-300"></i>
+            <span>Tải Ảnh Thẻ QR</span>
+          </a>
+        </div>
       </div>
-      <p class="text-[11px] text-slate-400">Tự động nhận diện tài khoản và bỏ phiếu ẩn danh trực tiếp trên điện thoại
-      </p>
-      <button onclick="closeQRModal()"
-        class="w-full py-2 bg-vtb-navy hover:bg-vtb-navyDark text-white text-xs font-bold rounded-lg shadow">Đóng</button>
+
+      <!-- Nội dung Tab 2: LAN Wi-Fi Hội trường -->
+      <div id="content-qr-lan" class="space-y-3 hidden">
+        <span class="inline-block text-[11px] font-bold px-3 py-1 rounded-full bg-blue-100 text-blue-800 border border-blue-200">
+          🏢 Đồng bộ trực tiếp với máy tính của Bí thư qua Wi-Fi phòng họp
+        </span>
+        <div class="bg-white p-3 rounded-2xl border-2 border-blue-200 inline-block shadow-inner">
+          <img src="qr_lan_app.png" alt="Mã QR LAN Wi-Fi" class="w-48 h-48 mx-auto rounded-lg object-contain"
+            onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=200x200&data='+encodeURIComponent(window.location.origin)">
+        </div>
+        <div class="bg-blue-50 p-2.5 rounded-xl border border-blue-200 text-xs text-vtb-navy font-mono break-all font-bold select-all" id="qr-modal-lan-url">
+          http://192.168.0.106:8080/
+        </div>
+        <div class="flex items-center justify-center gap-2 pt-1">
+          <button onclick="copyLanUrl()" class="btn-3d px-3.5 py-2 bg-blue-700 hover:bg-blue-800 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 shadow">
+            <i class="fa-regular fa-copy"></i>
+            <span>Sao Chép Link LAN</span>
+          </button>
+          <a href="Ma_QR_ChiBo2_VietinBank.png" download="Ma_QR_ChiBo2_VietinBank.png" class="btn-3d px-3.5 py-2 bg-slate-800 hover:bg-slate-900 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 shadow">
+            <i class="fa-solid fa-download text-amber-300"></i>
+            <span>Tải Ảnh Thẻ QR</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Hướng dẫn tài khoản -->
+      <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-left text-xs space-y-1">
+        <p class="font-bold text-slate-800 flex items-center gap-1.5">
+          <i class="fa-solid fa-key text-amber-600"></i>
+          <span>Thông tin đăng nhập của từng Đảng viên:</span>
+        </p>
+        <p class="text-slate-600">• <strong>Tên đăng nhập:</strong> Viết thường, liền không dấu (VD: <em>nguyenthithao</em>, <em>buikhacduy</em>).</p>
+        <p class="text-slate-600">• <strong>Mật khẩu mặc định:</strong> <code>123456</code> (Mỗi đồng chí chỉ bỏ phiếu 01 lần duy nhất).</p>
+      </div>
+
+      <button onclick="closeQRModal()" class="w-full py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs font-bold rounded-xl transition">
+        Đóng Cửa Sổ
+      </button>
     </div>
   </div>
 
@@ -2416,11 +2484,53 @@
       });
     }
 
-    function openQRModal() {
-      const urlElem = document.getElementById('qr-modal-url');
-      if (urlElem) {
-        urlElem.textContent = window.location.origin.includes('http') ? window.location.origin : 'http://192.168.0.106:8080';
+    function copyToClipboard(text, msg = 'Đã sao chép đường link vào bộ nhớ tạm!') {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => {
+          showToast(msg, 'success');
+        }).catch(() => {
+          prompt('Nhấn Ctrl+C để sao chép đường link:', text);
+        });
+      } else {
+        prompt('Nhấn Ctrl+C để sao chép đường link:', text);
       }
+    }
+
+    function switchQRTab(tab) {
+      const tabGit = document.getElementById('tab-qr-github');
+      const tabLan = document.getElementById('tab-qr-lan');
+      const contentGit = document.getElementById('content-qr-github');
+      const contentLan = document.getElementById('content-qr-lan');
+
+      if (tab === 'github') {
+        if (tabGit) tabGit.className = 'flex-1 py-2 px-3 rounded-lg transition bg-vtb-navy text-white shadow-sm flex items-center justify-center gap-1.5';
+        if (tabLan) tabLan.className = 'flex-1 py-2 px-3 rounded-lg transition text-slate-600 hover:text-slate-900 flex items-center justify-center gap-1.5';
+        if (contentGit) contentGit.classList.remove('hidden');
+        if (contentLan) contentLan.classList.add('hidden');
+      } else {
+        if (tabLan) tabLan.className = 'flex-1 py-2 px-3 rounded-lg transition bg-vtb-navy text-white shadow-sm flex items-center justify-center gap-1.5';
+        if (tabGit) tabGit.className = 'flex-1 py-2 px-3 rounded-lg transition text-slate-600 hover:text-slate-900 flex items-center justify-center gap-1.5';
+        if (contentLan) contentLan.classList.remove('hidden');
+        if (contentGit) contentGit.classList.add('hidden');
+      }
+    }
+
+    function copyLanUrl() {
+      const elem = document.getElementById('qr-modal-lan-url');
+      const url = elem ? elem.textContent.trim() : 'http://192.168.0.106:8080/';
+      copyToClipboard(url, 'Đã sao chép link Mạng LAN!');
+    }
+
+    function openQRModal() {
+      const lanElem = document.getElementById('qr-modal-lan-url');
+      if (lanElem) {
+        if (window.location.protocol.startsWith('http') && !window.location.hostname.includes('github.io')) {
+          lanElem.textContent = window.location.origin.includes(':') ? window.location.origin + '/' : 'http://192.168.0.106:8080/';
+        } else {
+          lanElem.textContent = 'http://192.168.0.106:8080/';
+        }
+      }
+      switchQRTab('github');
       document.getElementById('qr-modal').classList.remove('hidden');
     }
 
