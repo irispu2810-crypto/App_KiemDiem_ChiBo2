@@ -423,13 +423,17 @@ class AppRequestHandler(SimpleHTTPRequestHandler):
             try:
                 payload = json.loads(body.decode('utf-8'))
                 pin = str(payload.get('pin', '')).strip()
+                username = str(payload.get('username', '')).strip()
+                user_id = int(payload.get('user_id', 0))
 
-                if pin != '686789':  # Bí thư PIN
+                # Xác thực quyền Bí thư: nguyenthithao, user_id=6 hoặc mã PIN 686789/123456
+                is_bi_thu = (username == 'nguyenthithao' or user_id == 6 or pin in ['686789', '123456'])
+                if not is_bi_thu:
                     self.send_response(401)
                     self.send_header('Content-Type', 'application/json; charset=utf-8')
                     self.send_header('Access-Control-Allow-Origin', '*')
                     self.end_headers()
-                    self.wfile.write(json.dumps({'status': 'error', 'message': 'Mã xác thực của Bí thư không đúng!'}).encode('utf-8'))
+                    self.wfile.write(json.dumps({'status': 'error', 'message': 'Chỉ đồng chí Bí thư Chi bộ (nguyenthithao) mới có quyền xóa toàn bộ phiếu bầu!'}).encode('utf-8'))
                     return
 
                 with open(DATA_FILE, 'r', encoding='utf-8') as f:

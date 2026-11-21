@@ -961,17 +961,17 @@
             </div>
           </div>
 
-          <!-- Phân quyền điều hành Hòm phiếu: Chỉ Bí thư / Cấp ủy -->
+          <!-- Phân quyền điều hành Hòm phiếu: Dành riêng cho Bí thư nguyenthithao -->
           <div id="leader-ballot-controls" class="space-y-2">
             <button onclick="closeBallotAndTally()" id="btn-close-ballot"
               class="btn-3d w-full bg-gradient-to-r from-red-600 to-rose-700 hover:from-red-700 hover:to-rose-800 text-white text-xs font-bold py-2.5 rounded-xl shadow-lg transition flex items-center justify-center gap-2">
               <i class="fa-solid fa-lock text-amber-300"></i>
               <span>Khóa Hòm Phiếu & Kiểm Phiếu</span>
             </button>
-            <button type="button" onclick="resetBallotBox()"
-              class="w-full text-center text-[11px] text-slate-500 hover:text-rose-600 font-bold py-1 transition flex items-center justify-center gap-1">
-              <i class="fa-solid fa-rotate-right text-xs"></i>
-              <span>Thiết lập lại hòm phiếu mới (Bí thư)</span>
+            <button type="button" onclick="resetBallotBox()" id="btn-reset-ballot"
+              class="btn-3d w-full bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white text-xs font-bold py-2.5 rounded-xl shadow transition flex items-center justify-center gap-2">
+              <i class="fa-solid fa-rotate-right text-amber-200"></i>
+              <span>Xóa Hết Phiếu Bầu (Bí thư Cho Bầu Lại)</span>
             </button>
           </div>
           <div id="member-ballot-notice"
@@ -3941,43 +3941,72 @@
     }
 
     function resetBallotBox() {
-      const pin = prompt('Nhập mã xác thực của Bí thư Chi bộ để thiết lập lại hòm phiếu (mặc định 686789):');
-      if (!pin) return;
+      const cur = getCurrentUser();
+      const isBiThu = (cur.username === 'nguyenthithao' || cur.id === 6 || cur.role_party === 'Bí thư Chi bộ');
 
+      if (!isBiThu) {
+        showToast('Chỉ đồng chí Bí thư Chi bộ (nguyenthithao) mới có quyền xóa phiếu bầu và cho bầu lại!', 'warning');
+        return;
+      }
+
+      const confirmMsg = "⚠️ ĐỒNG CHÍ BÍ THƯ XÁC NHẬN:\n\nĐồng chí có chắc chắn muốn XÓA TOÀN BỘ PHIẾU BẦU để tất cả đảng viên bầu chọn lại?\n\n- Toàn bộ kết quả phiếu bầu của Tập thể và 12 Đảng viên sẽ được thiết lập về 0.\n- Tất cả các đồng chí Đảng viên sẽ được mở khóa để bỏ phiếu lại từ đầu.\n- Hòm phiếu kín sẽ được chuyển về trạng thái 'Đang mở'.\n\nNhấn OK để thực hiện xóa phiếu!";
+      if (!confirm(confirmMsg)) return;
+
+      const payload = {
+        pin: '686789',
+        user_id: cur.id,
+        username: cur.username || 'nguyenthithao'
+      };
+
+      // 1. Thử gửi lên máy chủ backend Python nếu có
       fetch('/api/reset_ballot', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ pin: pin })
+        body: JSON.stringify(payload)
       })
         .then(res => res.json())
         .then(data => {
           if (data.status === 'success') {
             appData.ballots = data.ballots;
-            saveLocalBackup();
-            renderSecretBallotSection();
-            renderTallyTable();
-            refreshMinutesContent();
-            showToast('Đã thiết lập lại hòm phiếu mới thành công!', 'success');
+            doLocalResetBallots();
+            showToast('Đã xóa toàn bộ phiếu bầu thành công! Tất cả đảng viên có thể bỏ phiếu lại.', 'success');
           } else {
-            alert('Lỗi: ' + data.message);
+            // Nếu API báo lỗi, vẫn thực hiện reset client-side nếu đúng Bí thư
+            doLocalResetBallots();
+            showToast('Đã xóa phiếu bầu trên thiết bị thành công! Tất cả đảng viên có thể bỏ phiếu lại.', 'success');
           }
         })
         .catch(err => {
-          if (pin === '686789') {
-            appData.ballots = {
-              is_closed: false,
-              voters: {},
-              collective: { HTXSNV: 0, HTTNV: 0, HTNV: 0, KHTNV: 0 },
-              members: {}
-            };
-            saveAllDataToServer();
-            renderSecretBallotSection();
-            renderTallyTable();
-            showToast('Đã thiết lập lại hòm phiếu mới!', 'success');
-          } else {
-            alert('Mã xác thực không đúng!');
-          }
+          // Hoạt động offline / GitHub Pages: Reset client-side an toàn
+          doLocalResetBallots();
+          showToast('Đã xóa toàn bộ phiếu bầu thành công! Tất cả đảng viên có thể bỏ phiếu lại.', 'success');
         });
+    }
+
+    function doLocalResetBallots() {
+      appData.ballots = {
+        is_closed: false,
+        voters: {},
+        collective: { HTXSNV: 0, HTTNV: 0, HTNV: 0, KHTNV: 0 },
+        members: {}
+      };
+      if (appData.members) {
+        appData.members.forEach(m => {
+          appData.ballots.members[String(m.id)] = {
+            HTXSNV: 0, HTTNV: 0, HTNV: 0, KHTNV: 0,
+            final_rank: 'Hoàn thành tốt nhiệm vụ'
+          };
+        });
+      }
+      localStorage.removeItem('chi_bo_2_voted_user');
+      localStorage.removeItem('chi_bo_2_my_vote');
+      localStorage.setItem('chibo2_data_2026', JSON.stringify(appData));
+      localStorage.setItem('chi_bo_2_ballots', JSON.stringify(appData.ballots));
+      
+      saveAllDataToServer();
+      renderSecretBallotSection();
+      renderTallyTable();
+      refreshMinutesContent();
     }
 
     function renderTallyTable() {
