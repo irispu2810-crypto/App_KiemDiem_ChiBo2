@@ -769,13 +769,57 @@
 
         <!-- Form Tự Nhận Xét 3 Phần -->
         <div class="border-t pt-5 space-y-4">
-          <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2">
-            <svg class="w-4 h-4 text-vtb-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-            </svg>
-            Nội Dung Bản Tự Kiểm Điểm (Ưu Điểm – Khuyết Điểm – Giải Pháp Khắc Phục)
-          </h4>
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+              <svg class="w-4 h-4 text-vtb-navy" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+              </svg>
+              Nội Dung Bản Tự Kiểm Điểm (Ưu Điểm – Khuyết Điểm – Giải Pháp Khắc Phục)
+            </h4>
+          </div>
+
+          <!-- Thanh gợi ý câu mẫu từ Google Form theo 5 vị trí công tác -->
+          <div class="bg-gradient-to-r from-purple-50 via-indigo-50/50 to-blue-50 p-3 rounded-xl border border-purple-200/80 flex flex-wrap items-center justify-between gap-2.5 shadow-xs">
+            <div class="flex items-center gap-2.5">
+              <span class="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-600 to-indigo-700 text-white flex items-center justify-center text-xs shadow-sm">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+              </span>
+              <div>
+                <span class="text-xs font-bold text-purple-950 flex items-center gap-1.5">
+                  Gợi Ý Câu Mẫu Tự Nhận Xét
+                  <span class="text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-purple-200/90 text-purple-900 border border-purple-300">Chuẩn Google Form Chi Bộ 2</span>
+                </span>
+                <p class="text-[11px] text-purple-700">Tự động nạp mẫu câu Ưu điểm, Nhược điểm, Giải pháp theo từng vị trí công tác</p>
+              </div>
+            </div>
+
+            <div class="flex items-center flex-wrap gap-2">
+              <select id="self-template-job-select" class="text-xs font-bold bg-white border border-purple-300 rounded-lg px-2.5 py-1.5 text-slate-800 shadow-sm focus:ring-1 focus:ring-purple-500">
+                <option value="auto">✨ Tự động theo vị trí công tác</option>
+                <option value="bgd">1. Ban Giám đốc (Bí thư Chi bộ, BGD)</option>
+                <option value="pgd">2. Lãnh đạo Phòng giao dịch</option>
+                <option value="httd_lead">3. Lãnh đạo Phòng Hỗ trợ tín dụng</option>
+                <option value="rm">4. Cán bộ Quan hệ khách hàng (RM)</option>
+                <option value="httd_staff">5. Cán bộ, Kiểm soát viên HTTD</option>
+              </select>
+
+              <button type="button" onclick="applySelfTemplateFromJob()" class="btn-3d px-3 py-1.5 bg-purple-700 hover:bg-purple-800 text-white rounded-lg text-xs font-bold shadow-sm flex items-center gap-1.5 transition">
+                <i class="fa-solid fa-file-import"></i>
+                <span>Nạp Mẫu Gợi Ý</span>
+              </button>
+
+              <button type="button" onclick="openGoogleFormLibraryModal('self')" class="btn-3d px-2.5 py-1.5 bg-white hover:bg-slate-50 text-purple-800 border border-purple-300 rounded-lg text-xs font-bold shadow-sm flex items-center gap-1 transition">
+                <i class="fa-solid fa-book-open text-purple-600"></i>
+                <span>Thư Viện Câu Mẫu</span>
+              </button>
+
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLSe17_POVKb3Zhp63M5pzuH5ecQAkiu80z8y1kYNBdCW_dS2gQ/viewform" target="_blank" class="btn-3d px-2.5 py-1.5 bg-white hover:bg-slate-50 text-indigo-700 border border-indigo-300 rounded-lg text-xs font-bold shadow-sm flex items-center gap-1 transition" title="Mở Google Form gốc">
+                <i class="fa-solid fa-arrow-up-right-from-square text-indigo-600"></i>
+                <span class="hidden sm:inline">Google Form</span>
+              </a>
+            </div>
+          </div>
 
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
@@ -833,6 +877,33 @@
     <!-- TAB 4: PHÂN CÔNG & NHẬN XÉT CHÉO -->
     <!-- ========================================== -->
     <section id="tab-peer-reviews" class="tab-pane hidden space-y-6">
+      <!-- Banner Tích hợp Google Form Phiếu Nhận Xét Đảng Viên -->
+      <div class="card-3d p-4 bg-gradient-to-r from-purple-50 via-indigo-50/60 to-blue-50 border border-purple-200/90 rounded-2xl flex flex-wrap items-center justify-between gap-3 shadow-md">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-600 to-indigo-700 text-white flex items-center justify-center text-lg shadow-md flex-shrink-0">
+            <i class="fa-solid fa-clipboard-check"></i>
+          </div>
+          <div>
+            <h4 class="font-extrabold text-purple-950 text-sm flex items-center gap-2">
+              Phiếu Tự Nhận Xét & Nhận Xét Đảng Viên Chi Bộ 2
+              <span class="text-[10px] px-2 py-0.5 rounded-full font-bold bg-purple-200 text-purple-900 border border-purple-300">Google Form Chuẩn</span>
+            </h4>
+            <p class="text-xs text-purple-700">Mỗi đồng chí tự nhận xét bản thân và nhận xét 02 đồng chí khác theo phân công. Đã tích hợp sẵn kho câu mẫu chuẩn nghiệp vụ VietinBank.</p>
+          </div>
+        </div>
+
+        <div class="flex items-center flex-wrap gap-2">
+          <button type="button" onclick="openGoogleFormLibraryModal('peer')" class="btn-3d px-3.5 py-2 bg-purple-700 hover:bg-purple-800 text-white text-xs font-bold rounded-xl shadow transition flex items-center gap-1.5">
+            <i class="fa-solid fa-list-check text-amber-300"></i>
+            <span>Kho Câu Mẫu Góp Ý (16 Câu)</span>
+          </button>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSe17_POVKb3Zhp63M5pzuH5ecQAkiu80z8y1kYNBdCW_dS2gQ/viewform" target="_blank" class="btn-3d px-3.5 py-2 bg-white hover:bg-purple-50 text-purple-900 border border-purple-300 text-xs font-bold rounded-xl shadow-sm transition flex items-center gap-1.5">
+            <i class="fa-solid fa-arrow-up-right-from-square text-indigo-600"></i>
+            <span>Mở Google Form Gốc</span>
+          </a>
+        </div>
+      </div>
+
       <!-- Bí thư: Điều phối phân công -->
       <div class="card-3d p-5 space-y-4">
         <div class="flex flex-wrap items-center justify-between gap-3 border-b pb-4">
@@ -844,20 +915,10 @@
               </svg>
               Điều Phối & Phân Công Nhận Xét Chéo (Mỗi Đ/c Nhận Xét 2–3 Người)
             </h3>
-            <p class="text-xs text-slate-500">Giúp cuộc họp sinh hoạt Đảng thẳng thắn, có chiều sâu, tránh chung chung
-              hình thức</p>
+            <p class="text-xs text-slate-500">Giúp cuộc họp sinh hoạt Đảng thẳng thắn, có chiều sâu, tránh chung chung hình thức</p>
           </div>
 
           <div class="flex items-center flex-wrap gap-2">
-            <button onclick="openManualAssignModal()"
-              class="text-xs bg-vtb-navy hover:bg-vtb-navyDark text-white px-3.5 py-1.5 rounded-lg font-bold flex items-center gap-1.5 shadow transition">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-              </svg>
-              Phân Công Nhận Xét
-            </button>
-
             <button onclick="openManualAssignModal()"
               class="btn-3d text-xs bg-vtb-navy hover:bg-vtb-navyDark text-white px-3.5 py-1.5 rounded-xl font-bold flex items-center gap-1.5 shadow transition">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1421,6 +1482,81 @@
       <button onclick="closeQRModal()" class="w-full py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs font-bold rounded-xl transition">
         Đóng Cửa Sổ
       </button>
+    </div>
+  </div>
+
+  <!-- MODAL: THƯ VIỆN CÂU MẪU NHẬN XÉT ĐẢNG VIÊN (GOOGLE FORM CHI BỘ 2) -->
+  <div id="google-form-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-5">
+    <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden border border-slate-300">
+      <!-- Modal Header -->
+      <div class="px-6 py-4 bg-gradient-to-r from-purple-800 via-indigo-900 to-vtb-navy text-white flex items-center justify-between border-b border-purple-700/60">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-white/10 border border-white/20 text-amber-300 flex items-center justify-center text-lg shadow-sm">
+            <i class="fa-solid fa-clipboard-check"></i>
+          </div>
+          <div>
+            <h3 class="text-sm sm:text-base font-bold text-white tracking-wide flex items-center gap-2">
+              <span>Thư Viện Câu Mẫu Nhận Xét Đảng Viên</span>
+              <span class="text-[10px] px-2 py-0.5 rounded-full font-extrabold bg-amber-400 text-slate-900">Google Form 2026</span>
+            </h3>
+            <p class="text-[11px] text-purple-200">Phiếu tự nhận xét & nhận xét chéo chuẩn khung tiêu chí Đảng ủy VietinBank</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSe17_POVKb3Zhp63M5pzuH5ecQAkiu80z8y1kYNBdCW_dS2gQ/viewform" target="_blank"
+            class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-bold text-white border border-white/20 transition">
+            <i class="fa-solid fa-arrow-up-right-from-square text-amber-300"></i>
+            <span>Mở Form Gốc</span>
+          </a>
+          <button onclick="closeGoogleFormLibraryModal()"
+            class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center text-xs font-bold transition">
+            ✕
+          </button>
+        </div>
+      </div>
+
+      <!-- Tab Switcher -->
+      <div class="p-3 bg-slate-100 border-b border-slate-200 flex flex-wrap items-center justify-between gap-2">
+        <div class="flex p-1 bg-white rounded-xl text-xs font-bold border border-slate-200 shadow-xs">
+          <button type="button" id="tab-gform-self" onclick="switchGoogleFormTab('self')"
+            class="py-1.5 px-3 rounded-lg transition bg-purple-700 text-white shadow-xs">
+            <i class="fa-solid fa-user-tie mr-1"></i> 1. Tự Nhận Xét (5 Vị Trí)
+          </button>
+          <button type="button" id="tab-gform-good" onclick="switchGoogleFormTab('good')"
+            class="py-1.5 px-3 rounded-lg transition text-slate-600 hover:text-slate-900">
+            <i class="fa-solid fa-thumbs-up text-emerald-600 mr-1"></i> 2. Ưu Điểm Góp Ý (8 Câu)
+          </button>
+          <button type="button" id="tab-gform-limit" onclick="switchGoogleFormTab('limit')"
+            class="py-1.5 px-3 rounded-lg transition text-slate-600 hover:text-slate-900">
+            <i class="fa-solid fa-triangle-exclamation text-amber-600 mr-1"></i> 3. Hạn Chế Góp Ý (8 Câu)
+          </button>
+        </div>
+        <span class="text-xs text-slate-500 italic hidden md:inline">Nhấp "Sao Chép" hoặc "Áp Dụng" để đưa vào nội dung kiểm điểm</span>
+      </div>
+
+      <!-- Modal Body (Dynamic Scrollable) -->
+      <div id="google-form-modal-body" class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 custom-scrollbar bg-slate-50/50">
+        <!-- Rendered dynamically by switchGoogleFormTab() -->
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="p-3 bg-slate-100 border-t border-slate-200 flex flex-wrap items-center justify-between gap-2 text-xs">
+        <div class="flex items-center gap-1.5 text-slate-600">
+          <i class="fa-solid fa-circle-info text-blue-600"></i>
+          <span>Căn cứ theo Hướng dẫn đánh giá, xếp loại đảng viên của Đảng bộ VietinBank CN Bảo Lộc</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSe17_POVKb3Zhp63M5pzuH5ecQAkiu80z8y1kYNBdCW_dS2gQ/viewform" target="_blank"
+            class="px-3.5 py-1.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-bold rounded-lg border border-indigo-200 flex items-center gap-1.5 transition">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            <span>Mở Google Form</span>
+          </a>
+          <button type="button" onclick="closeGoogleFormLibraryModal()"
+            class="px-4 py-1.5 bg-slate-800 hover:bg-slate-900 text-white font-bold rounded-lg transition shadow-sm">
+            Đóng
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -3759,7 +3895,7 @@
       }
     }
 
-    // Hiển thị danh sách nhận xét của cá nhân với đồng bộ tên TUYỆT ĐỐI
+    // Hiển thị danh sách nhận xét của cá nhân với đồng bộ tên TUYỆT ĐỐI và tích hợp chuẩn Google Form
     function renderMyReviewTasks() {
       const container = document.getElementById('my-review-tasks-container');
       container.innerHTML = '';
@@ -3772,7 +3908,7 @@
         return;
       }
 
-      targets.forEach(tid => {
+      targets.forEach((tid, tIdx) => {
         const targetMem = appData.members.find(x => x.id === tid);
         if (!targetMem) return;
 
@@ -3780,8 +3916,8 @@
         let existingRev = revList.find(r => r.reviewer_id === currentReviewer.id);
 
         let goodVal = '';
-        let limitVal = 'Cần chủ động trao đổi nghiệp vụ hơn giữa các phòng ban bộ phận.';
-        let solVal = 'Tiếp tục phát huy thế mạnh chuyên môn để hỗ trợ chi nhánh hoàn thành tốt nhiệm vụ.';
+        let limitVal = 'Thời gian nghiên cứu, học tập lý luận chính trị còn hạn chế do khối lượng công việc chuyên môn nhiều.';
+        let solVal = 'Tiếp tục phát huy thế mạnh chuyên môn và tinh thần đoàn kết nội bộ để hoàn thành tốt nhiệm vụ.';
 
         if (existingRev) {
           goodVal = existingRev.good || '';
@@ -3790,12 +3926,12 @@
 
           // BẮT BUỘC ĐỒNG BỘ: Kiểm tra nếu nội dung nhận xét chưa có đúng tên targetMem.name hoặc có tên lạ khác
           if (!goodVal || !goodVal.includes(targetMem.name)) {
-            goodVal = `Đồng chí ${targetMem.name} luôn gương mẫu, chấp hành tốt kỷ luật tác nghiệp, đoàn kết nội bộ.`;
+            goodVal = `Đồng chí ${targetMem.name} có lập trường tư tưởng chính trị vững vàng, phẩm chất đạo đức tốt, hoàn thành tốt chức trách nhiệm vụ được giao.`;
             existingRev.good = goodVal;
           }
           existingRev.reviewer_name = currentReviewer.name;
         } else {
-          goodVal = `Đồng chí ${targetMem.name} luôn gương mẫu, chấp hành tốt kỷ luật tác nghiệp, đoàn kết nội bộ.`;
+          goodVal = `Đồng chí ${targetMem.name} có lập trường tư tưởng chính trị vững vàng, phẩm chất đạo đức tốt, hoàn thành tốt chức trách nhiệm vụ được giao.`;
           existingRev = {
             reviewer_id: currentReviewer.id,
             reviewer_name: currentReviewer.name,
@@ -3807,42 +3943,103 @@
           appData.reviews[tid].push(existingRev);
         }
 
+        const partLabel = (tIdx === 0) ? 'PHẦN II: NHẬN XÉT ĐẢNG VIÊN THỨ NHẤT' : (tIdx === 1 ? 'PHẦN III: NHẬN XÉT ĐẢNG VIÊN THỨ HAI' : `ĐẢNG VIÊN THỨ ${tIdx + 1}`);
+
         const card = document.createElement('div');
-        card.className = 'border border-slate-200 rounded-xl p-4 bg-slate-50 space-y-3';
+        card.className = 'border-2 border-slate-200 hover:border-purple-300 rounded-2xl p-4 bg-white shadow-sm space-y-3.5 transition';
         card.innerHTML = `
-          <div class="flex items-center justify-between border-b pb-2">
+          <div class="flex flex-wrap items-center justify-between border-b pb-2.5 gap-2">
             <div>
-              <h4 class="font-bold text-sm text-vtb-navy">Đồng chí: ${targetMem.name}</h4>
-              <p class="text-[11px] text-slate-500">${targetMem.role_party} - ${targetMem.title_pro}</p>
+              <span class="text-[10px] uppercase font-black px-2.5 py-0.5 rounded-full bg-purple-100 text-purple-800 border border-purple-200 inline-block mb-1">
+                <i class="fa-solid fa-user-check mr-1"></i> ${partLabel}
+              </span>
+              <h4 class="font-bold text-sm text-vtb-navy flex items-center gap-1.5">
+                <span>Đồng chí:</span> <span class="text-base text-red-700 font-black">${targetMem.name}</span>
+              </h4>
+              <p class="text-[11px] text-slate-500 font-medium">${targetMem.role_party} • ${targetMem.title_pro}</p>
             </div>
-            <span class="text-xs font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">
-              Tự chấm: ${targetMem.self_score}đ
-            </span>
-          </div>
-
-          <div class="bg-white p-2.5 rounded border text-xs text-slate-600 space-y-1">
-            <p><strong>Ưu điểm tự nhận:</strong> ${targetMem.self_good || 'Tư tưởng vững vàng, chấp hành tốt nội quy ngân hàng và quy chế Đảng.'}</p>
-            <p><strong>Khuyết điểm tự soi:</strong> ${targetMem.self_limit || 'Cần tăng cường rà soát chuyên môn để tránh phát sinh sai sót.'}</p>
-          </div>
-
-          <div class="space-y-2 text-xs">
-            <div>
-              <label class="block font-bold text-slate-700 mb-0.5">1. Đánh giá ưu điểm / Nhất trí:</label>
-              <input type="text" id="rev-good-${tid}" class="w-full p-2 border border-slate-300 rounded focus:ring-1 focus:ring-vtb-navy" value="${goodVal}">
-            </div>
-            <div>
-              <label class="block font-bold text-slate-700 mb-0.5">2. Hạn chế khuyết điểm cần khắc phục:</label>
-              <input type="text" id="rev-limit-${tid}" class="w-full p-2 border border-slate-300 rounded focus:ring-1 focus:ring-vtb-navy" value="${limitVal}">
-            </div>
-            <div>
-              <label class="block font-bold text-slate-700 mb-0.5">3. Đề nghị, giải pháp:</label>
-              <input type="text" id="rev-sol-${tid}" class="w-full p-2 border border-slate-300 rounded focus:ring-1 focus:ring-vtb-navy" value="${solVal}">
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-emerald-800 bg-emerald-100 border border-emerald-200 px-2.5 py-1 rounded-lg">
+                Tự chấm: ${targetMem.self_score}đ
+              </span>
+              <button type="button" onclick="applyFullPeerSuggestion(${tid})" class="btn-3d text-[11px] font-bold px-2.5 py-1 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white rounded-lg shadow-xs flex items-center gap-1 transition" title="Tự động nạp mẫu gợi ý chuẩn mực cho đồng chí này">
+                <i class="fa-solid fa-wand-magic-sparkles text-amber-300"></i>
+                <span class="hidden sm:inline">Nạp Mẫu</span> Gợi Ý
+              </button>
             </div>
           </div>
 
-          <div class="flex justify-end">
-            <button onclick="savePeerReview(${tid})" class="text-xs bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-3 py-1.5 rounded shadow transition">
-              Lưu Góp Ý Cho Đ/c ${targetMem.name}
+          <div class="bg-slate-50/80 p-2.5 rounded-xl border border-slate-200 text-xs text-slate-600 space-y-1">
+            <p><strong>Ưu điểm tự nhận:</strong> <em>"${targetMem.self_good || 'Tư tưởng vững vàng, chấp hành tốt nội quy ngân hàng và quy chế Đảng.'}"</em></p>
+            <p><strong>Khuyết điểm tự soi:</strong> <em>"${targetMem.self_limit || 'Cần tăng cường rà soát chuyên môn để tránh phát sinh sai sót.'}"</em></p>
+          </div>
+
+          <div class="space-y-3 text-xs">
+            <!-- Mục 1: Ưu điểm -->
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between">
+                <label class="font-bold text-slate-700 flex items-center gap-1">
+                  <i class="fa-solid fa-thumbs-up text-emerald-600"></i>
+                  <span>1. Đánh giá ưu điểm / Nhất trí:</span>
+                </label>
+                <button type="button" onclick="openGoogleFormLibraryModal('good')" class="text-[10px] text-purple-700 hover:underline font-bold">
+                  Kho 8 câu mẫu ▾
+                </button>
+              </div>
+              <textarea id="rev-good-${tid}" rows="2" class="w-full p-2.5 border border-slate-300 rounded-xl focus:ring-1 focus:ring-purple-500 text-xs leading-relaxed">${goodVal}</textarea>
+              <div class="flex flex-wrap items-center gap-1 pt-0.5">
+                <span class="text-[10px] font-bold text-slate-400 mr-1"><i class="fa-solid fa-bolt text-amber-500"></i> Chọn nhanh:</span>
+                <button type="button" onclick="appendPeerSuggestion(${tid}, 'good', 0)" class="text-[10px] px-2 py-0.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 rounded-md transition">+ Tư tưởng chính trị</button>
+                <button type="button" onclick="appendPeerSuggestion(${tid}, 'good', 1)" class="text-[10px] px-2 py-0.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 rounded-md transition">+ Phẩm chất đạo đức</button>
+                <button type="button" onclick="appendPeerSuggestion(${tid}, 'good', 3)" class="text-[10px] px-2 py-0.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 rounded-md transition">+ Hoàn thành chức trách</button>
+                <button type="button" onclick="appendPeerSuggestion(${tid}, 'good', 4)" class="text-[10px] px-2 py-0.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 rounded-md transition">+ Đoàn kết, hòa đồng</button>
+                <button type="button" onclick="appendPeerSuggestion(${tid}, 'good', 5)" class="text-[10px] px-2 py-0.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 rounded-md transition">+ Tác phong chuẩn mực</button>
+              </div>
+            </div>
+
+            <!-- Mục 2: Nhược điểm -->
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between">
+                <label class="font-bold text-slate-700 flex items-center gap-1">
+                  <i class="fa-solid fa-triangle-exclamation text-amber-600"></i>
+                  <span>2. Hạn chế, khuyết điểm cần khắc phục:</span>
+                </label>
+                <button type="button" onclick="openGoogleFormLibraryModal('limit')" class="text-[10px] text-purple-700 hover:underline font-bold">
+                  Kho 8 câu mẫu ▾
+                </button>
+              </div>
+              <textarea id="rev-limit-${tid}" rows="2" class="w-full p-2.5 border border-slate-300 rounded-xl focus:ring-1 focus:ring-purple-500 text-xs leading-relaxed">${limitVal}</textarea>
+              <div class="flex flex-wrap items-center gap-1 pt-0.5">
+                <span class="text-[10px] font-bold text-slate-400 mr-1"><i class="fa-solid fa-bolt text-amber-500"></i> Chọn nhanh:</span>
+                <button type="button" onclick="appendPeerSuggestion(${tid}, 'limit', 0)" class="text-[10px] px-2 py-0.5 bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 rounded-md transition">+ Chưa mạnh dạn đề xuất</button>
+                <button type="button" onclick="appendPeerSuggestion(${tid}, 'limit', 1)" class="text-[10px] px-2 py-0.5 bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 rounded-md transition">+ Tự phê bình còn nể nang</button>
+                <button type="button" onclick="appendPeerSuggestion(${tid}, 'limit', 2)" class="text-[10px] px-2 py-0.5 bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 rounded-md transition">+ Ít thời gian học lý luận</button>
+                <button type="button" onclick="appendPeerSuggestion(${tid}, 'limit', 3)" class="text-[10px] px-2 py-0.5 bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 rounded-md transition">+ Dồn việc cuối kỳ</button>
+                <button type="button" onclick="appendPeerSuggestion(${tid}, 'limit', 7)" class="text-[10px] px-2 py-0.5 bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 rounded-md transition">+ Chuyển đổi số</button>
+              </div>
+            </div>
+
+            <!-- Mục 3: Giải pháp -->
+            <div class="space-y-1.5">
+              <label class="font-bold text-slate-700 flex items-center gap-1">
+                <i class="fa-solid fa-lightbulb text-blue-600"></i>
+                <span>3. Đề nghị, phương hướng giải pháp:</span>
+              </label>
+              <input type="text" id="rev-sol-${tid}" class="w-full p-2.5 border border-slate-300 rounded-xl focus:ring-1 focus:ring-purple-500 text-xs" value="${solVal}">
+              <div class="flex flex-wrap items-center gap-1 pt-0.5">
+                <span class="text-[10px] font-bold text-slate-400 mr-1"><i class="fa-solid fa-bolt text-amber-500"></i> Gợi ý:</span>
+                <button type="button" onclick="setPeerSolution(${tid}, 'Tiếp tục phát huy thế mạnh chuyên môn và tinh thần đoàn kết nội bộ.')" class="text-[10px] px-2 py-0.5 bg-blue-50 hover:bg-blue-100 text-blue-800 border border-blue-200 rounded-md transition">Phát huy chuyên môn</button>
+                <button type="button" onclick="setPeerSolution(${tid}, 'Chủ động sắp xếp công việc khoa học, tăng cường phối hợp liên phòng ban.')" class="text-[10px] px-2 py-0.5 bg-blue-50 hover:bg-blue-100 text-blue-800 border border-blue-200 rounded-md transition">Sắp xếp khoa học</button>
+                <button type="button" onclick="setPeerSolution(${tid}, 'Dành thời gian nghiên cứu nghị quyết và tích cực đóng góp ý kiến xây dựng chi bộ.')" class="text-[10px] px-2 py-0.5 bg-blue-50 hover:bg-blue-100 text-blue-800 border border-blue-200 rounded-md transition">Học tập nghị quyết</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between pt-2 border-t border-slate-100">
+            <span class="text-[11px] text-slate-400 italic">Đã đồng bộ chuẩn mực 100% tên đồng chí</span>
+            <button onclick="savePeerReview(${tid})" class="btn-3d text-xs bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2 rounded-xl shadow-md transition flex items-center gap-1.5">
+              <i class="fa-solid fa-floppy-disk"></i>
+              <span>Lưu Góp Ý Cho Đ/c ${targetMem.name}</span>
             </button>
           </div>
         `;
@@ -5042,6 +5239,367 @@
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
       showToast(`Đã tải xuống ${filename}!`, 'success');
+    }
+
+    // =========================================================================
+    // TÍCH HỢP BIỂU MẪU: PHIẾU TỰ NHẬN XÉT VÀ NHẬN XÉT ĐẢNG VIÊN (GOOGLE FORM)
+    // =========================================================================
+    const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSe17_POVKb3Zhp63M5pzuH5ecQAkiu80z8y1kYNBdCW_dS2gQ/viewform";
+
+    const GOOGLE_FORM_SELF_TEMPLATES = {
+      bgd: {
+        id: "bgd",
+        name: "Ban Giám đốc (Bí thư Chi bộ, BGD)",
+        icon: "fa-user-tie",
+        good: "- Lập trường tư tưởng chính trị vững vàng; chấp hành tốt chủ trương của Đảng, chính sách, pháp luật của Nhà nước và quy định của ngành.\n- Có phẩm chất đạo đức tốt, lối sống giản dị, lành mạnh; tham gia sinh hoạt chi bộ đầy đủ, đóng đảng phí đúng quy định.\n- Chỉ đạo, điều hành sát sao các phòng được phân công phụ trách; phân công nhiệm vụ rõ người, rõ việc.\n- Bám sát kế hoạch kinh doanh, kịp thời đưa ra giải pháp giúp các phòng hoàn thành chỉ tiêu.\n- Quan tâm công tác quản trị rủi ro, kiểm soát chất lượng tín dụng tại các phòng phụ trách.\n- Gương mẫu, đoàn kết; lắng nghe và tạo điều kiện cho cán bộ phát huy năng lực, quan tâm kèm cặp cán bộ trẻ.\n- Năm 2026, các phòng phụ trách hoàn thành tốt các chỉ tiêu kế hoạch kinh doanh được giao.",
+        limit: "- Khối lượng công việc lớn nên có lúc chưa dành nhiều thời gian trao đổi, nắm bắt tâm tư của từng cán bộ.\n- Có lúc còn trực tiếp xử lý nhiều việc, chưa giao quyền chủ động nhiều hơn cho lãnh đạo các phòng.\n- Việc kiểm tra, đôn đốc có lúc chưa thật thường xuyên ở tất cả các phòng do lịch công tác dày.\n- Thời gian nghiên cứu, học tập lý luận chính trị còn hạn chế do bận công tác điều hành.\n- Tinh thần tự phê bình và phê bình có lúc còn nể nang.",
+        sol: "- Tiếp tục giữ vững phẩm chất chính trị, đạo đức, lối sống; phát huy vai trò gương mẫu của đảng viên là lãnh đạo.\n- Sắp xếp thời gian hợp lý để thường xuyên trao đổi, lắng nghe ý kiến của cán bộ.\n- Mạnh dạn giao quyền cho lãnh đạo các phòng; tăng cường kiểm tra, giám sát định kỳ.\n- Dành thời gian nghiên cứu nghị quyết của Đảng, định hướng của ngành để vận dụng vào công tác chỉ đạo, điều hành.\n- Thẳng thắn tự phê bình và phê bình trên tinh thần xây dựng."
+      },
+      pgd: {
+        id: "pgd",
+        name: "Lãnh đạo Phòng giao dịch",
+        icon: "fa-building-columns",
+        good: "- Lập trường tư tưởng chính trị vững vàng; chấp hành tốt chủ trương của Đảng, chính sách, pháp luật của Nhà nước và quy định của ngành.\n- Có phẩm chất đạo đức tốt, lối sống giản dị, lành mạnh; tham gia sinh hoạt chi bộ đầy đủ, đóng đảng phí đúng quy định.\n- Điều hành hoạt động phòng giao dịch ổn định, an toàn; phân công công việc hợp lý cho cán bộ trong phòng.\n- Bám sát địa bàn, chủ động tiếp cận và phát triển khách hàng mới; giữ mối quan hệ tốt với chính quyền và khách hàng tại địa phương.\n- Kiểm soát chặt chẽ hồ sơ, tác nghiệp tại phòng; quan tâm chất lượng tín dụng, đôn đốc thu nợ đến hạn.\n- Gương mẫu, đoàn kết; hỗ trợ, kèm cặp cán bộ trong phòng.\n- Năm 2026, phòng đạt tốt kế hoạch huy động vốn, dư nợ bán lẻ và thu dịch vụ.",
+        limit: "- Có lúc còn ôm việc, chưa giao quyền chủ động nhiều cho cán bộ trong phòng.\n- Có lúc chưa cân đối thời gian giữa phát triển khách hàng mới và chăm sóc khách hàng hiện hữu.\n- Việc triển khai một số sản phẩm (ngân hàng số, thẻ, bảo hiểm) có lúc chưa thật đồng đều.\n- Thời gian nghiên cứu, học tập lý luận chính trị còn hạn chế do bận công tác chuyên môn.\n- Tham gia ý kiến trong sinh hoạt chi bộ có lúc chưa nhiều.",
+        sol: "- Tiếp tục giữ vững phẩm chất chính trị, đạo đức, lối sống; phát huy vai trò gương mẫu của đảng viên là lãnh đạo phòng.\n- Phân công, giao việc rõ hơn; tăng cường kèm cặp, phát huy năng lực của cán bộ trong phòng.\n- Lập kế hoạch chăm sóc khách hàng hiện hữu song song với phát triển khách hàng mới.\n- Đẩy mạnh bán chéo, triển khai đồng bộ các sản phẩm ngân hàng số, thẻ, bảo hiểm.\n- Dành thời gian nghiên cứu nghị quyết; tích cực đóng góp ý kiến trong sinh hoạt chi bộ."
+      },
+      httd_lead: {
+        id: "httd_lead",
+        name: "Lãnh đạo Phòng Hỗ trợ tín dụng",
+        icon: "fa-folder-tree",
+        good: "- Lập trường tư tưởng chính trị vững vàng; chấp hành tốt chủ trương của Đảng, chính sách, pháp luật của Nhà nước và quy định của ngành.\n- Có phẩm chất đạo đức tốt, lối sống giản dị, lành mạnh; tham gia sinh hoạt chi bộ đầy đủ, đóng đảng phí đúng quy định.\n- Điều hành phòng hoàn thành tốt khối lượng công việc lớn: giải ngân, quản lý hồ sơ tín dụng và tài sản bảo đảm.\n- Kiểm soát chặt chẽ hồ sơ trước giải ngân, bảo đảm tuân thủ quy định, hạn chế rủi ro tác nghiệp.\n- Phối hợp tốt với các phòng giao dịch và cán bộ quan hệ khách hàng, xử lý hồ sơ kịp thời, hỗ trợ tốt hoạt động kinh doanh.\n- Chủ động cập nhật, hướng dẫn văn bản, quy định mới cho cán bộ trong phòng.\n- Năm 2026, phòng xử lý các hồ sơ giải ngân và tài sản bảo đảm an toàn, đúng quy trình.",
+        limit: "- Vào thời điểm cao điểm cuối tháng, cuối quý có lúc hồ sơ còn dồn, xử lý chưa thật kịp thời.\n- Có lúc còn trực tiếp xử lý nhiều việc, chưa phân giao nhiều cho cán bộ.\n- Có lúc còn cầu toàn trong kiểm soát hồ sơ nên thời gian xử lý kéo dài.\n- Thời gian nghiên cứu, học tập lý luận chính trị còn hạn chế do bận công tác chuyên môn.\n- Tinh thần tự phê bình và phê bình có lúc còn nể nang.",
+        sol: "- Tiếp tục giữ vững phẩm chất chính trị, đạo đức, lối sống; phát huy vai trò gương mẫu của đảng viên là lãnh đạo phòng.\n- Chủ động bố trí nhân sự, kế hoạch công việc cho các thời điểm cao điểm.\n- Tăng cường đào tạo, kèm cặp để cán bộ xử lý công việc độc lập hơn.\n- Rà soát, chuẩn hóa quy trình; ứng dụng công nghệ, chuyển đổi số để rút ngắn thời gian xử lý hồ sơ mà vẫn bảo đảm an toàn.\n- Dành thời gian nghiên cứu nghị quyết; thẳng thắn tự phê bình và phê bình."
+      },
+      rm: {
+        id: "rm",
+        name: "Cán bộ Quan hệ khách hàng (RM)",
+        icon: "fa-briefcase",
+        good: "- Lập trường tư tưởng chính trị vững vàng; chấp hành tốt chủ trương của Đảng, chính sách, pháp luật của Nhà nước và quy định của ngành.\n- Có phẩm chất đạo đức tốt, lối sống giản dị, lành mạnh; tham gia sinh hoạt chi bộ đầy đủ, đóng đảng phí đúng quy định.\n- Chủ động tìm kiếm, tiếp cận và phát triển khách hàng mới; tích cực bán chéo sản phẩm.\n- Thẩm định khách hàng cẩn thận, kiểm soát tốt chất lượng các khoản vay được giao quản lý.\n- Hướng dẫn khách hàng hoàn thiện hồ sơ nhanh, đúng quy định; thái độ phục vụ tận tình, chu đáo.\n- Nhiệt tình, chịu khó, sẵn sàng làm thêm giờ khi công việc yêu cầu.\n- Năm 2026, hoàn thành tốt chỉ tiêu dư nợ, huy động và phát triển khách hàng mới.",
+        limit: "- Có lúc chưa cân đối thời gian giữa tìm kiếm khách hàng mới và chăm sóc khách hàng hiện hữu.\n- Kỹ năng phân tích tài chính, tư vấn sản phẩm chuyên sâu cần tiếp tục nâng cao.\n- Có lúc chưa mạnh dạn giới thiệu sản phẩm, dịch vụ mới cho khách hàng.\n- Đôi lúc chưa mạnh dạn đóng góp ý kiến trong sinh hoạt chi bộ.\n- Thời gian học tập lý luận chính trị còn hạn chế do khối lượng công việc chuyên môn nhiều.",
+        sol: "- Tiếp tục rèn luyện phẩm chất chính trị, đạo đức, lối sống; phát huy vai trò tiên phong của người đảng viên.\n- Lập kế hoạch tiếp cận, chăm sóc khách hàng theo tuần, theo tháng.\n- Tiếp tục học tập, nâng cao kỹ năng thẩm định, phân tích tài chính và tư vấn sản phẩm.\n- Phối hợp chặt chẽ với phòng Hỗ trợ tín dụng để hoàn thiện hồ sơ sớm.\n- Dành thời gian học tập nghị quyết; mạnh dạn đóng góp ý kiến trong sinh hoạt chi bộ."
+      },
+      httd_staff: {
+        id: "httd_staff",
+        name: "Cán bộ, Kiểm soát viên Hỗ trợ tín dụng",
+        icon: "fa-file-shield",
+        good: "- Lập trường tư tưởng chính trị vững vàng; chấp hành tốt chủ trương của Đảng, chính sách, pháp luật của Nhà nước và quy định của ngành.\n- Có phẩm chất đạo đức tốt, lối sống giản dị, lành mạnh; tham gia sinh hoạt chi bộ đầy đủ, đóng đảng phí đúng quy định.\n- Tác nghiệp cẩn thận, chính xác; kiểm soát chặt chẽ hồ sơ giải ngân, tài sản bảo đảm theo đúng quy định.\n- Lưu trữ, quản lý hồ sơ tín dụng khoa học, đầy đủ.\n- Phối hợp tốt với cán bộ quan hệ khách hàng và các phòng giao dịch, xử lý hồ sơ kịp thời.\n- Chịu khó, có tinh thần trách nhiệm, sẵn sàng làm thêm giờ vào thời điểm cao điểm.\n- Năm 2026, xử lý và kiểm soát an toàn số lượng lớn hồ sơ giải ngân và tài sản bảo đảm.",
+        limit: "- Có lúc còn cầu toàn nên thời gian xử lý một số hồ sơ kéo dài.\n- Vào thời điểm cao điểm cuối tháng, cuối quý đôi khi còn dồn việc.\n- Có lúc chưa chủ động đề xuất cải tiến, rút gọn quy trình.\n- Tham gia ý kiến trong sinh hoạt chi bộ có lúc chưa nhiều.\n- Thời gian học tập lý luận chính trị còn hạn chế do khối lượng công việc chuyên môn nhiều.",
+        sol: "- Tiếp tục rèn luyện phẩm chất chính trị, đạo đức, lối sống; phát huy vai trò tiên phong của người đảng viên.\n- Sắp xếp công việc khoa học, chủ động cho các thời điểm cao điểm.\n- Chủ động đề xuất cải tiến, ứng dụng công nghệ trong xử lý hồ sơ.\n- Thường xuyên cập nhật văn bản, quy định mới để nâng cao nghiệp vụ.\n- Dành thời gian học tập nghị quyết; mạnh dạn đóng góp ý kiến trong sinh hoạt chi bộ."
+      }
+    };
+
+    const GOOGLE_FORM_PEER_GOOD_ITEMS = [
+      "Lập trường tư tưởng chính trị vững vàng; chấp hành tốt chủ trương, đường lối của Đảng, chính sách, pháp luật của Nhà nước và quy định của ngành.",
+      "Có phẩm chất đạo đức tốt; lối sống giản dị, trong sáng, lành mạnh.",
+      "Có ý thức tổ chức kỷ luật tốt; tham gia sinh hoạt chi bộ đầy đủ, đóng đảng phí đúng quy định.",
+      "Hoàn thành tốt chức trách, nhiệm vụ được giao; có tinh thần trách nhiệm cao trong công việc.",
+      "Đoàn kết, hòa đồng, sẵn sàng hỗ trợ đồng nghiệp.",
+      "Tác phong làm việc chuẩn mực; thái độ phục vụ khách hàng tận tình, chu đáo.",
+      "Tích cực học tập, nâng cao trình độ chuyên môn, nghiệp vụ; chủ động, sáng tạo trong công việc.",
+      "Gương mẫu, giữ mối liên hệ tốt với quần chúng và nơi cư trú."
+    ];
+
+    const GOOGLE_FORM_PEER_LIMIT_ITEMS = [
+      "Đôi lúc chưa mạnh dạn đề xuất ý kiến, giải pháp trong sinh hoạt chi bộ và công việc chung.",
+      "Tinh thần tự phê bình và phê bình có lúc còn nể nang, ngại va chạm.",
+      "Thời gian nghiên cứu, học tập lý luận chính trị còn hạn chế do khối lượng công việc chuyên môn nhiều.",
+      "Có lúc sắp xếp công việc chưa thật khoa học, đôi khi còn dồn việc vào cuối kỳ.",
+      "Đôi khi chưa chủ động chia sẻ kinh nghiệm, hỗ trợ đồng nghiệp.",
+      "Tham gia các hoạt động phong trào, đoàn thể có lúc chưa thường xuyên do bận công tác chuyên môn.",
+      "Có lúc còn cầu toàn nên xử lý một số việc mất nhiều thời gian.",
+      "Ứng dụng công nghệ, chuyển đổi số trong công việc chưa khai thác hết hiệu quả."
+    ];
+
+    const GOOGLE_FORM_PEER_SOL_ITEMS = [
+      "Tiếp tục phát huy thế mạnh chuyên môn và tinh thần đoàn kết nội bộ.",
+      "Chủ động sắp xếp công việc khoa học, tăng cường phối hợp liên phòng ban.",
+      "Dành thời gian nghiên cứu nghị quyết và tích cực đóng góp ý kiến xây dựng chi bộ.",
+      "Mạnh dạn đề xuất các sáng kiến đổi mới quy trình nghiệp vụ.",
+      "Tích cực tham gia các phong trào thi đua và hoạt động đoàn thể của chi nhánh."
+    ];
+
+    function detectMemberJobCategory(m) {
+      if (!m) return 'rm';
+      const name = (m.name || '').toUpperCase();
+      const roleParty = m.role_party || '';
+      const titlePro = (m.title_pro || '').toLowerCase();
+      const dept = (m.dept || '').toLowerCase();
+
+      if (name.includes('THAO') || name.includes('MẠNH') || roleParty === 'Bí thư Chi bộ' || roleParty === 'Chi ủy viên') {
+        return 'bgd';
+      }
+      if (name.includes('NGÂN') || roleParty.includes('Phó Bí thư') || dept.includes('giao dịch') || titlePro.includes('pgd')) {
+        return 'pgd';
+      }
+      if (name.includes('NGHỊ') || (titlePro.includes('lãnh đạo') && (dept.includes('tín dụng') || titlePro.includes('hỗ trợ')))) {
+        return 'httd_lead';
+      }
+      if (name.includes('DŨNG') || name.includes('HIỀN') || name.includes('LỢI') || titlePro.includes('kiểm soát') || titlePro.includes('hỗ trợ')) {
+        return 'httd_staff';
+      }
+      return 'rm';
+    }
+
+    function applySelfTemplateFromJob(forceKey = null) {
+      const targetVal = document.getElementById('eval-target-select')?.value;
+      if (targetVal === 'collective') {
+        alert('Đồng chí đang chọn Tập thể Chi bộ. Vui lòng chọn một Đảng viên cá nhân để nạp mẫu tự nhận xét!');
+        return;
+      }
+
+      const memId = parseInt(targetVal);
+      const m = appData.members.find(x => x.id === memId);
+      let jobKey = forceKey || document.getElementById('self-template-job-select')?.value;
+      if (!jobKey || jobKey === 'auto') {
+        jobKey = detectMemberJobCategory(m);
+      }
+
+      const tpl = GOOGLE_FORM_SELF_TEMPLATES[jobKey] || GOOGLE_FORM_SELF_TEMPLATES.rm;
+
+      document.getElementById('eval-good').value = tpl.good;
+      document.getElementById('eval-limit').value = tpl.limit;
+      document.getElementById('eval-sol').value = tpl.sol;
+
+      showToast(`Đã nạp mẫu tự nhận xét vị trí: ${tpl.name}!`, 'success');
+    }
+
+    function onJobTemplateSelectChange() {
+      // Khi chọn dropdown
+    }
+
+    function appendPeerSuggestion(tid, fieldType, index) {
+      if (fieldType === 'good') {
+        const input = document.getElementById(`rev-good-${tid}`);
+        if (!input) return;
+        const text = GOOGLE_FORM_PEER_GOOD_ITEMS[index];
+        if (!text) return;
+        if (!input.value.trim()) {
+          const targetMem = appData.members.find(x => x.id === tid);
+          input.value = `Đồng chí ${targetMem?.name || ''}: ${text}`;
+        } else {
+          if (!input.value.includes(text)) {
+            input.value = input.value.trim() + ' ' + text;
+          }
+        }
+        showToast('Đã thêm câu ưu điểm gợi ý!', 'info');
+      } else if (fieldType === 'limit') {
+        const input = document.getElementById(`rev-limit-${tid}`);
+        if (!input) return;
+        const text = GOOGLE_FORM_PEER_LIMIT_ITEMS[index];
+        if (!text) return;
+        if (!input.value.trim()) {
+          input.value = text;
+        } else {
+          if (!input.value.includes(text)) {
+            input.value = input.value.trim() + ' ' + text;
+          }
+        }
+        showToast('Đã thêm câu hạn chế gợi ý!', 'info');
+      } else if (fieldType === 'sol') {
+        const input = document.getElementById(`rev-sol-${tid}`);
+        if (!input) return;
+        const text = GOOGLE_FORM_PEER_SOL_ITEMS[index];
+        if (!text) return;
+        input.value = text;
+        showToast('Đã cập nhật phương hướng giải pháp!', 'info');
+      }
+    }
+
+    function setPeerSolution(tid, text) {
+      const input = document.getElementById(`rev-sol-${tid}`);
+      if (input) {
+        input.value = text;
+        showToast('Đã cập nhật giải pháp đề nghị!', 'info');
+      }
+    }
+
+    function applyFullPeerSuggestion(tid) {
+      const targetMem = appData.members.find(x => x.id === tid);
+      if (!targetMem) return;
+
+      const jobKey = detectMemberJobCategory(targetMem);
+      let g1 = GOOGLE_FORM_PEER_GOOD_ITEMS[0]; // Tư tưởng chính trị
+      let g2 = GOOGLE_FORM_PEER_GOOD_ITEMS[3]; // Hoàn thành tốt chức trách
+
+      if (jobKey === 'bgd' || jobKey === 'pgd') {
+        g2 = "Gương mẫu, phát huy tốt vai trò lãnh đạo, điều hành và tinh thần đoàn kết nội bộ.";
+      } else if (jobKey === 'rm') {
+        g2 = "Nhiệt tình, có tinh thần trách nhiệm cao, bám sát khách hàng và tích cực bán chéo sản phẩm.";
+      } else if (jobKey.includes('httd')) {
+        g2 = "Tác nghiệp cẩn thận, chính xác, kiểm soát chặt chẽ hồ sơ và hỗ trợ tốt các phòng ban.";
+      }
+
+      let l1 = GOOGLE_FORM_PEER_LIMIT_ITEMS[2]; // Thời gian nghiên cứu lý luận chính trị
+      if (targetMem.status === 'Dự bị' || targetMem.role_party === 'Đảng viên') {
+        l1 = GOOGLE_FORM_PEER_LIMIT_ITEMS[0]; // Đôi lúc chưa mạnh dạn đề xuất ý kiến
+      }
+
+      let s1 = "Tiếp tục phát huy thế mạnh chuyên môn, chủ động phối hợp liên phòng ban và tích cực đóng góp ý kiến xây dựng chi bộ.";
+
+      const goodInput = document.getElementById(`rev-good-${tid}`);
+      const limitInput = document.getElementById(`rev-limit-${tid}`);
+      const solInput = document.getElementById(`rev-sol-${tid}`);
+
+      if (goodInput) goodInput.value = `Đồng chí ${targetMem.name} ${g1.toLowerCase().replace('lập trường', 'có lập trường')} ${g2}`;
+      if (limitInput) limitInput.value = l1;
+      if (solInput) solInput.value = s1;
+
+      showToast(`Đã nạp bộ nhận xét chuẩn cho đ/c ${targetMem.name}!`, 'success');
+    }
+
+    function copyTemplateText(text, label = 'nội dung') {
+      copyToClipboard(text, `Đã sao chép ${label}!`);
+    }
+
+    // Modal Thư Viện Câu Mẫu Google Form
+    let currentGFormTab = 'self';
+
+    function openGoogleFormLibraryModal(initialTab = 'self') {
+      const modal = document.getElementById('google-form-modal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        switchGoogleFormTab(initialTab);
+      }
+    }
+
+    function closeGoogleFormLibraryModal() {
+      const modal = document.getElementById('google-form-modal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function switchGoogleFormTab(tab) {
+      currentGFormTab = tab;
+      const btnSelf = document.getElementById('tab-gform-self');
+      const btnGood = document.getElementById('tab-gform-good');
+      const btnLimit = document.getElementById('tab-gform-limit');
+      const body = document.getElementById('google-form-modal-body');
+
+      const activeCls = 'py-1.5 px-3 rounded-lg transition bg-purple-700 text-white shadow-xs';
+      const inactiveCls = 'py-1.5 px-3 rounded-lg transition text-slate-600 hover:text-slate-900';
+
+      if (btnSelf) btnSelf.className = (tab === 'self') ? activeCls : inactiveCls;
+      if (btnGood) btnGood.className = (tab === 'good') ? activeCls : inactiveCls;
+      if (btnLimit) btnLimit.className = (tab === 'limit') ? activeCls : inactiveCls;
+
+      if (!body) return;
+      body.innerHTML = '';
+
+      if (tab === 'self') {
+        let html = `
+          <div class="space-y-4">
+            <div class="p-3 bg-purple-50 rounded-2xl border border-purple-200 text-xs text-purple-900 leading-relaxed">
+              <strong>Phần I của Google Form:</strong> Tự nhận xét bản thân về Ưu điểm, Nhược điểm, Phương hướng khắc phục theo 5 vị trí công tác đặc thù tại Chi bộ 2 VietinBank Bảo Lộc.
+            </div>
+            <div class="grid grid-cols-1 gap-4">
+        `;
+
+        Object.keys(GOOGLE_FORM_SELF_TEMPLATES).forEach(key => {
+          const t = GOOGLE_FORM_SELF_TEMPLATES[key];
+          html += `
+            <div class="bg-white rounded-2xl border border-slate-200 p-4 space-y-3 shadow-xs hover:border-purple-300 transition">
+              <div class="flex items-center justify-between border-b pb-2">
+                <h4 class="font-bold text-sm text-vtb-navy flex items-center gap-2">
+                  <span class="w-7 h-7 rounded-lg bg-purple-100 text-purple-800 flex items-center justify-center text-xs">
+                    <i class="fa-solid ${t.icon}"></i>
+                  </span>
+                  <span>${t.name}</span>
+                </h4>
+                <div class="flex items-center gap-1.5">
+                  <button type="button" onclick="applySelfTemplateFromJob('${key}'); closeGoogleFormLibraryModal();" class="text-xs font-bold px-3 py-1 bg-purple-700 hover:bg-purple-800 text-white rounded-lg transition">
+                    Áp Dụng Mẫu Này
+                  </button>
+                </div>
+              </div>
+
+              <div class="space-y-2 text-xs">
+                <div>
+                  <div class="flex items-center justify-between text-slate-700 font-bold mb-0.5">
+                    <span class="text-emerald-700 font-bold">1. Ưu điểm của bản thân:</span>
+                    <button type="button" onclick="copyTemplateText(\`${t.good.replace(/`/g, '\\`')}\`, 'Ưu điểm')" class="text-[10px] text-purple-700 hover:underline">Sao chép</button>
+                  </div>
+                  <pre class="whitespace-pre-wrap font-sans bg-slate-50 p-2.5 rounded-lg border border-slate-100 text-slate-700 leading-relaxed">${t.good}</pre>
+                </div>
+
+                <div>
+                  <div class="flex items-center justify-between text-slate-700 font-bold mb-0.5">
+                    <span class="text-amber-700 font-bold">2. Nhược điểm, hạn chế của bản thân:</span>
+                    <button type="button" onclick="copyTemplateText(\`${t.limit.replace(/`/g, '\\`')}\`, 'Hạn chế')" class="text-[10px] text-purple-700 hover:underline">Sao chép</button>
+                  </div>
+                  <pre class="whitespace-pre-wrap font-sans bg-slate-50 p-2.5 rounded-lg border border-slate-100 text-slate-700 leading-relaxed">${t.limit}</pre>
+                </div>
+
+                <div>
+                  <div class="flex items-center justify-between text-slate-700 font-bold mb-0.5">
+                    <span class="text-blue-700 font-bold">3. Phương hướng, biện pháp khắc phục:</span>
+                    <button type="button" onclick="copyTemplateText(\`${t.sol.replace(/`/g, '\\`')}\`, 'Biện pháp')" class="text-[10px] text-purple-700 hover:underline">Sao chép</button>
+                  </div>
+                  <pre class="whitespace-pre-wrap font-sans bg-slate-50 p-2.5 rounded-lg border border-slate-100 text-slate-700 leading-relaxed">${t.sol}</pre>
+                </div>
+              </div>
+            </div>
+          `;
+        });
+
+        html += `</div></div>`;
+        body.innerHTML = html;
+      } else if (tab === 'good') {
+        let html = `
+          <div class="space-y-3">
+            <div class="p-3 bg-emerald-50 rounded-2xl border border-emerald-200 text-xs text-emerald-950 leading-relaxed">
+              <strong>Phần II & III của Google Form (Ưu Điểm):</strong> 8 câu mẫu chuẩn mực để nhận xét 02 đồng chí đảng viên được phân công.
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+        `;
+
+        GOOGLE_FORM_PEER_GOOD_ITEMS.forEach((item, idx) => {
+          html += `
+            <div class="p-3.5 bg-white rounded-xl border border-slate-200 space-y-2 hover:border-emerald-400 transition shadow-xs flex flex-col justify-between">
+              <div class="space-y-1">
+                <span class="inline-block text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800">Câu ${idx + 1}</span>
+                <p class="text-slate-800 leading-relaxed">${item}</p>
+              </div>
+              <div class="pt-1 flex justify-end">
+                <button type="button" onclick="copyTemplateText('${item.replace(/'/g, "\\'")}', 'Câu ${idx + 1}')" class="text-[11px] font-bold text-emerald-700 hover:text-emerald-900 flex items-center gap-1">
+                  <i class="fa-regular fa-copy"></i>
+                  <span>Sao Chép</span>
+                </button>
+              </div>
+            </div>
+          `;
+        });
+
+        html += `</div></div>`;
+        body.innerHTML = html;
+      } else if (tab === 'limit') {
+        let html = `
+          <div class="space-y-3">
+            <div class="p-3 bg-amber-50 rounded-2xl border border-amber-200 text-xs text-amber-950 leading-relaxed">
+              <strong>Phần II & III của Google Form (Hạn Chế, Nhược Điểm):</strong> 8 câu mẫu mang tính xây dựng, thẳng thắn, chân thành, tránh chung chung hình thức.
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+        `;
+
+        GOOGLE_FORM_PEER_LIMIT_ITEMS.forEach((item, idx) => {
+          html += `
+            <div class="p-3.5 bg-white rounded-xl border border-slate-200 space-y-2 hover:border-amber-400 transition shadow-xs flex flex-col justify-between">
+              <div class="space-y-1">
+                <span class="inline-block text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-amber-100 text-amber-800">Câu ${idx + 1}</span>
+                <p class="text-slate-800 leading-relaxed">${item}</p>
+              </div>
+              <div class="pt-1 flex justify-end">
+                <button type="button" onclick="copyTemplateText('${item.replace(/'/g, "\\'")}', 'Câu ${idx + 1}')" class="text-[11px] font-bold text-amber-700 hover:text-amber-900 flex items-center gap-1">
+                  <i class="fa-regular fa-copy"></i>
+                  <span>Sao Chép</span>
+                </button>
+              </div>
+            </div>
+          `;
+        });
+
+        html += `</div></div>`;
+        body.innerHTML = html;
+      }
     }
   </script>
   <!-- Toast thông báo nhanh (Floating Toast chuẩn Chi bộ 2) -->
