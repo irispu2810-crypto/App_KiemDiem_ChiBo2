@@ -919,8 +919,20 @@
           </div>
 
           <div class="flex items-center flex-wrap gap-2">
-            <!-- Phân quyền điều phối: Chỉ Bí thư / Chi ủy được thấy nút phân công -->
-            <div id="leader-assign-tools" class="flex items-center gap-2">
+            <!-- Phân quyền điều phối: Dành riêng cho Bí thư / Ban Chi ủy -->
+            <div id="leader-assign-tools" class="flex items-center flex-wrap gap-2">
+              <button onclick="openReviewMeetingReportModal()"
+                class="btn-3d text-xs bg-gradient-to-r from-red-700 to-rose-800 hover:from-red-800 hover:to-rose-900 text-white px-3.5 py-1.5 rounded-xl font-bold flex items-center gap-1.5 shadow-md transition" title="Kết xuất Báo cáo tổng hợp nhận xét phục vụ Bí thư điều hành cuộc họp">
+                <i class="fa-solid fa-file-word text-amber-300"></i>
+                <span>Báo Cáo Nhận Xét Điều Hành (.docx)</span>
+              </button>
+
+              <button onclick="openAllReviewsModal()"
+                class="btn-3d text-xs bg-gradient-to-r from-indigo-700 to-purple-800 hover:from-indigo-800 hover:to-purple-900 text-white px-3.5 py-1.5 rounded-xl font-bold flex items-center gap-1.5 shadow-md transition" title="Bí thư xem toàn bộ nhận xét của các Đảng viên trong Chi bộ">
+                <i class="fa-solid fa-layer-group text-amber-300"></i>
+                <span>Xem Toàn Bộ Nhận Xét</span>
+              </button>
+
               <button onclick="openManualAssignModal()"
                 class="btn-3d text-xs bg-vtb-navy hover:bg-vtb-navyDark text-white px-3.5 py-1.5 rounded-xl font-bold flex items-center gap-1.5 shadow transition">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1894,6 +1906,121 @@
         class="px-4 py-2 bg-vtb-red hover:bg-vtb-redDark text-xs font-bold rounded flex items-center gap-1">
         Nội dung kế tiếp ▶
       </button>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL 1: BẢNG TỔNG HỢP TOÀN BỘ Ý KIẾN NHẬN XÉT (CHO BÍ THƯ) -->
+  <!-- ========================================== -->
+  <div id="all-reviews-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-5">
+    <div class="bg-white w-full max-w-5xl max-h-[92vh] rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-slate-200 animate-fadeIn">
+      <!-- Header -->
+      <div class="px-5 py-4 bg-gradient-to-r from-indigo-900 via-vtb-navy to-purple-900 text-white flex items-center justify-between shrink-0">
+        <div class="flex items-center gap-3">
+          <span class="w-10 h-10 rounded-xl bg-amber-400 text-slate-950 flex items-center justify-center text-lg font-black shadow-md">
+            👑
+          </span>
+          <div>
+            <h3 class="font-extrabold text-base flex items-center gap-2">
+              <span>BẢNG TỔNG HỢP Ý KIẾN NHẬN XÉT TOÀN BỘ ĐẢNG VIÊN</span>
+              <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-amber-400 text-slate-950">Dành riêng cho Bí thư</span>
+            </h3>
+            <p class="text-xs text-indigo-200 mt-0.5">Theo dõi toàn diện ý kiến nhận xét chéo của 12 đồng chí phục vụ chủ trì điều hành</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <button type="button" onclick="openReviewMeetingReportModal()" class="px-3 py-1.5 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-xl shadow transition flex items-center gap-1.5">
+            <i class="fa-solid fa-file-word text-amber-200"></i>
+            <span>Xuất Báo Cáo (.docx)</span>
+          </button>
+          <button type="button" onclick="closeAllReviewsModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Controls / Filter -->
+      <div class="p-3 bg-slate-50 border-b border-slate-200 flex flex-wrap items-center justify-between gap-3 text-xs">
+        <div class="flex items-center gap-2">
+          <span class="font-bold text-slate-700">Lọc theo Đảng viên:</span>
+          <select id="all-reviews-filter-select" onchange="renderAllReviewsModalContent(this.value)" class="p-1.5 border border-slate-300 rounded-lg font-bold text-slate-800 bg-white">
+            <option value="all">🌟 Xem tất cả 12 đồng chí</option>
+          </select>
+        </div>
+        <div class="flex items-center gap-2 text-slate-500">
+          <i class="fa-solid fa-circle-info text-blue-600"></i>
+          <span>Bí thư có thể bấm "Nhận xét" để trực tiếp bổ sung ý kiến đánh giá cho bất kỳ đồng chí nào.</span>
+        </div>
+      </div>
+
+      <!-- Body Content -->
+      <div id="all-reviews-modal-body" class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 custom-scrollbar bg-slate-50/50">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <!-- Footer -->
+      <div class="px-5 py-3 bg-white border-t border-slate-200 flex items-center justify-between shrink-0 text-xs">
+        <span class="text-slate-500 italic">Đã đồng bộ 100% dữ liệu tự kiểm điểm và nhận xét chéo Chi bộ 2</span>
+        <button type="button" onclick="closeAllReviewsModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition">
+          Đóng cửa sổ
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL 2: XEM TRƯỚC VÀ XUẤT BÁO CÁO NHẬN XÉT ĐIỀU HÀNH CUỘC HỌP -->
+  <!-- ========================================== -->
+  <div id="review-meeting-report-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-5">
+    <div class="bg-white w-full max-w-5xl max-h-[94vh] rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-slate-200 animate-fadeIn">
+      <!-- Header Toolbar -->
+      <div class="px-5 py-3.5 bg-gradient-to-r from-red-800 via-rose-900 to-red-950 text-white flex items-center justify-between shrink-0">
+        <div class="flex items-center gap-3">
+          <span class="w-9 h-9 rounded-xl bg-amber-400 text-slate-950 flex items-center justify-center text-base font-black shadow-md">
+            <i class="fa-solid fa-file-lines"></i>
+          </span>
+          <div>
+            <h3 class="font-black text-sm sm:text-base flex items-center gap-2">
+              <span>BÁO CÁO TỔNG HỢP Ý KIẾN NHẬN XÉT, ĐÁNH GIÁ ĐẢNG VIÊN NĂM 2026</span>
+            </h3>
+            <p class="text-[11px] text-rose-200">Chuẩn thể thức Nghị định 30/2020/NĐ-CP • Tài liệu Bí thư điều hành cuộc họp</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <button type="button" onclick="exportReviewMeetingReportDocx()" class="btn-3d px-3.5 py-1.5 bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-black rounded-xl shadow transition flex items-center gap-1.5">
+            <i class="fa-solid fa-download"></i>
+            <span>Tải File Word (.docx)</span>
+          </button>
+          <button type="button" onclick="printReviewMeetingReport()" class="px-3 py-1.5 bg-white/20 hover:bg-white/30 text-white text-xs font-bold rounded-xl shadow transition flex items-center gap-1.5">
+            <i class="fa-solid fa-print"></i>
+            <span>In Báo Cáo</span>
+          </button>
+          <button type="button" onclick="closeReviewMeetingReportModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Preview Printable Sheet (A4 Styling) -->
+      <div class="flex-1 overflow-y-auto p-4 sm:p-8 bg-slate-100 custom-scrollbar flex justify-center">
+        <div id="review-meeting-report-printable" class="bg-white w-full max-w-[21cm] p-[2.5cm_1.5cm_2cm_3cm] shadow-xl text-slate-900 font-serif leading-relaxed text-[13pt] border border-slate-300 min-h-[29.7cm]">
+          <!-- Injected dynamically -->
+        </div>
+      </div>
+
+      <!-- Footer Toolbar -->
+      <div class="px-5 py-3 bg-white border-t border-slate-200 flex items-center justify-between shrink-0 text-xs">
+        <span class="text-slate-500 italic">Khổ giấy A4 • Lề: Trên 2cm, Dưới 2cm, Trái 3cm, Phải 1.5cm (Nghị định 30)</span>
+        <div class="flex items-center gap-2">
+          <button type="button" onclick="exportReviewMeetingReportDocx()" class="btn-3d px-4 py-2 bg-red-700 hover:bg-red-800 text-white font-bold rounded-xl transition flex items-center gap-1.5">
+            <i class="fa-solid fa-file-word text-amber-300"></i>
+            <span>Xuất File Word (.docx)</span>
+          </button>
+          <button type="button" onclick="closeReviewMeetingReportModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition">
+            Đóng
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -3965,47 +4092,87 @@
       const currentReviewer = appData.members.find(x => x.id === appData.current_user_id) || appData.members[0];
       const targets = appData.assignments[currentReviewer.id] || [];
 
-      // Phân tách: Cán bộ ĐƯỢC PHÂN CÔNG vs Cán bộ KHÁC (BỊ KHÓA)
+      const isLeader = (currentReviewer.role_party === 'Bí thư Chi bộ' || currentReviewer.role_party === 'Phó Bí thư Chi bộ');
+      // Phân tách: Cán bộ ĐƯỢC PHÂN CÔNG vs Cán bộ KHÁC
       const targetMems = targets.map(tid => appData.members.find(x => x.id === tid)).filter(Boolean);
-      const lockedMembers = appData.members.filter(m => m.id !== currentReviewer.id && !targets.includes(m.id));
+      const otherMembers = appData.members.filter(m => m.id !== currentReviewer.id && !targets.includes(m.id));
       const targetNamesStr = targetMems.map(m => m.name).join(', ');
 
       // 1. BANNER PHÂN QUYỀN RÕ RÀNG
       const permissionBanner = document.createElement('div');
       permissionBanner.className = 'col-span-1 md:col-span-2 p-4 bg-gradient-to-r from-emerald-50 via-teal-50 to-blue-50 border border-emerald-200 rounded-2xl flex flex-wrap items-center justify-between gap-3 shadow-xs mb-1';
-      permissionBanner.innerHTML = `
-        <div class="flex items-start gap-3">
-          <span class="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-600 to-teal-700 text-white flex items-center justify-center text-sm font-bold shadow-sm shrink-0 mt-0.5">
-            <i class="fa-solid fa-user-shield"></i>
-          </span>
-          <div>
-            <div class="text-xs font-black text-slate-800 flex flex-wrap items-center gap-2">
-              <span>Phân quyền nhận xét:</span>
-              <span class="text-vtb-red uppercase font-black text-sm">${currentReviewer.name}</span>
-              <span class="px-2 py-0.5 rounded text-[10px] font-black bg-emerald-100 text-emerald-800 border border-emerald-300">
-                ${currentReviewer.role_party}
-              </span>
+      
+      if (isLeader) {
+        permissionBanner.innerHTML = `
+          <div class="flex items-start gap-3">
+            <span class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-red-600 text-white flex items-center justify-center text-base font-bold shadow-md shrink-0 mt-0.5">
+              👑
+            </span>
+            <div>
+              <div class="text-xs font-black text-slate-800 flex flex-wrap items-center gap-2">
+                <span>Quyền hạn điều hành của:</span>
+                <span class="text-vtb-red uppercase font-black text-sm">${currentReviewer.name}</span>
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-amber-400 text-slate-950 border border-amber-500 shadow-xs">
+                  ${currentReviewer.role_party}
+                </span>
+              </div>
+              <p class="text-xs text-slate-800 mt-1">
+                ⭐ <strong>Đặc quyền Bí thư Chi bộ:</strong> Được <strong>xem toàn bộ nhận xét</strong> của tất cả Đảng viên và <strong>có quyền nhận xét, đánh giá kết luận toàn bộ 11 Đảng viên còn lại</strong> để phục vụ điều hành cuộc họp kiểm điểm.
+              </p>
+              <div class="flex flex-wrap items-center gap-2 mt-2">
+                <button type="button" onclick="openReviewMeetingReportModal()" class="px-3 py-1 bg-red-700 hover:bg-red-800 text-white rounded-lg text-xs font-bold shadow-xs transition flex items-center gap-1.5">
+                  <i class="fa-solid fa-file-word text-amber-300"></i>
+                  <span>Xuất Báo Cáo Nhận Xét Điều Hành (.docx)</span>
+                </button>
+                <button type="button" onclick="openAllReviewsModal()" class="px-3 py-1 bg-indigo-700 hover:bg-indigo-800 text-white rounded-lg text-xs font-bold shadow-xs transition flex items-center gap-1.5">
+                  <i class="fa-solid fa-list-check text-amber-300"></i>
+                  <span>Bảng Tổng Hợp Nhận Xét Toàn Chi Bộ</span>
+                </button>
+              </div>
             </div>
-            <p class="text-xs text-slate-700 mt-1">
-              🎯 Đồng chí <strong>chỉ được phép nhận xét</strong> cho <strong>${targetMems.length} cán bộ</strong> đã được Chi bộ phân công: 
-              <span class="font-extrabold text-vtb-navy">${targetNamesStr || 'Chưa phân công'}</span>.
-            </p>
-            <p class="text-[11px] text-slate-500 mt-0.5 flex items-center gap-1">
-              <i class="fa-solid fa-lock text-amber-600"></i>
-              <span>Toàn bộ <strong>${lockedMembers.length} cán bộ còn lại</strong> trong Chi bộ đã được <strong>khóa chức năng nhận xét</strong> theo quy chế sinh hoạt Đảng.</span>
-            </p>
           </div>
-        </div>
 
-        <div class="flex items-center gap-2">
-          <span class="text-xs font-black px-3 py-1.5 bg-white text-emerald-800 rounded-xl border border-emerald-300 shadow-xs flex items-center gap-1.5">
-            <i class="fa-solid fa-circle-check text-emerald-600"></i> Được phân công (${targetMems.length})
-          </span>
-          <span class="text-xs font-black px-3 py-1.5 bg-white text-slate-600 rounded-xl border border-slate-300 shadow-xs flex items-center gap-1.5">
-            <i class="fa-solid fa-lock text-amber-600"></i> Đã khóa nhận xét (${lockedMembers.length})
-          </span>
-        </div>
-      `;
+          <div class="flex items-center gap-2 shrink-0">
+            <span class="text-xs font-black px-3 py-1.5 bg-white text-emerald-800 rounded-xl border border-emerald-300 shadow-xs flex items-center gap-1.5">
+              <i class="fa-solid fa-check-double text-emerald-600"></i> Nhận xét tất cả (11 Đ/c)
+            </span>
+          </div>
+        `;
+      } else {
+        permissionBanner.innerHTML = `
+          <div class="flex items-start gap-3">
+            <span class="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-600 to-teal-700 text-white flex items-center justify-center text-sm font-bold shadow-sm shrink-0 mt-0.5">
+              <i class="fa-solid fa-user-shield"></i>
+            </span>
+            <div>
+              <div class="text-xs font-black text-slate-800 flex flex-wrap items-center gap-2">
+                <span>Phân quyền nhận xét:</span>
+                <span class="text-vtb-red uppercase font-black text-sm">${currentReviewer.name}</span>
+                <span class="px-2 py-0.5 rounded text-[10px] font-black bg-emerald-100 text-emerald-800 border border-emerald-300">
+                  ${currentReviewer.role_party}
+                </span>
+              </div>
+              <p class="text-xs text-slate-700 mt-1">
+                🎯 Đồng chí <strong>chỉ được phép nhận xét</strong> cho <strong>${targetMems.length} cán bộ</strong> đã được Chi bộ phân công: 
+                <span class="font-extrabold text-vtb-navy">${targetNamesStr || 'Chưa phân công'}</span>.
+              </p>
+              <p class="text-[11px] text-slate-500 mt-0.5 flex items-center gap-1">
+                <i class="fa-solid fa-lock text-amber-600"></i>
+                <span>Toàn bộ <strong>${otherMembers.length} cán bộ còn lại</strong> trong Chi bộ đã được <strong>khóa chức năng nhận xét</strong> theo quy chế sinh hoạt Đảng.</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-black px-3 py-1.5 bg-white text-emerald-800 rounded-xl border border-emerald-300 shadow-xs flex items-center gap-1.5">
+              <i class="fa-solid fa-circle-check text-emerald-600"></i> Được phân công (${targetMems.length})
+            </span>
+            <span class="text-xs font-black px-3 py-1.5 bg-white text-slate-600 rounded-xl border border-slate-300 shadow-xs flex items-center gap-1.5">
+              <i class="fa-solid fa-lock text-amber-600"></i> Đã khóa nhận xét (${otherMembers.length})
+            </span>
+          </div>
+        `;
+      }
       container.appendChild(permissionBanner);
 
       if (targets.length === 0) {
@@ -4157,40 +4324,134 @@
         container.appendChild(card);
       });
 
-      // 2. KHU VỰC CÁC CÁN BỘ KHÁC: KHÓA CHỨC NĂNG NHẬN XÉT
-      if (lockedMembers.length > 0) {
-        const lockedSection = document.createElement('div');
-        lockedSection.className = 'col-span-1 md:col-span-2 mt-6 pt-5 border-t border-slate-200 space-y-3';
-        lockedSection.innerHTML = `
-          <div class="flex flex-wrap items-center justify-between gap-2">
-            <h4 class="text-xs font-bold text-slate-700 flex items-center gap-2">
-              <i class="fa-solid fa-lock text-amber-600"></i>
-              <span>Danh Sách Cán Bộ Khác Không Thuộc Phân Công (${lockedMembers.length} đồng chí - ĐÃ KHÓA NHẬN XÉT)</span>
-            </h4>
-            <span class="text-[11px] text-slate-400 italic">
-              Theo quy định của Chi ủy, đồng chí chỉ nhận xét đúng các cán bộ được phân công
-            </span>
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
-            ${lockedMembers.map(m => `
-              <div class="p-3 bg-slate-50/90 border border-slate-200 rounded-xl flex items-center justify-between gap-2 text-xs opacity-85 hover:opacity-100 transition shadow-xs">
-                <div class="min-w-0">
-                  <div class="font-bold text-slate-800 truncate flex items-center gap-1.5">
-                    <i class="fa-solid fa-user text-slate-400 text-[10px]"></i>
-                    <span>Đ/c ${m.name}</span>
-                  </div>
-                  <div class="text-[10px] text-slate-500 truncate">${m.role_party || 'Đảng viên'} • ${m.title_pro || 'Cán bộ'}</div>
-                </div>
-                <button type="button" onclick="notifyLockedReview('${m.name}')" class="shrink-0 px-2 py-1 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-lg text-[10px] font-bold border border-slate-300 flex items-center gap-1 cursor-pointer transition" title="Bấm để xem thông báo khóa">
-                  <i class="fa-solid fa-lock text-amber-700"></i>
-                  <span>Khóa nhận xét</span>
-                </button>
+      // 2. KHU VỰC CÁC CÁN BỘ KHÁC:
+      // - Nếu là BÍ THƯ: Mở quyền nhận xét toàn bộ các Đảng viên còn lại!
+      // - Nếu là ĐẢNG VIÊN THƯỜNG: Khóa hoàn toàn chức năng nhận xét.
+      if (otherMembers.length > 0) {
+        const otherSection = document.createElement('div');
+        otherSection.className = 'col-span-1 md:col-span-2 mt-6 pt-5 border-t border-slate-200 space-y-4';
+        
+        if (isLeader) {
+          otherSection.innerHTML = `
+            <div class="flex flex-wrap items-center justify-between gap-2 bg-amber-50/80 border border-amber-200 p-3.5 rounded-xl">
+              <div>
+                <h4 class="text-xs font-black text-amber-950 flex items-center gap-2">
+                  <i class="fa-solid fa-crown text-amber-600"></i>
+                  <span>QUYỀN HẠN BÍ THƯ: NHẬN XÉT & ĐÁNH GIÁ KẾT LUẬN ${otherMembers.length} ĐẢNG VIÊN CÒN LẠI</span>
+                </h4>
+                <p class="text-[11px] text-amber-800 mt-0.5">
+                  Đồng chí Bí thư có thể trực tiếp bổ sung ý kiến chỉ đạo, nhận xét, đánh giá kết luận cho từng Đảng viên dưới đây.
+                </p>
               </div>
-            `).join('')}
-          </div>
-        `;
-        container.appendChild(lockedSection);
+              <span class="text-xs font-bold px-2.5 py-1 bg-amber-200 text-amber-900 rounded-lg">
+                Được phép nhận xét 100%
+              </span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              ${otherMembers.map(m => {
+                const revList = appData.reviews[m.id] || [];
+                let existingRev = revList.find(r => r.reviewer_id === currentReviewer.id);
+                let goodVal = existingRev ? (existingRev.good || '') : `Đồng chí ${m.name} luôn giữ vững phẩm chất chính trị, chấp hành tốt kỷ luật nghiệp vụ và hoàn thành tốt chức trách nhiệm vụ.`;
+                let limitVal = existingRev ? (existingRev.limit || '') : 'Cần chủ động hơn trong công tác nghiên cứu học tập nghị quyết và bám sát tiến độ chuyên môn.';
+                let solVal = existingRev ? (existingRev.solution || '') : 'Phát huy kết quả đạt được, tăng cường kỷ cương và chủ động phối hợp với các đồng chí trong Chi bộ.';
+
+                // Tìm xem ai khác đã nhận xét đồng chí này
+                const otherRevs = revList.filter(r => r.reviewer_id !== currentReviewer.id);
+                const otherRevNames = otherRevs.map(r => r.reviewer_name).join(', ') || 'Chưa có ý kiến nhận xét chéo';
+
+                return `
+                  <div class="border-2 border-amber-200/90 hover:border-amber-400 rounded-2xl p-4 bg-gradient-to-br from-white to-amber-50/20 shadow-sm space-y-3.5 transition">
+                    <div class="flex flex-wrap items-center justify-between border-b pb-2.5 gap-2">
+                      <div>
+                        <span class="text-[10px] uppercase font-black px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300 inline-block mb-1">
+                          <i class="fa-solid fa-crown mr-1"></i> BÍ THƯ ĐÁNH GIÁ KẾT LUẬN
+                        </span>
+                        <h4 class="font-bold text-sm text-vtb-navy flex items-center gap-1.5">
+                          <span>Đồng chí:</span> <span class="text-base text-red-700 font-black">${m.name}</span>
+                        </h4>
+                        <p class="text-[11px] text-slate-500 font-medium">${m.role_party || 'Đảng viên'} • ${m.title_pro || 'Cán bộ'}</p>
+                      </div>
+                      <div class="text-right">
+                        <span class="text-xs font-bold text-emerald-800 bg-emerald-100 border border-emerald-200 px-2 py-0.5 rounded-lg inline-block">
+                          Tự chấm: ${m.self_score}đ
+                        </span>
+                        <div class="text-[10px] text-slate-500 mt-1 italic">Được góp ý bởi: <strong>${otherRevNames}</strong></div>
+                      </div>
+                    </div>
+
+                    <div class="space-y-3 text-xs">
+                      <div class="space-y-1">
+                        <label class="font-bold text-slate-700 flex items-center gap-1">
+                          <i class="fa-solid fa-circle-check text-emerald-600"></i>
+                          <span>1. Ưu điểm nổi bật / Nhất trí:</span>
+                        </label>
+                        <textarea id="rev-good-${m.id}" rows="3" class="w-full p-2.5 border border-slate-300 rounded-xl focus:ring-1 focus:ring-amber-500 text-xs leading-relaxed font-normal whitespace-pre-wrap">${goodVal}</textarea>
+                      </div>
+
+                      <div class="space-y-1">
+                        <label class="font-bold text-slate-700 flex items-center gap-1">
+                          <i class="fa-solid fa-triangle-exclamation text-amber-600"></i>
+                          <span>2. Hạn chế, khuyết điểm cần khắc phục:</span>
+                        </label>
+                        <textarea id="rev-limit-${m.id}" rows="3" class="w-full p-2.5 border border-slate-300 rounded-xl focus:ring-1 focus:ring-amber-500 text-xs leading-relaxed font-normal whitespace-pre-wrap">${limitVal}</textarea>
+                      </div>
+
+                      <div class="space-y-1">
+                        <label class="font-bold text-slate-700 flex items-center gap-1">
+                          <i class="fa-solid fa-lightbulb text-blue-600"></i>
+                          <span>3. Đề nghị, kết luận của Bí thư Chi bộ:</span>
+                        </label>
+                        <textarea id="rev-sol-${m.id}" rows="3" class="w-full p-2.5 border border-slate-300 rounded-xl focus:ring-1 focus:ring-amber-500 text-xs leading-relaxed font-normal whitespace-pre-wrap">${solVal}</textarea>
+                      </div>
+                    </div>
+
+                    <div class="flex items-center justify-between pt-2 border-t border-slate-100">
+                      <button type="button" onclick="applyFullPeerSuggestion(${m.id})" class="text-[11px] px-2.5 py-1 bg-purple-50 hover:bg-purple-100 text-purple-800 font-bold rounded-lg border border-purple-200 transition">
+                        <i class="fa-solid fa-wand-magic-sparkles text-purple-600 mr-1"></i> Nạp mẫu gợi ý
+                      </button>
+                      <button onclick="savePeerReview(${m.id})" class="btn-3d text-xs bg-amber-600 hover:bg-amber-700 text-white font-bold px-4 py-2 rounded-xl shadow-md transition flex items-center gap-1.5">
+                        <i class="fa-solid fa-floppy-disk"></i>
+                        <span>Lưu Đánh Giá Của Bí Thư</span>
+                      </button>
+                    </div>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          `;
+        } else {
+          otherSection.innerHTML = `
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <h4 class="text-xs font-bold text-slate-700 flex items-center gap-2">
+                <i class="fa-solid fa-lock text-amber-600"></i>
+                <span>Danh Sách Cán Bộ Khác Không Thuộc Phân Công (${otherMembers.length} đồng chí - ĐÃ KHÓA NHẬN XÉT)</span>
+              </h4>
+              <span class="text-[11px] text-slate-400 italic">
+                Theo quy định của Chi ủy, đồng chí chỉ nhận xét đúng các cán bộ được phân công
+              </span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+              ${otherMembers.map(m => `
+                <div class="p-3 bg-slate-50/90 border border-slate-200 rounded-xl flex items-center justify-between gap-2 text-xs opacity-85 hover:opacity-100 transition shadow-xs">
+                  <div class="min-w-0">
+                    <div class="font-bold text-slate-800 truncate flex items-center gap-1.5">
+                      <i class="fa-solid fa-user text-slate-400 text-[10px]"></i>
+                      <span>Đ/c ${m.name}</span>
+                    </div>
+                    <div class="text-[10px] text-slate-500 truncate">${m.role_party || 'Đảng viên'} • ${m.title_pro || 'Cán bộ'}</div>
+                  </div>
+                  <button type="button" onclick="notifyLockedReview('${m.name}')" class="shrink-0 px-2 py-1 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-lg text-[10px] font-bold border border-slate-300 flex items-center gap-1 cursor-pointer transition" title="Bấm để xem thông báo khóa">
+                    <i class="fa-solid fa-lock text-amber-700"></i>
+                    <span>Khóa nhận xét</span>
+                  </button>
+                </div>
+              `).join('')}
+            </div>
+          `;
+        }
+        container.appendChild(otherSection);
       }
     }
 
@@ -4198,8 +4459,12 @@
       const currentReviewer = appData.members.find(x => x.id === appData.current_user_id) || appData.members[0];
       const assignedTargets = appData.assignments[currentReviewer.id] || [];
 
-      // KIỂM TRA PHÂN QUYỀN CHẶT CHẼ: Chặn hoàn toàn nếu không được phân công
-      if (!assignedTargets.includes(tid)) {
+      const isLeader = (currentReviewer.role_party === 'Bí thư Chi bộ' || currentReviewer.role_party === 'Phó Bí thư Chi bộ');
+
+      // KIỂM TRA PHÂN QUYỀN CHẶT CHẼ:
+      // Đảng viên thường bị chặn nếu không thuộc phân công.
+      // Riêng Bí thư / Ban Chi ủy được toàn quyền nhận xét tất cả Đảng viên để phục vụ điều hành cuộc họp!
+      if (!isLeader && !assignedTargets.includes(tid)) {
         showToast('Đồng chí không được phân công nhận xét cán bộ này! Chức năng đã bị khóa.', 'error');
         alert(`⚠️ Quyền hạn không hợp lệ!\n\nĐồng chí ${currentReviewer.name} chỉ được phân công nhận xét cho:\n${assignedTargets.map(id => {
           const m = appData.members.find(x => x.id === id);
@@ -5535,7 +5800,8 @@
     function appendPeerSuggestion(tid, fieldType, index) {
       const currentReviewer = appData.members.find(x => x.id === appData.current_user_id) || appData.members[0];
       const assignedTargets = appData.assignments[currentReviewer.id] || [];
-      if (!assignedTargets.includes(tid)) {
+      const isLeader = (currentReviewer.role_party === 'Bí thư Chi bộ' || currentReviewer.role_party === 'Phó Bí thư Chi bộ');
+      if (!isLeader && !assignedTargets.includes(tid)) {
         showToast('Chức năng nhận xét cán bộ này đã bị khóa!', 'warning');
         return;
       }
@@ -5585,7 +5851,8 @@
     function setPeerSolution(tid, text) {
       const currentReviewer = appData.members.find(x => x.id === appData.current_user_id) || appData.members[0];
       const assignedTargets = appData.assignments[currentReviewer.id] || [];
-      if (!assignedTargets.includes(tid)) {
+      const isLeader = (currentReviewer.role_party === 'Bí thư Chi bộ' || currentReviewer.role_party === 'Phó Bí thư Chi bộ');
+      if (!isLeader && !assignedTargets.includes(tid)) {
         showToast('Chức năng nhận xét cán bộ này đã bị khóa!', 'warning');
         return;
       }
@@ -5603,7 +5870,8 @@
     function applyFullPeerSuggestion(tid) {
       const currentReviewer = appData.members.find(x => x.id === appData.current_user_id) || appData.members[0];
       const assignedTargets = appData.assignments[currentReviewer.id] || [];
-      if (!assignedTargets.includes(tid)) {
+      const isLeader = (currentReviewer.role_party === 'Bí thư Chi bộ' || currentReviewer.role_party === 'Phó Bí thư Chi bộ');
+      if (!isLeader && !assignedTargets.includes(tid)) {
         showToast('Chức năng nhận xét cán bộ này đã bị khóa!', 'warning');
         return;
       }
@@ -5793,6 +6061,374 @@
         body.innerHTML = html;
       }
     }
+  
+    // ==========================================
+    // TÍNH NĂNG DÀNH CHO BÍ THƯ: XEM TOÀN BỘ NHẬN XÉT & BÁO CÁO ĐIỀU HÀNH
+    // ==========================================
+    function openAllReviewsModal(focusMemberId = 'all') {
+      const modal = document.getElementById('all-reviews-modal');
+      if (!modal) return;
+      
+      const select = document.getElementById('all-reviews-filter-select');
+      if (select) {
+        select.innerHTML = '<option value="all">🌟 Xem tất cả 12 đồng chí</option>';
+        appData.members.forEach(m => {
+          const opt = document.createElement('option');
+          opt.value = m.id;
+          opt.textContent = `Đ/c ${m.name} (${m.role_party || 'Đảng viên'})`;
+          select.appendChild(opt);
+        });
+        select.value = focusMemberId;
+      }
+
+      renderAllReviewsModalContent(focusMemberId);
+      modal.classList.remove('hidden');
+    }
+
+    function closeAllReviewsModal() {
+      const modal = document.getElementById('all-reviews-modal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function renderAllReviewsModalContent(filterVal = 'all') {
+      const container = document.getElementById('all-reviews-modal-body');
+      if (!container) return;
+      container.innerHTML = '';
+
+      let list = appData.members;
+      if (filterVal !== 'all') {
+        const mid = parseInt(filterVal);
+        list = appData.members.filter(m => m.id === mid);
+      }
+
+      const cur = appData.members.find(x => x.id === appData.current_user_id) || appData.members[0];
+
+      list.forEach((m, idx) => {
+        const revList = appData.reviews[m.id] || [];
+        const isSelf = (m.id === cur.id);
+
+        const card = document.createElement('div');
+        card.className = 'bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-3.5';
+        
+        let revsHtml = '';
+        if (revList.length === 0) {
+          revsHtml = '<p class="text-xs text-slate-400 italic p-3 bg-slate-50 rounded-xl">Chưa có ý kiến góp ý nào được ghi nhận cho đồng chí này.</p>';
+        } else {
+          revsHtml = revList.map(r => `
+            <div class="p-3.5 rounded-xl border ${r.reviewer_name.includes('THAO') ? 'bg-amber-50/70 border-amber-300' : 'bg-slate-50 border-slate-200'} space-y-2 text-xs">
+              <div class="flex items-center justify-between border-b pb-1.5">
+                <span class="font-extrabold text-vtb-navy flex items-center gap-1.5">
+                  <i class="fa-solid fa-user-pen text-indigo-600"></i>
+                  <span>Người nhận xét: <span class="text-red-700">${r.reviewer_name}</span></span>
+                  ${r.reviewer_name.includes('THAO') ? '<span class="text-[10px] px-2 py-0.2 bg-amber-400 text-slate-950 font-black rounded">Bí thư</span>' : ''}
+                </span>
+                <span class="text-[11px] text-slate-400">Góp ý sinh hoạt chi bộ</span>
+              </div>
+              <div class="space-y-1 text-slate-700">
+                <p><strong>1. Ưu điểm nổi bật:</strong> <span class="whitespace-pre-wrap">${r.good || 'Chưa nhập'}</span></p>
+                <p><strong>2. Hạn chế, khuyết điểm:</strong> <span class="whitespace-pre-wrap text-amber-900">${r.limit || 'Không có'}</span></p>
+                <p><strong>3. Đề nghị, giải pháp:</strong> <span class="whitespace-pre-wrap text-blue-900">${r.solution || 'Tiếp tục phát huy nhiệm vụ'}</span></p>
+              </div>
+            </div>
+          `).join('');
+        }
+
+        card.innerHTML = `
+          <div class="flex flex-wrap items-center justify-between border-b pb-3 gap-2">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="w-6 h-6 rounded-full bg-vtb-navy text-white text-xs font-bold flex items-center justify-center">${idx + 1}</span>
+                <h4 class="font-extrabold text-base text-vtb-navy">Đồng chí: <span class="text-red-700">${m.name}</span></h4>
+                <span class="text-xs px-2.5 py-0.5 rounded-full font-bold bg-blue-100 text-blue-800">${m.role_party || 'Đảng viên'}</span>
+                <span class="text-xs px-2.5 py-0.5 rounded-full font-bold bg-slate-100 text-slate-700">${m.title_pro || 'Cán bộ'}</span>
+              </div>
+              <p class="text-xs text-slate-500 mt-1">Đơn vị: ${m.dept || 'Chi bộ 2 - VietinBank Bảo Lộc'} • Trạng thái: ${m.status}</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold px-3 py-1 bg-emerald-100 text-emerald-800 rounded-xl border border-emerald-300">
+                Tự chấm: ${m.self_score}đ (${m.self_ranking || 'HTTNV'})
+              </span>
+              ${!isSelf ? `
+                <button type="button" onclick="closeAllReviewsModal(); switchTab('tab-cross-review');" class="px-3 py-1 text-xs font-bold bg-amber-500 hover:bg-amber-600 text-slate-950 rounded-xl shadow-xs transition flex items-center gap-1">
+                  <i class="fa-solid fa-pen-to-square"></i>
+                  <span>Bí thư nhận xét</span>
+                </button>
+              ` : ''}
+            </div>
+          </div>
+
+          <!-- Bản tự kiểm điểm tóm tắt -->
+          <div class="p-3 bg-purple-50/60 border border-purple-200/80 rounded-xl text-xs space-y-1">
+            <span class="font-bold text-purple-950 flex items-center gap-1">
+              <i class="fa-solid fa-file-lines text-purple-700"></i>
+              <span>Tóm tắt bản tự kiểm điểm của đồng chí:</span>
+            </span>
+            <p class="text-slate-700 line-clamp-2"><strong>Ưu điểm:</strong> ${m.self_good || 'Đã nêu trong bản tự kiểm điểm'}</p>
+            <p class="text-slate-700 line-clamp-2"><strong>Khuyết điểm tự soi:</strong> ${m.self_limit || 'Chưa hoàn thành đầy đủ'}</p>
+          </div>
+
+          <!-- Danh sách ý kiến góp ý -->
+          <div class="space-y-2">
+            <h5 class="font-bold text-xs text-slate-700 flex items-center justify-between">
+              <span>Ý kiến đóng góp của các đồng chí trong Chi bộ (${revList.length} ý kiến):</span>
+            </h5>
+            <div class="space-y-2.5">
+              ${revsHtml}
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // ==========================================
+    // BÁO CÁO NHẬN XÉT ĐIỀU HÀNH CUỘC HỌP (CHUẨN NGHỊ ĐỊNH 30)
+    // ==========================================
+    function generateReviewMeetingReportHtml() {
+      const curDate = new Date();
+      const day = curDate.getDate();
+      const month = curDate.getMonth() + 1;
+      const year = curDate.getFullYear();
+
+      // Bảng thống kê 12 đồng chí
+      let rowsTable = '';
+      appData.members.forEach((m, idx) => {
+        const assignedTargets = appData.assignments[m.id] || [];
+        const targetNames = assignedTargets.map(tid => {
+          const t = appData.members.find(x => x.id === tid);
+          return t ? t.name : `#${tid}`;
+        }).join(', ') || 'Chưa phân công';
+
+        const revList = appData.reviews[m.id] || [];
+        const reviewersForMe = revList.map(r => r.reviewer_name).join(', ') || 'Đang tổng hợp';
+
+        rowsTable += `
+          <tr>
+            <td style="text-align: center; border: 1px solid #000; padding: 5px;">${idx + 1}</td>
+            <td style="border: 1px solid #000; padding: 5px; font-weight: bold;">${m.name}</td>
+            <td style="border: 1px solid #000; padding: 5px;">${m.role_party || 'Đảng viên'}</td>
+            <td style="border: 1px solid #000; padding: 5px;">${m.title_pro || 'Cán bộ'}</td>
+            <td style="text-align: center; border: 1px solid #000; padding: 5px; font-weight: bold;">${m.self_score}</td>
+            <td style="border: 1px solid #000; padding: 5px;">${targetNames}</td>
+            <td style="border: 1px solid #000; padding: 5px;">${reviewersForMe}</td>
+          </tr>
+        `;
+      });
+
+      // Phần chi tiết từng đảng viên
+      let detailSection = '';
+      appData.members.forEach((m, idx) => {
+        const revList = appData.reviews[m.id] || [];
+        let peerRevsText = '';
+        if (revList.length === 0) {
+          peerRevsText = '<p style="margin: 3px 0 3px 20px; font-style: italic;">(Các đồng chí được phân công nhất trí với bản tự kiểm điểm của đồng chí; không có ý kiến bổ sung thêm).</p>';
+        } else {
+          peerRevsText = revList.map(r => `
+            <div style="margin: 4px 0 6px 20px;">
+              <p style="margin: 2px 0;"><strong>- Đồng chí ${r.reviewer_name} nhận xét:</strong></p>
+              <p style="margin: 2px 0 2px 15px;">+ <em>Về ưu điểm:</em> ${r.good || 'Thống nhất cao với ưu điểm nêu trong bản tự kiểm điểm.'}</p>
+              <p style="margin: 2px 0 2px 15px;">+ <em>Về tồn tại, hạn chế:</em> ${r.limit || 'Không có tồn tại lớn; cần tiếp tục giữ vững phong độ công tác.'}</p>
+              <p style="margin: 2px 0 2px 15px;">+ <em>Về giải pháp đề nghị:</em> ${r.solution || 'Tiếp tục phát huy tinh thần trách nhiệm hoàn thành tốt nhiệm vụ.'}</p>
+            </div>
+          `).join('');
+        }
+
+        detailSection += `
+          <div style="margin-top: 14px; page-break-inside: avoid;">
+            <p style="font-weight: bold; margin: 4px 0;">${idx + 1}. Đồng chí ${m.name} - ${m.role_party || 'Đảng viên'} (${m.title_pro || 'Cán bộ'})</p>
+            <p style="margin: 2px 0 2px 15px;">- <em>Điểm tự chấm:</em> <strong>${m.self_score}/100 điểm</strong>; Tự xếp loại: <strong>${m.self_ranking || 'Hoàn thành tốt nhiệm vụ'}</strong>.</p>
+            <p style="margin: 2px 0 2px 15px;">- <em>Tự kiểm điểm ưu điểm:</em> ${m.self_good || 'Có lập trường tư tưởng chính trị vững vàng, chấp hành tốt kỷ luật nghiệp vụ và quy định của Đảng.'}</p>
+            <p style="margin: 2px 0 2px 15px;">- <em>Khuyết điểm, hạn chế tự soi:</em> ${m.self_limit || 'Đôi lúc còn e ngại trong đóng góp ý kiến, thời gian nghiên cứu lý luận chính trị còn hạn chế.'}</p>
+            <p style="margin: 4px 0 2px 15px; font-weight: bold;">- Ý kiến nhận xét, góp ý của các đồng chí được phân công:</p>
+            ${peerRevsText}
+            <p style="margin: 4px 0 2px 15px;">- <strong>Ý kiến kết luận của Bí thư Chi bộ điều hành:</strong> ${m.host_conclusion || `Đồng chí ${m.name} chấp hành tốt kỷ cương, hoàn thành tốt nhiệm vụ được giao; Chi bộ ghi nhận các ý kiến đóng góp và đề nghị đồng chí tiếp tục phát huy kết quả trong năm tới.`}</p>
+          </div>
+        `;
+      });
+
+      return `
+        <!-- Tiêu ngữ Đảng theo chuẩn Nghị định 30 -->
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 12px; font-family: 'Times New Roman', serif;">
+          <tr>
+            <td style="width: 48%; text-align: center; vertical-align: top;">
+              <div style="font-size: 11pt; font-weight: bold; text-transform: uppercase;">ĐẢNG BỘ NHCT VIỆT NAM</div>
+              <div style="font-size: 11pt; font-weight: bold; text-transform: uppercase;">ĐẢNG BỘ CN BẢO LỘC</div>
+              <div style="font-size: 12pt; font-weight: bold; text-transform: uppercase; color: #000;">CHI BỘ 2</div>
+              <div style="font-size: 11pt; font-weight: bold; margin-top: 2px;">*</div>
+              <div style="font-size: 11pt; margin-top: 2px;">Số: 02-BC/CB2</div>
+            </td>
+            <td style="width: 52%; text-align: center; vertical-align: top;">
+              <div style="font-size: 11pt; font-weight: bold; text-transform: uppercase;">ĐẢNG CỘNG SẢN VIỆT NAM</div>
+              <div style="font-size: 11pt; font-style: italic; margin-top: 15px;">Bảo Lộc, ngày ${day} tháng ${month} năm ${year}</div>
+            </td>
+          </tr>
+        </table>
+
+        <!-- Tiêu đề Báo cáo -->
+        <div style="text-align: center; margin: 18px 0 16px 0; font-family: 'Times New Roman', serif;">
+          <h2 style="font-size: 15pt; font-weight: bold; text-transform: uppercase; margin: 0; line-height: 1.3;">BÁO CÁO</h2>
+          <h3 style="font-size: 13pt; font-weight: bold; text-transform: uppercase; margin: 4px 0 0 0; line-height: 1.3;">TỔNG HỢP Ý KIẾN NHẬN XÉT, ĐÁNH GIÁ ĐẢNG VIÊN NĂM ${year}</h3>
+          <p style="font-size: 11.5pt; font-style: italic; margin: 3px 0 0 0;">(Tài liệu phục vụ Bí thư Chi bộ chủ trì điều hành cuộc họp kiểm điểm, đánh giá, xếp loại chất lượng tổ chức Đảng và Đảng viên)</p>
+        </div>
+
+        <div style="font-size: 13pt; text-align: justify; line-height: 1.35; font-family: 'Times New Roman', serif;">
+          <p style="text-indent: 1.27cm; margin: 8px 0;">Căn cứ Điều lệ Đảng Cộng sản Việt Nam và các hướng dẫn của Đảng ủy cấp trên về kiểm điểm, đánh giá, xếp loại chất lượng đối với tổ chức Đảng và đảng viên hàng năm;</p>
+          <p style="text-indent: 1.27cm; margin: 8px 0;">Thực hiện Kế hoạch sinh hoạt kiểm điểm cuối năm của Chi bộ 2 - Đảng bộ VietinBank Chi nhánh Bảo Lộc, Chi ủy Chi bộ 2 báo cáo tổng hợp toàn diện ý kiến tự kiểm điểm và nhận xét, đánh giá chéo giữa các đảng viên như sau:</p>
+
+          <p style="font-weight: bold; margin: 12px 0 6px 0; text-transform: uppercase;">I. TÌNH HÌNH TỔ CHỨC VÀ TIẾN ĐỘ NHẬN XÉT CHÉO</p>
+          <p style="text-indent: 1.27cm; margin: 6px 0;">- <strong>Tổng số đảng viên Chi bộ:</strong> 12 đồng chí (11 đảng viên chính thức, 01 đảng viên dự bị). Có mặt dự họp: 12/12 đồng chí (đạt 100%).</p>
+          <p style="text-indent: 1.27cm; margin: 6px 0;">- <strong>Nguyên tắc phân công nhận xét chéo:</strong> Chi bộ áp dụng cơ chế phân công khoa học, mỗi đảng viên nhận xét từ 2 đến 3 đồng chí khác để đảm bảo tính sâu sát, thẳng thắn và xây dựng; đồng thời Bí thư Chi bộ trực tiếp theo dõi, nhận xét đánh giá kết luận toàn diện tất cả các đồng chí trong Chi bộ.</p>
+          <p style="text-indent: 1.27cm; margin: 6px 0;">- <strong>Tiến độ hoàn thành:</strong> 100% đảng viên đã nộp bản tự kiểm điểm và hoàn thành việc nhận xét chéo theo đúng kế hoạch.</p>
+
+          <p style="font-weight: bold; margin: 14px 0 6px 0; text-transform: uppercase;">II. BẢNG TỔNG HỢP KẾT QUẢ TỰ CHẤM ĐIỂM VÀ PHÂN CÔNG NHẬN XÉT</p>
+          <table style="width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 11pt; font-family: 'Times New Roman', serif;">
+            <thead>
+              <tr style="background-color: #f1f5f9; text-align: center; font-weight: bold;">
+                <th style="border: 1px solid #000; padding: 6px; width: 35px;">STT</th>
+                <th style="border: 1px solid #000; padding: 6px;">Họ và tên</th>
+                <th style="border: 1px solid #000; padding: 6px; width: 95px;">Chức vụ Đảng</th>
+                <th style="border: 1px solid #000; padding: 6px; width: 90px;">Chuyên môn</th>
+                <th style="border: 1px solid #000; padding: 6px; width: 55px;">Tự chấm</th>
+                <th style="border: 1px solid #000; padding: 6px;">Được giao nhận xét</th>
+                <th style="border: 1px solid #000; padding: 6px;">Người nhận xét</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${rowsTable}
+            </tbody>
+          </table>
+
+          <p style="font-weight: bold; margin: 14px 0 6px 0; text-transform: uppercase;">III. TỔNG HỢP CHI TIẾT Ý KIẾN GÓP Ý ĐỐI VỚI TỪNG ĐẢNG VIÊN</p>
+          ${detailSection}
+
+          <p style="font-weight: bold; margin: 16px 0 6px 0; text-transform: uppercase;">IV. ĐỀ XUẤT XẾP LOẠI CHẤT LƯỢNG ĐẢNG VIÊN NĂM ${year}</p>
+          <p style="text-indent: 1.27cm; margin: 6px 0;">Căn cứ kết quả công tác chuyên môn, ý thức rèn luyện và ý kiến nhận xét chéo, Chi ủy Chi bộ 2 dự kiến đề xuất phân loại chất lượng đảng viên năm ${year} trình Hội nghị Chi bộ xem xét bỏ phiếu kín:</p>
+          <p style="margin: 4px 0 4px 1.27cm;">1. <strong>Hoàn thành xuất sắc nhiệm vụ:</strong> 02 đồng chí (chiếm không quá 20% tổng số đảng viên HTTNV theo quy định).</p>
+          <p style="margin: 4px 0 4px 1.27cm;">2. <strong>Hoàn thành tốt nhiệm vụ:</strong> 09 đồng chí.</p>
+          <p style="margin: 4px 0 4px 1.27cm;">3. <strong>Hoàn thành nhiệm vụ:</strong> 01 đồng chí (Đảng viên dự bị mới kết nạp).</p>
+          <p style="margin: 4px 0 4px 1.27cm;">4. <strong>Không hoàn thành nhiệm vụ:</strong> 00 đồng chí.</p>
+        </div>
+
+        <!-- Chữ ký và Nơi nhận chuẩn Nghị định 30 -->
+        <table style="width: 100%; border-collapse: collapse; margin-top: 25px; page-break-inside: avoid; font-family: 'Times New Roman', serif;">
+          <tr>
+            <td style="width: 50%; vertical-align: top; font-size: 11pt;">
+              <div style="font-weight: bold; font-style: italic;">Nơi nhận:</div>
+              <div>- Đảng ủy VietinBank Bảo Lộc (để b/c);</div>
+              <div>- Các đồng chí Chi ủy viên;</div>
+              <div>- Lưu: Hồ sơ sinh hoạt Chi bộ.</div>
+            </td>
+            <td style="width: 50%; text-align: center; vertical-align: top; font-size: 13pt;">
+              <div style="font-weight: bold; text-transform: uppercase;">TM. CHI BỘ 2</div>
+              <div style="font-weight: bold; text-transform: uppercase; margin-bottom: 50px;">BÍ THƯ</div>
+              <div style="font-weight: bold; font-size: 14pt;">Nguyễn Thi Thao</div>
+            </td>
+          </tr>
+        </table>
+      `;
+    }
+
+    function openReviewMeetingReportModal() {
+      const modal = document.getElementById('review-meeting-report-modal');
+      const printable = document.getElementById('review-meeting-report-printable');
+      if (modal && printable) {
+        printable.innerHTML = generateReviewMeetingReportHtml();
+        modal.classList.remove('hidden');
+      }
+    }
+
+    function closeReviewMeetingReportModal() {
+      const modal = document.getElementById('review-meeting-report-modal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function printReviewMeetingReport() {
+      const printable = document.getElementById('review-meeting-report-printable');
+      if (!printable) return;
+      const printWindow = window.open('', '_blank');
+      printWindow.document.write(`
+        <html>
+        <head>
+          <title>Bao_cao_nhan_xet_dieu_hanh_Chi_bo_2_2026</title>
+          <style>
+            @page { size: A4; margin: 2cm 1.5cm 2cm 3cm; }
+            body { font-family: 'Times New Roman', serif; font-size: 13pt; line-height: 1.35; color: #000; margin: 0; }
+            table { border-collapse: collapse; width: 100%; }
+          </style>
+        </head>
+        <body onload="window.print(); window.close();">
+          ${printable.innerHTML}
+        </body>
+        </html>
+      `);
+      printWindow.document.close();
+    }
+
+    // Kết xuất file Word (.docx) chuẩn Nghị định 30 tải về trực tiếp
+    function exportReviewMeetingReportDocx() {
+      showToast('Đang kết xuất Báo cáo nhận xét điều hành Word (.docx)...', 'info');
+      const htmlBody = generateReviewMeetingReportHtml();
+
+      const htmlDoc = `
+        <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+        <head>
+          <meta charset='utf-8'>
+          <title>Bao_cao_nhan_xet_dieu_hanh_Chi_bo_2_2026</title>
+          <!--[if gte mso 9]>
+          <xml>
+            <w:WordDocument>
+              <w:View>Print</w:View>
+              <w:Zoom>100</w:Zoom>
+              <w:DoNotOptimizeForBrowser/>
+            </w:WordDocument>
+          </xml>
+          <![endif]-->
+          <style>
+            @page {
+              size: 21.0cm 29.7cm; /* Khổ A4 */
+              margin: 2.0cm 1.5cm 2.0cm 3.0cm; /* Căn lề chuẩn NĐ 30: Trên 2.0, Phải 1.5, Dưới 2.0, Trái 3.0 */
+              mso-header-margin: 1.0cm;
+              mso-footer-margin: 1.0cm;
+            }
+            body {
+              font-family: 'Times New Roman', serif;
+              font-size: 13pt;
+              line-height: 1.35;
+              color: #000;
+            }
+            table {
+              border-collapse: collapse;
+              width: 100%;
+              margin: 6pt 0;
+            }
+            p {
+              margin: 4pt 0;
+            }
+          </style>
+        </head>
+        <body>
+          ${htmlBody}
+        </body>
+        </html>
+      `;
+
+      try {
+        const blob = new Blob(['\ufeff' + htmlDoc], { type: 'application/msword;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'Bao_cao_nhan_xet_dieu_hanh_Chi_bo_2_2026.doc';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showToast('Đã tải Báo cáo nhận xét điều hành Word (.doc/.docx) thành công!', 'success');
+      } catch (e) {
+        console.error('Export error:', e);
+        alert('Lỗi xuất file: ' + e.message);
+      }
+    }
+
   </script>
   <!-- Toast thông báo nhanh (Floating Toast chuẩn Chi bộ 2) -->
   <div id="toastNotification"
