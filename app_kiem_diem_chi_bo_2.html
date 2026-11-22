@@ -4097,7 +4097,7 @@
                   Kho 8 câu mẫu ▾
                 </button>
               </div>
-              <textarea id="rev-good-${tid}" rows="2" class="w-full p-2.5 border border-slate-300 rounded-xl focus:ring-1 focus:ring-purple-500 text-xs leading-relaxed">${goodVal}</textarea>
+              <textarea id="rev-good-${tid}" rows="3" class="w-full p-2.5 border border-slate-300 rounded-xl focus:ring-1 focus:ring-purple-500 text-xs leading-relaxed font-normal whitespace-pre-wrap" placeholder="Nhập đánh giá ưu điểm (ấn Enter để xuống dòng)...">${goodVal}</textarea>
               <div class="flex flex-wrap items-center gap-1 pt-0.5">
                 <span class="text-[10px] font-bold text-slate-400 mr-1"><i class="fa-solid fa-bolt text-amber-500"></i> Chọn nhanh:</span>
                 <button type="button" onclick="appendPeerSuggestion(${tid}, 'good', 0)" class="text-[10px] px-2 py-0.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 rounded-md transition">+ Tư tưởng chính trị</button>
@@ -4119,7 +4119,7 @@
                   Kho 8 câu mẫu ▾
                 </button>
               </div>
-              <textarea id="rev-limit-${tid}" rows="2" class="w-full p-2.5 border border-slate-300 rounded-xl focus:ring-1 focus:ring-purple-500 text-xs leading-relaxed">${limitVal}</textarea>
+              <textarea id="rev-limit-${tid}" rows="3" class="w-full p-2.5 border border-slate-300 rounded-xl focus:ring-1 focus:ring-purple-500 text-xs leading-relaxed font-normal whitespace-pre-wrap" placeholder="Nhập hạn chế khuyết điểm cần khắc phục (ấn Enter để xuống dòng)...">${limitVal}</textarea>
               <div class="flex flex-wrap items-center gap-1 pt-0.5">
                 <span class="text-[10px] font-bold text-slate-400 mr-1"><i class="fa-solid fa-bolt text-amber-500"></i> Chọn nhanh:</span>
                 <button type="button" onclick="appendPeerSuggestion(${tid}, 'limit', 0)" class="text-[10px] px-2 py-0.5 bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 rounded-md transition">+ Chưa mạnh dạn đề xuất</button>
@@ -4136,7 +4136,7 @@
                 <i class="fa-solid fa-lightbulb text-blue-600"></i>
                 <span>3. Đề nghị, phương hướng giải pháp:</span>
               </label>
-              <input type="text" id="rev-sol-${tid}" class="w-full p-2.5 border border-slate-300 rounded-xl focus:ring-1 focus:ring-purple-500 text-xs" value="${solVal}">
+              <textarea id="rev-sol-${tid}" rows="3" class="w-full p-2.5 border border-slate-300 rounded-xl focus:ring-1 focus:ring-purple-500 text-xs leading-relaxed font-normal whitespace-pre-wrap" placeholder="Nhập đề nghị, phương hướng giải pháp (ấn Enter để xuống dòng)...">${solVal}</textarea>
               <div class="flex flex-wrap items-center gap-1 pt-0.5">
                 <span class="text-[10px] font-bold text-slate-400 mr-1"><i class="fa-solid fa-bolt text-amber-500"></i> Gợi ý:</span>
                 <button type="button" onclick="setPeerSolution(${tid}, 'Tiếp tục phát huy thế mạnh chuyên môn và tinh thần đoàn kết nội bộ.')" class="text-[10px] px-2 py-0.5 bg-blue-50 hover:bg-blue-100 text-blue-800 border border-blue-200 rounded-md transition">Phát huy chuyên môn</button>
@@ -5546,10 +5546,10 @@
         if (!text) return;
         if (!input.value.trim()) {
           const targetMem = appData.members.find(x => x.id === tid);
-          input.value = `Đồng chí ${targetMem?.name || ''}: ${text}`;
+          input.value = `Đồng chí ${targetMem?.name || ''}:\n- ${text}`;
         } else {
           if (!input.value.includes(text)) {
-            input.value = input.value.trim() + ' ' + text;
+            input.value = input.value.trim() + '\n- ' + text;
           }
         }
         showToast('Đã thêm câu ưu điểm gợi ý!', 'info');
@@ -5559,10 +5559,10 @@
         const text = GOOGLE_FORM_PEER_LIMIT_ITEMS[index];
         if (!text) return;
         if (!input.value.trim()) {
-          input.value = text;
+          input.value = `- ${text}`;
         } else {
           if (!input.value.includes(text)) {
-            input.value = input.value.trim() + ' ' + text;
+            input.value = input.value.trim() + '\n- ' + text;
           }
         }
         showToast('Đã thêm câu hạn chế gợi ý!', 'info');
@@ -5571,7 +5571,13 @@
         if (!input) return;
         const text = GOOGLE_FORM_PEER_SOL_ITEMS[index];
         if (!text) return;
-        input.value = text;
+        if (!input.value.trim()) {
+          input.value = `- ${text}`;
+        } else {
+          if (!input.value.includes(text)) {
+            input.value = input.value.trim() + '\n- ' + text;
+          }
+        }
         showToast('Đã cập nhật phương hướng giải pháp!', 'info');
       }
     }
@@ -5585,7 +5591,11 @@
       }
       const input = document.getElementById(`rev-sol-${tid}`);
       if (input) {
-        input.value = text;
+        if (!input.value.trim()) {
+          input.value = text;
+        } else if (!input.value.includes(text)) {
+          input.value = input.value.trim() + '\n- ' + text;
+        }
         showToast('Đã cập nhật giải pháp đề nghị!', 'info');
       }
     }
@@ -5623,9 +5633,9 @@
       const limitInput = document.getElementById(`rev-limit-${tid}`);
       const solInput = document.getElementById(`rev-sol-${tid}`);
 
-      if (goodInput) goodInput.value = `Đồng chí ${targetMem.name} ${g1.toLowerCase().replace('lập trường', 'có lập trường')} ${g2}`;
-      if (limitInput) limitInput.value = l1;
-      if (solInput) solInput.value = s1;
+      if (goodInput) goodInput.value = `Đồng chí ${targetMem.name}:\n- ${g1}\n- ${g2}`;
+      if (limitInput) limitInput.value = `- ${l1}`;
+      if (solInput) solInput.value = `- ${s1}`;
 
       showToast(`Đã nạp bộ nhận xét chuẩn cho đ/c ${targetMem.name}!`, 'success');
     }
