@@ -919,23 +919,32 @@
           </div>
 
           <div class="flex items-center flex-wrap gap-2">
-            <button onclick="openManualAssignModal()"
-              class="btn-3d text-xs bg-vtb-navy hover:bg-vtb-navyDark text-white px-3.5 py-1.5 rounded-xl font-bold flex items-center gap-1.5 shadow transition">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-              </svg>
-              Phân Công Nhận Xét
-            </button>
+            <!-- Phân quyền điều phối: Chỉ Bí thư / Chi ủy được thấy nút phân công -->
+            <div id="leader-assign-tools" class="flex items-center gap-2">
+              <button onclick="openManualAssignModal()"
+                class="btn-3d text-xs bg-vtb-navy hover:bg-vtb-navyDark text-white px-3.5 py-1.5 rounded-xl font-bold flex items-center gap-1.5 shadow transition">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                </svg>
+                Phân Công Nhận Xét
+              </button>
 
-            <button onclick="autoAssignBalancedPeerReviews()"
-              class="btn-3d text-xs bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-1.5 rounded-xl font-bold flex items-center gap-1.5 shadow transition">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-              </svg>
-              Tự Động Chia Cân Bằng (2 người/đồng chí)
-            </button>
+              <button onclick="autoAssignBalancedPeerReviews()"
+                class="btn-3d text-xs bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-1.5 rounded-xl font-bold flex items-center gap-1.5 shadow transition">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+                Tự Động Chia Cân Bằng (2 người/đồng chí)
+              </button>
+            </div>
+
+            <!-- Nhãn thông báo cho Đảng viên thường: Cố định theo chỉ đạo của Bí thư -->
+            <div id="member-assign-notice" class="hidden text-xs bg-slate-100 text-slate-700 border border-slate-200 px-3 py-1.5 rounded-xl font-bold flex items-center gap-1.5">
+              <i class="fa-solid fa-lock text-amber-600"></i>
+              <span>Phân công cố định bởi Bí thư Chi bộ</span>
+            </div>
 
             <button onclick="toggleOpinionsVisibility()" id="btn-toggle-opinions"
               class="text-xs bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1.5 rounded-lg font-bold flex items-center gap-1 transition">
@@ -2345,11 +2354,17 @@
         else memberTools.classList.add('hidden');
       }
 
-      // Tab 4: Điều phối phân công nhận xét (Chỉ Bí thư được phân công)
+      // Tab 4: Điều phối phân công nhận xét (Chỉ Bí thư / Chi ủy được phân công)
       const leaderAssignTools = document.getElementById('leader-assign-tools');
+      const memberAssignNotice = document.getElementById('member-assign-notice');
       if (leaderAssignTools) {
-        if (isLeader) leaderAssignTools.classList.remove('hidden');
-        else leaderAssignTools.classList.add('hidden');
+        if (isLeader) {
+          leaderAssignTools.classList.remove('hidden');
+          if (memberAssignNotice) memberAssignNotice.classList.add('hidden');
+        } else {
+          leaderAssignTools.classList.add('hidden');
+          if (memberAssignNotice) memberAssignNotice.classList.remove('hidden');
+        }
       }
 
       const curRevDisp = document.getElementById('current-reviewer-display');
@@ -2385,13 +2400,15 @@
       const newId = parseInt(val);
       const targetMember = appData.members.find(m => m.id === newId);
 
-      // Nếu chuyển sang Bí thư hoặc Phó Bí thư, có thể xác nhận PIN để bảo vệ quyền điều hành
       appData.current_user_id = newId;
       try {
         localStorage.setItem('chibo2_active_user_id', String(newId));
+        localStorage.setItem('chibo2_session_user', JSON.stringify(targetMember));
       } catch (e) { }
 
+      applyRolePermissions();
       updateCurrentUserInfo();
+      renderPeerAssignmentMatrix();
       renderMyReviewTasks();
       renderSecretBallotSection();
       showToast(`Đã chuyển sang vai trò: Đ/c ${targetMember ? targetMember.name : ''}`, 'info');
@@ -3568,6 +3585,13 @@
     // TAB 4: PHÂN CÔNG & NHẬN XÉT CHÉO
     // Tự động phân công nhận xét chéo cân bằng (Luôn đồng bộ chuẩn xác tên cán bộ)
     function autoAssignBalancedPeerReviews(showMsg = true) {
+      const cur = appData.members.find(x => x.id === appData.current_user_id) || appData.members[0];
+      const isLeader = (cur.role_party === 'Bí thư Chi bộ' || cur.role_party === 'Phó Bí thư Chi bộ');
+      if (!isLeader) {
+        showToast('Chỉ Bí thư Chi bộ mới có quyền tự động chia cân bằng!', 'warning');
+        return;
+      }
+
       const members = appData.members;
       const n = members.length;
       if (n < 3) return;
@@ -3645,11 +3669,33 @@
           if (revs.some(r => r.reviewer_id === m.id)) doneCount++;
         });
 
+        const cur = appData.members.find(x => x.id === appData.current_user_id) || appData.members[0];
+        const isLeader = (cur.role_party === 'Bí thư Chi bộ' || cur.role_party === 'Phó Bí thư Chi bộ');
+        const isMyRow = (m.id === cur.id);
+
+        let actionCellHtml = '';
+        if (isLeader) {
+          actionCellHtml = `
+            <button onclick="openManualAssignModal(${m.id})" class="px-2.5 py-1 text-xs bg-slate-100 hover:bg-vtb-navy hover:text-white text-vtb-navy font-bold rounded border border-slate-300 transition flex items-center justify-center gap-1 mx-auto shadow-sm" title="Điều chỉnh phân công">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+              Phân công
+            </button>
+          `;
+        } else {
+          actionCellHtml = `
+            <span class="inline-flex items-center gap-1 text-[11px] font-bold text-slate-500 bg-slate-100 px-2 py-0.5 rounded border border-slate-200" title="Chỉ Bí thư Chi bộ mới có quyền thay đổi phân công">
+              <i class="fa-solid fa-lock text-[10px] text-amber-600"></i> Cố định
+            </span>
+          `;
+        }
+
         const tr = document.createElement('tr');
-        tr.className = 'hover:bg-slate-50 transition';
+        tr.className = `transition ${isMyRow ? 'bg-blue-50/70 border-l-4 border-vtb-navy' : 'hover:bg-slate-50'}`;
         tr.innerHTML = `
           <td class="p-2.5 text-center font-bold text-slate-500">${idx + 1}</td>
-          <td class="p-2.5 font-bold text-slate-800">${m.name}</td>
+          <td class="p-2.5 font-bold ${isMyRow ? 'text-vtb-navy' : 'text-slate-800'}">
+            ${m.name} ${isMyRow ? '<span class="ml-1 text-[10px] font-black px-1.5 py-0.5 bg-vtb-navy text-white rounded">Bạn</span>' : ''}
+          </td>
           <td class="p-2.5 text-vtb-navy font-medium">${targetNames}</td>
           <td class="p-2.5 text-center">
             <span class="px-2 py-0.5 rounded text-[11px] font-bold ${doneCount === assignedTargets.length && assignedTargets.length > 0 ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}">
@@ -3658,10 +3704,7 @@
           </td>
           <td class="p-2.5 text-slate-600 text-[11px]">${reviewersForMe.join(', ') || 'Chưa có'}</td>
           <td class="p-2.5 text-center">
-            <button onclick="openManualAssignModal(${m.id})" class="px-2.5 py-1 text-xs bg-slate-100 hover:bg-vtb-navy hover:text-white text-vtb-navy font-bold rounded border border-slate-300 transition flex items-center justify-center gap-1 mx-auto shadow-sm">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
-              Phân công
-            </button>
+            ${actionCellHtml}
           </td>
         `;
         tbody.appendChild(tr);
@@ -3674,6 +3717,14 @@
     let currentAssignReviewerId = null;
 
     function openManualAssignModal(reviewerId = null) {
+      const cur = appData.members.find(x => x.id === appData.current_user_id) || appData.members[0];
+      const isLeader = (cur.role_party === 'Bí thư Chi bộ' || cur.role_party === 'Phó Bí thư Chi bộ');
+      if (!isLeader) {
+        showToast('Chỉ Bí thư Chi bộ mới có quyền phân công điều phối nhận xét!', 'warning');
+        alert('⚠️ Giới hạn quyền hạn:\n\nChức năng phân công nhận xét chỉ dành riêng cho Bí thư / Ban Chi ủy. Các đảng viên khác thực hiện nhận xét theo đúng danh sách đã được phân công.');
+        return;
+      }
+
       if (!appData.members || appData.members.length === 0) {
         alert('Danh sách đảng viên trống!');
         return;
@@ -3895,7 +3946,18 @@
       }
     }
 
-    // Hiển thị danh sách nhận xét của cá nhân với đồng bộ tên TUYỆT ĐỐI và tích hợp chuẩn Google Form
+    function notifyLockedReview(targetName) {
+      const cur = appData.members.find(x => x.id === appData.current_user_id) || appData.members[0];
+      const targets = appData.assignments[cur.id] || [];
+      const targetNames = targets.map(tid => {
+        const m = appData.members.find(x => x.id === tid);
+        return m ? m.name : tid;
+      }).join(', ');
+
+      alert(`🔒 CHỨC NĂNG ĐÃ KHÓA:\n\nĐồng chí ${cur.name} không được phân công nhận xét đồng chí ${targetName}.\n\nTheo quy chế phân công của Chi bộ 2, đồng chí chỉ nhận xét đúng các cán bộ đã được phân công (${targetNames || 'chưa có'}).`);
+    }
+
+    // Hiển thị danh sách nhận xét của cá nhân với phân quyền chặt chẽ và khóa cán bộ ngoài phân công
     function renderMyReviewTasks() {
       const container = document.getElementById('my-review-tasks-container');
       container.innerHTML = '';
@@ -3903,9 +3965,58 @@
       const currentReviewer = appData.members.find(x => x.id === appData.current_user_id) || appData.members[0];
       const targets = appData.assignments[currentReviewer.id] || [];
 
+      // Phân tách: Cán bộ ĐƯỢC PHÂN CÔNG vs Cán bộ KHÁC (BỊ KHÓA)
+      const targetMems = targets.map(tid => appData.members.find(x => x.id === tid)).filter(Boolean);
+      const lockedMembers = appData.members.filter(m => m.id !== currentReviewer.id && !targets.includes(m.id));
+      const targetNamesStr = targetMems.map(m => m.name).join(', ');
+
+      // 1. BANNER PHÂN QUYỀN RÕ RÀNG
+      const permissionBanner = document.createElement('div');
+      permissionBanner.className = 'col-span-1 md:col-span-2 p-4 bg-gradient-to-r from-emerald-50 via-teal-50 to-blue-50 border border-emerald-200 rounded-2xl flex flex-wrap items-center justify-between gap-3 shadow-xs mb-1';
+      permissionBanner.innerHTML = `
+        <div class="flex items-start gap-3">
+          <span class="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-600 to-teal-700 text-white flex items-center justify-center text-sm font-bold shadow-sm shrink-0 mt-0.5">
+            <i class="fa-solid fa-user-shield"></i>
+          </span>
+          <div>
+            <div class="text-xs font-black text-slate-800 flex flex-wrap items-center gap-2">
+              <span>Phân quyền nhận xét:</span>
+              <span class="text-vtb-red uppercase font-black text-sm">${currentReviewer.name}</span>
+              <span class="px-2 py-0.5 rounded text-[10px] font-black bg-emerald-100 text-emerald-800 border border-emerald-300">
+                ${currentReviewer.role_party}
+              </span>
+            </div>
+            <p class="text-xs text-slate-700 mt-1">
+              🎯 Đồng chí <strong>chỉ được phép nhận xét</strong> cho <strong>${targetMems.length} cán bộ</strong> đã được Chi bộ phân công: 
+              <span class="font-extrabold text-vtb-navy">${targetNamesStr || 'Chưa phân công'}</span>.
+            </p>
+            <p class="text-[11px] text-slate-500 mt-0.5 flex items-center gap-1">
+              <i class="fa-solid fa-lock text-amber-600"></i>
+              <span>Toàn bộ <strong>${lockedMembers.length} cán bộ còn lại</strong> trong Chi bộ đã được <strong>khóa chức năng nhận xét</strong> theo quy chế sinh hoạt Đảng.</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-black px-3 py-1.5 bg-white text-emerald-800 rounded-xl border border-emerald-300 shadow-xs flex items-center gap-1.5">
+            <i class="fa-solid fa-circle-check text-emerald-600"></i> Được phân công (${targetMems.length})
+          </span>
+          <span class="text-xs font-black px-3 py-1.5 bg-white text-slate-600 rounded-xl border border-slate-300 shadow-xs flex items-center gap-1.5">
+            <i class="fa-solid fa-lock text-amber-600"></i> Đã khóa nhận xét (${lockedMembers.length})
+          </span>
+        </div>
+      `;
+      container.appendChild(permissionBanner);
+
       if (targets.length === 0) {
-        container.innerHTML = '<p class="text-xs text-slate-400 p-4">Đồng chí chưa được phân công nhận xét ai. Bí thư vui lòng bấm "Tự Động Chia Cân Bằng".</p>';
-        return;
+        const emptyDiv = document.createElement('div');
+        emptyDiv.className = 'col-span-1 md:col-span-2 text-center p-8 bg-amber-50 rounded-2xl border border-amber-200 text-xs text-amber-900';
+        emptyDiv.innerHTML = `
+          <i class="fa-solid fa-circle-exclamation text-2xl text-amber-600 mb-2 block"></i>
+          <strong>Đồng chí chưa được phân công nhận xét ai.</strong><br>
+          <span class="text-slate-600">Vui lòng liên hệ đồng chí Bí thư Chi bộ (nguyenthithao) để được điều phối phân công nhận xét chéo.</span>
+        `;
+        container.appendChild(emptyDiv);
       }
 
       targets.forEach((tid, tIdx) => {
@@ -4045,11 +4156,64 @@
         `;
         container.appendChild(card);
       });
+
+      // 2. KHU VỰC CÁC CÁN BỘ KHÁC: KHÓA CHỨC NĂNG NHẬN XÉT
+      if (lockedMembers.length > 0) {
+        const lockedSection = document.createElement('div');
+        lockedSection.className = 'col-span-1 md:col-span-2 mt-6 pt-5 border-t border-slate-200 space-y-3';
+        lockedSection.innerHTML = `
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <h4 class="text-xs font-bold text-slate-700 flex items-center gap-2">
+              <i class="fa-solid fa-lock text-amber-600"></i>
+              <span>Danh Sách Cán Bộ Khác Không Thuộc Phân Công (${lockedMembers.length} đồng chí - ĐÃ KHÓA NHẬN XÉT)</span>
+            </h4>
+            <span class="text-[11px] text-slate-400 italic">
+              Theo quy định của Chi ủy, đồng chí chỉ nhận xét đúng các cán bộ được phân công
+            </span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+            ${lockedMembers.map(m => `
+              <div class="p-3 bg-slate-50/90 border border-slate-200 rounded-xl flex items-center justify-between gap-2 text-xs opacity-85 hover:opacity-100 transition shadow-xs">
+                <div class="min-w-0">
+                  <div class="font-bold text-slate-800 truncate flex items-center gap-1.5">
+                    <i class="fa-solid fa-user text-slate-400 text-[10px]"></i>
+                    <span>Đ/c ${m.name}</span>
+                  </div>
+                  <div class="text-[10px] text-slate-500 truncate">${m.role_party || 'Đảng viên'} • ${m.title_pro || 'Cán bộ'}</div>
+                </div>
+                <button type="button" onclick="notifyLockedReview('${m.name}')" class="shrink-0 px-2 py-1 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-lg text-[10px] font-bold border border-slate-300 flex items-center gap-1 cursor-pointer transition" title="Bấm để xem thông báo khóa">
+                  <i class="fa-solid fa-lock text-amber-700"></i>
+                  <span>Khóa nhận xét</span>
+                </button>
+              </div>
+            `).join('')}
+          </div>
+        `;
+        container.appendChild(lockedSection);
+      }
     }
 
     function savePeerReview(tid) {
       const currentReviewer = appData.members.find(x => x.id === appData.current_user_id) || appData.members[0];
-      const good = document.getElementById(`rev-good-${tid}`).value;
+      const assignedTargets = appData.assignments[currentReviewer.id] || [];
+
+      // KIỂM TRA PHÂN QUYỀN CHẶT CHẼ: Chặn hoàn toàn nếu không được phân công
+      if (!assignedTargets.includes(tid)) {
+        showToast('Đồng chí không được phân công nhận xét cán bộ này! Chức năng đã bị khóa.', 'error');
+        alert(`⚠️ Quyền hạn không hợp lệ!\n\nĐồng chí ${currentReviewer.name} chỉ được phân công nhận xét cho:\n${assignedTargets.map(id => {
+          const m = appData.members.find(x => x.id === id);
+          return '• Đ/c ' + (m ? m.name : id);
+        }).join('\n')}\n\nChức năng nhận xét các cán bộ khác đã bị khóa theo quy chế sinh hoạt Chi bộ.`);
+        return;
+      }
+
+      const goodInput = document.getElementById(`rev-good-${tid}`);
+      const limitInput = document.getElementById(`rev-limit-${tid}`);
+      const solInput = document.getElementById(`rev-sol-${tid}`);
+      if (!goodInput || !limitInput || !solInput) return;
+
+      const good = goodInput.value;
       const limit = document.getElementById(`rev-limit-${tid}`).value;
       const solution = document.getElementById(`rev-sol-${tid}`).value;
 
@@ -5369,6 +5533,12 @@
     }
 
     function appendPeerSuggestion(tid, fieldType, index) {
+      const currentReviewer = appData.members.find(x => x.id === appData.current_user_id) || appData.members[0];
+      const assignedTargets = appData.assignments[currentReviewer.id] || [];
+      if (!assignedTargets.includes(tid)) {
+        showToast('Chức năng nhận xét cán bộ này đã bị khóa!', 'warning');
+        return;
+      }
       if (fieldType === 'good') {
         const input = document.getElementById(`rev-good-${tid}`);
         if (!input) return;
@@ -5407,6 +5577,12 @@
     }
 
     function setPeerSolution(tid, text) {
+      const currentReviewer = appData.members.find(x => x.id === appData.current_user_id) || appData.members[0];
+      const assignedTargets = appData.assignments[currentReviewer.id] || [];
+      if (!assignedTargets.includes(tid)) {
+        showToast('Chức năng nhận xét cán bộ này đã bị khóa!', 'warning');
+        return;
+      }
       const input = document.getElementById(`rev-sol-${tid}`);
       if (input) {
         input.value = text;
@@ -5415,6 +5591,12 @@
     }
 
     function applyFullPeerSuggestion(tid) {
+      const currentReviewer = appData.members.find(x => x.id === appData.current_user_id) || appData.members[0];
+      const assignedTargets = appData.assignments[currentReviewer.id] || [];
+      if (!assignedTargets.includes(tid)) {
+        showToast('Chức năng nhận xét cán bộ này đã bị khóa!', 'warning');
+        return;
+      }
       const targetMem = appData.members.find(x => x.id === tid);
       if (!targetMem) return;
 
