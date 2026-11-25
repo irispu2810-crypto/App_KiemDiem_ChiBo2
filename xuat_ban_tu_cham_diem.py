@@ -261,9 +261,9 @@ def render_evaluation_section_in_doc(doc, data, target_val):
         good_val = col_eval.get('good', 'Chi bộ luôn giữ vững bản lĩnh chính trị vững vàng, chấp hành tuyệt đối các chủ trương đường lối của Đảng, chính sách pháp luật của Nhà nước và quy chế nội bộ của VietinBank. Lãnh đạo cán bộ, đảng viên đoàn kết, nỗ lực hoàn thành thắng lợi các chỉ tiêu kinh doanh được giao năm 2026.')
         limit_val = col_eval.get('limit', 'Công tác nắm bắt diễn biến tư tưởng cán bộ đôi lúc còn chưa chủ động; việc phối hợp giải quyết thủ tục nghiệp vụ giữa các bộ phận có thời điểm chưa thật sự đồng bộ.')
         sol_val = col_eval.get('sol', 'Tiếp tục đổi mới nội dung và phương thức sinh hoạt chi bộ, tăng cường công tác kiểm tra, giám sát thường xuyên; gắn việc thực hiện nhiệm vụ Đảng với nâng cao hiệu quả kinh doanh của Chi nhánh.')
-        form_code = "Mẫu 01-HD KĐ.ĐG"
-        title_text = f"BẢN TỰ KIỂM ĐIỂM VÀ TỰ CHẤM ĐIỂM ĐÁNH GIÁ, XẾP LOẠI\nCHẤT LƯỢNG TẬP THỂ {branch_name} NĂM {year}"
-        sub_title = "(Khối Doanh nghiệp Nhà nước — Quy định 366-QĐ/TW & Hướng dẫn 43-HD/BTCTW)"
+        form_code = "Mẫu 01"
+        title_text = f"BÁO CÁO KIỂM ĐIỂM, TỰ ĐÁNH GIÁ, XẾP LOẠI CHẤT LƯỢNG\nCỦA TẬP THỂ {branch_name}\nNăm {year}"
+        sub_title = ""
     else:
         mem_id = int(target_val)
         m = next((x for x in data.get('members', []) if x.get('id') == mem_id), None)
@@ -279,12 +279,12 @@ def render_evaluation_section_in_doc(doc, data, target_val):
             m.get('role_party') in ['Bí thư Chi bộ', 'Phó Bí thư Chi bộ', 'Chi ủy viên']
             or any(k in title_p for k in ['giám đốc', 'trưởng phòng', 'phó phòng', 'lãnh đạo', 'quản lý'])
         )
-        form_code = "Mẫu 02A-HD KĐ.ĐG" if is_sample_2a else "Mẫu 02B-HD KĐ.ĐG"
-        title_text = f"BẢN KIỂM ĐIỂM VÀ TỰ ĐÁNH GIÁ, XẾP LOẠI CHẤT LƯỢNG CÁ NHÂN\nNĂM {year}"
+        form_code = "Mẫu 02A" if is_sample_2a else "Mẫu 02B"
+        title_text = f"BẢN KIỂM ĐIỂM, TỰ ĐÁNH GIÁ, XẾP LOẠI CỦA CÁ NHÂN\nNăm {year}"
         sub_title = (
-            f"({form_code} — Cá nhân giữ chức vụ lãnh đạo, quản lý)"
+            "(Cá nhân giữ chức vụ lãnh đạo, quản lý)"
             if is_sample_2a
-            else f"({form_code} — Cá nhân không giữ chức vụ lãnh đạo, quản lý)"
+            else "(Cá nhân không giữ chức vụ lãnh đạo, quản lý)"
         )
 
     p_code = doc.add_paragraph()
@@ -342,7 +342,14 @@ def render_evaluation_section_in_doc(doc, data, target_val):
     r_sub.italic = True
     r_sub.font.size = Pt(11.5)
 
-    if not is_col:
+    if is_col:
+        p_intro = doc.add_paragraph()
+        p_intro.paragraph_format.space_after = Pt(4)
+        p_intro.add_run(
+            f"Căn cứ kết quả lãnh đạo, chỉ đạo thực hiện nhiệm vụ chính trị tại đơn vị; "
+            f"tập thể {branch_name} kiểm điểm, tự đánh giá, xếp loại chất lượng với các nội dung chủ yếu sau:"
+        )
+    else:
         p_info = doc.add_paragraph()
         p_info.paragraph_format.line_spacing = 1.2
         p_info.paragraph_format.space_after = Pt(4)
@@ -352,29 +359,128 @@ def render_evaluation_section_in_doc(doc, data, target_val):
         r_name.bold = True
         p_info.add_run("Ngày sinh: ").bold = True
         p_info.add_run(f"{m.get('dob', '01/01/1985')}\n")
-        
-        p_info.add_run("Chức vụ Đảng: ").bold = True
-        p_info.add_run(f"{m.get('role_party', 'Đảng viên')}          ")
-        p_info.add_run("Chức vụ chuyên môn: ").bold = True
-        p_info.add_run(f"{m.get('title_pro', 'Cán bộ')}\n")
-        
+        if is_sample_2a:
+            p_info.add_run("Chức vụ Đảng: ").bold = True
+            p_info.add_run(f"{m.get('role_party', 'Cấp ủy viên')}\n")
+            p_info.add_run("Chức vụ chính quyền: ").bold = True
+            p_info.add_run(f"{m.get('title_pro', 'Lãnh đạo quản lý')}\n")
+            p_info.add_run("Chức vụ đoàn thể: ").bold = True
+            p_info.add_run(f"{m.get('union_role', 'Không')}\n")
         p_info.add_run("Đơn vị công tác: ").bold = True
-        p_info.add_run(f"{m.get('dept', 'VietinBank Chi nhánh Bảo Lộc')}\n")
-        
-        p_info.add_run("Sinh hoạt tại: ").bold = True
-        p_info.add_run(f"{branch_name} — Đảng bộ VietinBank Chi nhánh Bảo Lộc ({m.get('status', 'Chính thức')})")
+        p_info.add_run(f"{m.get('dept', 'VietinBank Chi nhánh Bảo Lộc')}          ")
+        p_info.add_run("Chi bộ: ").bold = True
+        p_info.add_run(f"{branch_name}")
 
     criteria_groups = get_criteria_for_target(target_val, data)
-    computed_total = round(sum(float(it['score']) for g in criteria_groups for it in g['items'] if not it.get('is_header')), 1)
-    if computed_total.is_integer():
+    def grp_sum(g):
+        s = round(sum(float(it['score']) for it in g['items'] if not it.get('is_header')), 1)
+        return int(s) if s.is_integer() else s
+    g1_score = grp_sum(criteria_groups[0]) if len(criteria_groups) > 0 else 0
+    g2_score = grp_sum(criteria_groups[1]) if len(criteria_groups) > 1 else 0
+    computed_total = round(g1_score + g2_score, 1)
+    if float(computed_total).is_integer():
         computed_total = int(computed_total)
 
-    p_sec1 = doc.add_paragraph()
-    p_sec1.paragraph_format.space_before = Pt(6)
-    p_sec1.paragraph_format.space_after = Pt(4)
-    r_s1 = p_sec1.add_run(f"I. BẢNG TỰ CHẤM ĐIỂM THEO KHUNG TIÊU CHÍ NĂM {year} (THANG ĐIỂM 100)")
-    r_s1.bold = True
-    r_s1.font.size = Pt(12.5)
+    p_sec_a = doc.add_paragraph()
+    p_sec_a.paragraph_format.space_before = Pt(6)
+    p_sec_a.paragraph_format.space_after = Pt(4)
+    r_sa = p_sec_a.add_run("A. NỘI DUNG KIỂM ĐIỂM")
+    r_sa.bold = True
+    r_sa.font.size = Pt(12.5)
+
+    if is_col:
+        p_a1 = doc.add_paragraph()
+        p_a1.paragraph_format.line_spacing = 1.2
+        p_a1.add_run("I. Ưu điểm, kết quả đạt được\n").bold = True
+        col_prompts = [
+            "1. Việc chấp hành Cương lĩnh chính trị, Điều lệ Đảng, nghị quyết, chỉ thị, kết luận của Đảng, pháp luật của Nhà nước; nguyên tắc tổ chức và hoạt động của Đảng, nhất là nguyên tắc tập trung dân chủ; thực hiện quy chế làm việc.",
+            "2. Kết quả thực hiện các mục tiêu, chỉ tiêu, nhiệm vụ được đề ra trong nghị quyết đại hội nhiệm kỳ, kế hoạch, chương trình công tác năm, được cấp có thẩm quyền giao, phê duyệt và các nhiệm vụ phát sinh, đột xuất được cấp có thẩm quyền giao.",
+            "3. Công tác xây dựng, chỉnh đốn Đảng và hệ thống chính trị; xây dựng tổ chức bộ máy tinh gọn, hoạt động hiệu năng, hiệu lực, hiệu quả; tinh giản biên chế gắn với cải cách hành chính và chuyển đổi số; đấu tranh phòng, chống tham nhũng, lãng phí, quan liêu, tiêu cực và ngăn chặn, đẩy lùi sự suy thoái về tư tưởng chính trị, đạo đức, lối sống, \"tự diễn biến\", \"tự chuyển hoá\" trong nội bộ; công tác kiểm soát quyền lực, phòng, chống chạy chức, chạy quyền, lợi ích nhóm; xây dựng và thực hiện cơ chế công khai, minh bạch gắn với trách nhiệm giải trình trong công tác cán bộ; công tác kiểm tra, giám sát, kỷ luật đảng và công tác tiếp công dân, giải quyết đơn, thư, khiếu nại, tố cáo, kiến nghị, phản ánh của tổ chức, cá nhân.",
+            "4. Công tác lãnh đạo và định hướng tư tưởng của cán bộ, đảng viên và dư luận tại đơn vị. Kết quả ban hành văn bản chỉ đạo, hướng dẫn hằng năm về công tác chính trị, tư tưởng; xây dựng, triển khai thực hiện chương trình (hoặc kế hoạch) công tác chính trị, tư tưởng, bảo đảm tiến độ, chất lượng. Việc nắm bắt, dự báo, định hướng, xử lý kịp thời các vấn đề về tư tưởng thuộc phạm vi quản lý.",
+            "5. Thực hiện nghiêm trách nhiệm nêu gương theo quy định. Cấp ủy, người đứng đầu cấp ủy nói đi đôi với làm, làm đúng, hiệu quả. Cấp ủy viên chấp hành nghiêm các quy định về nêu gương, không có trường hợp vi phạm.",
+            "6. Thực hiện nghiêm kỷ luật phát ngôn. Quản lý, kiểm soát hiệu quả công tác tuyên truyền, kỷ luật phát ngôn và cung cấp thông tin, sử dụng các nền tảng số.",
+            "7. Lãnh đạo, chỉ đạo việc đẩy mạnh học tập, thực hành tư tưởng, đạo đức, phương pháp, phong cách Hồ Chí Minh.",
+            "8. Trách nhiệm của tập thể lãnh đạo, quản lý trong triển khai thực hiện các chủ trương, đường lối, nghị quyết, văn bản chỉ đạo của Đảng, của cấp trên; thực hiện nhiệm vụ chính trị của địa phương, tổ chức, cơ quan, đơn vị."
+        ]
+        for pr in col_prompts:
+            p_a1.add_run(pr + "\n")
+        p_a1.add_run(f"   {good_val}")
+
+        p_a2 = doc.add_paragraph()
+        p_a2.paragraph_format.line_spacing = 1.2
+        p_a2.add_run("II. Hạn chế, khuyết điểm và nguyên nhân\n").bold = True
+        p_a2.add_run(f"   {limit_val}\n")
+        p_a2.add_run("III. Kết quả khắc phục những hạn chế, khuyết điểm đã được cấp có thẩm quyền kết luận hoặc được chỉ ra ở các kỳ kiểm điểm trước\n").bold = True
+        p_a2.add_run("   Tập thể Chi bộ 2 đã nghiêm túc kiểm điểm, đề ra giải pháp và tổ chức khắc phục kịp thời các hạn chế đã chỉ ra từ kỳ kiểm điểm trước; phân công rõ trách nhiệm cho cấp ủy và từng đảng viên phụ trách.\n")
+        p_a2.add_run("IV. Giải trình những vấn đề được gợi ý kiểm điểm (nếu có): ").bold = True
+        p_a2.add_run("Không có.\n")
+        p_a2.add_run("V. Trách nhiệm của tập thể, cá nhân\n").bold = True
+        p_a2.add_run("   Tập thể Chi ủy, Chi bộ 2 và người đứng đầu nghiêm túc nhận trách nhiệm chung trong công tác lãnh đạo, chỉ đạo thực hiện nhiệm vụ chính trị; không để xảy ra mất đoàn kết nội bộ, tham nhũng, lãng phí, tiêu cực.\n")
+        p_a2.add_run("VI. Phương hướng, biện pháp khắc phục hạn chế, khuyết điểm\n").bold = True
+        p_a2.add_run(f"   {sol_val}")
+    else:
+        p_a1 = doc.add_paragraph()
+        p_a1.paragraph_format.line_spacing = 1.2
+        p_a1.add_run("I. Ưu điểm, kết quả đạt được\n").bold = True
+        if is_sample_2a:
+            mem_prompts = [
+                "1. Về phẩm chất chính trị, đạo đức, lối sống; tinh thần đoàn kết, thống nhất trong nội bộ; ý thức tổ chức kỷ luật, việc thực hiện những điều đảng viên không được làm; tác phong, lề lối làm việc.",
+                "2. Việc thực hiện nhiệm vụ, quyền hạn và kết quả thực hiện các chỉ tiêu, nhiệm vụ được giao trong năm, gắn với hiệu quả, tiến độ, chất lượng công việc.",
+                "3. Việc thực hiện cam kết tu dưỡng, rèn luyện, phấn đấu của cá nhân theo quy định.",
+                "4. Kết quả công tác lãnh đạo, chỉ đạo, quản lý, điều hành; thực hiện chức trách, nhiệm vụ; mức độ hoàn thành nhiệm vụ của các cấp uỷ, tổ chức đảng trực thuộc, địa phương, tổ chức, cơ quan, đơn vị thuộc quyền quản lý; khả năng quy tụ, xây dựng đoàn kết nội bộ.",
+                "5. Trách nhiệm trong công việc; tinh thần năng động, đổi mới sáng tạo, dám nghĩ, dám nói, dám làm, nói đi đôi với làm, dám chịu trách nhiệm, dám đương đầu với khó khăn, thử thách, dám hành động, dám hy sinh lợi ích cá nhân vì lợi ích chung; trách nhiệm trong xây dựng đội ngũ cán bộ, kiểm soát quyền lực, phòng, chống tiêu cực trong phạm vi chức trách, nhiệm vụ được giao; trách nhiệm trong lãnh đạo, chỉ đạo hoàn thiện thể chế góp phần phát triển khoa học, công nghệ, đổi mới sáng tạo và chuyển đổi số, về mở rộng hợp tác, hội nhập quốc tế, về đổi mới tư duy quản trị, tạo điều kiện phát triển kinh tế tư nhân; xử lý những vấn đề khó, phức tạp, nhạy cảm trong thực hiện nhiệm vụ.",
+                "6. Trách nhiệm nêu gương của bản thân và gia đình; việc đấu tranh phòng, chống tham nhũng, tiêu cực, lãng phí và ngăn chặn, đẩy lùi những biểu hiện suy thoái về tư tưởng chính trị, đạo đức, lối sống, \"tự diễn biến\", \"tự chuyển hoá\"; sự tín nhiệm của cán bộ, đảng viên; việc nghiên cứu, học tập và triển khai nghị quyết.",
+                "7. Công tác lãnh đạo và định hướng tư tưởng của cán bộ, đảng viên và dư luận tại đơn vị. Việc nắm bắt, dự báo, định hướng, xử lý kịp thời các vấn đề về tư tưởng thuộc phạm vi quản lý.",
+                "8. Thực hiện nghiêm kỷ luật phát ngôn, quy định về cung cấp và sử dụng thông tin; nói và viết đúng quan điểm, đường lối của Đảng, chính sách, pháp luật của Nhà nước.",
+                "9. Việc học tập, thực hành tư tưởng, đạo đức, phương pháp, phong cách Hồ Chí Minh; cần, kiệm, liêm, chính, chí công vô tư; việc xây dựng phong cách lãnh đạo đổi mới, gần dân, sát dân, trọng dân, thường xuyên nắm bắt tâm tư, nguyện vọng của Nhân dân; dám nghĩ, dám nói, dám làm, dám đương đầu với khó khăn, thử thách, dám đột phá, dám chịu trách nhiệm vì lợi ích chung."
+            ]
+        else:
+            mem_prompts = [
+                "1. Về phẩm chất chính trị, đạo đức, lối sống; tinh thần đoàn kết, thống nhất trong nội bộ; ý thức tổ chức kỷ luật, trách nhiệm nêu gương, việc thực hiện những điều đảng viên không được làm; tác phong, lề lối làm việc. Việc đấu tranh phòng, chống tham nhũng, tiêu cực, lãng phí và ngăn chặn, đẩy lùi những biểu hiện suy thoái về tư tưởng chính trị, đạo đức, lối sống, \"tự diễn biến\", \"tự chuyển hoá\"; việc nghiên cứu, học tập và triển khai nghị quyết.",
+                "2. Việc thực hiện nhiệm vụ, quyền hạn và kết quả thực hiện các chỉ tiêu, nhiệm vụ được giao trong năm, gắn với hiệu quả, tiến độ, chất lượng công việc.",
+                "3. Thực hiện nghiêm kỷ luật phát ngôn, quy định về cung cấp và sử dụng thông tin; nói và viết đúng quan điểm, đường lối của Đảng, chính sách, pháp luật của Nhà nước.",
+                "4. Việc học tập và thực hành tư tưởng, đạo đức, phương pháp, phong cách Hồ Chí Minh; cần, kiệm, liêm, chính, chí công vô tư.",
+                "5. Việc thực hiện cam kết tu dưỡng, rèn luyện, phấn đấu của cá nhân theo quy định."
+            ]
+        for pr in mem_prompts:
+            p_a1.add_run(pr + "\n")
+        p_a1.add_run(f"   {good_val}")
+
+        p_a2 = doc.add_paragraph()
+        p_a2.paragraph_format.line_spacing = 1.2
+        p_a2.add_run("II. Hạn chế, khuyết điểm và nguyên nhân\n").bold = True
+        p_a2.add_run("1. Hạn chế, khuyết điểm:\n").bold = True
+        p_a2.add_run(f"   {limit_val}\n")
+        p_a2.add_run("2. Nguyên nhân của hạn chế, khuyết điểm:\n").bold = True
+        p_a2.add_run("   Do khối lượng công việc kinh doanh và tác nghiệp ngân hàng lớn vào các giai đoạn cao điểm; bản thân có lúc chưa sắp xếp thời gian tự nghiên cứu chuyên sâu thật sự khoa học.\n")
+        p_a2.add_run("III. Kết quả khắc phục những hạn chế, khuyết điểm đã được cấp có thẩm quyền kết luận hoặc được chỉ ra ở các kỳ kiểm điểm trước\n").bold = True
+        p_a2.add_run("   Đã nghiêm túc tiếp thu ý kiến góp ý của Chi bộ từ kỳ kiểm điểm trước và từng bước khắc phục có hiệu quả trong quá trình công tác.\n")
+        p_a2.add_run("IV. Giải trình những vấn đề được gợi ý kiểm điểm (nếu có): ").bold = True
+        p_a2.add_run("Không có.\n")
+        p_a2.add_run("V. Làm rõ trách nhiệm của cá nhân đối với những hạn chế, khuyết điểm của tập thể (nếu có)\n").bold = True
+        p_a2.add_run("   Nghiêm túc nhận trách nhiệm cá nhân trong phạm vi công việc được phân công phụ trách.\n")
+        p_a2.add_run("VI. Phương hướng, biện pháp khắc phục hạn chế, khuyết điểm\n").bold = True
+        p_a2.add_run(f"   {sol_val}")
+
+    p_sec_b = doc.add_paragraph()
+    p_sec_b.paragraph_format.space_before = Pt(8)
+    p_sec_b.paragraph_format.space_after = Pt(4)
+    r_sb = p_sec_b.add_run("B. NỘI DUNG TỰ ĐÁNH GIÁ, XẾP LOẠI")
+    r_sb.bold = True
+    r_sb.font.size = Pt(12.5)
+
+    p_b1 = doc.add_paragraph()
+    p_b1.paragraph_format.space_after = Pt(4)
+    p_b1.add_run("I. Đánh giá theo các nhóm tiêu chí\n").bold = True
+    if is_col:
+        p_b1.add_run(f"Trên cơ sở cụ thể hoá khung tiêu chí đánh giá đối với tập thể được quy định tại Phụ lục 1, Quy định số 366-QĐ/TW, tập thể {branch_name} tự đánh giá, chấm điểm theo các tiêu chí được cụ thể hóa như sau:\n")
+    elif is_sample_2a:
+        p_b1.add_run("Trên cơ sở cụ thể hoá khung tiêu chí đánh giá đối với cá nhân giữ chức vụ lãnh đạo, quản lý được quy định tại Phụ lục 3, Quy định số 366-QĐ/TW, cá nhân tự đánh giá, chấm điểm theo các tiêu chí được cụ thể hóa như sau:\n")
+    else:
+        p_b1.add_run("Trên cơ sở cụ thể hoá khung tiêu chí đánh giá đối với cá nhân không giữ chức vụ lãnh đạo, quản lý được quy định tại Phụ lục 4, Quy định số 366-QĐ/TW, cá nhân tự đánh giá, chấm điểm theo các tiêu chí được cụ thể hóa như sau:\n")
+    p_b1.add_run(f"   1. Nhóm tiêu chí chung: {g1_score}/30\n")
+    p_b1.add_run(f"   2. Nhóm tiêu chí về kết quả thực hiện nhiệm vụ: {g2_score}/70\n")
+    p_b1.add_run(f"   Tổng điểm: {computed_total}/100").bold = True
 
     total_rows = 1 + sum(len(g['items']) + 1 for g in criteria_groups) + 1
     table_crit = doc.add_table(rows=total_rows, cols=4)
@@ -479,100 +585,23 @@ def render_evaluation_section_in_doc(doc, data, target_val):
     r_s.bold = True
     r_s.font.size = Pt(11.5)
 
-    p_sec2 = doc.add_paragraph()
-    p_sec2.paragraph_format.space_before = Pt(8)
-    p_sec2.paragraph_format.space_after = Pt(4)
-    if is_col:
-        r_s2 = p_sec2.add_run("II. NỘI DUNG TỰ KIỂM ĐIỂM CỦA TẬP THỂ CHI BỘ")
-    else:
-        r_s2 = p_sec2.add_run(f"II. NỘI DUNG TỰ KIỂM ĐIỂM ({form_code})")
-    r_s2.bold = True
-    r_s2.font.size = Pt(12.5)
-
-    if not is_col:
-        p_g = doc.add_paragraph()
-        p_g.paragraph_format.line_spacing = 1.2
-        p_g.paragraph_format.space_after = Pt(4)
-        p_g.add_run("1. Ưu điểm, kết quả đạt được:\n").bold = True
-        p_g.add_run("a) Về phẩm chất chính trị, đạo đức, lối sống; tinh thần đoàn kết nội bộ; ý thức tổ chức kỷ luật, trách nhiệm nêu gương, việc thực hiện những điều đảng viên không được làm; kỷ luật phát ngôn; liên hệ biểu hiện suy thoái, \"tự diễn biến\", \"tự chuyển hóa\" và học tập, làm theo tư tưởng, đạo đức, phong cách Hồ Chí Minh:\n").bold = True
-        p_g.add_run(f"   {good_val}\n   Bản thân luôn giữ vững lập trường tư tưởng chính trị, không có biểu hiện suy thoái về tư tưởng chính trị, đạo đức, lối sống, \"tự diễn biến\", \"tự chuyển hóa\".\n")
-        p_g.add_run("b) Về thực hiện nhiệm vụ, quyền hạn được giao (gắn với kết quả, tiến độ, chất lượng công việc):\n").bold = True
-        p_g.add_run(f"   Hoàn thành tốt các chỉ tiêu KPI và nhiệm vụ chuyên môn tại {m.get('dept', 'Chi nhánh Bảo Lộc')}, đảm bảo chất lượng, tiến độ và tuân thủ quy trình nghiệp vụ VietinBank.\n")
-        p_g.add_run("c) Việc thực hiện cam kết tu dưỡng, rèn luyện, phấn đấu hằng năm:\n").bold = True
-        p_g.add_run("   Thực hiện nghiêm túc bản cam kết tu dưỡng, rèn luyện, phấn đấu cá nhân đã đăng ký đầu năm.\n")
-        if is_sample_2a:
-            p_g.add_run("d) Kết quả công tác lãnh đạo, chỉ đạo, quản lý, điều hành; mức độ hoàn thành nhiệm vụ của tập thể, đơn vị thuộc quyền quản lý; khả năng quy tụ, xây dựng đoàn kết nội bộ:\n").bold = True
-            p_g.add_run("   Phát huy vai trò nêu gương của cán bộ quản lý/cấp ủy viên, chỉ đạo điều hành sâu sát, quy tụ đoàn kết nội bộ hoàn thành tốt nhiệm vụ chính trị và kinh doanh của đơn vị.\n")
-        else:
-            p_g.add_run("d) Ý thức tổ chức kỷ luật, chấp hành nội quy, quy chế cơ quan, chế độ sinh hoạt Đảng, đóng đảng phí và giữ mối liên hệ nơi cư trú (Quy định 213-QĐ/TW):\n").bold = True
-            p_g.add_run("   Tham gia sinh hoạt chi bộ đầy đủ, đóng đảng phí đúng quy định, chấp hành nghiêm nội quy cơ quan và giữ mối liên hệ tốt với cấp ủy nơi cư trú.\n")
-
-        p_l = doc.add_paragraph()
-        p_l.paragraph_format.line_spacing = 1.2
-        p_l.paragraph_format.space_after = Pt(4)
-        p_l.add_run("2. Hạn chế, khuyết điểm và nguyên nhân:\n").bold = True
-        p_l.add_run("a) Hạn chế, khuyết điểm:\n").bold = True
-        p_l.add_run(f"   {limit_val}\n")
-        p_l.add_run("b) Nguyên nhân của hạn chế, khuyết điểm (chủ quan, khách quan):\n").bold = True
-        p_l.add_run("   Do áp lực khối lượng công việc kinh doanh và tác nghiệp ngân hàng lớn vào các giai đoạn cao điểm; bản thân có lúc chưa sắp xếp thời gian nghiên cứu chuyên sâu một cách khoa học.\n")
-
-        p_k = doc.add_paragraph()
-        p_k.paragraph_format.line_spacing = 1.2
-        p_k.paragraph_format.space_after = Pt(4)
-        p_k.add_run("3. Kết quả khắc phục những hạn chế, khuyết điểm đã được cấp có thẩm quyền kết luận hoặc được chỉ ra ở các kỳ kiểm điểm trước:\n").bold = True
-        p_k.add_run("   Đã nghiêm túc tiếp thu và từng bước khắc phục hiệu quả các tồn tại được Chi bộ góp ý từ kỳ kiểm điểm trước.\n")
-
-        p_s = doc.add_paragraph()
-        p_s.paragraph_format.line_spacing = 1.2
-        p_s.paragraph_format.space_after = Pt(4)
-        if is_sample_2a:
-            p_s.add_run("4. Giải trình những vấn đề được gợi ý kiểm điểm (nếu có): Không có.\n").bold = True
-            p_s.add_run("5. Làm rõ trách nhiệm của cá nhân đối với những hạn chế, khuyết điểm của tập thể (nếu có): Nghiêm túc nhận trách nhiệm liên đới trong phạm vi lĩnh vực được phân công phụ trách.\n").bold = True
-            p_s.add_run("6. Phương hướng, biện pháp khắc phục hạn chế, khuyết điểm:\n").bold = True
-        else:
-            p_s.add_run("4. Phương hướng, biện pháp khắc phục hạn chế, khuyết điểm:\n").bold = True
-        p_s.add_run(f"   {sol_val}")
-    else:
-        p_g = doc.add_paragraph()
-        p_g.paragraph_format.line_spacing = 1.2
-        p_g.paragraph_format.space_after = Pt(3)
-        p_g.add_run("1. Ưu điểm, kết quả đạt được:\n").bold = True
-        p_g.add_run(f"   {good_val}")
-
-        p_l = doc.add_paragraph()
-        p_l.paragraph_format.line_spacing = 1.2
-        p_l.paragraph_format.space_after = Pt(3)
-        p_l.add_run("2. Hạn chế, khuyết điểm và nguyên nhân:\n").bold = True
-        p_l.add_run(f"   {limit_val}")
-
-        p_s = doc.add_paragraph()
-        p_s.paragraph_format.line_spacing = 1.2
-        p_s.paragraph_format.space_after = Pt(4)
-        p_s.add_run("3. Phương hướng, biện pháp khắc phục:\n").bold = True
-        p_s.add_run(f"   {sol_val}")
-
-    p_sec3 = doc.add_paragraph()
-    p_sec3.paragraph_format.space_before = Pt(6)
-    p_sec3.paragraph_format.space_after = Pt(3)
-    r_s3 = p_sec3.add_run("III. TỰ ĐÁNH GIÁ, XẾP LOẠI CHẤT LƯỢNG ĐỀ XUẤT")
-    r_s3.bold = True
-    r_s3.font.size = Pt(12.5)
-
     def chk(label):
         return "☒" if ranking_val == label else "☐"
 
     p_rank = doc.add_paragraph()
     p_rank.paragraph_format.line_spacing = 1.2
+    p_rank.paragraph_format.space_before = Pt(6)
     p_rank.paragraph_format.space_after = Pt(6)
-    p_rank.add_run("• Tổng số điểm tự chấm: ").bold = True
-    p_rank.add_run(f"{computed_total} / 100 điểm\n").bold = True
-    p_rank.add_run("• Mức tự xếp loại chất lượng đề xuất:\n").bold = True
+    p_rank.add_run("II. Đề xuất xếp loại mức chất lượng:\n").bold = True
     p_rank.add_run(
         f"   {chk('Hoàn thành xuất sắc nhiệm vụ')} Hoàn thành xuất sắc nhiệm vụ          "
         f"{chk('Hoàn thành tốt nhiệm vụ')} Hoàn thành tốt nhiệm vụ\n"
         f"   {chk('Hoàn thành nhiệm vụ')} Hoàn thành nhiệm vụ                         "
-        f"{chk('Không hoàn thành nhiệm vụ')} Không hoàn thành nhiệm vụ"
+        f"{chk('Không hoàn thành nhiệm vụ')} Không hoàn thành nhiệm vụ\n"
     )
+    r_appx = p_rank.add_run("(Gửi kèm Phụ lục về kết quả thực hiện nhiệm vụ trong đó thể hiện sản phẩm tiến độ, chất lượng cụ thể - theo hướng dẫn của các cấp uỷ, tổ chức đảng)")
+    r_appx.italic = True
+    r_appx.font.size = Pt(11)
 
     table_sign_me = doc.add_table(rows=1, cols=2)
     table_sign_me.alignment = WD_TABLE_ALIGNMENT.CENTER
@@ -586,8 +615,8 @@ def render_evaluation_section_in_doc(doc, data, target_val):
     p_sr.paragraph_format.line_spacing = 1.05
 
     if is_col:
-        p_sr.add_run(f"T/M {branch_name}\nBÍ THƯ\n").bold = True
-        r_note = p_sr.add_run("(Ký, ghi rõ họ tên)\n\n\n")
+        p_sr.add_run("T/M TẬP THỂ LÃNH ĐẠO, QUẢN LÝ\n").bold = True
+        r_note = p_sr.add_run("(Ký, ghi rõ họ tên và đóng dấu)\n\n\n")
         r_note.italic = True
         r_note.font.size = Pt(11)
         p_sr.add_run(host_name).bold = True
@@ -598,34 +627,70 @@ def render_evaluation_section_in_doc(doc, data, target_val):
         r_note.font.size = Pt(11)
         p_sr.add_run(m.get('name').upper()).bold = True
 
-        p_b = doc.add_paragraph()
-        p_b.paragraph_format.space_before = Pt(10)
-        p_b.paragraph_format.space_after = Pt(4)
-        r_b = p_b.add_run("B. ĐÁNH GIÁ, XẾP LOẠI CHẤT LƯỢNG CỦA CHI BỘ")
-        r_b.bold = True
-        r_b.font.size = Pt(12.5)
+        p_c = doc.add_paragraph()
+        p_c.paragraph_format.space_before = Pt(10)
+        p_c.paragraph_format.space_after = Pt(4)
+        r_c = p_c.add_run("C. KẾT QUẢ ĐÁNH GIÁ, XẾP LOẠI")
+        r_c.bold = True
+        r_c.font.size = Pt(12.5)
 
-        p_b_body = doc.add_paragraph()
-        p_b_body.paragraph_format.line_spacing = 1.2
-        p_b_body.add_run("1. Nhận xét, đánh giá của Chi bộ:\n").bold = True
-        p_b_body.add_run(f"   {m.get('host_conclusion', 'Chi bộ thống nhất thông qua bản tự kiểm điểm của đồng chí.')}\n")
-        p_b_body.add_run("2. Kết quả biểu quyết của Chi bộ và đề xuất mức xếp loại: ...........................................................................")
+        p_c1 = doc.add_paragraph()
+        p_c1.paragraph_format.line_spacing = 1.2
+        p_c1.add_run("I. Đánh giá, xếp loại chất lượng cán bộ, công chức, viên chức\n").bold = True
+        p_c1.add_run("- Nhận xét, đánh giá của người quản lý, sử dụng cán bộ, công chức, viên chức: ..........................................................................\n")
+        p_c1.add_run("- Mức xếp loại chất lượng công chức, viên chức: ...........................................................")
+
+        t_tt = doc.add_table(rows=1, cols=2)
+        t_tt.alignment = WD_TABLE_ALIGNMENT.CENTER
+        t_tt.autofit = False
+        clear_table_borders(t_tt)
+        t_tt.columns[0].width = Mm(75)
+        t_tt.columns[1].width = Mm(90)
+        p_tt = t_tt.cell(0, 1).paragraphs[0]
+        p_tt.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        p_tt.add_run("THỦ TRƯỞNG CƠ QUAN, ĐƠN VỊ\n").bold = True
+        r_ttn = p_tt.add_run("(Xác lập thời điểm, ký, ghi rõ họ tên và đóng dấu)\n\n\n")
+        r_ttn.italic = True
+        r_ttn.font.size = Pt(11)
+
+        p_c2 = doc.add_paragraph()
+        p_c2.paragraph_format.line_spacing = 1.2
+        p_c2.paragraph_format.space_before = Pt(6)
+        p_c2.add_run("II. Đánh giá, xếp loại chất lượng đảng viên\n").bold = True
+        p_c2.add_run(f"- Nhận xét, đánh giá của chi ủy: {m.get('host_conclusion', '....................................................................................')}\n")
+        p_c2.add_run("- Chi bộ đề xuất xếp loại mức chất lượng: ...................................................................")
 
         table_sign_cb = doc.add_table(rows=1, cols=2)
         table_sign_cb.alignment = WD_TABLE_ALIGNMENT.CENTER
         table_sign_cb.autofit = False
         clear_table_borders(table_sign_cb)
-        table_sign_cb.columns[0].width = Mm(82)
-        table_sign_cb.columns[1].width = Mm(83)
-
+        table_sign_cb.columns[0].width = Mm(75)
+        table_sign_cb.columns[1].width = Mm(90)
         p_cb = table_sign_cb.cell(0, 1).paragraphs[0]
         p_cb.alignment = WD_ALIGN_PARAGRAPH.CENTER
         p_cb.paragraph_format.line_spacing = 1.05
-        p_cb.add_run(f"T/M {branch_name}\nBÍ THƯ\n").bold = True
-        r_cb_note = p_cb.add_run("(Ký, ghi rõ họ tên)\n\n\n")
+        p_cb.add_run("T/M CHI ỦY (CHI BỘ)\n").bold = True
+        r_cb_note = p_cb.add_run("(Xác lập thời điểm, ký, ghi rõ họ tên)\n\n\n")
         r_cb_note.italic = True
         r_cb_note.font.size = Pt(11)
         p_cb.add_run(host_name).bold = True
+
+        p_du = doc.add_paragraph()
+        p_du.paragraph_format.space_before = Pt(6)
+        p_du.add_run("- Ban Thường vụ Đảng ủy cơ sở hoặc Đảng ủy trực thuộc cơ sở xếp loại mức chất lượng: ...................................................")
+
+        t_du = doc.add_table(rows=1, cols=2)
+        t_du.alignment = WD_TABLE_ALIGNMENT.CENTER
+        t_du.autofit = False
+        clear_table_borders(t_du)
+        t_du.columns[0].width = Mm(75)
+        t_du.columns[1].width = Mm(90)
+        p_td = t_du.cell(0, 1).paragraphs[0]
+        p_td.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        p_td.add_run("T/M ĐẢNG ỦY\n").bold = True
+        r_tdn = p_td.add_run("(Xác lập thời điểm, ký, ghi rõ họ tên và đóng dấu)\n\n\n")
+        r_tdn.italic = True
+        r_tdn.font.size = Pt(11)
 
 def create_single_evaluation_docx(data, target_val, output_path):
     doc = docx.Document()

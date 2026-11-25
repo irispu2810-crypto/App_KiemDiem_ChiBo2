@@ -2138,7 +2138,7 @@
     // ==========================================
     // HỆ THỐNG TỰ ĐỘNG CẬP NHẬT PHIÊN BẢN MỚI (AUTO-UPDATE)
     // ==========================================
-    const APP_VERSION = '2026.11.25.06';
+    const APP_VERSION = '2026.11.25.07';
 
     function checkForAppUpdate(manual = false) {
       if (!window.location.protocol.startsWith('http')) {
@@ -3960,59 +3960,110 @@
       `;
     }
 
+    function getCriteriaGroupTotals(targetVal) {
+      const groups = resolveCriteriaWithScores(targetVal);
+      const calcGroup = (g) => {
+        if (!g) return 0;
+        const s = g.items.reduce((acc, it) => acc + (it.isHeader ? 0 : (parseFloat(it.score) || 0)), 0);
+        return Math.round(s * 10) / 10;
+      };
+      const g1 = calcGroup(groups[0]);
+      const g2 = calcGroup(groups[1]);
+      return { g1, g2, total: Math.round((g1 + g2) * 10) / 10 };
+    }
+
     function buildEvaluationSheetHtml(targetVal) {
       const dateStr = appData.meeting.date || '2026-11-21';
       const parts = dateStr.split('-');
       const yyyy = parts[0] || '2026';
       const mm = parts[1] || '11';
       const dd = parts[2] || '21';
+      const { g1, g2, total: critTotal } = getCriteriaGroupTotals(targetVal);
+
+      const renderCheckboxes = (ranking) => {
+        const chk = (label) => (ranking === label ? '☒' : '☐');
+        return `
+          <p style="margin: 4px 0 4px 20px;">${chk('Hoàn thành xuất sắc nhiệm vụ')} Hoàn thành xuất sắc nhiệm vụ &nbsp;&nbsp;&nbsp; ${chk('Hoàn thành tốt nhiệm vụ')} Hoàn thành tốt nhiệm vụ</p>
+          <p style="margin: 4px 0 4px 20px;">${chk('Hoàn thành nhiệm vụ')} Hoàn thành nhiệm vụ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${chk('Không hoàn thành nhiệm vụ')} Không hoàn thành nhiệm vụ</p>
+        `;
+      };
 
       if (targetVal === 'collective') {
         const colEval = appData.collective_evaluation;
-        const score = colEval.score || 97;
         const ranking = colEval.ranking || 'Hoàn thành xuất sắc nhiệm vụ';
-        const good = colEval.good || 'Chi bộ 2 luôn giữ vững sự đoàn kết, nhất trí cao trong cấp ủy và tập thể đảng viên.';
-        const limit = colEval.limit || 'Công tác kiểm tra, giám sát chuyên đề ở một số thời điểm chưa bao quát hết mọi quy trình.';
-        const sol = colEval.sol || 'Tiếp tục nâng cao chất lượng sinh hoạt chi bộ; tăng cường chuyển đổi số và giám sát chéo.';
+        const good = colEval.good || 'Chi bộ 2 luôn giữ vững sự đoàn kết, nhất trí cao trong cấp ủy và tập thể đảng viên; chấp hành nghiêm Cương lĩnh, Điều lệ Đảng, nghị quyết, chỉ thị của Đảng và pháp luật của Nhà nước; lãnh đạo thực hiện hoàn thành tốt các chỉ tiêu kinh doanh và nhiệm vụ chính trị năm ' + yyyy + '.';
+        const limit = colEval.limit || 'Công tác kiểm tra, giám sát chuyên đề ở một số thời điểm chưa bao quát hết mọi quy trình tác nghiệp; sinh hoạt chuyên đề đôi lúc còn hạn chế về thời lượng thảo luận.';
+        const sol = colEval.sol || 'Tiếp tục nâng cao chất lượng sinh hoạt chi bộ; tăng cường chuyển đổi số, kiểm soát rủi ro tác nghiệp và giữ vững kỷ cương, đoàn kết nội bộ.';
 
         return `
-          <div style="font-family: 'Times New Roman', serif; color: #000;">
+          <div style="font-family: 'Times New Roman', serif; color: #000; font-size: 12.5pt; line-height: 1.35;">
+            <div style="text-align: right; font-weight: bold; font-size: 11pt; margin-bottom: 4px;">Mẫu 01</div>
             <table style="width:100%; border-collapse:collapse; margin-bottom:10px;">
               <tr>
-                <td style="width:50%; text-align:center; vertical-align:top; font-size:11pt; font-weight:bold;">
+                <td style="width:48%; text-align:center; vertical-align:top; font-size:11pt; font-weight:bold;">
                   <div>ĐẢNG BỘ NHCT VIỆT NAM</div>
                   <div>ĐẢNG BỘ CN BẢO LỘC</div>
                   <div style="text-decoration:underline;">CHI BỘ 2</div>
                 </td>
-                <td style="width:50%; text-align:center; vertical-align:top; font-size:11pt; font-weight:bold;">
+                <td style="width:52%; text-align:center; vertical-align:top; font-size:11pt; font-weight:bold;">
                   <div>ĐẢNG CỘNG SẢN VIỆT NAM</div>
                   <div style="font-weight:normal; font-style:italic; margin-top:6px;">Bảo Lộc, ngày ${dd} tháng ${mm} năm ${yyyy}</div>
                 </td>
               </tr>
             </table>
-            <div style="text-align:center; margin:14px 0;">
-              <div style="font-size:14pt; font-weight:bold; text-transform:uppercase;">BẢN TỰ KIỂM ĐIỂM VÀ ĐÁNH GIÁ, XẾP LOẠI CHẤT LƯỢNG<br>TẬP THỂ CHI BỘ NĂM ${yyyy}</div>
-              <div style="font-size:11pt; font-style:italic;">(Theo Quy định 366-QĐ/TW và Hướng dẫn 43-HD/BTCTW)</div>
+            <div style="text-align:center; margin:14px 0 10px 0;">
+              <div style="font-size:13.5pt; font-weight:bold; text-transform:uppercase;">BÁO CÁO KIỂM ĐIỂM, TỰ ĐÁNH GIÁ, XẾP LOẠI CHẤT LƯỢNG<br>CỦA TẬP THỂ CHI BỘ 2</div>
+              <div style="font-size:12pt; font-weight:bold;">Năm ${yyyy}</div>
             </div>
-            <p><strong>Tên tổ chức đảng:</strong> Chi bộ 2 thuộc Đảng bộ VietinBank Chi nhánh Bảo Lộc</p>
-            <p><strong>Tổng số đảng viên:</strong> ${appData.members.length} đồng chí (Chính thức: ${appData.members.filter(m => m.status === 'Chính thức').length}, Dự bị: ${appData.members.filter(m => m.status === 'Dự bị').length})</p>
-            <p style="font-weight:bold; margin-top:10px;">I. TỰ KIỂM ĐIỂM CỦA TẬP THỂ CHI BỘ</p>
-            <p><strong>1. Ưu điểm, kết quả đạt được:</strong></p>
-            <p style="text-indent:24px; text-align:justify;">${good}</p>
-            <p><strong>2. Hạn chế, khuyết điểm và nguyên nhân:</strong></p>
-            <p style="text-indent:24px; text-align:justify;">${limit}</p>
-            <p><strong>3. Phương hướng, biện pháp khắc phục:</strong></p>
-            <p style="text-indent:24px; text-align:justify;">${sol}</p>
-            <p style="font-weight:bold; margin-top:10px;">II. TỰ CHẤM ĐIỂM & XẾP LOẠI: <span style="color:#b91c1c;">${score}/100 điểm</span> — <strong>${ranking}</strong></p>
+            <p style="text-indent:24px; text-align:justify;">Căn cứ kết quả lãnh đạo, chỉ đạo thực hiện nhiệm vụ chính trị tại đơn vị; tập thể Chi bộ 2 (Tổng số: ${appData.members.length} đảng viên — Chính thức: ${appData.members.filter(m => m.status === 'Chính thức').length}, Dự bị: ${appData.members.filter(m => m.status === 'Dự bị').length}) kiểm điểm, tự đánh giá, xếp loại chất lượng với các nội dung chủ yếu sau:</p>
+
+            <div style="font-weight:bold; text-transform:uppercase; margin-top:10px;">A. NỘI DUNG KIỂM ĐIỂM</div>
+            <div style="font-weight:bold; margin-top:6px;">I. Ưu điểm, kết quả đạt được</div>
+            <p style="margin:3px 0; text-align:justify;"><strong>1.</strong> Việc chấp hành Cương lĩnh chính trị, Điều lệ Đảng, nghị quyết, chỉ thị, kết luận của Đảng, pháp luật của Nhà nước; nguyên tắc tổ chức và hoạt động của Đảng, nhất là nguyên tắc tập trung dân chủ; thực hiện quy chế làm việc.</p>
+            <p style="margin:3px 0; text-align:justify;"><strong>2.</strong> Kết quả thực hiện các mục tiêu, chỉ tiêu, nhiệm vụ được đề ra trong nghị quyết đại hội nhiệm kỳ, kế hoạch, chương trình công tác năm, được cấp có thẩm quyền giao, phê duyệt và các nhiệm vụ phát sinh, đột xuất được cấp có thẩm quyền giao.</p>
+            <p style="margin:3px 0; text-align:justify;"><strong>3.</strong> Công tác xây dựng, chỉnh đốn Đảng và hệ thống chính trị; xây dựng tổ chức bộ máy tinh gọn, hoạt động hiệu năng, hiệu lực, hiệu quả; tinh giản biên chế gắn với cải cách hành chính và chuyển đổi số; đấu tranh phòng, chống tham nhũng, lãng phí, quan liêu, tiêu cực và ngăn chặn, đẩy lùi sự suy thoái về tư tưởng chính trị, đạo đức, lối sống, "tự diễn biến", "tự chuyển hoá" trong nội bộ; công tác kiểm soát quyền lực, phòng, chống chạy chức, chạy quyền, lợi ích nhóm; xây dựng và thực hiện cơ chế công khai, minh bạch gắn với trách nhiệm giải trình trong công tác cán bộ; công tác kiểm tra, giám sát, kỷ luật đảng và công tác tiếp công dân, giải quyết đơn, thư, khiếu nại, tố cáo, kiến nghị, phản ánh của tổ chức, cá nhân.</p>
+            <p style="margin:3px 0; text-align:justify;"><strong>4.</strong> Công tác lãnh đạo và định hướng tư tưởng của cán bộ, đảng viên và dư luận tại đơn vị. Kết quả ban hành văn bản chỉ đạo, hướng dẫn hằng năm về công tác chính trị, tư tưởng; xây dựng, triển khai thực hiện chương trình (hoặc kế hoạch) công tác chính trị, tư tưởng, bảo đảm tiến độ, chất lượng. Việc nắm bắt, dự báo, định hướng, xử lý kịp thời các vấn đề về tư tưởng thuộc phạm vi quản lý.</p>
+            <p style="margin:3px 0; text-align:justify;"><strong>5.</strong> Thực hiện nghiêm trách nhiệm nêu gương theo quy định. Cấp ủy, người đứng đầu cấp ủy nói đi đôi với làm, làm đúng, hiệu quả. Cấp ủy viên chấp hành nghiêm các quy định về nêu gương, không có trường hợp vi phạm.</p>
+            <p style="margin:3px 0; text-align:justify;"><strong>6.</strong> Thực hiện nghiêm kỷ luật phát ngôn. Quản lý, kiểm soát hiệu quả công tác tuyên truyền, kỷ luật phát ngôn và cung cấp thông tin, sử dụng các nền tảng số.</p>
+            <p style="margin:3px 0; text-align:justify;"><strong>7.</strong> Lãnh đạo, chỉ đạo việc đẩy mạnh học tập, thực hành tư tưởng, đạo đức, phương pháp, phong cách Hồ Chí Minh.</p>
+            <p style="margin:3px 0; text-align:justify;"><strong>8.</strong> Trách nhiệm của tập thể lãnh đạo, quản lý trong triển khai thực hiện các chủ trương, đường lối, nghị quyết, văn bản chỉ đạo của Đảng, của cấp trên; thực hiện nhiệm vụ chính trị của địa phương, tổ chức, cơ quan, đơn vị.</p>
+            <p style="margin:4px 0; text-indent:24px; text-align:justify; white-space:pre-wrap;">${good}</p>
+
+            <div style="font-weight:bold; margin-top:8px;">II. Hạn chế, khuyết điểm và nguyên nhân</div>
+            <p style="margin:3px 0; text-indent:24px; text-align:justify; white-space:pre-wrap;">${limit}</p>
+
+            <div style="font-weight:bold; margin-top:8px;">III. Kết quả khắc phục những hạn chế, khuyết điểm đã được cấp có thẩm quyền kết luận hoặc được chỉ ra ở các kỳ kiểm điểm trước</div>
+            <p style="margin:3px 0; text-indent:24px; text-align:justify;">Tập thể Chi bộ 2 đã nghiêm túc kiểm điểm, đề ra giải pháp và tổ chức khắc phục kịp thời các hạn chế đã chỉ ra từ kỳ kiểm điểm trước; phân công rõ trách nhiệm cho cấp ủy và từng đảng viên phụ trách.</p>
+
+            <div style="font-weight:bold; margin-top:8px;">IV. Giải trình những vấn đề được gợi ý kiểm điểm (nếu có)</div>
+            <p style="margin:3px 0; text-indent:24px;">Không có.</p>
+
+            <div style="font-weight:bold; margin-top:8px;">V. Trách nhiệm của tập thể, cá nhân</div>
+            <p style="margin:3px 0; text-indent:24px; text-align:justify;">Tập thể Chi ủy, Chi bộ 2 và người đứng đầu nghiêm túc nhận trách nhiệm chung trong công tác lãnh đạo, chỉ đạo thực hiện nhiệm vụ chính trị; không để xảy ra mất đoàn kết nội bộ, tham nhũng, lãng phí, tiêu cực, suy thoái hoặc vi phạm nguyên tắc, quy định của Đảng.</p>
+
+            <div style="font-weight:bold; margin-top:8px;">VI. Phương hướng, biện pháp khắc phục hạn chế, khuyết điểm</div>
+            <p style="margin:3px 0; text-indent:24px; text-align:justify; white-space:pre-wrap;">${sol}</p>
+
+            <div style="font-weight:bold; text-transform:uppercase; margin-top:12px;">B. NỘI DUNG TỰ ĐÁNH GIÁ, XẾP LOẠI</div>
+            <div style="font-weight:bold; margin-top:6px;">I. Đánh giá theo các nhóm tiêu chí</div>
+            <p style="margin:3px 0; text-align:justify;">Trên cơ sở cụ thể hoá khung tiêu chí đánh giá đối với tập thể được quy định tại Phụ lục 1, Quy định số 366-QĐ/TW, tập thể Chi bộ 2 tự đánh giá, chấm điểm theo các tiêu chí được cụ thể hóa như sau:</p>
+            <p style="margin:2px 0 2px 20px;">1. Nhóm tiêu chí chung: <strong>${g1}/30</strong></p>
+            <p style="margin:2px 0 2px 20px;">2. Nhóm tiêu chí về kết quả thực hiện nhiệm vụ: <strong>${g2}/70</strong></p>
+            <p style="margin:2px 0 6px 20px;">Tổng điểm: <strong style="color:#b91c1c;">${critTotal}/100</strong></p>
             ${buildCriteriaTableHtml('collective')}
-            <table style="width:100%; margin-top:20px;">
+
+            <div style="font-weight:bold; margin-top:8px;">II. Đề xuất xếp loại mức chất lượng:</div>
+            ${renderCheckboxes(ranking)}
+            <p style="font-style:italic; font-size:11pt; margin-top:4px;">(Gửi kèm Phụ lục về kết quả thực hiện nhiệm vụ trong đó thể hiện sản phẩm tiến độ, chất lượng cụ thể - theo hướng dẫn của các cấp uỷ, tổ chức đảng)</p>
+
+            <table style="width:100%; margin-top:16px;">
               <tr>
-                <td style="width:50%;"></td>
-                <td style="width:50%; text-align:center; font-weight:bold;">
-                  <div>TM. CHI BỘ 2</div>
-                  <div>BÍ THƯ</div>
+                <td style="width:45%;"></td>
+                <td style="width:55%; text-align:center;">
+                  <div style="font-weight:bold; text-transform:uppercase;">T/M TẬP THỂ LÃNH ĐẠO, QUẢN LÝ</div>
+                  <div style="font-style:italic; font-size:11pt;">(Ký, ghi rõ họ tên và đóng dấu)</div>
                   <div style="height:55px;"></div>
-                  <div>${appData.meeting.host_name || 'Nguyễn Thi Thao'}</div>
+                  <div style="font-weight:bold; text-transform:uppercase;">${appData.meeting.host_name || 'Nguyễn Thi Thao'}</div>
                 </td>
               </tr>
             </table>
@@ -4024,18 +4075,43 @@
       if (!mem) return '';
 
       const is2A = isMemberSample2A(mem);
-      const formCode = is2A ? 'Mẫu 02A-HD KĐ.ĐG' : 'Mẫu 02B-HD KĐ.ĐG';
+      const formCode = is2A ? 'Mẫu 02A' : 'Mẫu 02B';
       const formDesc = is2A
         ? 'Cá nhân giữ chức vụ lãnh đạo, quản lý'
         : 'Cá nhân không giữ chức vụ lãnh đạo, quản lý';
 
-      const score = mem.self_score || 95;
       const ranking = mem.self_ranking || 'Hoàn thành tốt nhiệm vụ';
       const good = mem.self_good || 'Tư tưởng chính trị vững vàng, kiên định; chấp hành nghiêm túc chủ trương, đường lối của Đảng, chính sách pháp luật của Nhà nước và quy chế, quy định nội bộ của VietinBank.';
       const limit = mem.self_limit || 'Đôi lúc chưa chủ động sắp xếp thời gian nghiên cứu chuyên đề chuyên sâu; cần nâng cao hơn nữa tính linh hoạt trong công tác chuyên môn.';
       const sol = mem.self_sol || 'Tiếp tục rèn luyện phẩm chất đạo đức cách mạng, gương mẫu trong lối sống; chủ động nghiên cứu nghiệp vụ mới để hoàn thành xuất sắc KPI năm tới.';
 
-      const chk = (label) => (ranking === label ? '☒' : '☐');
+      const sectionAMemHtml = is2A ? `
+        <div style="font-weight:bold; text-transform:uppercase; margin-top:10px;">A. NỘI DUNG KIỂM ĐIỂM</div>
+        <div style="font-weight:bold; margin-top:6px;">I. Ưu điểm, kết quả đạt được</div>
+        <p style="margin:3px 0; text-align:justify;"><strong>1.</strong> Về phẩm chất chính trị, đạo đức, lối sống; tinh thần đoàn kết, thống nhất trong nội bộ; ý thức tổ chức kỷ luật, việc thực hiện những điều đảng viên không được làm; tác phong, lề lối làm việc.</p>
+        <p style="margin:3px 0; text-align:justify;"><strong>2.</strong> Việc thực hiện nhiệm vụ, quyền hạn và kết quả thực hiện các chỉ tiêu, nhiệm vụ được giao trong năm, gắn với hiệu quả, tiến độ, chất lượng công việc.</p>
+        <p style="margin:3px 0; text-align:justify;"><strong>3.</strong> Việc thực hiện cam kết tu dưỡng, rèn luyện, phấn đấu của cá nhân theo quy định.</p>
+        <p style="margin:3px 0; text-align:justify;"><strong>4.</strong> Kết quả công tác lãnh đạo, chỉ đạo, quản lý, điều hành; thực hiện chức trách, nhiệm vụ; mức độ hoàn thành nhiệm vụ của các cấp uỷ, tổ chức đảng trực thuộc, địa phương, tổ chức, cơ quan, đơn vị thuộc quyền quản lý; khả năng quy tụ, xây dựng đoàn kết nội bộ.</p>
+        <p style="margin:3px 0; text-align:justify;"><strong>5.</strong> Trách nhiệm trong công việc; tinh thần năng động, đổi mới sáng tạo, dám nghĩ, dám nói, dám làm, nói đi đôi với làm, dám chịu trách nhiệm, dám đương đầu với khó khăn, thử thách, dám hành động, dám hy sinh lợi ích cá nhân vì lợi ích chung; trách nhiệm trong xây dựng đội ngũ cán bộ, kiểm soát quyền lực, phòng, chống tiêu cực trong phạm vi chức trách, nhiệm vụ được giao; trách nhiệm trong lãnh đạo, chỉ đạo hoàn thiện thể chế góp phần phát triển khoa học, công nghệ, đổi mới sáng tạo và chuyển đổi số, về mở rộng hợp tác, hội nhập quốc tế, về đổi mới tư duy quản trị, tạo điều kiện phát triển kinh tế tư nhân; xử lý những vấn đề khó, phức tạp, nhạy cảm trong thực hiện nhiệm vụ.</p>
+        <p style="margin:3px 0; text-align:justify;"><strong>6.</strong> Trách nhiệm nêu gương của bản thân và gia đình; việc đấu tranh phòng, chống tham nhũng, tiêu cực, lãng phí và ngăn chặn, đẩy lùi những biểu hiện suy thoái về tư tưởng chính trị, đạo đức, lối sống, "tự diễn biến", "tự chuyển hoá"; sự tín nhiệm của cán bộ, đảng viên; việc nghiên cứu, học tập và triển khai nghị quyết.</p>
+        <p style="margin:3px 0; text-align:justify;"><strong>7.</strong> Công tác lãnh đạo và định hướng tư tưởng của cán bộ, đảng viên và dư luận tại đơn vị. Việc nắm bắt, dự báo, định hướng, xử lý kịp thời các vấn đề về tư tưởng thuộc phạm vi quản lý.</p>
+        <p style="margin:3px 0; text-align:justify;"><strong>8.</strong> Thực hiện nghiêm kỷ luật phát ngôn, quy định về cung cấp và sử dụng thông tin; nói và viết đúng quan điểm, đường lối của Đảng, chính sách, pháp luật của Nhà nước.</p>
+        <p style="margin:3px 0; text-align:justify;"><strong>9.</strong> Việc học tập, thực hành tư tưởng, đạo đức, phương pháp, phong cách Hồ Chí Minh; cần, kiệm, liêm, chính, chí công vô tư; việc xây dựng phong cách lãnh đạo đổi mới, gần dân, sát dân, trọng dân, thường xuyên nắm bắt tâm tư, nguyện vọng của Nhân dân; dám nghĩ, dám nói, dám làm, dám đương đầu với khó khăn, thử thách, dám đột phá, dám chịu trách nhiệm vì lợi ích chung.</p>
+        <p style="margin:4px 0; text-indent:24px; text-align:justify; white-space:pre-wrap;">${good}</p>
+      ` : `
+        <div style="font-weight:bold; text-transform:uppercase; margin-top:10px;">A. NỘI DUNG KIỂM ĐIỂM</div>
+        <div style="font-weight:bold; margin-top:6px;">I. Ưu điểm, kết quả đạt được</div>
+        <p style="margin:3px 0; text-align:justify;"><strong>1.</strong> Về phẩm chất chính trị, đạo đức, lối sống; tinh thần đoàn kết, thống nhất trong nội bộ; ý thức tổ chức kỷ luật, trách nhiệm nêu gương, việc thực hiện những điều đảng viên không được làm; tác phong, lề lối làm việc. Việc đấu tranh phòng, chống tham nhũng, tiêu cực, lãng phí và ngăn chặn, đẩy lùi những biểu hiện suy thoái về tư tưởng chính trị, đạo đức, lối sống, "tự diễn biến", "tự chuyển hoá"; việc nghiên cứu, học tập và triển khai nghị quyết.</p>
+        <p style="margin:3px 0; text-align:justify;"><strong>2.</strong> Việc thực hiện nhiệm vụ, quyền hạn và kết quả thực hiện các chỉ tiêu, nhiệm vụ được giao trong năm, gắn với hiệu quả, tiến độ, chất lượng công việc.</p>
+        <p style="margin:3px 0; text-align:justify;"><strong>3.</strong> Thực hiện nghiêm kỷ luật phát ngôn, quy định về cung cấp và sử dụng thông tin; nói và viết đúng quan điểm, đường lối của Đảng, chính sách, pháp luật của Nhà nước.</p>
+        <p style="margin:3px 0; text-align:justify;"><strong>4.</strong> Việc học tập và thực hành tư tưởng, đạo đức, phương pháp, phong cách Hồ Chí Minh; cần, kiệm, liêm, chính, chí công vô tư.</p>
+        <p style="margin:3px 0; text-align:justify;"><strong>5.</strong> Việc thực hiện cam kết tu dưỡng, rèn luyện, phấn đấu của cá nhân theo quy định.</p>
+        <p style="margin:4px 0; text-indent:24px; text-align:justify; white-space:pre-wrap;">${good}</p>
+      `;
+
+      const phuLucRef = is2A
+        ? 'cá nhân giữ chức vụ lãnh đạo, quản lý được quy định tại Phụ lục 3, Quy định số 366-QĐ/TW'
+        : 'cá nhân không giữ chức vụ lãnh đạo, quản lý được quy định tại Phụ lục 4, Quy định số 366-QĐ/TW';
 
       return `
         <div style="font-family: 'Times New Roman', serif; color: #000; font-size: 12.5pt; line-height: 1.35;">
@@ -4055,63 +4131,52 @@
           </table>
 
           <div style="text-align: center; margin: 14px 0 12px 0;">
-            <div style="font-size: 13.5pt; font-weight: bold; text-transform: uppercase;">BẢN KIỂM ĐIỂM VÀ TỰ ĐÁNH GIÁ, XẾP LOẠI CHẤT LƯỢNG CÁ NHÂN</div>
+            <div style="font-size: 13.5pt; font-weight: bold; text-transform: uppercase;">BẢN KIỂM ĐIỂM, TỰ ĐÁNH GIÁ, XẾP LOẠI CỦA CÁ NHÂN</div>
             <div style="font-size: 12pt; font-weight: bold;">Năm ${yyyy}</div>
-            <div style="font-size: 11pt; font-style: italic;">(${formDesc} — Quy định 366-QĐ/TW & Hướng dẫn 43-HD/BTCTW)</div>
+            <div style="font-size: 11.5pt; font-style: italic;">(${formDesc})</div>
           </div>
 
           <div style="margin-bottom: 10px; font-size: 12pt;">
             <p style="margin: 3px 0;"><strong>Họ và tên:</strong> <span style="text-transform: uppercase; font-weight: bold;">${mem.name}</span> &nbsp;&nbsp;&nbsp;&nbsp; <strong>Ngày sinh:</strong> ${mem.dob || '01/01/1985'}</p>
-            <p style="margin: 3px 0;"><strong>Đơn vị công tác:</strong> ${mem.dept || 'VietinBank Chi nhánh Bảo Lộc'}</p>
-            <p style="margin: 3px 0;"><strong>Chức vụ Đảng:</strong> ${mem.role_party || 'Đảng viên'} &nbsp;&nbsp;&nbsp;&nbsp; <strong>Chức vụ chính quyền/đoàn thể:</strong> ${mem.title_pro || 'Cán bộ'}</p>
-            <p style="margin: 3px 0;"><strong>Sinh hoạt tại chi bộ:</strong> Chi bộ 2 — Đảng bộ VietinBank Chi nhánh Bảo Lộc</p>
+            ${is2A ? `
+              <p style="margin: 3px 0;"><strong>Chức vụ Đảng:</strong> ${mem.role_party || 'Cấp ủy viên'}</p>
+              <p style="margin: 3px 0;"><strong>Chức vụ chính quyền:</strong> ${mem.title_pro || 'Lãnh đạo quản lý'}</p>
+              <p style="margin: 3px 0;"><strong>Chức vụ đoàn thể:</strong> ${mem.union_role || 'Không'}</p>
+            ` : ''}
+            <p style="margin: 3px 0;"><strong>Đơn vị công tác:</strong> ${mem.dept || 'VietinBank Chi nhánh Bảo Lộc'} &nbsp;&nbsp;&nbsp;&nbsp; <strong>Chi bộ:</strong> Chi bộ 2</p>
           </div>
 
-          <div style="font-weight: bold; text-transform: uppercase; margin-top: 10px;">A. NỘI DUNG KIỂM ĐIỂM</div>
+          ${sectionAMemHtml}
 
-          <div style="font-weight: bold; margin-top: 8px;">I. Ưu điểm, kết quả đạt được:</div>
-          <p style="margin: 4px 0; text-align: justify;"><strong>1. Về phẩm chất chính trị, đạo đức, lối sống; tinh thần đoàn kết, thống nhất trong nội bộ; ý thức tổ chức kỷ luật, trách nhiệm nêu gương, việc thực hiện những điều đảng viên không được làm; tác phong, lề lối làm việc; liên hệ biểu hiện suy thoái, "tự diễn biến", "tự chuyển hóa"; kỷ luật phát ngôn và học tập, làm theo tư tưởng, đạo đức, phong cách Hồ Chí Minh:</strong></p>
-          <p style="margin: 3px 0; text-indent: 24px; text-align: justify; white-space: pre-wrap;">${good}</p>
-          <p style="margin: 3px 0; text-indent: 24px; text-align: justify;">Bản thân luôn giữ vững lập trường tư tưởng chính trị, tuyệt đối trung thành với mục tiêu, lý tưởng của Đảng; không có biểu hiện suy thoái về tư tưởng chính trị, đạo đức, lối sống, "tự diễn biến", "tự chuyển hóa".</p>
-
-          <p style="margin: 4px 0; text-align: justify;"><strong>2. Về thực hiện nhiệm vụ, quyền hạn và kết quả thực hiện các chỉ tiêu, nhiệm vụ được giao trong năm:</strong></p>
-          <p style="margin: 3px 0; text-indent: 24px; text-align: justify;">Hoàn thành tốt các chỉ tiêu KPI và nhiệm vụ chuyên môn theo vị trí công tác tại ${mem.dept || 'Chi nhánh Bảo Lộc'}, đảm bảo tiến độ, chất lượng công việc và tuân thủ nghiêm quy trình nghiệp vụ VietinBank.</p>
-
-          <p style="margin: 4px 0; text-align: justify;"><strong>3. Việc thực hiện cam kết tu dưỡng, rèn luyện, phấn đấu cá nhân hằng năm:</strong></p>
-          <p style="margin: 3px 0; text-indent: 24px; text-align: justify;">Đã xây dựng và thực hiện nghiêm túc bản cam kết tu dưỡng, rèn luyện, phấn đấu của đảng viên trong năm ${yyyy}.</p>
-
-          ${is2A ? `
-          <p style="margin: 4px 0; text-align: justify;"><strong>4. Kết quả công tác lãnh đạo, chỉ đạo, quản lý, điều hành; thực hiện chức trách, nhiệm vụ; mức độ hoàn thành nhiệm vụ của tập thể, đơn vị thuộc quyền quản lý; khả năng quy tụ, xây dựng đoàn kết nội bộ:</strong></p>
-          <p style="margin: 3px 0; text-indent: 24px; text-align: justify;">Phát huy tốt vai trò nêu gương của cán bộ lãnh đạo, quản lý/cấp ủy viên; chỉ đạo điều hành sâu sát, quy tụ đoàn kết nội bộ hoàn thành tốt nhiệm vụ chính trị và chỉ tiêu kinh doanh của đơn vị.</p>
-          ` : `
-          <p style="margin: 4px 0; text-align: justify;"><strong>4. Ý thức tổ chức kỷ luật, chấp hành nội quy, quy chế cơ quan, chế độ sinh hoạt Đảng và đóng đảng phí:</strong></p>
-          <p style="margin: 3px 0; text-indent: 24px; text-align: justify;">Tham gia sinh hoạt chi bộ đầy đủ, đóng đảng phí đúng thời hạn, chấp hành nghiêm nội quy, văn hóa doanh nghiệp VietinBank và phối hợp tốt với đồng nghiệp.</p>
-          `}
-
-          <div style="font-weight: bold; margin-top: 8px;">II. Hạn chế, khuyết điểm và nguyên nhân:</div>
+          <div style="font-weight: bold; margin-top: 8px;">II. Hạn chế, khuyết điểm và nguyên nhân</div>
           <p style="margin: 3px 0;"><strong>1. Hạn chế, khuyết điểm:</strong></p>
           <p style="margin: 3px 0; text-indent: 24px; text-align: justify; white-space: pre-wrap;">${limit}</p>
-          <p style="margin: 3px 0;"><strong>2. Nguyên nhân của hạn chế, khuyết điểm (chủ quan, khách quan):</strong></p>
+          <p style="margin: 3px 0;"><strong>2. Nguyên nhân của hạn chế, khuyết điểm:</strong></p>
           <p style="margin: 3px 0; text-indent: 24px; text-align: justify;">Do khối lượng công việc kinh doanh và tác nghiệp ngân hàng lớn vào các thời điểm cao điểm; bản thân đôi lúc chưa sắp xếp thời gian tự nghiên cứu chuyên sâu thật sự khoa học.</p>
 
-          <div style="font-weight: bold; margin-top: 8px;">III. Kết quả khắc phục những hạn chế, khuyết điểm đã được cấp có thẩm quyền kết luận hoặc được chỉ ra ở các kỳ kiểm điểm trước:</div>
+          <div style="font-weight: bold; margin-top: 8px;">III. Kết quả khắc phục những hạn chế, khuyết điểm đã được cấp có thẩm quyền kết luận hoặc được chỉ ra ở các kỳ kiểm điểm trước</div>
           <p style="margin: 3px 0; text-indent: 24px; text-align: justify;">Đã nghiêm túc tiếp thu ý kiến góp ý của Chi bộ từ kỳ kiểm điểm trước và từng bước khắc phục có hiệu quả trong quá trình công tác.</p>
 
-          ${is2A ? `
-          <div style="font-weight: bold; margin-top: 8px;">IV. Giải trình những vấn đề được gợi ý kiểm điểm (nếu có):</div>
+          <div style="font-weight: bold; margin-top: 8px;">IV. Giải trình những vấn đề được gợi ý kiểm điểm (nếu có)</div>
           <p style="margin: 3px 0; text-indent: 24px;">Không có.</p>
-          <div style="font-weight: bold; margin-top: 8px;">V. Làm rõ trách nhiệm của cá nhân đối với những hạn chế, khuyết điểm của tập thể (nếu có):</div>
-          <p style="margin: 3px 0; text-indent: 24px; text-align: justify;">Nghiêm túc nhận trách nhiệm liên đới của cá nhân trong phạm vi lĩnh vực, bộ phận được phân công phụ trách.</p>
-          <div style="font-weight: bold; margin-top: 8px;">VI. Phương hướng, biện pháp khắc phục hạn chế, khuyết điểm:</div>
-          ` : `
-          <div style="font-weight: bold; margin-top: 8px;">IV. Phương hướng, biện pháp khắc phục hạn chế, khuyết điểm:</div>
-          `}
+
+          <div style="font-weight: bold; margin-top: 8px;">V. Làm rõ trách nhiệm của cá nhân đối với những hạn chế, khuyết điểm của tập thể (nếu có)</div>
+          <p style="margin: 3px 0; text-indent: 24px; text-align: justify;">Nghiêm túc nhận trách nhiệm cá nhân trong phạm vi công việc được phân công phụ trách.</p>
+
+          <div style="font-weight: bold; margin-top: 8px;">VI. Phương hướng, biện pháp khắc phục hạn chế, khuyết điểm</div>
           <p style="margin: 3px 0; text-indent: 24px; text-align: justify; white-space: pre-wrap;">${sol}</p>
 
-          <div style="font-weight: bold; margin-top: 8px;">${is2A ? 'VII' : 'V'}. Tự nhận mức xếp loại chất lượng (Điểm tự chấm theo khung tiêu chí: <span style="color:#b91c1c;">${score}/100đ</span>):</div>
-          <p style="margin: 4px 0 4px 20px;">${chk('Hoàn thành xuất sắc nhiệm vụ')} Hoàn thành xuất sắc nhiệm vụ &nbsp;&nbsp;&nbsp; ${chk('Hoàn thành tốt nhiệm vụ')} Hoàn thành tốt nhiệm vụ</p>
-          <p style="margin: 4px 0 4px 20px;">${chk('Hoàn thành nhiệm vụ')} Hoàn thành nhiệm vụ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${chk('Không hoàn thành nhiệm vụ')} Không hoàn thành nhiệm vụ</p>
+          <div style="font-weight: bold; text-transform: uppercase; margin-top: 12px;">B. NỘI DUNG TỰ ĐÁNH GIÁ, XẾP LOẠI</div>
+          <div style="font-weight: bold; margin-top: 6px;">I. Đánh giá theo các nhóm tiêu chí</div>
+          <p style="margin: 3px 0; text-align: justify;">Trên cơ sở cụ thể hoá khung tiêu chí đánh giá đối với ${phuLucRef}, cá nhân tự đánh giá, chấm điểm theo các tiêu chí được cụ thể hóa như sau:</p>
+          <p style="margin: 2px 0 2px 20px;">1. Nhóm tiêu chí chung: <strong>${g1}/30</strong></p>
+          <p style="margin: 2px 0 2px 20px;">2. Nhóm tiêu chí về kết quả thực hiện nhiệm vụ: <strong>${g2}/70</strong></p>
+          <p style="margin: 2px 0 6px 20px;">Tổng điểm: <strong style="color:#b91c1c;">${critTotal}/100</strong></p>
           ${buildCriteriaTableHtml(String(mem.id))}
+
+          <div style="font-weight: bold; margin-top: 8px;">II. Đề xuất xếp loại mức chất lượng:</div>
+          ${renderCheckboxes(ranking)}
+          <p style="font-style:italic; font-size:11pt; margin-top:4px;">(Gửi kèm Phụ lục về kết quả thực hiện nhiệm vụ trong đó thể hiện sản phẩm tiến độ, chất lượng cụ thể - theo hướng dẫn của các cấp uỷ, tổ chức đảng)</p>
 
           <table style="width: 100%; margin-top: 14px;">
             <tr>
@@ -4125,19 +4190,44 @@
             </tr>
           </table>
 
-          <div style="font-weight: bold; text-transform: uppercase; margin-top: 14px; border-top: 1px solid #000; padding-top: 8px;">B. ĐÁNH GIÁ, XẾP LOẠI CHẤT LƯỢNG</div>
-          <p style="margin: 4px 0;"><strong>1. Nhận xét, đánh giá của Chi bộ / Cấp ủy trực tiếp quản lý:</strong></p>
-          <p style="margin: 3px 0; text-indent: 24px; font-style: italic;">${mem.host_conclusion || 'Chi bộ thống nhất thông qua bản tự kiểm điểm của đồng chí.'}</p>
-          <p style="margin: 4px 0;"><strong>2. Kết quả biểu quyết của Chi bộ và đề xuất mức xếp loại:</strong> ........................................................</p>
-
-          <table style="width: 100%; margin-top: 14px;">
+          <div style="font-weight: bold; text-transform: uppercase; margin-top: 14px; border-top: 1px solid #000; padding-top: 8px;">C. KẾT QUẢ ĐÁNH GIÁ, XẾP LOẠI</div>
+          <div style="font-weight: bold; margin-top: 6px;">I. Đánh giá, xếp loại chất lượng cán bộ, công chức, viên chức</div>
+          <p style="margin: 3px 0;">- Nhận xét, đánh giá của người quản lý, sử dụng cán bộ, công chức, viên chức: ..........................................................................................................................................</p>
+          <p style="margin: 3px 0;">- Mức xếp loại chất lượng công chức, viên chức: ....................................................</p>
+          <table style="width: 100%; margin-top: 8px;">
             <tr>
-              <td style="width: 50%;"></td>
-              <td style="width: 50%; text-align: center;">
-                <div style="font-weight: bold; text-transform: uppercase;">TM. CHI BỘ 2</div>
-                <div style="font-weight: bold;">BÍ THƯ</div>
-                <div style="height: 50px;"></div>
+              <td style="width: 45%;"></td>
+              <td style="width: 55%; text-align: center;">
+                <div style="font-weight: bold; text-transform: uppercase;">THỦ TRƯỞNG CƠ QUAN, ĐƠN VỊ</div>
+                <div style="font-style: italic; font-size: 11pt;">(Xác lập thời điểm, ký, ghi rõ họ tên và đóng dấu)</div>
+                <div style="height: 45px;"></div>
+              </td>
+            </tr>
+          </table>
+
+          <div style="font-weight: bold; margin-top: 8px;">II. Đánh giá, xếp loại chất lượng đảng viên</div>
+          <p style="margin: 3px 0;">- Nhận xét, đánh giá của chi ủy: <span style="font-style:italic;">${mem.host_conclusion || '....................................................................................'}</span></p>
+          <p style="margin: 3px 0;">- Chi bộ đề xuất xếp loại mức chất lượng: ....................................................................</p>
+          <table style="width: 100%; margin-top: 8px;">
+            <tr>
+              <td style="width: 45%;"></td>
+              <td style="width: 55%; text-align: center;">
+                <div style="font-weight: bold; text-transform: uppercase;">T/M CHI ỦY (CHI BỘ)</div>
+                <div style="font-style: italic; font-size: 11pt;">(Xác lập thời điểm, ký, ghi rõ họ tên)</div>
+                <div style="height: 45px;"></div>
                 <div style="font-weight: bold; text-transform: uppercase;">${appData.meeting.host_name || 'Nguyễn Thi Thao'}</div>
+              </td>
+            </tr>
+          </table>
+
+          <p style="margin: 6px 0;">- Ban Thường vụ Đảng ủy cơ sở hoặc Đảng ủy trực thuộc cơ sở xếp loại mức chất lượng: ........................................................</p>
+          <table style="width: 100%; margin-top: 8px;">
+            <tr>
+              <td style="width: 45%;"></td>
+              <td style="width: 55%; text-align: center;">
+                <div style="font-weight: bold; text-transform: uppercase;">T/M ĐẢNG ỦY</div>
+                <div style="font-style: italic; font-size: 11pt;">(Xác lập thời điểm, ký, ghi rõ họ tên và đóng dấu)</div>
+                <div style="height: 45px;"></div>
               </td>
             </tr>
           </table>
