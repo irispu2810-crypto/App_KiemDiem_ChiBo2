@@ -367,6 +367,12 @@
           </button>
         </div>
 
+        <button onclick="checkForAppUpdate(true)" id="btn-check-update"
+          class="btn-3d bg-slate-800/90 hover:bg-slate-700 text-blue-200 border border-blue-400/30 text-xs font-bold px-3 py-2 rounded-xl flex items-center gap-1.5 transition" title="Kiểm tra phiên bản mới nhất">
+          <i class="fa-solid fa-arrows-rotate text-xs text-cyan-300"></i>
+          <span class="hidden md:inline">v2026.11.25</span>
+        </button>
+
         <button onclick="openQRModal()"
           class="btn-3d bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 text-xs font-bold px-3 py-2 rounded-xl flex items-center gap-1.5 transition">
           <i class="fa-solid fa-qrcode text-sm"></i>
@@ -2129,6 +2135,70 @@
       current_user_id: 6 // Mặc định là Đ/c NGUYỄN THI THAO (Bí thư)
     };
 
+    // ==========================================
+    // HỆ THỐNG TỰ ĐỘNG CẬP NHẬT PHIÊN BẢN MỚI (AUTO-UPDATE)
+    // ==========================================
+    const APP_VERSION = '2026.11.25.01';
+
+    function checkForAppUpdate(manual = false) {
+      if (!window.location.protocol.startsWith('http')) {
+        if (manual) showToast(`Đang chạy phiên bản v${APP_VERSION} (Chế độ ngoại tuyến)`, 'info');
+        return;
+      }
+
+      fetch('./version.json?t=' + Date.now(), { cache: 'no-store' })
+        .then(r => {
+          if (!r.ok) throw new Error('HTTP ' + r.status);
+          return r.json();
+        })
+        .then(info => {
+          if (!info || !info.version) return;
+          if (info.version !== APP_VERSION) {
+            const url = new URL(window.location.href);
+            url.searchParams.set('v', info.version);
+            if (manual) {
+              showToast(`Phát hiện bản mới v${info.version}! Đang cập nhật...`, 'success');
+              setTimeout(() => window.location.replace(url.toString()), 600);
+            } else {
+              showUpdateBanner(info);
+            }
+          } else if (manual) {
+            showToast(`Đồng chí đang sử dụng phiên bản mới nhất (v${APP_VERSION})!`, 'success');
+          }
+        })
+        .catch(() => {
+          if (manual) showToast(`Phiên bản hiện tại: v${APP_VERSION}`, 'info');
+        });
+    }
+
+    function showUpdateBanner(info) {
+      if (document.getElementById('auto-update-banner')) return;
+      const banner = document.createElement('div');
+      banner.id = 'auto-update-banner';
+      banner.className = 'fixed top-3 left-1/2 -translate-x-1/2 z-[9999] bg-gradient-to-r from-emerald-700 to-teal-800 text-white px-4 py-3 rounded-2xl shadow-2xl border border-emerald-400/60 flex flex-wrap items-center gap-3 max-w-xl w-[94%] text-xs animate-fadeIn';
+      banner.innerHTML = `
+        <div class="flex items-center gap-2.5 flex-1 min-w-[200px]">
+          <span class="w-8 h-8 rounded-xl bg-amber-400 text-slate-950 flex items-center justify-center font-black shrink-0 shadow">
+            <i class="fa-solid fa-sparkles"></i>
+          </span>
+          <div>
+            <div class="font-extrabold">Đã có bản cập nhật mới (v${info.version})!</div>
+            <div class="text-[11px] text-emerald-100">${info.changelog || 'Bổ sung tính năng và sửa lỗi mới nhất.'}</div>
+          </div>
+        </div>
+        <button type="button" onclick="applyAppUpdateNow('${info.version}')" class="px-3.5 py-1.5 bg-amber-400 hover:bg-amber-300 text-slate-950 font-black rounded-xl shadow transition shrink-0">
+          Cập nhật ngay
+        </button>
+      `;
+      document.body.appendChild(banner);
+    }
+
+    function applyAppUpdateNow(ver) {
+      const url = new URL(window.location.href);
+      url.searchParams.set('v', ver || Date.now());
+      window.location.replace(url.toString());
+    }
+
     // Khởi động ứng dụng
     document.addEventListener('DOMContentLoaded', () => {
       loadStoredData();
@@ -2140,6 +2210,9 @@
       checkUserSession();
       renderAll();
       setupProjectorSlides();
+      // Tự động kiểm tra bản cập nhật mới ngay khi mở và mỗi 60 giây
+      checkForAppUpdate(false);
+      setInterval(() => checkForAppUpdate(false), 60000);
       // Đồng bộ tự động từ máy chủ LAN nếu đang chạy qua server.py
       syncFromServer(false);
       if (window.location.protocol.startsWith('http') && !window.location.hostname.includes('github.io')) {
