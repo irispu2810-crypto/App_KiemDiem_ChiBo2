@@ -67,21 +67,20 @@ def get_criteria_for_target(target_val, data):
             {
                 'group': 'I. CÁC TIÊU CHÍ CHUNG (30 ĐIỂM)',
                 'items': [
-                    {'key': 'c_1_1', 'stt': '1', 'name': 'Công tác xây dựng, chỉnh đốn Đảng; củng cố tổ chức đảng và nâng cao chất lượng đảng viên', 'max': 5},
-                    {'key': 'c_1_2', 'stt': '2', 'name': 'Năng lực lãnh đạo của cấp ủy; hiệu quả lãnh đạo chính quyền, đoàn thể và đoàn kết nội bộ', 'max': 5},
-                    {'key': 'c_1_3', 'stt': '3', 'name': 'Thanh tra, kiểm tra, giám sát, kỷ luật đảng; phòng chống tham nhũng, lãng phí, tiêu cực', 'max': 5},
-                    {'key': 'c_1_4', 'stt': '4', 'name': 'Nguyên tắc tập trung dân chủ, tự phê bình và phê bình; chấp hành quy chế làm việc', 'max': 5},
-                    {'key': 'c_1_5', 'stt': '5', 'name': 'Lãnh đạo thực hiện nhiệm vụ chính trị, tinh gọn bộ máy, cải cách hành chính, chuyển đổi số', 'max': 5},
-                    {'key': 'c_1_6', 'stt': '6', 'name': 'Tinh thần tự soi tự sửa; kết quả khắc phục hạn chế các kỳ trước', 'max': 5}
+                    {'key': 'c_1_1', 'stt': '1', 'name': 'Kết quả công tác xây dựng, chỉnh đốn Đảng; củng cố, xây dựng tổ chức đảng và hệ thống chính trị; nâng cao chất lượng đội ngũ cán bộ, đảng viên theo nghị quyết, kế hoạch, chỉ tiêu được giao', 'max': 5},
+                    {'key': 'c_1_2', 'stt': '2', 'name': 'Năng lực lãnh đạo của cấp ủy; hiệu quả lãnh đạo, chỉ đạo của cấp ủy đối với chính quyền, Mặt trận Tổ quốc và các tổ chức chính trị - xã hội; hiệu quả trong phối hợp công tác; xây dựng đoàn kết nội bộ', 'max': 5},
+                    {'key': 'c_1_3', 'stt': '3', 'name': 'Hiệu quả trong công tác thanh tra, kiểm tra, giám sát và kỷ luật đảng; thực hiện các quy định về kiểm soát quyền lực; không để xảy ra tham nhũng, lãng phí, tiêu cực, suy thoái về tư tưởng chính trị, đạo đức, lối sống, "tự diễn biến", "tự chuyển hoá" trong nội bộ', 'max': 5},
+                    {'key': 'c_1_4', 'stt': '4', 'name': 'Kết quả thực hiện các nguyên tắc tổ chức và hoạt động của Đảng, nhất là nguyên tắc tập trung dân chủ, tự phê bình và phê bình; việc chấp hành quy chế làm việc, nội quy, chế độ công tác; phân công nhiệm vụ, tổ chức thực hiện hiệu quả', 'max': 5},
+                    {'key': 'c_1_5', 'stt': '5', 'name': 'Kết quả lãnh đạo, chỉ đạo, kiểm tra, giám sát việc thực hiện nhiệm vụ chính trị; xây dựng bộ máy tinh gọn, tinh giản biên chế, hoạt động hiệu năng, hiệu lực, hiệu quả; thực hiện cải cách hành chính, chuyển đổi số, đẩy mạnh ứng dụng khoa học, công nghệ, phương pháp quản lý gắn với xây dựng văn hoá công vụ trong hoạt động quản lý, điều hành tổ chức, cơ quan, đơn vị', 'max': 5},
+                    {'key': 'c_1_6', 'stt': '6', 'name': 'Tinh thần tự phê bình và phê bình, tự soi, tự sửa của tập thể; kết quả khắc phục những hạn chế, yếu kém, khuyết điểm đã được chỉ ra trong các kỳ kiểm điểm trước hoặc qua thanh tra, kiểm tra, giám sát', 'max': 5}
                 ]
             },
             {
-                'group': 'II. KẾT QUẢ THỰC HIỆN NHIỆM VỤ (70 ĐIỂM - KHỐI DOANH NGHIỆP NHÀ NƯỚC)',
+                'group': 'II. KẾT QUẢ THỰC HIỆN NHIỆM VỤ - MỤC 9: KHỐI DOANH NGHIỆP NHÀ NƯỚC (70 ĐIỂM)',
                 'items': [
-                    {'key': 'c_2_1', 'stt': '1', 'name': 'Việc cụ thể hóa nghị quyết, chương trình, kế hoạch công tác của cấp ủy cấp trên', 'max': 10},
-                    {'key': 'c_2_2', 'stt': '2', 'name': 'Kết quả lãnh đạo, chỉ đạo trên các lĩnh vực được phân công phụ trách', 'max': 10},
-                    {'key': 'c_2_3', 'stt': '3', 'name': 'Kết quả thực hiện chỉ tiêu kế hoạch kinh doanh VietinBank giao năm 2026 (Huy động, Tín dụng, Thu phí, Nợ xấu)', 'max': 40},
-                    {'key': 'c_2_4', 'stt': '4', 'name': 'Đánh giá, xếp loại các tổ chức trực thuộc và cá nhân liên quan trực tiếp', 'max': 10}
+                    {'key': 'c_2_1', 'stt': '(1)', 'name': 'Việc cụ thể hoá nghị quyết, chương trình, kế hoạch công tác của cấp ủy hoặc cấp có thẩm quyền (Mỗi nội dung trễ hạn, không đạt chỉ tiêu hoặc bị nhắc nhở trừ 2 điểm)', 'max': 10},
+                    {'key': 'c_2_2', 'stt': '(2)', 'name': 'Kết quả thực hiện nhiệm vụ được giao (nếu có); kết quả sản xuất kinh doanh; về quản lý tài chính, tài sản; về quản trị doanh nghiệp, tổ chức bộ máy, nhân sự; xây dựng văn hoá doanh nghiệp; việc chăm lo đời sống người lao động; phòng, chống tham nhũng, lãng phí, tiêu cực... theo chức năng, nhiệm vụ được giao', 'max': 50},
+                    {'key': 'c_2_3', 'stt': '(3)', 'name': 'Kết quả đánh giá, xếp loại đối với các lĩnh vực, địa phương, cơ quan, đơn vị do tập thể phụ trách (nếu có); kết quả đánh giá chất lượng đối với các tổ chức trực thuộc và cá nhân liên quan trực tiếp', 'max': 10}
                 ]
             }
         ]
@@ -99,40 +98,45 @@ def get_criteria_for_target(target_val, data):
         if is_leader:
             groups = [
                 {
-                    'group': 'I. CÁC TIÊU CHÍ CHUNG (30 ĐIỂM - CẤP ỦY VIÊN / LÃNH ĐẠO)',
+                    'group': 'I. CÁC TIÊU CHÍ CHUNG - PHỤ LỤC 5: CẤP ỦY VIÊN, BÍ THƯ, PHÓ BÍ THƯ CHI BỘ DOANH NGHIỆP (30 ĐIỂM)',
                     'items': [
-                        {'key': 'l_1_1', 'stt': '1', 'name': 'Chính trị, tư tưởng: Bản lĩnh chính trị vững vàng, giữ nghiêm kỷ luật phát ngôn', 'max': 5},
-                        {'key': 'l_1_2', 'stt': '2', 'name': 'Phẩm chất đạo đức, lối sống, ý thức tổ chức kỷ luật: Gương mẫu, không tham nhũng tiêu cực', 'max': 5},
-                        {'key': 'l_1_3', 'stt': '3', 'name': 'Năng lực lãnh đạo, quản lý; đổi mới sáng tạo, dám nghĩ dám làm vì lợi ích chung', 'max': 10},
-                        {'key': 'l_1_4', 'stt': '4', 'name': 'Uy tín, khả năng quy tụ đoàn kết nội bộ và phối hợp công tác', 'max': 5},
-                        {'key': 'l_1_5', 'stt': '5', 'name': 'Tinh thần tự phê bình và phê bình, tự soi tự sửa, khắc phục khuyết điểm', 'max': 5}
+                        {'key': 'l_1_1', 'stt': '1', 'name': 'Về chính trị, tư tưởng (Trung thành với Đảng, Tổ quốc, Nhân dân; bản lĩnh vững vàng, kỷ luật phát ngôn; tận tụy phục vụ, đặt lợi ích tập thể lên trên; chấp hành phân công; học tập nghị quyết; năng lực tư duy, đổi mới sáng tạo)', 'max': 5},
+                        {'key': 'l_1_2', 'stt': '2', 'name': 'Về phẩm chất đạo đức và ý thức tổ chức kỷ luật (Cần kiệm liêm chính, nêu gương; không tham ô, tham nhũng, tiêu cực, suy thoái; tự giác tu dưỡng, dám nghĩ dám làm; nguyên tắc tập trung dân chủ; kê khai tài sản; báo cáo trung thực)', 'max': 5},
+                        {'key': 'l_1_3', 'stt': '3', 'name': 'Năng lực lãnh đạo, quản lý và năng lực chuyên môn, nghiệp vụ theo yêu cầu vị trí việc làm; khả năng đáp ứng yêu cầu thực thi nhiệm vụ; thái độ công tác; tinh thần đổi mới sáng tạo, dám nghĩ, dám làm, dám chịu trách nhiệm vì lợi ích chung (5 nội dung x 2đ)', 'max': 10},
+                        {'key': 'l_1_4', 'stt': '4', 'name': 'Về mức độ tín nhiệm, uy tín và khả năng quy tụ đoàn kết nội bộ; xây dựng tập thể vững mạnh về chính trị, tư tưởng, tổ chức và đạo đức (a: 2,5đ; b: 2,5đ)', 'max': 5},
+                        {'key': 'l_1_5', 'stt': '5', 'name': 'Về tự phê bình và phê bình, tự soi, tự sửa, khắc phục hạn chế, khuyết điểm của bản thân và trong phạm vi lãnh đạo', 'max': 5}
                     ]
                 },
                 {
-                    'group': 'II. KẾT QUẢ THỰC HIỆN NHIỆM VỤ (70 ĐIỂM)',
+                    'group': 'II. KẾT QUẢ THỰC HIỆN CHỨC TRÁCH, NHIỆM VỤ ĐƯỢC GIAO - PHỤ LỤC 5 (70 ĐIỂM)',
                     'items': [
-                        {'key': 'l_2_1', 'stt': '1', 'name': 'Lãnh đạo, điều hành chi bộ và đơn vị hoàn thành các chỉ tiêu nhiệm vụ chính trị, kinh doanh', 'max': 35},
-                        {'key': 'l_2_2', 'stt': '2', 'name': 'Tiến độ và chất lượng cụ thể hóa các văn bản chỉ đạo của Đảng ủy cấp trên', 'max': 15},
-                        {'key': 'l_2_3', 'stt': '3', 'name': 'Kết quả đánh giá, xếp loại đảng viên và cán bộ thuộc quyền quản lý trực tiếp', 'max': 20}
+                        {'key': 'l_2_1a', 'stt': '1a', 'name': 'Tổ chức quán triệt, tuyên truyền các chủ trương, đường lối của Đảng, Nhà nước, làm tốt công tác giáo dục chính trị tư tưởng', 'max': 10},
+                        {'key': 'l_2_1b', 'stt': '1b', 'name': 'Nghiên cứu, tham mưu, đề xuất, ban hành các giải pháp của cấp ủy về thực hiện nhiệm vụ chính trị của Chi bộ', 'max': 10},
+                        {'key': 'l_2_1c', 'stt': '1c', 'name': 'Hướng dẫn và tổ chức kiểm tra, giám sát việc thực hiện nhiệm vụ chính trị, góp phần ngăn ngừa khuyết điểm, vi phạm, kịp thời phát hiện và xử lý các vấn đề phát sinh', 'max': 5},
+                        {'key': 'l_2_1d', 'stt': '1d', 'name': 'Tổ chức sơ kết, tổng kết các chỉ thị, nghị quyết của Trung ương, Tỉnh ủy, Đảng ủy', 'max': 5},
+                        {'key': 'l_2_1e', 'stt': '1đ', 'name': 'Thực hiện hiệu quả chuyển đổi số, ứng dụng công nghệ trong quản lý, điều hành hoạt động của Chi bộ', 'max': 5},
+                        {'key': 'l_2_1f', 'stt': '1e', 'name': 'Chuẩn bị, điều hành, tổ chức các cuộc họp, hội nghị của cấp ủy đảm bảo theo quy định', 'max': 5},
+                        {'key': 'l_2_2a', 'stt': '2a', 'name': 'Lãnh đạo, chỉ đạo, điều hành, tổ chức thực hiện hiệu quả nghị quyết, chỉ thị, kết luận, quy định, hướng dẫn của Trung ương, Tỉnh ủy, Đảng ủy', 'max': 10},
+                        {'key': 'l_2_2b', 'stt': '2b', 'name': 'Chủ động phát hiện, đề xuất các giải pháp đổi mới phù hợp với đường lối, chủ trương của Đảng và tình hình thực tiễn', 'max': 5},
+                        {'key': 'l_2_2c', 'stt': '2c', 'name': 'Chủ động xây dựng và lãnh đạo, chỉ đạo thực hiện có hiệu quả kế hoạch, chương trình công tác, quy chế làm việc của Chi ủy, Chi bộ', 'max': 5},
+                        {'key': 'l_2_3', 'stt': '3', 'name': 'Kết quả đánh giá, xếp loại chất lượng của tập thể và của đội ngũ đảng viên thuộc quyền quản lý trực tiếp của cấp ủy', 'max': 10}
                     ]
                 }
             ]
         else:
             groups = [
                 {
-                    'group': 'I. CÁC TIÊU CHÍ CHUNG (30 ĐIỂM - ĐẢNG VIÊN)',
+                    'group': 'I. CÁC TIÊU CHÍ CHUNG - PHỤ LỤC 6: CÁ NHÂN KHÔNG GIỮ CHỨC VỤ LÃNH ĐẠO, QUẢN LÝ (30 ĐIỂM)',
                     'items': [
-                        {'key': 'm_1_1', 'stt': '1', 'name': 'Chính trị, phẩm chất đạo đức và ý thức tổ chức kỷ luật (Phục vụ khách hàng, không sai sót)', 'max': 10},
-                        {'key': 'm_1_2', 'stt': '2', 'name': 'Năng lực chuyên môn nghiệp vụ, thái độ công tác, đổi mới sáng tạo, văn hóa VietinBank', 'max': 15},
-                        {'key': 'm_1_3', 'stt': '3', 'name': 'Tinh thần tự phê bình và phê bình, tự soi tự sửa', 'max': 5}
+                        {'key': 'm_1_1', 'stt': '1', 'name': 'Về chính trị, phẩm chất đạo đức và ý thức tổ chức kỷ luật (Bản lĩnh chính trị; nguyên tắc Đảng, kỷ luật phát ngôn; học tập nghị quyết; đạo đức lối sống, không tham nhũng tiêu cực; ý thức kỷ luật; kê khai tài sản; báo cáo trung thực; đoàn kết nội bộ; giữ mối liên hệ nơi cư trú - 10 ý x 1đ)', 'max': 10},
+                        {'key': 'm_1_2', 'stt': '2', 'name': 'Năng lực chuyên môn, nghiệp vụ theo yêu cầu vị trí việc làm; khả năng đáp ứng yêu cầu thực thi nhiệm vụ; thái độ công tác; tinh thần đổi mới sáng tạo, dám nghĩ, dám làm, dám chịu trách nhiệm vì lợi ích chung (a: 5đ; b: 5đ; c: 2,5đ; d: 2,5đ)', 'max': 15},
+                        {'key': 'm_1_3', 'stt': '3', 'name': 'Về tự phê bình và phê bình, khắc phục hạn chế, khuyết điểm (Tinh thần tự phê bình, tự soi, tự sửa; mức độ tự giác nhận diện và kết quả khắc phục hạn chế, khuyết điểm đã được chỉ ra)', 'max': 5}
                     ]
                 },
                 {
-                    'group': 'II. KẾT QUẢ THỰC HIỆN NHIỆM VỤ CHUYÊN MÔN (70 ĐIỂM)',
+                    'group': 'II. KẾT QUẢ THỰC HIỆN NHIỆM VỤ - MỤC 8: KHỐI DOANH NGHIỆP NHÀ NƯỚC (70 ĐIỂM)',
                     'items': [
-                        {'key': 'm_2_1', 'stt': '1', 'name': 'Mức độ hoàn thành định mức KPI công việc theo bản mô tả vị trí việc làm', 'max': 40},
-                        {'key': 'm_2_2', 'stt': '2', 'name': 'Tính chính xác, kịp thời, không để phát sinh rủi ro tác nghiệp hoặc ảnh hưởng uy tín chi nhánh', 'max': 20},
-                        {'key': 'm_2_3', 'stt': '3', 'name': 'Tham gia học tập nghị quyết, các phong trào thi đua và nhiệm vụ đột xuất', 'max': 10}
+                        {'key': 'm_2_1', 'stt': '8', 'name': 'Mức độ hoàn thành nhiệm vụ theo định mức, vị trí công việc; không để phát sinh lỗi kỹ thuật, sai sót ảnh hưởng đến hiệu quả sản xuất, kinh doanh, sản phẩm, dịch vụ', 'max': 70}
                     ]
                 }
             ]
