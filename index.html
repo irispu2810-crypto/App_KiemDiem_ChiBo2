@@ -921,6 +921,18 @@
           <div class="flex items-center flex-wrap gap-2">
             <!-- Phân quyền điều phối: Dành riêng cho Bí thư / Ban Chi ủy -->
             <div id="leader-assign-tools" class="flex items-center flex-wrap gap-2">
+              <button onclick="syncFromServer(true)"
+                class="btn-3d text-xs bg-sky-600 hover:bg-sky-700 text-white px-3 py-1.5 rounded-xl font-bold flex items-center gap-1.5 shadow transition" title="Tải nhận xét mới nhất từ máy chủ LAN">
+                <i class="fa-solid fa-arrows-rotate text-sky-200"></i>
+                <span>Cập Nhật Nhận Xét</span>
+              </button>
+
+              <button onclick="openImportReviewsModal()"
+                class="btn-3d text-xs bg-teal-600 hover:bg-teal-700 text-white px-3 py-1.5 rounded-xl font-bold flex items-center gap-1.5 shadow transition" title="Nhận và gộp mã nhận xét do Đảng viên gửi qua Zalo / tin nhắn">
+                <i class="fa-solid fa-file-import text-amber-200"></i>
+                <span>Nhận & Gộp Từ Zalo</span>
+              </button>
+
               <button onclick="openReviewMeetingReportModal()"
                 class="btn-3d text-xs bg-gradient-to-r from-red-700 to-rose-800 hover:from-red-800 hover:to-rose-900 text-white px-3.5 py-1.5 rounded-xl font-bold flex items-center gap-1.5 shadow-md transition" title="Kết xuất Báo cáo tổng hợp nhận xét phục vụ Bí thư điều hành cuộc họp">
                 <i class="fa-solid fa-file-word text-amber-300"></i>
@@ -1006,12 +1018,19 @@
             <p class="text-xs text-slate-500">Đọc đối chiếu bản tự kiểm điểm và nhập góp ý mang tính xây dựng, thẳng
               thắn</p>
           </div>
-          <div class="flex items-center gap-2 bg-blue-50 border border-blue-200 px-3 py-1.5 rounded-lg shadow-sm">
-            <span class="text-xs font-bold text-slate-600">Người nhận xét:</span>
-            <span id="tab4-current-reviewer-badge" class="text-xs font-black text-vtb-navy flex items-center gap-1.5">
-              <i class="fa-solid fa-user-check text-emerald-600"></i>
-              <span id="current-reviewer-display">NGUYỄN THI THAO</span>
-            </span>
+          <div class="flex flex-wrap items-center gap-2">
+            <button type="button" onclick="sendMyReviewsToLeader()"
+              class="btn-3d text-xs bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-700 hover:to-teal-800 text-white px-3.5 py-1.5 rounded-xl font-bold flex items-center gap-1.5 shadow transition" title="Đóng gói nhận xét và điểm tự chấm của đồng chí để gửi qua Zalo cho Bí thư / Phó Bí thư">
+              <i class="fa-solid fa-paper-plane text-amber-200"></i>
+              <span>Gửi Nhận Xét Lên Bí Thư (Zalo)</span>
+            </button>
+            <div class="flex items-center gap-2 bg-blue-50 border border-blue-200 px-3 py-1.5 rounded-lg shadow-sm">
+              <span class="text-xs font-bold text-slate-600">Người nhận xét:</span>
+              <span id="tab4-current-reviewer-badge" class="text-xs font-black text-vtb-navy flex items-center gap-1.5">
+                <i class="fa-solid fa-user-check text-emerald-600"></i>
+                <span id="current-reviewer-display">NGUYỄN THI THAO</span>
+              </span>
+            </div>
           </div>
         </div>
 
@@ -2024,6 +2043,45 @@
     </div>
   </div>
 
+  <!-- ========================================== -->
+  <!-- MODAL 3: NHẬN & GỘP NHẬN XÉT TỪ ĐẢNG VIÊN (ZALO / ONLINE SYNC) -->
+  <!-- ========================================== -->
+  <div id="import-reviews-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-5">
+    <div class="bg-white w-full max-w-2xl rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-slate-200 animate-fadeIn">
+      <div class="px-5 py-4 bg-gradient-to-r from-teal-700 to-emerald-800 text-white flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <span class="w-9 h-9 rounded-xl bg-amber-400 text-slate-950 flex items-center justify-center text-base font-black shadow">
+            <i class="fa-solid fa-file-import"></i>
+          </span>
+          <div>
+            <h3 class="font-extrabold text-sm sm:text-base">Nhận & Gộp Nhận Xét Từ Đảng Viên</h3>
+            <p class="text-[11px] text-emerald-100">Dán tin nhắn có mã [CHIBO2-SYNC] từ Zalo để cập nhật cho Bí thư / Phó Bí thư</p>
+          </div>
+        </div>
+        <button type="button" onclick="closeImportReviewsModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="p-5 space-y-3 text-xs">
+        <div class="p-3 bg-blue-50 border border-blue-200 rounded-xl text-blue-900 space-y-1">
+          <p class="font-bold"><i class="fa-solid fa-circle-info text-blue-600 mr-1"></i> Hướng dẫn sử dụng khi chạy Online (GitHub Pages / 4G):</p>
+          <p>1. Các Đảng viên sau khi nhập nhận xét bấm nút <strong>"Gửi Nhận Xét Lên Bí Thư (Zalo)"</strong> và gửi tin nhắn vào nhóm hoặc riêng cho Bí thư / Phó Bí thư.</p>
+          <p>2. Bí thư / Phó Bí thư copy <strong>một hoặc nhiều tin nhắn</strong> dán vào ô bên dưới rồi bấm <strong>"Cập Nhật & Gộp Vào Hệ Thống"</strong>.</p>
+        </div>
+        <textarea id="import-reviews-textarea" rows="8" class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-teal-500 text-xs font-mono leading-relaxed" placeholder="Dán nội dung tin nhắn có chứa [CHIBO2-SYNC]...[/CHIBO2-SYNC] vào đây (có thể dán nhiều tin nhắn cùng lúc)..."></textarea>
+      </div>
+
+      <div class="px-5 py-3 bg-slate-50 border-t border-slate-200 flex items-center justify-end gap-2">
+        <button type="button" onclick="closeImportReviewsModal()" class="px-4 py-2 bg-white border border-slate-300 hover:bg-slate-100 text-slate-700 text-xs font-bold rounded-xl transition">Hủy</button>
+        <button type="button" onclick="processImportReviewsFromText()" class="btn-3d px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold rounded-xl shadow transition flex items-center gap-1.5">
+          <i class="fa-solid fa-check-double"></i>
+          <span>Cập Nhật & Gộp Vào Hệ Thống</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- SCRIPT LOGIC TOÀN BỘ ỨNG DỤNG -->
   <script>
     // Dữ liệu chính thức 12 đồng chí Đảng viên Chi bộ 2 - VietinBank CN Bảo Lộc
@@ -2083,6 +2141,11 @@
       checkUserSession();
       renderAll();
       setupProjectorSlides();
+      // Đồng bộ tự động từ máy chủ LAN nếu đang chạy qua server.py
+      syncFromServer(false);
+      if (window.location.protocol.startsWith('http') && !window.location.hostname.includes('github.io')) {
+        setInterval(() => syncFromServer(false), 8000);
+      }
     });
 
     // Tải dữ liệu từ LocalStorage hoặc Server
@@ -2258,11 +2321,18 @@
         }
       }
       if (tabId === 'tab-peer-reviews') {
+        syncFromServer(false);
         renderPeerAssignmentMatrix();
         renderMyReviewTasks();
       }
-      if (tabId === 'tab-secret-ballot') renderSecretBallotSection();
-      if (tabId === 'tab-minutes') refreshMinutesContent();
+      if (tabId === 'tab-secret-ballot') {
+        syncFromServer(false);
+        renderSecretBallotSection();
+      }
+      if (tabId === 'tab-minutes') {
+        syncFromServer(false);
+        refreshMinutesContent();
+      }
     }
 
     // ==========================================
@@ -3273,7 +3343,14 @@
         }
       }
 
-      saveAllDataToServer();
+      saveLocalBackup();
+      if (window.location.protocol.startsWith('http') && !window.location.hostname.includes('github.io')) {
+        fetch('/api/self_eval', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ target: targetVal, score, ranking, good, limit, sol })
+        }).catch(() => {});
+      }
       refreshMinutesContent();
     }
 
@@ -3722,7 +3799,7 @@
     function autoAssignBalancedPeerReviews(showMsg = true) {
       const cur = appData.members.find(x => x.id === appData.current_user_id) || appData.members[0];
       const isLeader = (cur.role_party === 'Bí thư Chi bộ' || cur.role_party === 'Phó Bí thư Chi bộ');
-      if (!isLeader) {
+      if (showMsg && !isLeader) {
         showToast('Chỉ Bí thư Chi bộ mới có quyền tự động chia cân bằng!', 'warning');
         return;
       }
@@ -4496,7 +4573,8 @@
       const reviewObj = {
         reviewer_id: currentReviewer.id,
         reviewer_name: currentReviewer.name,
-        good, limit, solution
+        good, limit, solution,
+        updated_at: new Date().toISOString()
       };
 
       if (idx >= 0) {
@@ -4505,10 +4583,26 @@
         appData.reviews[tid].push(reviewObj);
       }
 
-      saveAllDataToServer();
+      saveLocalBackup();
       renderPeerAssignmentMatrix();
       refreshMinutesContent();
-      showToast('Đã lưu ý kiến góp ý thành công!', 'success');
+
+      if (window.location.protocol.startsWith('http') && !window.location.hostname.includes('github.io')) {
+        fetch('/api/review', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ target_id: tid, review: reviewObj })
+        })
+        .then(r => r.json())
+        .then(() => {
+          showToast('Đã lưu & đồng bộ ý kiến góp ý lên máy chủ!', 'success');
+        })
+        .catch(() => {
+          showToast('Đã lưu ý kiến góp ý vào trình duyệt!', 'success');
+        });
+      } else {
+        showToast('Đã lưu góp ý! Hãy bấm "Gửi Nhận Xét Lên Bí Thư (Zalo)" để chuyển cho Bí thư.', 'success');
+      }
     }
 
     // TAB 5: BỎ PHIẾU KÍN ĐIỆN TỬ & PHÂN QUYỀN CHẶT CHẼ
@@ -6439,6 +6533,306 @@
         console.error('Export error:', e);
         alert('Lỗi xuất file: ' + e.message);
       }
+    }
+
+    // ==========================================
+    // ĐỒNG BỘ DỮ LIỆU ĐA THIẾT BỊ (LAN SERVER + ZALO SYNC ONLINE 24/7)
+    // ==========================================
+    let isSyncingFromServer = false;
+
+    function mergeServerData(serverData) {
+      if (!serverData || !Array.isArray(serverData.members)) return false;
+      let changed = false;
+
+      // 1. Gộp nhận xét chéo (reviews) theo reviewer_id và updated_at
+      if (serverData.reviews && typeof serverData.reviews === 'object') {
+        if (!appData.reviews) appData.reviews = {};
+        Object.keys(serverData.reviews).forEach(tid => {
+          const sList = serverData.reviews[tid] || [];
+          const lList = appData.reviews[tid] || [];
+          const mergedMap = new Map();
+
+          lList.forEach(r => {
+            if (r && r.reviewer_id !== undefined) mergedMap.set(r.reviewer_id, r);
+          });
+
+          sList.forEach(sr => {
+            if (!sr || sr.reviewer_id === undefined) return;
+            const lr = mergedMap.get(sr.reviewer_id);
+            if (!lr || (sr.updated_at && (!lr.updated_at || sr.updated_at > lr.updated_at))) {
+              if (!lr || JSON.stringify(lr) !== JSON.stringify(sr)) {
+                mergedMap.set(sr.reviewer_id, sr);
+                changed = true;
+              }
+            }
+          });
+
+          appData.reviews[tid] = Array.from(mergedMap.values());
+        });
+      }
+
+      // 2. Gộp danh sách phân công (assignments) nếu server có
+      if (serverData.assignments && Object.keys(serverData.assignments).length > 0) {
+        if (JSON.stringify(appData.assignments) !== JSON.stringify(serverData.assignments)) {
+          appData.assignments = serverData.assignments;
+          changed = true;
+        }
+      }
+
+      // 3. Gộp điểm tự chấm & bản tự kiểm điểm của từng Đảng viên (tránh ghi đè người đang nhập)
+      const activeId = appData.current_user_id;
+      serverData.members.forEach(sm => {
+        const lm = appData.members.find(x => x.id === sm.id);
+        if (lm) {
+          // Luôn cập nhật thông tin người khác; với chính mình chỉ cập nhật nếu chưa có hoặc server mới hơn
+          if (sm.id !== activeId) {
+            if (lm.self_score !== sm.self_score || lm.self_good !== sm.self_good || lm.self_limit !== sm.self_limit || lm.self_sol !== sm.self_sol || lm.self_ranking !== sm.self_ranking) {
+              lm.self_score = sm.self_score;
+              lm.self_ranking = sm.self_ranking;
+              lm.self_good = sm.self_good;
+              lm.self_limit = sm.self_limit;
+              lm.self_sol = sm.self_sol;
+              changed = true;
+            }
+          }
+        }
+      });
+
+      // 4. Gộp dữ liệu hòm phiếu nếu có
+      if (serverData.ballots && serverData.ballots.voters) {
+        const sCount = Object.keys(serverData.ballots.voters).length;
+        const lCount = appData.ballots && appData.ballots.voters ? Object.keys(appData.ballots.voters).length : 0;
+        if (sCount > lCount || serverData.ballots.is_closed !== (appData.ballots && appData.ballots.is_closed)) {
+          appData.ballots = serverData.ballots;
+          changed = true;
+        }
+      }
+
+      if (changed) {
+        saveLocalBackup();
+      }
+      return changed;
+    }
+
+    function syncFromServer(showNotice = false) {
+      if (isSyncingFromServer) return;
+      if (!window.location.protocol.startsWith('http') || window.location.hostname.includes('github.io')) {
+        if (showNotice) {
+          showToast('Đang chạy bản Online tĩnh (GitHub Pages). Vui lòng dùng nút "Nhận & Gộp Từ Zalo" để cập nhật nhận xét từ các Đảng viên!', 'info');
+        }
+        return;
+      }
+
+      isSyncingFromServer = true;
+      fetch('/api/data?t=' + Date.now())
+        .then(r => {
+          if (!r.ok) throw new Error('HTTP ' + r.status);
+          return r.json();
+        })
+        .then(serverData => {
+          const changed = mergeServerData(serverData);
+          const activeEl = document.activeElement;
+          const isTyping = activeEl && (activeEl.tagName === 'TEXTAREA' || activeEl.tagName === 'INPUT');
+
+          if (changed || showNotice) {
+            renderPeerAssignmentMatrix();
+            if (!isTyping || showNotice) {
+              renderMyReviewTasks();
+            }
+            const allModal = document.getElementById('all-reviews-modal');
+            if (allModal && !allModal.classList.contains('hidden')) {
+              const filterSel = document.getElementById('all-reviews-filter-select');
+              renderAllReviewsModalContent(filterSel ? filterSel.value : 'all');
+            }
+            refreshMinutesContent();
+            renderTallyTable();
+            updateProgressSummary();
+          }
+          if (showNotice) {
+            showToast('Đã cập nhật dữ liệu nhận xét mới nhất từ máy chủ!', 'success');
+          }
+        })
+        .catch(() => {
+          if (showNotice) {
+            showToast('Không kết nối được máy chủ LAN. Dùng "Nhận & Gộp Từ Zalo" nếu đang chạy Online.', 'warning');
+          }
+        })
+        .finally(() => {
+          isSyncingFromServer = false;
+        });
+    }
+
+    function encodeSyncPayload(obj) {
+      const jsonStr = JSON.stringify(obj);
+      const bytes = new TextEncoder().encode(jsonStr);
+      let bin = '';
+      bytes.forEach(b => { bin += String.fromCharCode(b); });
+      return btoa(bin);
+    }
+
+    function decodeSyncPayload(b64) {
+      const bin = atob(b64.trim());
+      const bytes = new Uint8Array(bin.length);
+      for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+      const jsonStr = new TextDecoder().decode(bytes);
+      return JSON.parse(jsonStr);
+    }
+
+    function sendMyReviewsToLeader() {
+      const cur = appData.members.find(x => x.id === appData.current_user_id) || appData.members[0];
+      const targets = appData.assignments[cur.id] || [];
+
+      // Lưu giá trị hiện đang gõ trên các ô textarea trước khi đóng gói
+      const myReviews = [];
+      const checkIds = (cur.role_party === 'Bí thư Chi bộ' || cur.role_party === 'Phó Bí thư Chi bộ')
+        ? appData.members.filter(m => m.id !== cur.id).map(m => m.id)
+        : targets;
+
+      checkIds.forEach(tid => {
+        const gEl = document.getElementById(`rev-good-${tid}`);
+        const lEl = document.getElementById(`rev-limit-${tid}`);
+        const sEl = document.getElementById(`rev-sol-${tid}`);
+        if (gEl && lEl && sEl) {
+          if (!appData.reviews[tid]) appData.reviews[tid] = [];
+          const idx = appData.reviews[tid].findIndex(r => r.reviewer_id === cur.id);
+          const revObj = {
+            reviewer_id: cur.id,
+            reviewer_name: cur.name,
+            good: gEl.value,
+            limit: lEl.value,
+            solution: sEl.value,
+            updated_at: new Date().toISOString()
+          };
+          if (idx >= 0) appData.reviews[tid][idx] = revObj;
+          else appData.reviews[tid].push(revObj);
+          myReviews.push({ target_id: tid, review: revObj });
+        } else {
+          const existing = (appData.reviews[tid] || []).find(r => r.reviewer_id === cur.id);
+          if (existing) myReviews.push({ target_id: tid, review: existing });
+        }
+      });
+
+      saveLocalBackup();
+
+      const payload = {
+        v: 1,
+        sender_id: cur.id,
+        sender_name: cur.name,
+        self_eval: {
+          score: cur.self_score,
+          ranking: cur.self_ranking,
+          good: cur.self_good,
+          limit: cur.self_limit,
+          sol: cur.self_sol
+        },
+        reviews: myReviews
+      };
+
+      const code = encodeSyncPayload(payload);
+      const targetNames = myReviews.map(item => {
+        const tm = appData.members.find(x => x.id === item.target_id);
+        return tm ? `Đ/c ${tm.name}` : `#${item.target_id}`;
+      }).join(', ');
+
+      const shareText = `📋 BÁO CÁO NHẬN XÉT CHI BỘ 2\n👤 Người gửi: Đ/c ${cur.name}\n🎯 Đã nhận xét cho: ${targetNames}\n[CHIBO2-SYNC]${code}[/CHIBO2-SYNC]`;
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(shareText).then(() => {
+          showToast('Đã copy mã nhận xét! Hãy dán gửi qua Zalo cho Bí thư / Phó Bí thư.', 'success');
+          alert(`✅ ĐÃ ĐÓNG GÓI & COPY NHẬN XÉT CỦA Đ/C ${cur.name}!\n\nĐồng chí chỉ cần mở Zalo, Dán (Paste) và gửi cho Bí thư (Đ/c Nguyễn Thi Thao) hoặc Phó Bí thư (Đ/c Ngô Thị Kim Ngân) để tổng hợp lên hệ thống.`);
+        }).catch(() => {
+          prompt('Copy toàn bộ nội dung dưới đây gửi qua Zalo cho Bí thư / Phó Bí thư:', shareText);
+        });
+      } else {
+        prompt('Copy toàn bộ nội dung dưới đây gửi qua Zalo cho Bí thư / Phó Bí thư:', shareText);
+      }
+
+      if (navigator.share) {
+        navigator.share({ title: `Nhận xét Chi bộ 2 - Đ/c ${cur.name}`, text: shareText }).catch(() => {});
+      }
+    }
+
+    function openImportReviewsModal() {
+      const cur = appData.members.find(x => x.id === appData.current_user_id) || appData.members[0];
+      const isLeader = (cur.role_party === 'Bí thư Chi bộ' || cur.role_party === 'Phó Bí thư Chi bộ');
+      if (!isLeader) {
+        showToast('Chỉ Bí thư / Phó Bí thư Chi bộ mới có quyền gộp nhận xét!', 'warning');
+        return;
+      }
+      const modal = document.getElementById('import-reviews-modal');
+      const ta = document.getElementById('import-reviews-textarea');
+      if (ta) ta.value = '';
+      if (modal) modal.classList.remove('hidden');
+    }
+
+    function closeImportReviewsModal() {
+      const modal = document.getElementById('import-reviews-modal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function processImportReviewsFromText() {
+      const ta = document.getElementById('import-reviews-textarea');
+      if (!ta || !ta.value.trim()) {
+        alert('Vui lòng dán nội dung tin nhắn có chứa mã [CHIBO2-SYNC]...[/CHIBO2-SYNC]!');
+        return;
+      }
+
+      const raw = ta.value;
+      const regex = /\[CHIBO2-SYNC\]([\s\S]*?)\[\/CHIBO2-SYNC\]/g;
+      let match;
+      let importedSenders = [];
+      let totalReviewsMerged = 0;
+
+      while ((match = regex.exec(raw)) !== null) {
+        try {
+          const payload = decodeSyncPayload(match[1]);
+          if (payload && Array.isArray(payload.reviews)) {
+            if (payload.sender_name) importedSenders.push(payload.sender_name);
+
+            // Gộp điểm tự chấm và tự kiểm điểm của người gửi
+            if (payload.sender_id && payload.self_eval) {
+              const sm = appData.members.find(x => x.id === payload.sender_id);
+              if (sm) {
+                if (payload.self_eval.score !== undefined) sm.self_score = payload.self_eval.score;
+                if (payload.self_eval.ranking) sm.self_ranking = payload.self_eval.ranking;
+                if (payload.self_eval.good) sm.self_good = payload.self_eval.good;
+                if (payload.self_eval.limit) sm.self_limit = payload.self_eval.limit;
+                if (payload.self_eval.sol) sm.self_sol = payload.self_eval.sol;
+              }
+            }
+
+            // Gộp từng nhận xét vào appData.reviews
+            payload.reviews.forEach(item => {
+              const tid = item.target_id;
+              const rev = item.review;
+              if (!tid || !rev || rev.reviewer_id === undefined) return;
+              if (!appData.reviews[tid]) appData.reviews[tid] = [];
+              const idx = appData.reviews[tid].findIndex(r => r.reviewer_id === rev.reviewer_id);
+              if (idx >= 0) appData.reviews[tid][idx] = rev;
+              else appData.reviews[tid].push(rev);
+              totalReviewsMerged++;
+            });
+          }
+        } catch (e) {
+          console.error('Decode sync block error:', e);
+        }
+      }
+
+      if (totalReviewsMerged === 0) {
+        alert('❌ Không tìm thấy mã [CHIBO2-SYNC]...[/CHIBO2-SYNC] hợp lệ trong đoạn văn bản vừa dán!');
+        return;
+      }
+
+      saveAllDataToServer(false);
+      renderPeerAssignmentMatrix();
+      renderMyReviewTasks();
+      refreshMinutesContent();
+      updateProgressSummary();
+      closeImportReviewsModal();
+
+      const uniqueSenders = [...new Set(importedSenders)].join(', ');
+      showToast(`Đã gộp thành công ${totalReviewsMerged} nhận xét từ: ${uniqueSenders}!`, 'success');
+      alert(`✅ ĐÃ NHẬN & GỘP THÀNH CÔNG!\n\n- Số lượng nhận xét đã cập nhật: ${totalReviewsMerged} nhận xét\n- Từ các đồng chí: ${uniqueSenders}\n\nBí thư / Phó Bí thư có thể bấm "Xem Toàn Bộ Nhận Xét" hoặc "Báo Cáo Nhận Xét Điều Hành (.docx)" để xem ngay!`);
     }
 
   </script>

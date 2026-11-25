@@ -152,6 +152,32 @@ class AppRequestHandler(SimpleHTTPRequestHandler):
         if parsed.path == '/api/data':
             try:
                 data = json.loads(body.decode('utf-8'))
+                if os.path.exists(DATA_FILE):
+                    try:
+                        with open(DATA_FILE, 'r', encoding='utf-8') as f:
+                            existing = json.load(f)
+                        # Merge reviews by (target_id, reviewer_id) so one user never wipes another's reviews
+                        merged_reviews = existing.get('reviews', {})
+                        incoming_reviews = data.get('reviews', {})
+                        for tid, rev_list in incoming_reviews.items():
+                            if tid not in merged_reviews:
+                                merged_reviews[tid] = rev_list
+                            else:
+                                by_rev = {r.get('reviewer_id'): r for r in merged_reviews[tid] if r.get('reviewer_id') is not None}
+                                for r in rev_list:
+                                    rid = r.get('reviewer_id')
+                                    if rid is not None:
+                                        old_r = by_rev.get(rid)
+                                        if not old_r or (r.get('updated_at', '') >= old_r.get('updated_at', '')):
+                                            by_rev[rid] = r
+                                merged_reviews[tid] = list(by_rev.values())
+                        data['reviews'] = merged_reviews
+                        # Keep existing ballots if incoming ballots has fewer voters (unless explicitly reset)
+                        if existing.get('ballots', {}).get('voters') and len(data.get('ballots', {}).get('voters', {})) < len(existing.get('ballots', {}).get('voters', {})):
+                            data['ballots'] = existing['ballots']
+                    except Exception:
+                        pass
+
                 with open(DATA_FILE, 'w', encoding='utf-8') as f:
                     json.dump(data, f, ensure_ascii=False, indent=2)
                 
@@ -163,6 +189,90 @@ class AppRequestHandler(SimpleHTTPRequestHandler):
             except Exception as e:
                 self.send_response(500)
                 self.send_header('Content-Type', 'application/json; charset=utf-8')
+                self.end_headers()
+                self.wfile.write(json.dumps({'status': 'error', 'message': str(e)}).encode('utf-8'))
+            return
+
+        elif parsed.path == '/api/review':
+            try:
+                payload = json.loads(body.decode('utf-8'))
+                tid = str(payload.get('target_id', ''))
+                review = payload.get('review', {})
+                rid = review.get('reviewer_id')
+                if not tid or rid is None:
+                    raise ValueError('Thiếu target_id hoặc reviewer_id')
+
+                db = {}
+                if os.path.exists(DATA_FILE):
+                    with open(DATA_FILE, 'r', encoding='utf-8') as f:
+                        db = json.load(f)
+                if 'reviews' not in db or not isinstance(db['reviews'], dict):
+                    db['reviews'] = {}
+                if tid not in db['reviews'] or not isinstance(db['reviews'][tid], list):
+                    db['reviews'][tid] = []
+
+                rev_list = db['reviews'][tid]
+                idx = next((i for i, r in enumerate(rev_list) if r.get('reviewer_id') == rid), -1)
+                if idx >= 0:
+                    rev_list[idx] = review
+                else:
+                    rev_list.append(review)
+
+                with open(DATA_FILE, 'w', encoding='utf-8') as f:
+                    json.dump(db, f, ensure_ascii=False, indent=2)
+
+                self.send_response(200)
+                self.send_header('Content-Type', 'application/json; charset=utf-8')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                self.wfile.write(json.dumps({'status': 'success', 'message': 'Đã lưu và đồng bộ nhận xét lên máy chủ!'}).encode('utf-8'))
+            except Exception as e:
+                self.send_response(500)
+                self.send_header('Content-Type', 'application/json; charset=utf-8')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                self.wfile.write(json.dumps({'status': 'error', 'message': str(e)}).encode('utf-8'))
+            return
+
+        elif parsed.path == '/api/self_eval':
+            try:
+                payload = json.loads(body.decode('utf-8'))
+                target = str(payload.get('target', ''))
+                db = {}
+                if os.path.exists(DATA_FILE):
+                    with open(DATA_FILE, 'r', encoding='utf-8') as f:
+                        db = json.load(f)
+
+                if target == 'collective':
+                    col = db.setdefault('collective_evaluation', {})
+                    col['score'] = payload.get('score', col.get('score', 97))
+                    col['ranking'] = payload.get('ranking', col.get('ranking', ''))
+                    col['good'] = payload.get('good', col.get('good', ''))
+                    col['limit'] = payload.get('limit', col.get('limit', ''))
+                    col['sol'] = payload.get('sol', col.get('sol', ''))
+                else:
+                    mem_id = int(target)
+                    for m in db.get('members', []):
+                        if m.get('id') == mem_id:
+                            m['self_score'] = payload.get('score', m.get('self_score', 95))
+                            m['self_ranking'] = payload.get('ranking', m.get('self_ranking', ''))
+                            m['self_good'] = payload.get('good', m.get('self_good', ''))
+                            m['self_limit'] = payload.get('limit', m.get('self_limit', ''))
+                            m['self_sol'] = payload.get('sol', m.get('self_sol', ''))
+                            break
+
+                with open(DATA_FILE, 'w', encoding='utf-8') as f:
+                    json.dump(db, f, ensure_ascii=False, indent=2)
+
+                self.send_response(200)
+                self.send_header('Content-Type', 'application/json; charset=utf-8')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                self.wfile.write(json.dumps({'status': 'success', 'message': 'Đã lưu bản tự kiểm điểm lên máy chủ!'}).encode('utf-8'))
+            except Exception as e:
+                self.send_response(500)
+                self.send_header('Content-Type', 'application/json; charset=utf-8')
+                self.send_header('Access-Control-Allow-Origin', '*')
                 self.end_headers()
                 self.wfile.write(json.dumps({'status': 'error', 'message': str(e)}).encode('utf-8'))
             return
