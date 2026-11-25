@@ -229,6 +229,23 @@ def get_criteria_for_target(target_val, data):
             if float(it['score']).is_integer():
                 it['score'] = int(it['score'])
 
+    for g in groups:
+        items = g.get('items', [])
+        for i, it in enumerate(items):
+            if not it.get('is_header'):
+                continue
+            lvl = 1 if str(it.get('stt', '')).strip()[:1].isdigit() else 2
+            sub = 0.0
+            for j in range(i + 1, len(items)):
+                if items[j].get('is_header'):
+                    j_lvl = 1 if str(items[j].get('stt', '')).strip()[:1].isdigit() else 2
+                    if j_lvl <= lvl:
+                        break
+                else:
+                    sub += float(items[j].get('score', items[j].get('max', 0)))
+            sub_r = round(sub, 1)
+            it['subtotal'] = int(sub_r) if sub_r.is_integer() else sub_r
+
     return groups
 
 def parse_date_parts(date_str):
@@ -546,10 +563,10 @@ def render_evaluation_section_in_doc(doc, data, target_val):
 
             p3 = r_cells[3].paragraphs[0]
             p3.alignment = WD_ALIGN_PARAGRAPH.CENTER
-            if not is_hdr:
-                r_self = p3.add_run(f"{it['score']}đ")
-                r_self.font.size = Pt(10.5)
-                r_self.bold = True
+            disp_score = it.get('subtotal', 0) if is_hdr else it['score']
+            r_self = p3.add_run(f"{disp_score}đ")
+            r_self.font.size = Pt(10.5)
+            r_self.bold = True
 
             curr_row += 1
 

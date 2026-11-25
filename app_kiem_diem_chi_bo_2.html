@@ -2138,7 +2138,7 @@
     // ==========================================
     // HỆ THỐNG TỰ ĐỘNG CẬP NHẬT PHIÊN BẢN MỚI (AUTO-UPDATE)
     // ==========================================
-    const APP_VERSION = '2026.11.25.11';
+    const APP_VERSION = '2026.11.25.12';
 
     function checkForAppUpdate(manual = false) {
       if (!window.location.protocol.startsWith('http')) {
@@ -3447,7 +3447,31 @@
       }
     }
 
+    function getHeaderLevel(stt) {
+      return /^\d/.test(String(stt || '').trim()) ? 1 : 2;
+    }
+
+    function computeHeaderSubtotals(groups) {
+      groups.forEach(g => {
+        const items = g.items || [];
+        for (let i = 0; i < items.length; i++) {
+          if (!items[i].isHeader) continue;
+          const lvl = getHeaderLevel(items[i].stt);
+          let sub = 0;
+          for (let j = i + 1; j < items.length; j++) {
+            if (items[j].isHeader && getHeaderLevel(items[j].stt) <= lvl) break;
+            if (!items[j].isHeader) {
+              sub += parseFloat(items[j].score !== undefined ? items[j].score : items[j].max) || 0;
+            }
+          }
+          items[i].subtotal = Math.round(sub * 10) / 10;
+        }
+      });
+      return groups;
+    }
+
     function renderCriteriaGroups(groups) {
+      computeHeaderSubtotals(groups);
       const container = document.getElementById('criteria-container');
       container.innerHTML = '';
 
@@ -3457,12 +3481,14 @@
         gDiv.innerHTML = `<div class="bg-slate-100 px-3.5 py-2 font-bold text-xs text-vtb-navy uppercase">${g.group}</div>`;
 
         const listDiv = document.createElement('div');
-        listDiv.className = 'divide-y divide-slate-100 p-2 text-xs';
+        listDiv.className = 'divide-y divide-slate-100 p-2 text-xs criteria-group-list';
 
         g.items.forEach(it => {
           const row = document.createElement('div');
           if (it.isHeader) {
-            row.className = 'py-2 px-2.5 flex items-center justify-between gap-4 bg-slate-50 font-semibold text-vtb-navy rounded mt-1';
+            const lvl = getHeaderLevel(it.stt);
+            row.className = 'criteria-header-row py-2 px-2.5 flex items-center justify-between gap-4 bg-slate-50 font-semibold text-vtb-navy rounded mt-1';
+            row.setAttribute('data-header-level', String(lvl));
             row.innerHTML = `
               <div class="flex-1">
                 <span class="font-bold mr-1.5">${it.stt}</span>
@@ -3470,11 +3496,12 @@
               </div>
               <div class="flex items-center gap-2 flex-shrink-0 text-[11px] font-bold text-slate-600">
                 <span>Điểm chuẩn: ${it.max}đ</span>
+                <span class="px-2 py-0.5 rounded bg-blue-50 text-vtb-navy border border-blue-200">Tự chấm: <span class="header-subtotal-val">${it.subtotal}</span>đ</span>
               </div>
             `;
           } else {
             const val = (it.score !== undefined) ? it.score : it.max;
-            row.className = 'py-2 px-2 flex items-center justify-between gap-4 hover:bg-slate-50 rounded';
+            row.className = 'criteria-leaf-row py-2 px-2 flex items-center justify-between gap-4 hover:bg-slate-50 rounded';
             row.innerHTML = `
               <div class="flex-1">
                 <span class="font-bold text-slate-700 mr-1.5">${it.stt}</span>
@@ -3491,6 +3518,28 @@
 
         gDiv.appendChild(listDiv);
         container.appendChild(gDiv);
+      });
+    }
+
+    function updateHeaderSubtotalsInDOM() {
+      document.querySelectorAll('.criteria-group-list').forEach(listDiv => {
+        const rows = Array.from(listDiv.children);
+        for (let i = 0; i < rows.length; i++) {
+          if (!rows[i].classList.contains('criteria-header-row')) continue;
+          const lvl = parseInt(rows[i].getAttribute('data-header-level') || '1', 10);
+          let sub = 0;
+          for (let j = i + 1; j < rows.length; j++) {
+            if (rows[j].classList.contains('criteria-header-row')) {
+              const jLvl = parseInt(rows[j].getAttribute('data-header-level') || '1', 10);
+              if (jLvl <= lvl) break;
+            } else {
+              const inp = rows[j].querySelector('.criteria-score-input');
+              if (inp) sub += parseFloat(inp.value) || 0;
+            }
+          }
+          const span = rows[i].querySelector('.header-subtotal-val');
+          if (span) span.textContent = String(Math.round(sub * 10) / 10);
+        }
       });
     }
 
@@ -3517,6 +3566,7 @@
 
     function recalculateSelfScore(autoSuggestRank = true) {
       const { total } = collectCriteriaScoresFromDOM();
+      updateHeaderSubtotalsInDOM();
       document.getElementById('eval-total-score-display').textContent = total + ' / 100';
 
       if (autoSuggestRank) {
@@ -3889,7 +3939,7 @@
     }
 
     function buildCriteriaTableHtml(targetVal) {
-      const groups = resolveCriteriaWithScores(targetVal);
+      const groups = computeHeaderSubtotals(resolveCriteriaWithScores(targetVal));
       let computedTotal = 0;
       groups.forEach(g => g.items.forEach(it => {
         if (!it.isHeader) computedTotal += parseFloat(it.score) || 0;
@@ -3910,7 +3960,7 @@
                 <td style="border:1px solid #000; padding:5px 6px; text-align:center; font-size:10.5pt;">${it.stt}</td>
                 <td style="border:1px solid #000; padding:5px 8px; text-align:left; font-size:10.5pt;">${it.name}</td>
                 <td style="border:1px solid #000; padding:5px 6px; text-align:center; font-size:10.5pt;">${it.max}đ</td>
-                <td style="border:1px solid #000; padding:5px 6px; text-align:center; font-size:10.5pt;"></td>
+                <td style="border:1px solid #000; padding:5px 6px; text-align:center; font-size:10.5pt;">${it.subtotal}đ</td>
               </tr>
             `;
           } else {
