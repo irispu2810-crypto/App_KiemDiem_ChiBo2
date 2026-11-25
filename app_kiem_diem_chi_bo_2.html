@@ -2138,7 +2138,7 @@
     // ==========================================
     // HỆ THỐNG TỰ ĐỘNG CẬP NHẬT PHIÊN BẢN MỚI (AUTO-UPDATE)
     // ==========================================
-    const APP_VERSION = '2026.11.25.01';
+    const APP_VERSION = '2026.11.25.02';
 
     function checkForAppUpdate(manual = false) {
       if (!window.location.protocol.startsWith('http')) {
@@ -2213,9 +2213,9 @@
       // Tự động kiểm tra bản cập nhật mới ngay khi mở và mỗi 60 giây
       checkForAppUpdate(false);
       setInterval(() => checkForAppUpdate(false), 60000);
-      // Đồng bộ tự động từ máy chủ LAN nếu đang chạy qua server.py
+      // Tự động đồng bộ nhận xét & điểm số (Cloud + LAN) ngay khi mở và mỗi 8 giây
       syncFromServer(false);
-      if (window.location.protocol.startsWith('http') && !window.location.hostname.includes('github.io')) {
+      if (window.location.protocol.startsWith('http')) {
         setInterval(() => syncFromServer(false), 8000);
       }
     });
@@ -3427,6 +3427,8 @@
       }
 
       saveLocalBackup();
+      const selfEvalPayload = { type: 'self_eval', target: targetVal, score, ranking, good, limit, sol, updated_at: new Date().toISOString() };
+      pushEventToCloud(selfEvalPayload);
       if (window.location.protocol.startsWith('http') && !window.location.hostname.includes('github.io')) {
         fetch('/api/self_eval', {
           method: 'POST',
@@ -4284,6 +4286,7 @@
       // Đồng bộ toàn bộ dữ liệu & lưu
       syncAndSanitizeAllReviews();
       saveAllDataToServer();
+      pushEventToCloud({ type: 'assignments', assignments: appData.assignments });
       renderPeerAssignmentMatrix();
       renderMyReviewTasks();
 
@@ -4723,6 +4726,13 @@
       renderPeerAssignmentMatrix();
       refreshMinutesContent();
 
+      // Tự động đẩy lên Cloud Sync để Bí thư / Phó Bí thư nhận được ngay (không cần copy Zalo)
+      const cloudPromise = pushEventToCloud({
+        type: 'review',
+        target_id: tid,
+        review: reviewObj
+      });
+
       if (window.location.protocol.startsWith('http') && !window.location.hostname.includes('github.io')) {
         fetch('/api/review', {
           method: 'POST',
@@ -4731,13 +4741,21 @@
         })
         .then(r => r.json())
         .then(() => {
-          showToast('Đã lưu & đồng bộ ý kiến góp ý lên máy chủ!', 'success');
+          showToast('Đã lưu & tự động đồng bộ ý kiến góp ý lên Bí thư!', 'success');
         })
         .catch(() => {
-          showToast('Đã lưu ý kiến góp ý vào trình duyệt!', 'success');
+          cloudPromise.then(ok => {
+            showToast(ok ? 'Đã lưu & tự động đẩy nhận xét lên Bí thư!' : 'Đã lưu ý kiến góp ý vào trình duyệt!', 'success');
+          });
         });
       } else {
-        showToast('Đã lưu góp ý! Hãy bấm "Gửi Nhận Xét Lên Bí Thư (Zalo)" để chuyển cho Bí thư.', 'success');
+        cloudPromise.then(ok => {
+          if (ok) {
+            showToast('Đã lưu & tự động đẩy nhận xét lên hệ thống cho Bí thư!', 'success');
+          } else {
+            showToast('Đã lưu vào máy! Nếu mất mạng, có thể bấm "Gửi Nhận Xét Lên Bí Thư (Zalo)".', 'warning');
+          }
+        });
       }
     }
 
@@ -6750,16 +6768,141 @@
       return changed;
     }
 
+    const CLOUD_SYNC_TOPIC = 'chibo2_vtb_baoloc_2026_k9m4p7';
+
+    function pushEventToCloud(eventObj) {
+      if (!navigator.onLine) return Promise.resolve(false);
+      return fetch(`https://ntfy.sh/${CLOUD_SYNC_TOPIC}`, {
+        method: 'POST',
+        body: JSON.stringify(eventObj)
+      })
+      .then(r => r.ok)
+      .catch(() => false);
+    }
+
+    function applyCloudEvent(ev) {
+      if (!ev || !ev.type) return false;
+      let changed = false;
+
+      if (ev.type === 'review' && ev.target_id && ev.review && ev.review.reviewer_id !== undefined) {
+        const tid = ev.target_id;
+        const sr = ev.review;
+        if (!appData.reviews) appData.reviews = {};
+        if (!appData.reviews[tid]) appData.reviews[tid] = [];
+        const idx = appData.reviews[tid].findIndex(r => r.reviewer_id === sr.reviewer_id);
+        const lr = idx >= 0 ? appData.reviews[tid][idx] : null;
+        if (!lr || (sr.updated_at && (!lr.updated_at || sr.updated_at > lr.updated_at))) {
+          if (!lr || JSON.stringify(lr) !== JSON.stringify(sr)) {
+            if (idx >= 0) appData.reviews[tid][idx] = sr;
+            else appData.reviews[tid].push(sr);
+            changed = true;
+          }
+        }
+      } else if (ev.type === 'self_eval' && ev.target) {
+        if (ev.target === 'collective') {
+          const col = appData.collective_evaluation;
+          if (ev.updated_at && (!col.updated_at || ev.updated_at > col.updated_at)) {
+            col.score = ev.score;
+            col.ranking = ev.ranking;
+            col.good = ev.good;
+            col.limit = ev.limit;
+            col.sol = ev.sol;
+            col.updated_at = ev.updated_at;
+            changed = true;
+          }
+        } else {
+          const m = appData.members.find(x => x.id === parseInt(ev.target));
+          if (m && ev.updated_at && (!m.updated_at || ev.updated_at > m.updated_at)) {
+            m.self_score = ev.score;
+            m.self_ranking = ev.ranking;
+            m.self_good = ev.good;
+            m.self_limit = ev.limit;
+            m.self_sol = ev.sol;
+            m.updated_at = ev.updated_at;
+            changed = true;
+          }
+        }
+      } else if (ev.type === 'assignments' && ev.assignments) {
+        if (JSON.stringify(appData.assignments) !== JSON.stringify(ev.assignments)) {
+          appData.assignments = ev.assignments;
+          changed = true;
+        }
+      }
+
+      return changed;
+    }
+
+    function refreshViewsAfterSync(forceRenderTasks = false) {
+      const activeEl = document.activeElement;
+      const isTyping = activeEl && (activeEl.tagName === 'TEXTAREA' || activeEl.tagName === 'INPUT');
+
+      renderPeerAssignmentMatrix();
+      if (!isTyping || forceRenderTasks) {
+        renderMyReviewTasks();
+      }
+      const allModal = document.getElementById('all-reviews-modal');
+      if (allModal && !allModal.classList.contains('hidden')) {
+        const filterSel = document.getElementById('all-reviews-filter-select');
+        renderAllReviewsModalContent(filterSel ? filterSel.value : 'all');
+      }
+      refreshMinutesContent();
+      renderTallyTable();
+      updateProgressSummary();
+    }
+
+    function syncFromCloud(showNotice = false) {
+      return fetch(`https://ntfy.sh/${CLOUD_SYNC_TOPIC}/json?poll=1&since=all&t=${Date.now()}`)
+        .then(r => {
+          if (!r.ok) throw new Error('Cloud HTTP ' + r.status);
+          return r.text();
+        })
+        .then(ndjson => {
+          let anyChanged = false;
+          ndjson.split('\n').forEach(line => {
+            if (!line.trim()) return;
+            try {
+              const wrapper = JSON.parse(line);
+              if (wrapper.event === 'message' && wrapper.message) {
+                const ev = JSON.parse(wrapper.message);
+                if (applyCloudEvent(ev)) anyChanged = true;
+              }
+            } catch (e) {}
+          });
+          if (anyChanged) {
+            saveLocalBackup();
+            refreshViewsAfterSync(showNotice);
+          } else if (showNotice) {
+            refreshViewsAfterSync(true);
+          }
+          if (showNotice) {
+            showToast('Đã đồng bộ tự động nhận xét mới nhất từ tất cả Đảng viên!', 'success');
+          }
+          return true;
+        })
+        .catch(() => {
+          if (showNotice) {
+            showToast('Không kết nối được đồng bộ Cloud. Hãy kiểm tra mạng Internet.', 'warning');
+          }
+          return false;
+        });
+    }
+
     function syncFromServer(showNotice = false) {
       if (isSyncingFromServer) return;
+      isSyncingFromServer = true;
+
+      // Luôn đồng bộ từ Cloud (hoạt động cả trên GitHub Pages lẫn LAN)
+      const cloudTask = syncFromCloud(false);
+
       if (!window.location.protocol.startsWith('http') || window.location.hostname.includes('github.io')) {
-        if (showNotice) {
-          showToast('Đang chạy bản Online tĩnh (GitHub Pages). Vui lòng dùng nút "Nhận & Gộp Từ Zalo" để cập nhật nhận xét từ các Đảng viên!', 'info');
-        }
+        cloudTask
+          .then(ok => {
+            if (showNotice && ok) showToast('Đã cập nhật nhận xét mới nhất từ các Đảng viên!', 'success');
+          })
+          .finally(() => { isSyncingFromServer = false; });
         return;
       }
 
-      isSyncingFromServer = true;
       fetch('/api/data?t=' + Date.now())
         .then(r => {
           if (!r.ok) throw new Error('HTTP ' + r.status);
@@ -6767,30 +6910,18 @@
         })
         .then(serverData => {
           const changed = mergeServerData(serverData);
-          const activeEl = document.activeElement;
-          const isTyping = activeEl && (activeEl.tagName === 'TEXTAREA' || activeEl.tagName === 'INPUT');
-
           if (changed || showNotice) {
-            renderPeerAssignmentMatrix();
-            if (!isTyping || showNotice) {
-              renderMyReviewTasks();
-            }
-            const allModal = document.getElementById('all-reviews-modal');
-            if (allModal && !allModal.classList.contains('hidden')) {
-              const filterSel = document.getElementById('all-reviews-filter-select');
-              renderAllReviewsModalContent(filterSel ? filterSel.value : 'all');
-            }
-            refreshMinutesContent();
-            renderTallyTable();
-            updateProgressSummary();
+            refreshViewsAfterSync(showNotice);
           }
           if (showNotice) {
-            showToast('Đã cập nhật dữ liệu nhận xét mới nhất từ máy chủ!', 'success');
+            showToast('Đã cập nhật dữ liệu nhận xét mới nhất từ máy chủ & Cloud!', 'success');
           }
         })
         .catch(() => {
           if (showNotice) {
-            showToast('Không kết nối được máy chủ LAN. Dùng "Nhận & Gộp Từ Zalo" nếu đang chạy Online.', 'warning');
+            cloudTask.then(ok => {
+              if (ok) showToast('Đã cập nhật dữ liệu nhận xét mới nhất qua Cloud!', 'success');
+            });
           }
         })
         .finally(() => {

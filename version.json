@@ -1,5 +1,5 @@
 {
-  "version": "2026.11.25.01",
-  "updated_at": "2026-11-25 09:12",
-  "changelog": "Cập nhật Mẫu kiểm điểm 2A/2B năm 2026, đồng bộ nhận xét đa thiết bị và khôi phục bảng điểm 100đ"
+  "version": "2026.11.25.02",
+  "updated_at": "2026-11-25 10:10",
+  "changelog": "Tự động đẩy nhận xét & điểm số lên Bí thư theo thời gian thực (không cần copy gửi Zalo)"
 }
