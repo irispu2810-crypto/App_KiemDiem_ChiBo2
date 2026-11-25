@@ -237,8 +237,11 @@ def get_criteria_for_target(target_val, data):
             lvl = 1 if str(it.get('stt', '')).strip()[:1].isdigit() else 2
             sub = 0.0
             for j in range(i + 1, len(items)):
+                j_is_num = str(items[j].get('stt', '')).strip()[:1].isdigit()
+                if j_is_num:
+                    break
                 if items[j].get('is_header'):
-                    j_lvl = 1 if str(items[j].get('stt', '')).strip()[:1].isdigit() else 2
+                    j_lvl = 1 if j_is_num else 2
                     if j_lvl <= lvl:
                         break
                 else:
