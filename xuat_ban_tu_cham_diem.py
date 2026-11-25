@@ -629,13 +629,13 @@ def render_evaluation_section_in_doc(doc, data, target_val):
 
     if is_col:
         p_sr.add_run("T/M TẬP THỂ LÃNH ĐẠO, QUẢN LÝ\n").bold = True
-        r_note = p_sr.add_run("(Ký, ghi rõ họ tên và đóng dấu)\n\n\n")
+        r_note = p_sr.add_run("(Ký, ghi rõ họ tên và đóng dấu)\n\n\n\n\n\n")
         r_note.italic = True
         r_note.font.size = Pt(11)
         p_sr.add_run(host_name).bold = True
     else:
         p_sr.add_run("NGƯỜI TỰ KIỂM ĐIỂM\n").bold = True
-        r_note = p_sr.add_run("(Ký, ghi rõ họ tên)\n\n\n")
+        r_note = p_sr.add_run("(Ký, ghi rõ họ tên)\n\n\n\n\n\n")
         r_note.italic = True
         r_note.font.size = Pt(11)
         p_sr.add_run(m.get('name').upper()).bold = True
@@ -662,7 +662,7 @@ def render_evaluation_section_in_doc(doc, data, target_val):
         p_tt = t_tt.cell(0, 1).paragraphs[0]
         p_tt.alignment = WD_ALIGN_PARAGRAPH.CENTER
         p_tt.add_run("THỦ TRƯỞNG CƠ QUAN, ĐƠN VỊ\n").bold = True
-        r_ttn = p_tt.add_run("(Xác lập thời điểm, ký, ghi rõ họ tên và đóng dấu)\n\n\n")
+        r_ttn = p_tt.add_run("(Xác lập thời điểm, ký, ghi rõ họ tên và đóng dấu)\n\n\n\n\n\n")
         r_ttn.italic = True
         r_ttn.font.size = Pt(11)
 
@@ -683,7 +683,7 @@ def render_evaluation_section_in_doc(doc, data, target_val):
         p_cb.alignment = WD_ALIGN_PARAGRAPH.CENTER
         p_cb.paragraph_format.line_spacing = 1.05
         p_cb.add_run("T/M CHI ỦY (CHI BỘ)\n").bold = True
-        r_cb_note = p_cb.add_run("(Xác lập thời điểm, ký, ghi rõ họ tên)\n\n\n")
+        r_cb_note = p_cb.add_run("(Xác lập thời điểm, ký, ghi rõ họ tên)\n\n\n\n\n\n")
         r_cb_note.italic = True
         r_cb_note.font.size = Pt(11)
         p_cb.add_run(host_name).bold = True
@@ -701,7 +701,7 @@ def render_evaluation_section_in_doc(doc, data, target_val):
         p_td = t_du.cell(0, 1).paragraphs[0]
         p_td.alignment = WD_ALIGN_PARAGRAPH.CENTER
         p_td.add_run("T/M ĐẢNG ỦY\n").bold = True
-        r_tdn = p_td.add_run("(Xác lập thời điểm, ký, ghi rõ họ tên và đóng dấu)\n\n\n")
+        r_tdn = p_td.add_run("(Xác lập thời điểm, ký, ghi rõ họ tên và đóng dấu)\n\n\n\n\n\n")
         r_tdn.italic = True
         r_tdn.font.size = Pt(11)
 
