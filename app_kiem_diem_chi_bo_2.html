@@ -426,6 +426,11 @@
           <i class="fa-solid fa-file-word text-blue-300"></i>
           <span>6. Biên Bản Họp & Xuất Word</span>
         </button>
+        <button onclick="switchTab('tab-templates')" id="btn-tab-templates"
+          class="nav-tab nav-tab-3d py-2 px-3.5 text-xs sm:text-sm flex items-center gap-2 whitespace-nowrap">
+          <i class="fa-solid fa-folder-open text-amber-300"></i>
+          <span>7. Mẫu Biểu Kiểm Điểm</span>
+        </button>
       </div>
     </div>
   </header>
@@ -1436,6 +1441,192 @@
       </div>
     </section>
 
+    <!-- TAB 7: MẪU BIỂU KIỂM ĐIỂM & HỒ SƠ ĐẢNG VIÊN -->
+    <section id="tab-templates" class="tab-pane hidden space-y-6">
+      <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 space-y-5">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-100 pb-4">
+          <div>
+            <h2 class="text-base sm:text-lg font-extrabold text-vtb-navy flex items-center gap-2">
+              <i class="fa-solid fa-folder-open text-amber-500"></i>
+              <span>Kho Mẫu Biểu Kiểm Điểm & Hồ Sơ Đảng Viên Chi Bộ 2 (Năm 2026)</span>
+            </h2>
+            <p class="text-xs text-slate-500 mt-1">Phân loại đầy đủ theo Tập thể / Cá nhân, Có chức vụ lãnh đạo quản lý / Không giữ chức vụ lãnh đạo quản lý, Phiếu bổ sung hồ sơ, Tờ trình, Biên bản và Phiếu biểu quyết.</p>
+          </div>
+          <div class="flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-lg px-3 py-2">
+            <label for="tpl-member-select" class="text-xs font-bold text-slate-700 whitespace-nowrap">Chọn Đ/c xuất mẫu:</label>
+            <select id="tpl-member-select" class="text-xs font-semibold text-vtb-navy bg-white border border-slate-300 rounded px-2.5 py-1.5 focus:ring-1 focus:ring-vtb-navy"></select>
+          </div>
+        </div>
+
+        <!-- NHÓM 1: BẢN KIỂM ĐIỂM TẬP THỂ / CÁ NHÂN -->
+        <div class="space-y-3">
+          <h3 class="text-xs font-extrabold uppercase tracking-wider text-vtb-navy flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-vtb-red"></span>
+            I. Bản Kiểm Điểm, Tự Đánh Giá, Xếp Loại (Quy định 366-QĐ/TW)
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div class="border border-blue-200 bg-blue-50/40 rounded-xl p-4 flex flex-col justify-between gap-3">
+              <div>
+                <div class="flex items-center justify-between gap-2">
+                  <span class="text-[11px] font-extrabold px-2 py-0.5 rounded bg-blue-700 text-white">TẬP THỂ • MẪU 01</span>
+                  <span class="text-[11px] font-bold text-blue-800">Mục 9 DNNN</span>
+                </div>
+                <h4 class="font-bold text-sm text-slate-900 mt-2">Báo cáo kiểm điểm Tập thể Chi bộ 2</h4>
+                <p class="text-xs text-slate-600 mt-1">Dành cho <strong>Tập thể Chi bộ</strong>. Đủ 6 mục kiểm điểm (A), bảng tự chấm điểm Khối Doanh nghiệp Nhà nước 100đ (B) và đề xuất xếp loại.</p>
+              </div>
+              <button type="button" onclick="exportTemplateByTarget('collective')" class="w-full py-2 px-3 bg-vtb-navy hover:bg-blue-900 text-white rounded-lg text-xs font-bold flex items-center justify-center gap-2 transition">
+                <i class="fa-solid fa-file-word"></i>
+                <span>Xuất Word Mẫu 01 (Tập thể)</span>
+              </button>
+            </div>
+
+            <div class="border border-amber-200 bg-amber-50/40 rounded-xl p-4 flex flex-col justify-between gap-3">
+              <div>
+                <div class="flex items-center justify-between gap-2">
+                  <span class="text-[11px] font-extrabold px-2 py-0.5 rounded bg-amber-600 text-white">CÁ NHÂN • CÓ CHỨC VỤ</span>
+                  <span class="text-[11px] font-bold text-amber-800">Mẫu 02A</span>
+                </div>
+                <h4 class="font-bold text-sm text-slate-900 mt-2">Bản kiểm điểm Cá nhân giữ chức vụ LĐ, QL</h4>
+                <p class="text-xs text-slate-600 mt-1">Dành cho <strong>Bí thư, Phó Bí thư, Chi ủy viên, Lãnh đạo phòng/ban</strong>. Đủ 9 nội dung ưu điểm, bảng chấm điểm Phụ lục 4 Mục 8 DNNN và mục C đánh giá.</p>
+              </div>
+              <button type="button" onclick="exportTemplateByRole('2A')" class="w-full py-2 px-3 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-xs font-bold flex items-center justify-center gap-2 transition">
+                <i class="fa-solid fa-file-word"></i>
+                <span>Xuất Word Mẫu 02A (Có chức vụ)</span>
+              </button>
+            </div>
+
+            <div class="border border-emerald-200 bg-emerald-50/40 rounded-xl p-4 flex flex-col justify-between gap-3">
+              <div>
+                <div class="flex items-center justify-between gap-2">
+                  <span class="text-[11px] font-extrabold px-2 py-0.5 rounded bg-emerald-700 text-white">CÁ NHÂN • KHÔNG CHỨC VỤ</span>
+                  <span class="text-[11px] font-bold text-emerald-800">Mẫu 02B</span>
+                </div>
+                <h4 class="font-bold text-sm text-slate-900 mt-2">Bản kiểm điểm Cá nhân không giữ chức vụ LĐ, QL</h4>
+                <p class="text-xs text-slate-600 mt-1">Dành cho <strong>Đảng viên không giữ chức vụ lãnh đạo, quản lý</strong>. Đủ 5 nội dung ưu điểm, bảng chấm điểm Phụ lục 6 Mục 8 DNNN và mục C đánh giá.</p>
+              </div>
+              <button type="button" onclick="exportTemplateByRole('2B')" class="w-full py-2 px-3 bg-emerald-700 hover:bg-emerald-800 text-white rounded-lg text-xs font-bold flex items-center justify-center gap-2 transition">
+                <i class="fa-solid fa-file-word"></i>
+                <span>Xuất Word Mẫu 02B (Không chức vụ)</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-3 pt-1">
+            <button type="button" onclick="exportEvaluationDocx('all')" class="px-4 py-2 bg-vtb-red hover:bg-red-800 text-white rounded-lg text-xs font-bold flex items-center gap-2 transition shadow-sm">
+              <i class="fa-solid fa-layer-group"></i>
+              <span>Xuất Trọn Bộ Hồ Sơ (Tập thể Mẫu 01 + 12 Cá nhân Mẫu 02A/02B)</span>
+            </button>
+            <a href="./1.0.%20M%E1%BA%AAU%201%2C%202A%2C%202B%2C%202C.docx" download class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 rounded-lg text-xs font-bold flex items-center gap-2 transition">
+              <i class="fa-solid fa-download text-blue-600"></i>
+              <span>Tải File Gốc Mẫu 01, 02A, 02B, 02C (.docx)</span>
+            </a>
+            <a href="./Khung%20tieu%20chi%20doi%20voi%20tap%20the%2C%20ca%20nhan%202026.docx" download class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 rounded-lg text-xs font-bold flex items-center gap-2 transition">
+              <i class="fa-solid fa-download text-blue-600"></i>
+              <span>Tải Khung Tiêu Chí 2026 (.docx)</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- NHÓM 2: HỒ SƠ ĐẢNG VIÊN & TỜ TRÌNH, BIÊN BẢN, PHIẾU BIỂU QUYẾT -->
+        <div class="space-y-3 pt-3 border-t border-slate-100">
+          <h3 class="text-xs font-extrabold uppercase tracking-wider text-vtb-navy flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+            II. Phiếu Bổ Sung Hồ Sơ Đảng Viên, Tờ Trình, Biên Bản & Phiếu Biểu Quyết
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="border border-slate-200 rounded-xl p-4 flex flex-col justify-between gap-3">
+              <div>
+                <div class="flex items-center justify-between gap-2">
+                  <span class="text-[11px] font-extrabold px-2 py-0.5 rounded bg-indigo-700 text-white">CÁ NHÂN • HỒ SƠ ĐẢNG VIÊN</span>
+                  <span class="text-[11px] font-bold text-slate-500">Bổ sung hằng năm</span>
+                </div>
+                <h4 class="font-bold text-sm text-slate-900 mt-2">Phiếu Bổ Sung Hồ Sơ Đảng Viên (Năm 2026)</h4>
+                <p class="text-xs text-slate-600 mt-1">Đầy đủ các mục: Số LL/TĐV, nơi ở, nghề nghiệp, chức vụ, trình độ, khen thưởng, kỷ luật, gia đình, kinh tế/tài sản từ 50 triệu trở lên và 3 khối ký xác nhận.</p>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <button type="button" onclick="exportMemberSupplementDoc(false)" class="flex-1 py-2 px-3 bg-indigo-700 hover:bg-indigo-800 text-white rounded-lg text-xs font-bold flex items-center justify-center gap-1.5 transition">
+                  <i class="fa-solid fa-file-word"></i>
+                  <span>Xuất Word (Điền sẵn Đ/c)</span>
+                </button>
+                <button type="button" onclick="exportMemberSupplementDoc(true)" class="py-2 px-3 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 rounded-lg text-xs font-bold transition">
+                  Mẫu trắng (.doc)
+                </button>
+                <a href="./Phieu%20B%E1%BB%95%20sung%20l%C3%BD%20l%E1%BB%8Bch%20%C4%91%E1%BA%A3ng%20vi%C3%AAn.docx" download class="py-2 px-3 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 rounded-lg text-xs font-bold flex items-center gap-1 transition">
+                  <i class="fa-solid fa-download text-blue-600"></i>
+                  <span>File gốc</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="border border-slate-200 rounded-xl p-4 flex flex-col justify-between gap-3">
+              <div>
+                <div class="flex items-center justify-between gap-2">
+                  <span class="text-[11px] font-extrabold px-2 py-0.5 rounded bg-rose-700 text-white">TẬP THỂ • TRÌNH ĐẢNG ỦY</span>
+                  <span class="text-[11px] font-bold text-slate-500">Tổng hợp xếp loại</span>
+                </div>
+                <h4 class="font-bold text-sm text-slate-900 mt-2">Tờ Trình Đề Nghị Đánh Giá, Xếp Loại Tập Thể & Cá Nhân</h4>
+                <p class="text-xs text-slate-600 mt-1">Tự động tổng hợp kết quả xếp loại của Tập thể Chi bộ 2 và danh sách 12 Đảng viên gửi Đảng ủy VietinBank Chi nhánh Bảo Lộc.</p>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <button type="button" onclick="exportProposalDoc()" class="flex-1 py-2 px-3 bg-rose-700 hover:bg-rose-800 text-white rounded-lg text-xs font-bold flex items-center justify-center gap-1.5 transition">
+                  <i class="fa-solid fa-file-word"></i>
+                  <span>Xuất Tờ Trình Chi Bộ 2 (.doc)</span>
+                </button>
+                <a href="./1.%20(M%E1%BA%ABu)%20T%E1%BB%9D%20tr%C3%ACnh%20%C4%91%E1%BB%81%20ngh%E1%BB%8B%20%C4%91%C3%A1nh%20gi%C3%A1%2C%20x%E1%BA%BFp%20lo%E1%BA%A1i%20ch%E1%BA%A5t%20l%C6%B0%E1%BB%A3ng%20t%E1%BA%ADp%20th%E1%BB%83%2C%20c%C3%A1%20nh%C3%A2n%20n%C4%83m%202026.doc" download class="py-2 px-3 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 rounded-lg text-xs font-bold flex items-center gap-1 transition">
+                  <i class="fa-solid fa-download text-blue-600"></i>
+                  <span>File mẫu gốc</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="border border-slate-200 rounded-xl p-4 flex flex-col justify-between gap-3">
+              <div>
+                <div class="flex items-center justify-between gap-2">
+                  <span class="text-[11px] font-extrabold px-2 py-0.5 rounded bg-sky-700 text-white">TẬP THỂ • HỘI NGHỊ</span>
+                  <span class="text-[11px] font-bold text-slate-500">Nghị định 30</span>
+                </div>
+                <h4 class="font-bold text-sm text-slate-900 mt-2">Biên Bản Hội Nghị Kiểm Điểm Năm 2026</h4>
+                <p class="text-xs text-slate-600 mt-1">Biên bản tổng hợp diễn biến hội nghị, ý kiến góp ý, kết quả bỏ phiếu và nghị quyết xếp loại chất lượng Chi bộ 2.</p>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <button type="button" onclick="switchTab('tab-minutes')" class="flex-1 py-2 px-3 bg-sky-700 hover:bg-sky-800 text-white rounded-lg text-xs font-bold flex items-center justify-center gap-1.5 transition">
+                  <i class="fa-solid fa-file-word"></i>
+                  <span>Mở & Xuất Biên Bản</span>
+                </button>
+                <a href="./2.%20(M%E1%BA%ABu)%20Bi%C3%AAn%20b%E1%BA%A3n%20H%E1%BB%99i%20ngh%E1%BB%8B%20ki%E1%BB%83m%20%C4%91i%E1%BB%83m%20n%C4%83m%202026.docx" download class="py-2 px-3 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 rounded-lg text-xs font-bold flex items-center gap-1 transition">
+                  <i class="fa-solid fa-download text-blue-600"></i>
+                  <span>File mẫu gốc</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="border border-slate-200 rounded-xl p-4 flex flex-col justify-between gap-3">
+              <div>
+                <div class="flex items-center justify-between gap-2">
+                  <span class="text-[11px] font-extrabold px-2 py-0.5 rounded bg-teal-700 text-white">TẬP THỂ & CÁ NHÂN • BỎ PHIẾU</span>
+                  <span class="text-[11px] font-bold text-slate-500">Biểu quyết kín</span>
+                </div>
+                <h4 class="font-bold text-sm text-slate-900 mt-2">Phiếu Biểu Quyết Xếp Loại (Chi bộ & Đảng viên)</h4>
+                <p class="text-xs text-slate-600 mt-1">Phân tách rõ <strong>Phiếu biểu quyết xếp loại Chi bộ (Tập thể)</strong> và <strong>Phiếu biểu quyết xếp loại Đảng viên (Cá nhân)</strong>.</p>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <button type="button" onclick="switchTab('tab-secret-ballot')" class="py-2 px-3 bg-teal-700 hover:bg-teal-800 text-white rounded-lg text-xs font-bold flex items-center gap-1.5 transition">
+                  <i class="fa-solid fa-check-to-slot"></i>
+                  <span>Bỏ phiếu / In phiếu</span>
+                </button>
+                <a href="./Phi%E1%BA%BFu%20%20bi%E1%BB%83u%20quy%E1%BA%BFt%20x%E1%BA%BFp%20lo%E1%BA%A1i%20chi%20b%E1%BB%99%20(T%E1%BA%ADp%20th%E1%BB%83).docx" download class="py-2 px-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 rounded-lg text-xs font-bold transition">
+                  Phiếu Tập thể (.docx)
+                </a>
+                <a href="./Phi%E1%BA%BFu%20bi%E1%BB%83u%20quy%E1%BA%BFt%20x%E1%BA%BFp%20lo%E1%BA%A1i%20%C4%91%E1%BA%A3ng%20vi%C3%AAn.docx" download class="py-2 px-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 rounded-lg text-xs font-bold transition">
+                  Phiếu Cá nhân (.docx)
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <!-- MODAL: MÃ QR CODE TRUY CẬP (ONLINE 24/7 & LAN NỘI BỘ) -->
@@ -2138,7 +2329,7 @@
     // ==========================================
     // HỆ THỐNG TỰ ĐỘNG CẬP NHẬT PHIÊN BẢN MỚI (AUTO-UPDATE)
     // ==========================================
-    const APP_VERSION = '2026.11.25.13';
+    const APP_VERSION = '2026.11.25.14';
 
     function checkForAppUpdate(manual = false) {
       if (!window.location.protocol.startsWith('http')) {
@@ -2404,6 +2595,9 @@
       if (tabId === 'tab-minutes') {
         syncFromServer(false);
         refreshMinutesContent();
+      }
+      if (tabId === 'tab-templates') {
+        renderTemplatesMemberSelect();
       }
     }
 
@@ -3706,6 +3900,230 @@
         titleProLower.includes('phó phòng') ||
         titleProLower.includes('lãnh đạo')
       );
+    }
+
+    function renderTemplatesMemberSelect() {
+      const sel = document.getElementById('tpl-member-select');
+      if (!sel) return;
+      const curVal = sel.value || String(appData.current_user_id || (appData.members[0] && appData.members[0].id) || 1);
+      sel.innerHTML = '';
+      appData.members.forEach(m => {
+        const is2A = isMemberSample2A(m);
+        const opt = document.createElement('option');
+        opt.value = m.id;
+        opt.textContent = `${m.name} — ${is2A ? 'Có chức vụ LĐ, QL (Mẫu 02A)' : 'Không chức vụ LĐ, QL (Mẫu 02B)'}`;
+        sel.appendChild(opt);
+      });
+      sel.value = curVal;
+    }
+
+    function exportTemplateByTarget(target) {
+      if (target === 'collective') {
+        downloadEvaluationWordClientSide('collective');
+        return;
+      }
+      downloadEvaluationWordClientSide(String(target));
+    }
+
+    function exportTemplateByRole(roleCode) {
+      const sel = document.getElementById('tpl-member-select');
+      const selectedId = sel ? parseInt(sel.value) : appData.current_user_id;
+      let mem = appData.members.find(x => x.id === selectedId);
+      const want2A = (roleCode === '2A');
+      if (!mem || isMemberSample2A(mem) !== want2A) {
+        mem = appData.members.find(x => isMemberSample2A(x) === want2A) || mem;
+      }
+      if (!mem) return;
+      if (sel && sel.value !== String(mem.id)) sel.value = String(mem.id);
+      downloadEvaluationWordClientSide(String(mem.id));
+    }
+
+    function downloadHtmlAsWord(bodyHtml, fileName) {
+      const htmlDoc = `
+        <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+        <head>
+          <meta charset='utf-8'>
+          <title>${fileName}</title>
+          <!--[if gte mso 9]><xml><w:WordDocument><w:View>Print</w:View><w:Zoom>100</w:Zoom><w:DoNotOptimizeForBrowser/></w:WordDocument></xml><![endif]-->
+          <style>
+            @page { size: 21.0cm 29.7cm; margin: 2.0cm 1.5cm 2.0cm 2.5cm; }
+            body { font-family: 'Times New Roman', serif; font-size: 13pt; line-height: 1.35; color: #000; }
+            table { border-collapse: collapse; width: 100%; }
+            p { margin: 4pt 0; }
+          </style>
+        </head>
+        <body>${bodyHtml}</body>
+        </html>
+      `;
+      const blob = new Blob(['\ufeff' + htmlDoc], { type: 'application/msword;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = fileName;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    function exportMemberSupplementDoc(isBlank = false) {
+      const sel = document.getElementById('tpl-member-select');
+      const mem = appData.members.find(x => x.id === parseInt(sel ? sel.value : appData.current_user_id)) || appData.members[0];
+      const { dd, mm, yyyy } = parseMeetingDateParts(appData.meeting.date);
+      const fullName = isBlank ? '…………………………………………………' : (mem ? mem.name.toUpperCase() : '');
+      const dob = isBlank ? '…………………' : (mem && mem.dob ? mem.dob : '…………………');
+      const roleParty = isBlank ? '………………………………………………………………………' : (mem ? (mem.role_party || 'Đảng viên') : 'K');
+      const rolePro = isBlank ? '……………………………………………………………………..' : (mem ? (mem.title_pro || 'Cán bộ') : 'K');
+      const dept = isBlank ? '……………………………………' : (mem ? (mem.dept || 'VietinBank Chi nhánh Bảo Lộc') : 'VietinBank Chi nhánh Bảo Lộc');
+      const slug = isBlank ? 'Mau_Trang' : (mem ? toUsernameSlug(mem.name) : 'Dang_Vien');
+
+      const html = `
+        <div style="font-family:'Times New Roman', serif; font-size:12.5pt; color:#000; line-height:1.35;">
+          <div style="text-align:center; font-weight:bold; font-size:13pt; margin-bottom:8px;">ĐẢNG CỘNG SẢN VIỆT NAM</div>
+          <table style="width:100%; border-collapse:collapse; margin-bottom:10px;">
+            <tr>
+              <td style="width:33%; border:1px solid #000; padding:6px; vertical-align:top; font-size:11pt;">
+                <div><strong>TỈNH:</strong> Lâm Đồng</div>
+                <div><strong>ĐẢNG BỘ:</strong> VietinBank CN Bảo Lộc</div>
+                <div><strong>CHI BỘ:</strong> Chi bộ 2</div>
+              </td>
+              <td style="width:34%; border:1px solid #000; padding:6px; text-align:center; vertical-align:middle; font-weight:bold;">
+                <div style="font-size:13pt;">PHIẾU BỔ SUNG<br>HỒ SƠ ĐẢNG VIÊN</div>
+                <div style="font-size:11.5pt; font-weight:normal; margin-top:4px;">(Năm ${yyyy})</div>
+              </td>
+              <td style="width:33%; border:1px solid #000; padding:6px; vertical-align:top; font-size:10.5pt;">
+                <div><strong>SỐ LL:</strong> …………………………..</div>
+                <div><strong>SỐ TĐV:</strong> …………………………</div>
+                <div style="font-style:italic; margin-top:4px;">Chỉ ghi những mục có nội dung thay đổi so với năm trước, nếu không thay đổi thì ghi vào mục đó chữ “K”</div>
+              </td>
+            </tr>
+          </table>
+          <p><strong>Họ và tên đang dùng (viết chữ in hoa):</strong> ${fullName} &nbsp;&nbsp;&nbsp; <strong>Sinh ngày:</strong> ${dob}</p>
+          <p><strong>Mới thay đổi nơi ở:</strong> …………………………………………………………………………………………</p>
+          <p><strong>Mới thay đổi về nghề nghiệp; đơn vị công tác:</strong> ${dept}</p>
+          <p><strong>Chức vụ mới được giao:</strong></p>
+          <p style="margin-left:18px;">- Đảng: ${roleParty}</p>
+          <p style="margin-left:18px;">- Chính quyền: ${rolePro}</p>
+          <p style="margin-left:18px;">- Đoàn thể: …………………………………………………………………………………………</p>
+          <p style="margin-left:18px;">- Doanh nghiệp, đơn vị sự nghiệp: ${dept}</p>
+          <p><strong>Mới thay đổi về trình độ học vấn; chuyên môn nghiệp vụ:</strong></p>
+          <p style="margin-left:18px;">- Giáo dục phổ thông (lớp mấy): …………… &nbsp;&nbsp; - Chuyên môn nghiệp vụ: …………………………</p>
+          <p style="margin-left:18px;">- Học vị (TS, thạc sĩ): …………… &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Học hàm (Giáo sư, phó giáo sư): …………………</p>
+          <p style="margin-left:18px;">- Lý luận chính trị (Cử nhân, cao cấp, trung cấp, sơ cấp): ………………………………………………</p>
+          <p style="margin-left:18px;">- Ngoại ngữ (Anh, Nga, Pháp... Trình độ A, B, C, D): ……………………………………………………</p>
+          <p><strong>Hình thức khen thưởng mới trong năm</strong> (từ bằng khen, huy chương trở lên và danh hiệu mới được phong: Anh hùng, chiến sĩ thi đua; nhà giáo, nghệ sĩ, thầy thuốc nhân dân hoặc ưu tú): ………………………………………………………</p>
+          <p><strong>Bị xử lý kỷ luật trong năm</strong> (Đảng, chính quyền, pháp luật): ……………………………………………………</p>
+          <p><strong>Gia đình có gì thay đổi trong năm:</strong></p>
+          <p style="margin-left:18px;">- Cha đẻ: …………………………………… &nbsp;&nbsp; - Mẹ đẻ: …………………………………………</p>
+          <p style="margin-left:18px;">- Cha (vợ hoặc chồng): ……………………… &nbsp;&nbsp; - Mẹ (vợ hoặc chồng): …………………………</p>
+          <p style="margin-left:18px;">- Vợ hoặc chồng (họ và tên, kết hôn, ly hôn, từ trần, chức vụ, công việc mới): ……………………………</p>
+          <p style="margin-left:18px;">- Con (họ tên con, mới sinh, mới nhận con nuôi, làm gì, ở đâu...?): ………………………………………</p>
+          <p><strong>Có thay đổi về kinh tế của bản thân và gia đình trong năm:</strong> ………………………………………………</p>
+          <p style="margin-left:18px;">- Tổng mức thu nhập của hộ gia đình: ……………… đồng, bình quân người/hộ: ……………… đồng</p>
+          <p style="margin-left:18px;">- Nhà ở: …………………………………………………………………………………………………</p>
+          <p style="margin-left:18px;">- Đất ở: …………………………………………………………………………………………………</p>
+          <p style="margin-left:18px;">- Hoạt động kinh tế: ……………………………………………………………………………………</p>
+          <p style="margin-left:18px;">- Tài sản mới có giá trị (50 triệu đồng trở lên): ……… Tên tài sản mới: ……………… giá trị: …………… đồng</p>
+          <p><strong>Được miễn công tác và sinh hoạt Đảng ngày:</strong> ………………………………………………………………</p>
+          <div style="text-align:right; font-style:italic; margin:10px 0;">Bảo Lộc, ngày ${dd} tháng ${mm} năm ${yyyy}</div>
+          <table style="width:100%; border-collapse:collapse; margin-top:8px;">
+            <tr>
+              <td style="width:34%; border:1px solid #000; padding:8px; text-align:center; vertical-align:top;">
+                <div style="font-weight:bold;">XÁC NHẬN CỦA CẤP ỦY CƠ SỞ</div>
+                <div style="font-style:italic; font-size:11pt;">(Ký, đóng dấu, ghi rõ họ và tên)</div>
+                <div style="height:60px;"></div>
+              </td>
+              <td style="width:33%; border:1px solid #000; padding:8px; text-align:center; vertical-align:top;">
+                <div style="font-weight:bold;">XÁC NHẬN CỦA CHI ỦY CHI BỘ</div>
+                <div style="font-style:italic; font-size:11pt;">(Ký, ghi rõ họ và tên)</div>
+                <div style="height:45px;"></div>
+                <div style="font-weight:bold;">${appData.meeting.host_name || 'Nguyễn Thi Thao'}</div>
+              </td>
+              <td style="width:33%; border:1px solid #000; padding:8px; text-align:center; vertical-align:top;">
+                <div style="font-weight:bold;">NGƯỜI KHAI</div>
+                <div style="font-style:italic; font-size:11pt;">(Ký, ghi rõ họ tên)</div>
+                <div style="height:45px;"></div>
+                <div style="font-weight:bold;">${isBlank ? '' : fullName}</div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      `;
+      downloadHtmlAsWord(html, `Phieu_Bo_Sung_Ho_So_Dang_Vien_${slug}_${yyyy}.doc`);
+      showToast('Đã xuất Phiếu bổ sung hồ sơ đảng viên!', 'success');
+    }
+
+    function exportProposalDoc() {
+      const { dd, mm, yyyy } = parseMeetingDateParts(appData.meeting.date);
+      const colEval = appData.collective_evaluation || {};
+      const colRank = colEval.ranking || 'Hoàn thành xuất sắc nhiệm vụ';
+      const rowsHtml = appData.members.map((m, idx) => `
+        <tr>
+          <td style="border:1px solid #000; padding:4px; text-align:center;">${idx + 1}</td>
+          <td style="border:1px solid #000; padding:4px; font-weight:bold;">${m.name}</td>
+          <td style="border:1px solid #000; padding:4px;">${m.role_party || 'Đảng viên'}</td>
+          <td style="border:1px solid #000; padding:4px; text-align:center;">${m.self_score || 95}</td>
+          <td style="border:1px solid #000; padding:4px;">${m.self_ranking || 'Hoàn thành tốt nhiệm vụ'}</td>
+        </tr>
+      `).join('');
+
+      const html = `
+        <div style="font-family:'Times New Roman', serif; font-size:13pt; color:#000; line-height:1.35;">
+          <table style="width:100%; border-collapse:collapse; margin-bottom:10px;">
+            <tr>
+              <td style="width:48%; text-align:center; vertical-align:top; font-size:11.5pt; font-weight:bold;">
+                <div>ĐẢNG BỘ NHCT VIỆT NAM</div>
+                <div>ĐẢNG BỘ CN BẢO LỘC</div>
+                <div style="text-decoration:underline;">CHI BỘ 2</div>
+                <div style="font-weight:normal; margin-top:4px;">Số: …../TTr-CB2</div>
+              </td>
+              <td style="width:52%; text-align:center; vertical-align:top; font-size:11.5pt; font-weight:bold;">
+                <div>ĐẢNG CỘNG SẢN VIỆT NAM</div>
+                <div style="font-weight:normal; font-style:italic; margin-top:6px;">Bảo Lộc, ngày ${dd} tháng ${mm} năm ${yyyy}</div>
+              </td>
+            </tr>
+          </table>
+          <div style="text-align:center; margin:14px 0;">
+            <div style="font-size:14pt; font-weight:bold;">TỜ TRÌNH</div>
+            <div style="font-weight:bold;">Về việc đề nghị đánh giá, xếp loại chất lượng tập thể, cá nhân năm ${yyyy}</div>
+          </div>
+          <p style="text-align:center;"><strong>Kính gửi:</strong> Ban Thường vụ Đảng ủy VietinBank Chi nhánh Bảo Lộc</p>
+          <p style="text-indent:24px; text-align:justify;">Thực hiện Quy định số 366-QĐ/TW và Hướng dẫn của Đảng ủy cấp trên về kiểm điểm, đánh giá, xếp loại chất lượng hằng năm đối với tổ chức đảng, đảng viên; Chi bộ 2 đã tổ chức Hội nghị kiểm điểm năm ${yyyy} vào ngày ${dd}/${mm}/${yyyy}.</p>
+          <p style="text-indent:24px; text-align:justify;">Chi bộ 2 kính trình Đảng ủy Chi nhánh Bảo Lộc xem xét, quyết định công nhận kết quả đánh giá, xếp loại chất lượng tập thể và cá nhân năm ${yyyy} như sau:</p>
+          <p><strong>1. Đối với Tập thể Chi bộ 2:</strong> Đề xuất xếp loại mức <strong>${colRank}</strong> (Điểm tự chấm: ${colEval.score || 97}/100 điểm).</p>
+          <p><strong>2. Đối với Cá nhân Đảng viên (${appData.members.length} đồng chí):</strong></p>
+          <table style="width:100%; border-collapse:collapse; margin:8px 0; font-size:11pt;">
+            <thead>
+              <tr style="background-color:#f1f5f9; font-weight:bold;">
+                <th style="border:1px solid #000; padding:5px; width:40px;">STT</th>
+                <th style="border:1px solid #000; padding:5px;">Họ và tên</th>
+                <th style="border:1px solid #000; padding:5px;">Chức vụ Đảng</th>
+                <th style="border:1px solid #000; padding:5px; width:65px;">Điểm</th>
+                <th style="border:1px solid #000; padding:5px;">Mức đề xuất xếp loại</th>
+              </tr>
+            </thead>
+            <tbody>${rowsHtml}</tbody>
+          </table>
+          <p style="text-indent:24px; text-align:justify;">Kính trình Ban Thường vụ Đảng ủy Chi nhánh Bảo Lộc xem xét, quyết định.</p>
+          <table style="width:100%; margin-top:14px;">
+            <tr>
+              <td style="width:45%; vertical-align:top; font-size:11pt;">
+                <div><strong>Nơi nhận:</strong></div>
+                <div>- Như trên;</div>
+                <div>- Lưu Chi bộ 2.</div>
+              </td>
+              <td style="width:55%; text-align:center;">
+                <div style="font-weight:bold;">T/M CHI BỘ 2</div>
+                <div style="font-weight:bold;">BÍ THƯ</div>
+                <div style="height:50px;"></div>
+                <div style="font-weight:bold; text-transform:uppercase;">${appData.meeting.host_name || 'Nguyễn Thi Thao'}</div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      `;
+      downloadHtmlAsWord(html, `To_Trinh_Xep_Loai_Chi_Bo_2_${yyyy}.doc`);
+      showToast('Đã xuất Tờ trình đề nghị xếp loại!', 'success');
     }
 
     function downloadEvaluationWordClientSide(target) {
