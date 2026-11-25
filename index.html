@@ -712,13 +712,12 @@
           </span>
           <div>
             <h4 class="text-xs sm:text-sm font-bold text-vtb-navy uppercase tracking-wide flex items-center gap-2">
-              Kết Xuất Bản Tự Kiểm Điểm & Đánh Giá 100đ
+              Kết Xuất Bản Tự Kiểm Điểm Mẫu 2A, 2B & Đánh Giá 100đ
               <span
                 class="text-[10px] px-2 py-0.5 rounded-full font-bold bg-amber-100 text-amber-800 border border-amber-200">Chuẩn
                 2026</span>
             </h4>
-            <p class="text-[11px] text-slate-500">Khung tiêu chí Đảng ủy năm 2026 • Thể thức văn bản chuẩn Nghị định
-              30/2020/NĐ-CP</p>
+            <p class="text-[11px] text-slate-500">Chuẩn Mẫu 02A-HD KĐ.ĐG & 02B-HD KĐ.ĐG (Quy định 366-QĐ/TW & HD 43-HD/BTCTW) • Thể thức Nghị định 30</p>
           </div>
         </div>
 
@@ -3202,11 +3201,22 @@
         const m = appData.members.find(x => x.id === memId);
         if (!m) return;
 
-        let roleLabel = 'Đảng viên không giữ chức vụ lãnh đạo (Phụ lục 6)';
+        const titleProLower = (m.title_pro || '').toLowerCase();
+        const isSample2A = (
+          m.role_party === 'Bí thư Chi bộ' ||
+          m.role_party === 'Phó Bí thư Chi bộ' ||
+          m.role_party === 'Chi ủy viên' ||
+          titleProLower.includes('giám đốc') ||
+          titleProLower.includes('trưởng phòng') ||
+          titleProLower.includes('phó phòng') ||
+          titleProLower.includes('lãnh đạo')
+        );
+        let roleLabel = isSample2A
+          ? 'Mẫu 02A-HD KĐ.ĐG (Cá nhân giữ chức vụ lãnh đạo, quản lý)'
+          : 'Mẫu 02B-HD KĐ.ĐG (Đảng viên không giữ chức vụ lãnh đạo, quản lý)';
         let criteriaList = [];
 
-        if (m.role_party === 'Bí thư Chi bộ' || m.role_party === 'Phó Bí thư Chi bộ' || m.role_party === 'Chi ủy viên') {
-          roleLabel = 'Cấp ủy viên, Bí thư, Phó Bí thư Chi bộ (Phụ lục 5)';
+        if (isSample2A) {
           criteriaList = [
             {
               group: 'I. CÁC TIÊU CHÍ CHUNG (30 ĐIỂM)', items: [
@@ -3386,29 +3396,95 @@
         }
       }
 
-      showToast('Đang tạo file Word (.docx) bản tự chấm điểm...', 'info');
+      showToast('Đang tạo file Word (.docx) Bản kiểm điểm chuẩn Mẫu 2A/2B năm 2026...', 'info');
 
-      fetch('/api/export_evaluation_docx', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ target: target, data: appData })
-      })
-        .then(res => res.json())
-        .then(data => {
-          if (data.status === 'success') {
-            showToast(data.message || 'Đã xuất file Word thành công!', 'success');
-            window.location.href = data.download_url;
-          } else {
-            alert('Lỗi tạo file Word: ' + (data.message || 'Chưa rõ nguyên nhân'));
-          }
+      if (window.location.protocol.startsWith('http') && !window.location.hostname.includes('github.io')) {
+        fetch('/api/export_evaluation_docx', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ target: target, data: appData })
         })
-        .catch(err => {
-          console.warn('Backend chưa phản hồi hoặc đang chạy trực tiếp qua file://', err);
-          const confirmPrint = confirm('Máy chủ Python chưa kích hoạt hoặc ứng dụng đang mở file:// trực tiếp.\n\nBạn có muốn mở ngay bản Xem Trước & In (PDF/A4) không?');
-          if (confirmPrint) {
-            previewAndPrintEvaluation();
-          }
+          .then(res => res.json())
+          .then(data => {
+            if (data.status === 'success') {
+              showToast(data.message || 'Đã xuất file Word thành công!', 'success');
+              window.location.href = data.download_url;
+            } else {
+              downloadEvaluationWordClientSide(target);
+            }
+          })
+          .catch(() => {
+            downloadEvaluationWordClientSide(target);
+          });
+      } else {
+        downloadEvaluationWordClientSide(target);
+      }
+    }
+
+    function isMemberSample2A(mem) {
+      if (!mem) return false;
+      const titleProLower = (mem.title_pro || '').toLowerCase();
+      return (
+        mem.role_party === 'Bí thư Chi bộ' ||
+        mem.role_party === 'Phó Bí thư Chi bộ' ||
+        mem.role_party === 'Chi ủy viên' ||
+        titleProLower.includes('giám đốc') ||
+        titleProLower.includes('trưởng phòng') ||
+        titleProLower.includes('phó phòng') ||
+        titleProLower.includes('lãnh đạo')
+      );
+    }
+
+    function downloadEvaluationWordClientSide(target) {
+      let bodyHtml = '';
+      let fileName = 'Ban_Kiem_Diem_Chi_Bo_2_2026.doc';
+
+      if (target === 'all') {
+        const sheets = [buildEvaluationSheetHtml('collective')];
+        appData.members.forEach(m => {
+          sheets.push(`<div style="page-break-before: always;"></div>` + buildEvaluationSheetHtml(String(m.id)));
         });
+        bodyHtml = sheets.join('\n');
+        fileName = 'Bo_Ho_So_Kiem_Diem_Mau_2A_2B_Chi_Bo_2_2026.doc';
+      } else {
+        bodyHtml = buildEvaluationSheetHtml(target);
+        if (target === 'collective') {
+          fileName = 'Ban_Kiem_Diem_Tap_The_Chi_Bo_2_2026.doc';
+        } else {
+          const mem = appData.members.find(x => x.id === parseInt(target));
+          const code = isMemberSample2A(mem) ? 'Mau_2A' : 'Mau_2B';
+          const slug = mem ? toUsernameSlug(mem.name) : target;
+          fileName = `Ban_Kiem_Diem_${code}_${slug}_2026.doc`;
+        }
+      }
+
+      const htmlDoc = `
+        <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+        <head>
+          <meta charset='utf-8'>
+          <title>${fileName}</title>
+          <!--[if gte mso 9]><xml><w:WordDocument><w:View>Print</w:View><w:Zoom>100</w:Zoom><w:DoNotOptimizeForBrowser/></w:WordDocument></xml><![endif]-->
+          <style>
+            @page { size: 21.0cm 29.7cm; margin: 2.0cm 1.5cm 2.0cm 3.0cm; }
+            body { font-family: 'Times New Roman', serif; font-size: 13pt; line-height: 1.35; color: #000; }
+            table { border-collapse: collapse; width: 100%; }
+            p { margin: 4pt 0; }
+          </style>
+        </head>
+        <body>${bodyHtml}</body>
+        </html>
+      `;
+
+      const blob = new Blob(['\ufeff' + htmlDoc], { type: 'application/msword;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = fileName;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast('Đã tải Bản kiểm điểm chuẩn Mẫu 2A/2B năm 2026!', 'success');
     }
 
     function closeEvalPreviewModal() {
@@ -3589,209 +3665,196 @@
         const memId = parseInt(targetVal);
         const mem = appData.members.find(x => x.id === memId);
         if (!mem) return;
-
-        const isLeader = (mem.role_party === 'Bí thư Chi bộ' || mem.role_party === 'Phó Bí thư Chi bộ' || mem.role_party === 'Chi ủy viên');
-        const score = mem.self_score || 95;
-        const ranking = mem.self_ranking || 'Hoàn thành tốt nhiệm vụ';
-        const good = mem.self_good || 'Tư tưởng chính trị vững vàng, kiên định; chấp hành nghiêm túc chủ trương, đường lối của Đảng, chính sách pháp luật của Nhà nước và quy chế, quy định nội bộ của VietinBank. Tích cực, chủ động hoàn thành tốt các chỉ tiêu nhiệm vụ chuyên môn được giao; giữ gìn đoàn kết nội bộ.';
-        const limit = mem.self_limit || 'Đôi lúc chưa chủ động sắp xếp thời gian sinh hoạt chuyên đề chuyên sâu; cần nâng cao hơn nữa tính linh hoạt và cải tiến công tác chăm sóc, tư vấn khách hàng trong những giai đoạn cao điểm.';
-        const sol = mem.self_sol || 'Tiếp tục rèn luyện phẩm chất đạo đức cách mạng, gương mẫu trong lối sống; chủ động nghiên cứu các văn bản nghiệp vụ và sản phẩm số mới của VietinBank; phối hợp chặt chẽ với đồng nghiệp để hoàn thành xuất sắc KPI năm 2027.';
-
-        document.getElementById('eval-preview-modal-title').textContent = `Xem Trước: Bản Tự Kiểm Điểm 100đ - Đ/c ${mem.name}`;
-
-        sheet.innerHTML = `
-          <div class="text-center space-y-1 pb-6 border-b-2 border-slate-900">
-            <div class="flex justify-between items-start text-xs uppercase font-bold text-slate-800">
-              <div class="text-center">
-                <p>ĐẢNG BỘ NGÂN HÀNG TMCP CÔNG THƯƠNG VN</p>
-                <p>ĐẢNG BỘ CHI NHÁNH BẢO LỘC</p>
-                <p class="font-extrabold text-vtb-red">CHI BỘ 2</p>
-              </div>
-              <div class="text-center">
-                <p>ĐẢNG CỘNG SẢN VIỆT NAM</p>
-                <p class="font-normal normal-case italic">Bảo Lộc, ngày ${dd} tháng ${mm} năm ${yyyy}</p>
-              </div>
-            </div>
-
-            <div class="pt-6">
-              <h2 class="text-base sm:text-lg font-extrabold uppercase text-slate-900 tracking-wide">
-                BẢN TỰ KIỂM ĐIỂM CÁ NHÂN ĐẢNG VIÊN NĂM 2026
-              </h2>
-              <p class="text-xs italic text-slate-600 mt-1">(${isLeader ? 'Dành cho Cán bộ Lãnh đạo, Cấp ủy - Phụ lục 5' : 'Dành cho Đảng viên không giữ chức vụ lãnh đạo - Phụ lục 6'})</p>
-            </div>
-          </div>
-
-          <div class="space-y-4 pt-6 text-xs sm:text-sm">
-            <div class="grid grid-cols-2 gap-2 text-xs">
-              <p><span class="font-bold">Họ và tên:</span> <span class="font-extrabold uppercase text-vtb-navy">${mem.name}</span></p>
-              <p><span class="font-bold">Ngày sinh:</span> ${mem.dob || '01/01/1985'}</p>
-              <p><span class="font-bold">Chức vụ Đảng:</span> ${mem.role_party || 'Đảng viên'}</p>
-              <p><span class="font-bold">Chức vụ chuyên môn:</span> ${mem.title_pro || 'Cán bộ'} - ${mem.dept || 'Chi nhánh Bảo Lộc'}</p>
-              <p><span class="font-bold">Ngày vào Đảng:</span> ${mem.party_date || '19/05/2015'}</p>
-              <p><span class="font-bold">Chi bộ sinh hoạt:</span> Chi bộ 2 - VietinBank Chi nhánh Bảo Lộc</p>
-            </div>
-
-            <div class="pt-2">
-              <h3 class="font-bold uppercase text-slate-900">I. BẢNG TỰ CHẤM ĐIỂM THEO KHUNG TIÊU CHÍ (100 ĐIỂM)</h3>
-              <table class="w-full mt-2 border-collapse border border-slate-400 text-xs">
-                <thead>
-                  <tr class="bg-slate-100 font-bold">
-                    <th class="border border-slate-400 p-2 text-center w-10">STT</th>
-                    <th class="border border-slate-400 p-2 text-left">Nội dung tiêu chí đánh giá</th>
-                    <th class="border border-slate-400 p-2 text-center w-24">Điểm tối đa</th>
-                    <th class="border border-slate-400 p-2 text-center w-24">Điểm tự chấm</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  ${isLeader ? `
-                  <tr class="font-bold bg-slate-50">
-                    <td class="border border-slate-400 p-2 text-center">A</td>
-                    <td class="border border-slate-400 p-2" colspan="3">CÁC TIÊU CHÍ CHUNG (30 ĐIỂM)</td>
-                  </tr>
-                  <tr>
-                    <td class="border border-slate-400 p-1.5 text-center">1</td>
-                    <td class="border border-slate-400 p-1.5">Chính trị, tư tưởng: Trung thành với Đảng, bản lĩnh chính trị vững vàng, kỷ luật phát ngôn</td>
-                    <td class="border border-slate-400 p-1.5 text-center">5.0</td>
-                    <td class="border border-slate-400 p-1.5 text-center font-bold">5.0</td>
-                  </tr>
-                  <tr>
-                    <td class="border border-slate-400 p-1.5 text-center">2</td>
-                    <td class="border border-slate-400 p-1.5">Phẩm chất đạo đức, lối sống, ý thức kỷ luật: Gương mẫu, không tiêu cực lãng phí</td>
-                    <td class="border border-slate-400 p-1.5 text-center">5.0</td>
-                    <td class="border border-slate-400 p-1.5 text-center font-bold">5.0</td>
-                  </tr>
-                  <tr>
-                    <td class="border border-slate-400 p-1.5 text-center">3</td>
-                    <td class="border border-slate-400 p-1.5">Năng lực lãnh đạo, quản lý; đổi mới sáng tạo, dám nghĩ dám làm vì lợi ích chung</td>
-                    <td class="border border-slate-400 p-1.5 text-center">10.0</td>
-                    <td class="border border-slate-400 p-1.5 text-center font-bold">9.5</td>
-                  </tr>
-                  <tr>
-                    <td class="border border-slate-400 p-1.5 text-center">4</td>
-                    <td class="border border-slate-400 p-1.5">Uy tín, khả năng quy tụ đoàn kết nội bộ và phối hợp tác nghiệp</td>
-                    <td class="border border-slate-400 p-1.5 text-center">5.0</td>
-                    <td class="border border-slate-400 p-1.5 text-center font-bold">5.0</td>
-                  </tr>
-                  <tr>
-                    <td class="border border-slate-400 p-1.5 text-center">5</td>
-                    <td class="border border-slate-400 p-1.5">Tinh thần tự phê bình và phê bình, tự soi tự sửa, khắc phục khuyết điểm</td>
-                    <td class="border border-slate-400 p-1.5 text-center">5.0</td>
-                    <td class="border border-slate-400 p-1.5 text-center font-bold">4.8</td>
-                  </tr>
-                  <tr class="font-bold bg-slate-50">
-                    <td class="border border-slate-400 p-2 text-center">B</td>
-                    <td class="border border-slate-400 p-2" colspan="3">KẾT QUẢ THỰC HIỆN NHIỆM VỤ ĐƯỢC GIAO (70 ĐIỂM)</td>
-                  </tr>
-                  <tr>
-                    <td class="border border-slate-400 p-1.5 text-center">1</td>
-                    <td class="border border-slate-400 p-1.5">Lãnh đạo, điều hành chi bộ/phòng ban hoàn thành các chỉ tiêu nhiệm vụ chính trị, kinh doanh</td>
-                    <td class="border border-slate-400 p-1.5 text-center">35.0</td>
-                    <td class="border border-slate-400 p-1.5 text-center font-bold">33.5</td>
-                  </tr>
-                  <tr>
-                    <td class="border border-slate-400 p-1.5 text-center">2</td>
-                    <td class="border border-slate-400 p-1.5">Tiến độ và chất lượng cụ thể hóa các văn bản chỉ đạo của Đảng ủy cấp trên</td>
-                    <td class="border border-slate-400 p-1.5 text-center">15.0</td>
-                    <td class="border border-slate-400 p-1.5 text-center font-bold">14.5</td>
-                  </tr>
-                  <tr>
-                    <td class="border border-slate-400 p-1.5 text-center">3</td>
-                    <td class="border border-slate-400 p-1.5">Kết quả đánh giá, xếp loại đảng viên và cán bộ thuộc quyền quản lý trực tiếp</td>
-                    <td class="border border-slate-400 p-1.5 text-center">20.0</td>
-                    <td class="border border-slate-400 p-1.5 text-center font-bold">19.5</td>
-                  </tr>
-                  ` : `
-                  <tr class="font-bold bg-slate-50">
-                    <td class="border border-slate-400 p-2 text-center">A</td>
-                    <td class="border border-slate-400 p-2" colspan="3">CÁC TIÊU CHÍ CHUNG (30 ĐIỂM)</td>
-                  </tr>
-                  <tr>
-                    <td class="border border-slate-400 p-1.5 text-center">1</td>
-                    <td class="border border-slate-400 p-1.5">Chính trị, phẩm chất đạo đức, lối sống, ý thức tổ chức kỷ luật (Phục vụ khách hàng, không sai sót)</td>
-                    <td class="border border-slate-400 p-1.5 text-center">10.0</td>
-                    <td class="border border-slate-400 p-1.5 text-center font-bold">9.8</td>
-                  </tr>
-                  <tr>
-                    <td class="border border-slate-400 p-1.5 text-center">2</td>
-                    <td class="border border-slate-400 p-1.5">Năng lực chuyên môn nghiệp vụ, thái độ công tác, đổi mới sáng tạo, thực hiện văn hóa VietinBank</td>
-                    <td class="border border-slate-400 p-1.5 text-center">15.0</td>
-                    <td class="border border-slate-400 p-1.5 text-center font-bold">14.5</td>
-                  </tr>
-                  <tr>
-                    <td class="border border-slate-400 p-1.5 text-center">3</td>
-                    <td class="border border-slate-400 p-1.5">Tinh thần tự phê bình và phê bình, tự soi tự sửa, cầu thị học hỏi</td>
-                    <td class="border border-slate-400 p-1.5 text-center">5.0</td>
-                    <td class="border border-slate-400 p-1.5 text-center font-bold">4.8</td>
-                  </tr>
-                  <tr class="font-bold bg-slate-50">
-                    <td class="border border-slate-400 p-2 text-center">B</td>
-                    <td class="border border-slate-400 p-2" colspan="3">KẾT QUẢ THỰC HIỆN NHIỆM VỤ CHUYÊN MÔN (70 ĐIỂM)</td>
-                  </tr>
-                  <tr>
-                    <td class="border border-slate-400 p-1.5 text-center">1</td>
-                    <td class="border border-slate-400 p-1.5">Mức độ hoàn thành chỉ tiêu kế hoạch kinh doanh, định mức KPI theo vị trí công tác</td>
-                    <td class="border border-slate-400 p-1.5 text-center">40.0</td>
-                    <td class="border border-slate-400 p-1.5 text-center font-bold">38.2</td>
-                  </tr>
-                  <tr>
-                    <td class="border border-slate-400 p-1.5 text-center">2</td>
-                    <td class="border border-slate-400 p-1.5">Tính chính xác, kịp thời, không để phát sinh rủi ro tác nghiệp hoặc ảnh hưởng uy tín thương hiệu</td>
-                    <td class="border border-slate-400 p-1.5 text-center">20.0</td>
-                    <td class="border border-slate-400 p-1.5 text-center font-bold">19.2</td>
-                  </tr>
-                  <tr>
-                    <td class="border border-slate-400 p-1.5 text-center">3</td>
-                    <td class="border border-slate-400 p-1.5">Tham gia đầy đủ học tập nghị quyết, các phong trào thi đua và nhiệm vụ đột xuất</td>
-                    <td class="border border-slate-400 p-1.5 text-center">10.0</td>
-                    <td class="border border-slate-400 p-1.5 text-center font-bold">9.5</td>
-                  </tr>
-                  `}
-                  <tr class="font-extrabold bg-blue-50 text-vtb-navy">
-                    <td class="border border-slate-400 p-2 text-center" colspan="2">TỔNG ĐIỂM TỰ ĐÁNH GIÁ (100 ĐIỂM)</td>
-                    <td class="border border-slate-400 p-2 text-center">100.0</td>
-                    <td class="border border-slate-400 p-2 text-center text-vtb-red font-black text-sm">${score} / 100</td>
-                  </tr>
-                </tbody>
-              </table>
-              <p class="mt-2 text-xs font-bold text-slate-800">Mức tự xếp loại đề xuất: <span class="text-emerald-700 underline">${ranking}</span></p>
-            </div>
-
-            <div class="pt-4 space-y-3">
-              <h3 class="font-bold uppercase text-slate-900">II. TỰ KIỂM ĐIỂM CỦA ĐẢNG VIÊN</h3>
-              <div>
-                <p class="font-bold">1. Ưu điểm, kết quả đạt được:</p>
-                <p class="text-justify indent-6 mt-1 leading-relaxed">${good}</p>
-              </div>
-              <div>
-                <p class="font-bold">2. Hạn chế, khuyết điểm và nguyên nhân:</p>
-                <p class="text-justify indent-6 mt-1 leading-relaxed">${limit}</p>
-              </div>
-              <div>
-                <p class="font-bold">3. Phương hướng, biện pháp khắc phục:</p>
-                <p class="text-justify indent-6 mt-1 leading-relaxed">${sol}</p>
-              </div>
-            </div>
-
-            <div class="pt-8 grid grid-cols-2 text-center">
-              <div class="space-y-1">
-                <p class="font-bold uppercase">Ý KIẾN NHẬN XÉT CỦA CHI ỦY</p>
-                <p class="italic text-[11px]">(Ký, ghi rõ họ tên)</p>
-                <div class="h-20"></div>
-                <p class="font-bold uppercase">${appData.meeting.host_name || 'Bí Thư Chi Bộ'}</p>
-              </div>
-              <div class="space-y-1">
-                <p class="font-bold uppercase">NGƯỜI TỰ KIỂM ĐIỂM</p>
-                <p class="italic text-[11px]">(Ký, ghi rõ họ tên)</p>
-                <div class="h-20"></div>
-                <p class="font-bold uppercase">${mem.name}</p>
-              </div>
-            </div>
-          </div>
-        `;
+        const is2A = isMemberSample2A(mem);
+        document.getElementById('eval-preview-modal-title').textContent = `Xem Trước: Bản Kiểm Điểm ${is2A ? 'Mẫu 02A-HD KĐ.ĐG (Lãnh đạo)' : 'Mẫu 02B-HD KĐ.ĐG (Đảng viên)'} - Đ/c ${mem.name}`;
+        sheet.innerHTML = buildEvaluationSheetHtml(String(mem.id));
       }
 
       const modal = document.getElementById('eval-preview-modal');
       if (modal) modal.classList.remove('hidden');
+    }
+
+    function buildEvaluationSheetHtml(targetVal) {
+      const dateStr = appData.meeting.date || '2026-11-21';
+      const parts = dateStr.split('-');
+      const yyyy = parts[0] || '2026';
+      const mm = parts[1] || '11';
+      const dd = parts[2] || '21';
+
+      if (targetVal === 'collective') {
+        const colEval = appData.collective_evaluation;
+        const score = colEval.score || 97;
+        const ranking = colEval.ranking || 'Hoàn thành xuất sắc nhiệm vụ';
+        const good = colEval.good || 'Chi bộ 2 luôn giữ vững sự đoàn kết, nhất trí cao trong cấp ủy và tập thể đảng viên.';
+        const limit = colEval.limit || 'Công tác kiểm tra, giám sát chuyên đề ở một số thời điểm chưa bao quát hết mọi quy trình.';
+        const sol = colEval.sol || 'Tiếp tục nâng cao chất lượng sinh hoạt chi bộ; tăng cường chuyển đổi số và giám sát chéo.';
+
+        return `
+          <div style="font-family: 'Times New Roman', serif; color: #000;">
+            <table style="width:100%; border-collapse:collapse; margin-bottom:10px;">
+              <tr>
+                <td style="width:50%; text-align:center; vertical-align:top; font-size:11pt; font-weight:bold;">
+                  <div>ĐẢNG BỘ NHCT VIỆT NAM</div>
+                  <div>ĐẢNG BỘ CN BẢO LỘC</div>
+                  <div style="text-decoration:underline;">CHI BỘ 2</div>
+                </td>
+                <td style="width:50%; text-align:center; vertical-align:top; font-size:11pt; font-weight:bold;">
+                  <div>ĐẢNG CỘNG SẢN VIỆT NAM</div>
+                  <div style="font-weight:normal; font-style:italic; margin-top:6px;">Bảo Lộc, ngày ${dd} tháng ${mm} năm ${yyyy}</div>
+                </td>
+              </tr>
+            </table>
+            <div style="text-align:center; margin:14px 0;">
+              <div style="font-size:14pt; font-weight:bold; text-transform:uppercase;">BẢN TỰ KIỂM ĐIỂM VÀ ĐÁNH GIÁ, XẾP LOẠI CHẤT LƯỢNG<br>TẬP THỂ CHI BỘ NĂM ${yyyy}</div>
+              <div style="font-size:11pt; font-style:italic;">(Theo Quy định 366-QĐ/TW và Hướng dẫn 43-HD/BTCTW)</div>
+            </div>
+            <p><strong>Tên tổ chức đảng:</strong> Chi bộ 2 thuộc Đảng bộ VietinBank Chi nhánh Bảo Lộc</p>
+            <p><strong>Tổng số đảng viên:</strong> ${appData.members.length} đồng chí (Chính thức: ${appData.members.filter(m => m.status === 'Chính thức').length}, Dự bị: ${appData.members.filter(m => m.status === 'Dự bị').length})</p>
+            <p style="font-weight:bold; margin-top:10px;">I. TỰ KIỂM ĐIỂM CỦA TẬP THỂ CHI BỘ</p>
+            <p><strong>1. Ưu điểm, kết quả đạt được:</strong></p>
+            <p style="text-indent:24px; text-align:justify;">${good}</p>
+            <p><strong>2. Hạn chế, khuyết điểm và nguyên nhân:</strong></p>
+            <p style="text-indent:24px; text-align:justify;">${limit}</p>
+            <p><strong>3. Phương hướng, biện pháp khắc phục:</strong></p>
+            <p style="text-indent:24px; text-align:justify;">${sol}</p>
+            <p style="font-weight:bold; margin-top:10px;">II. TỰ CHẤM ĐIỂM & XẾP LOẠI: <span style="color:#b91c1c;">${score}/100 điểm</span> — <strong>${ranking}</strong></p>
+            <table style="width:100%; margin-top:20px;">
+              <tr>
+                <td style="width:50%;"></td>
+                <td style="width:50%; text-align:center; font-weight:bold;">
+                  <div>TM. CHI BỘ 2</div>
+                  <div>BÍ THƯ</div>
+                  <div style="height:55px;"></div>
+                  <div>${appData.meeting.host_name || 'Nguyễn Thi Thao'}</div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        `;
+      }
+
+      const mem = appData.members.find(x => x.id === parseInt(targetVal));
+      if (!mem) return '';
+
+      const is2A = isMemberSample2A(mem);
+      const formCode = is2A ? 'Mẫu 02A-HD KĐ.ĐG' : 'Mẫu 02B-HD KĐ.ĐG';
+      const formDesc = is2A
+        ? 'Cá nhân giữ chức vụ lãnh đạo, quản lý'
+        : 'Cá nhân không giữ chức vụ lãnh đạo, quản lý';
+
+      const score = mem.self_score || 95;
+      const ranking = mem.self_ranking || 'Hoàn thành tốt nhiệm vụ';
+      const good = mem.self_good || 'Tư tưởng chính trị vững vàng, kiên định; chấp hành nghiêm túc chủ trương, đường lối của Đảng, chính sách pháp luật của Nhà nước và quy chế, quy định nội bộ của VietinBank.';
+      const limit = mem.self_limit || 'Đôi lúc chưa chủ động sắp xếp thời gian nghiên cứu chuyên đề chuyên sâu; cần nâng cao hơn nữa tính linh hoạt trong công tác chuyên môn.';
+      const sol = mem.self_sol || 'Tiếp tục rèn luyện phẩm chất đạo đức cách mạng, gương mẫu trong lối sống; chủ động nghiên cứu nghiệp vụ mới để hoàn thành xuất sắc KPI năm tới.';
+
+      const chk = (label) => (ranking === label ? '☒' : '☐');
+
+      return `
+        <div style="font-family: 'Times New Roman', serif; color: #000; font-size: 12.5pt; line-height: 1.35;">
+          <div style="text-align: right; font-weight: bold; font-size: 11pt; margin-bottom: 4px;">${formCode}</div>
+          <table style="width: 100%; border-collapse: collapse; margin-bottom: 10px;">
+            <tr>
+              <td style="width: 48%; text-align: center; vertical-align: top; font-size: 11pt; font-weight: bold;">
+                <div>ĐẢNG BỘ NHCT VIỆT NAM</div>
+                <div>ĐẢNG BỘ CN BẢO LỘC</div>
+                <div style="text-decoration: underline;">CHI BỘ 2</div>
+              </td>
+              <td style="width: 52%; text-align: center; vertical-align: top; font-size: 11pt; font-weight: bold;">
+                <div>ĐẢNG CỘNG SẢN VIỆT NAM</div>
+                <div style="font-weight: normal; font-style: italic; margin-top: 6px;">Bảo Lộc, ngày ${dd} tháng ${mm} năm ${yyyy}</div>
+              </td>
+            </tr>
+          </table>
+
+          <div style="text-align: center; margin: 14px 0 12px 0;">
+            <div style="font-size: 13.5pt; font-weight: bold; text-transform: uppercase;">BẢN KIỂM ĐIỂM VÀ TỰ ĐÁNH GIÁ, XẾP LOẠI CHẤT LƯỢNG CÁ NHÂN</div>
+            <div style="font-size: 12pt; font-weight: bold;">Năm ${yyyy}</div>
+            <div style="font-size: 11pt; font-style: italic;">(${formDesc} — Quy định 366-QĐ/TW & Hướng dẫn 43-HD/BTCTW)</div>
+          </div>
+
+          <div style="margin-bottom: 10px; font-size: 12pt;">
+            <p style="margin: 3px 0;"><strong>Họ và tên:</strong> <span style="text-transform: uppercase; font-weight: bold;">${mem.name}</span> &nbsp;&nbsp;&nbsp;&nbsp; <strong>Ngày sinh:</strong> ${mem.dob || '01/01/1985'}</p>
+            <p style="margin: 3px 0;"><strong>Đơn vị công tác:</strong> ${mem.dept || 'VietinBank Chi nhánh Bảo Lộc'}</p>
+            <p style="margin: 3px 0;"><strong>Chức vụ Đảng:</strong> ${mem.role_party || 'Đảng viên'} &nbsp;&nbsp;&nbsp;&nbsp; <strong>Chức vụ chính quyền/đoàn thể:</strong> ${mem.title_pro || 'Cán bộ'}</p>
+            <p style="margin: 3px 0;"><strong>Sinh hoạt tại chi bộ:</strong> Chi bộ 2 — Đảng bộ VietinBank Chi nhánh Bảo Lộc</p>
+          </div>
+
+          <div style="font-weight: bold; text-transform: uppercase; margin-top: 10px;">A. NỘI DUNG KIỂM ĐIỂM</div>
+
+          <div style="font-weight: bold; margin-top: 8px;">I. Ưu điểm, kết quả đạt được:</div>
+          <p style="margin: 4px 0; text-align: justify;"><strong>1. Về phẩm chất chính trị, đạo đức, lối sống; tinh thần đoàn kết, thống nhất trong nội bộ; ý thức tổ chức kỷ luật, trách nhiệm nêu gương, việc thực hiện những điều đảng viên không được làm; tác phong, lề lối làm việc; liên hệ biểu hiện suy thoái, "tự diễn biến", "tự chuyển hóa"; kỷ luật phát ngôn và học tập, làm theo tư tưởng, đạo đức, phong cách Hồ Chí Minh:</strong></p>
+          <p style="margin: 3px 0; text-indent: 24px; text-align: justify; white-space: pre-wrap;">${good}</p>
+          <p style="margin: 3px 0; text-indent: 24px; text-align: justify;">Bản thân luôn giữ vững lập trường tư tưởng chính trị, tuyệt đối trung thành với mục tiêu, lý tưởng của Đảng; không có biểu hiện suy thoái về tư tưởng chính trị, đạo đức, lối sống, "tự diễn biến", "tự chuyển hóa".</p>
+
+          <p style="margin: 4px 0; text-align: justify;"><strong>2. Về thực hiện nhiệm vụ, quyền hạn và kết quả thực hiện các chỉ tiêu, nhiệm vụ được giao trong năm:</strong></p>
+          <p style="margin: 3px 0; text-indent: 24px; text-align: justify;">Hoàn thành tốt các chỉ tiêu KPI và nhiệm vụ chuyên môn theo vị trí công tác tại ${mem.dept || 'Chi nhánh Bảo Lộc'}, đảm bảo tiến độ, chất lượng công việc và tuân thủ nghiêm quy trình nghiệp vụ VietinBank.</p>
+
+          <p style="margin: 4px 0; text-align: justify;"><strong>3. Việc thực hiện cam kết tu dưỡng, rèn luyện, phấn đấu cá nhân hằng năm:</strong></p>
+          <p style="margin: 3px 0; text-indent: 24px; text-align: justify;">Đã xây dựng và thực hiện nghiêm túc bản cam kết tu dưỡng, rèn luyện, phấn đấu của đảng viên trong năm ${yyyy}.</p>
+
+          ${is2A ? `
+          <p style="margin: 4px 0; text-align: justify;"><strong>4. Kết quả công tác lãnh đạo, chỉ đạo, quản lý, điều hành; thực hiện chức trách, nhiệm vụ; mức độ hoàn thành nhiệm vụ của tập thể, đơn vị thuộc quyền quản lý; khả năng quy tụ, xây dựng đoàn kết nội bộ:</strong></p>
+          <p style="margin: 3px 0; text-indent: 24px; text-align: justify;">Phát huy tốt vai trò nêu gương của cán bộ lãnh đạo, quản lý/cấp ủy viên; chỉ đạo điều hành sâu sát, quy tụ đoàn kết nội bộ hoàn thành tốt nhiệm vụ chính trị và chỉ tiêu kinh doanh của đơn vị.</p>
+          ` : `
+          <p style="margin: 4px 0; text-align: justify;"><strong>4. Ý thức tổ chức kỷ luật, chấp hành nội quy, quy chế cơ quan, chế độ sinh hoạt Đảng và đóng đảng phí:</strong></p>
+          <p style="margin: 3px 0; text-indent: 24px; text-align: justify;">Tham gia sinh hoạt chi bộ đầy đủ, đóng đảng phí đúng thời hạn, chấp hành nghiêm nội quy, văn hóa doanh nghiệp VietinBank và phối hợp tốt với đồng nghiệp.</p>
+          `}
+
+          <div style="font-weight: bold; margin-top: 8px;">II. Hạn chế, khuyết điểm và nguyên nhân:</div>
+          <p style="margin: 3px 0;"><strong>1. Hạn chế, khuyết điểm:</strong></p>
+          <p style="margin: 3px 0; text-indent: 24px; text-align: justify; white-space: pre-wrap;">${limit}</p>
+          <p style="margin: 3px 0;"><strong>2. Nguyên nhân của hạn chế, khuyết điểm (chủ quan, khách quan):</strong></p>
+          <p style="margin: 3px 0; text-indent: 24px; text-align: justify;">Do khối lượng công việc kinh doanh và tác nghiệp ngân hàng lớn vào các thời điểm cao điểm; bản thân đôi lúc chưa sắp xếp thời gian tự nghiên cứu chuyên sâu thật sự khoa học.</p>
+
+          <div style="font-weight: bold; margin-top: 8px;">III. Kết quả khắc phục những hạn chế, khuyết điểm đã được cấp có thẩm quyền kết luận hoặc được chỉ ra ở các kỳ kiểm điểm trước:</div>
+          <p style="margin: 3px 0; text-indent: 24px; text-align: justify;">Đã nghiêm túc tiếp thu ý kiến góp ý của Chi bộ từ kỳ kiểm điểm trước và từng bước khắc phục có hiệu quả trong quá trình công tác.</p>
+
+          ${is2A ? `
+          <div style="font-weight: bold; margin-top: 8px;">IV. Giải trình những vấn đề được gợi ý kiểm điểm (nếu có):</div>
+          <p style="margin: 3px 0; text-indent: 24px;">Không có.</p>
+          <div style="font-weight: bold; margin-top: 8px;">V. Làm rõ trách nhiệm của cá nhân đối với những hạn chế, khuyết điểm của tập thể (nếu có):</div>
+          <p style="margin: 3px 0; text-indent: 24px; text-align: justify;">Nghiêm túc nhận trách nhiệm liên đới của cá nhân trong phạm vi lĩnh vực, bộ phận được phân công phụ trách.</p>
+          <div style="font-weight: bold; margin-top: 8px;">VI. Phương hướng, biện pháp khắc phục hạn chế, khuyết điểm:</div>
+          ` : `
+          <div style="font-weight: bold; margin-top: 8px;">IV. Phương hướng, biện pháp khắc phục hạn chế, khuyết điểm:</div>
+          `}
+          <p style="margin: 3px 0; text-indent: 24px; text-align: justify; white-space: pre-wrap;">${sol}</p>
+
+          <div style="font-weight: bold; margin-top: 8px;">${is2A ? 'VII' : 'V'}. Tự nhận mức xếp loại chất lượng (Điểm tự chấm theo khung tiêu chí: <span style="color:#b91c1c;">${score}/100đ</span>):</div>
+          <p style="margin: 4px 0 4px 20px;">${chk('Hoàn thành xuất sắc nhiệm vụ')} Hoàn thành xuất sắc nhiệm vụ &nbsp;&nbsp;&nbsp; ${chk('Hoàn thành tốt nhiệm vụ')} Hoàn thành tốt nhiệm vụ</p>
+          <p style="margin: 4px 0 4px 20px;">${chk('Hoàn thành nhiệm vụ')} Hoàn thành nhiệm vụ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${chk('Không hoàn thành nhiệm vụ')} Không hoàn thành nhiệm vụ</p>
+
+          <table style="width: 100%; margin-top: 14px;">
+            <tr>
+              <td style="width: 50%;"></td>
+              <td style="width: 50%; text-align: center;">
+                <div style="font-weight: bold; text-transform: uppercase;">NGƯỜI TỰ KIỂM ĐIỂM</div>
+                <div style="font-style: italic; font-size: 11pt;">(Ký, ghi rõ họ tên)</div>
+                <div style="height: 50px;"></div>
+                <div style="font-weight: bold; text-transform: uppercase;">${mem.name}</div>
+              </td>
+            </tr>
+          </table>
+
+          <div style="font-weight: bold; text-transform: uppercase; margin-top: 14px; border-top: 1px solid #000; padding-top: 8px;">B. ĐÁNH GIÁ, XẾP LOẠI CHẤT LƯỢNG</div>
+          <p style="margin: 4px 0;"><strong>1. Nhận xét, đánh giá của Chi bộ / Cấp ủy trực tiếp quản lý:</strong></p>
+          <p style="margin: 3px 0; text-indent: 24px; font-style: italic;">${mem.host_conclusion || 'Chi bộ thống nhất thông qua bản tự kiểm điểm của đồng chí.'}</p>
+          <p style="margin: 4px 0;"><strong>2. Kết quả biểu quyết của Chi bộ và đề xuất mức xếp loại:</strong> ........................................................</p>
+
+          <table style="width: 100%; margin-top: 14px;">
+            <tr>
+              <td style="width: 50%;"></td>
+              <td style="width: 50%; text-align: center;">
+                <div style="font-weight: bold; text-transform: uppercase;">TM. CHI BỘ 2</div>
+                <div style="font-weight: bold;">BÍ THƯ</div>
+                <div style="height: 50px;"></div>
+                <div style="font-weight: bold; text-transform: uppercase;">${appData.meeting.host_name || 'Nguyễn Thi Thao'}</div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      `;
     }
 
     // TAB 4: PHÂN CÔNG & NHẬN XÉT CHÉO

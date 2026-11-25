@@ -129,8 +129,20 @@ def render_evaluation_section_in_doc(doc, data, target_val):
         good_val = m.get('self_good', f"Đồng chí {m.get('name')} luôn có lập trường tư tưởng kiên định, chấp hành nghiêm túc sự phân công của tổ chức Đảng và chuyên môn; nỗ lực hoàn thành tốt nhiệm vụ được giao, không để xảy ra sai sót tác nghiệp.")
         limit_val = m.get('self_limit', "Tinh thần tự phê bình và phê bình trong sinh hoạt có lúc còn e dè, cần chủ động phát biểu xây dựng chi bộ nhiều hơn.")
         sol_val = m.get('self_sol', "Chủ động học tập nâng cao trình độ nghiệp vụ ngân hàng và lý luận chính trị; tích cực tham gia các phong trào thi đua của Chi nhánh.")
-        title_text = f"BẢN TỰ KIỂM ĐIỂM VÀ TỰ CHẤM ĐIỂM ĐÁNH GIÁ, XẾP LOẠI\nCHẤT LƯỢNG ĐẢNG VIÊN NĂM 2026"
-        sub_title = f"(Đối với đồng chí: {m.get('name')} - {m.get('role_party')})"
+        
+        role_p = (m.get('role_party') or '').lower()
+        title_p = (m.get('title_pro') or '').lower()
+        is_sample_2a = (
+            m.get('role_party') in ['Bí thư Chi bộ', 'Phó Bí thư Chi bộ', 'Chi ủy viên']
+            or any(k in title_p for k in ['giám đốc', 'trưởng phòng', 'phó phòng', 'lãnh đạo', 'quản lý'])
+        )
+        form_code = "Mẫu 02A-HD KĐ.ĐG" if is_sample_2a else "Mẫu 02B-HD KĐ.ĐG"
+        title_text = "BẢN KIỂM ĐIỂM VÀ TỰ ĐÁNH GIÁ, XẾP LOẠI CHẤT LƯỢNG CÁ NHÂN\nNĂM 2026"
+        sub_title = (
+            f"({form_code} — Cá nhân giữ chức vụ lãnh đạo, quản lý)"
+            if is_sample_2a
+            else f"({form_code} — Cá nhân không giữ chức vụ lãnh đạo, quản lý)"
+        )
 
     # 1. Header (2 cột)
     table_header = doc.add_table(rows=1, cols=2)
@@ -329,39 +341,90 @@ def render_evaluation_section_in_doc(doc, data, target_val):
     r_s.font.size = Pt(11.5)
     r_s.font.color.rgb = RGBColor(196, 18, 48)
 
-    # 5. Phần II: Nội dung bản tự kiểm điểm
+    # 5. Phần II: Nội dung bản tự kiểm điểm chuẩn Mẫu 2A / 2B (Quy định 366-QĐ/TW & HD 43-HD/BTCTW)
     doc.add_paragraph().paragraph_format.space_before = Pt(6)
     p_sec2 = doc.add_paragraph()
     p_sec2.paragraph_format.space_before = Pt(6)
     p_sec2.paragraph_format.space_after = Pt(3)
-    r_s2 = p_sec2.add_run("II. NỘI DUNG TỰ KIỂM ĐIỂM (ƯU ĐIỂM – HẠN CHẾ – BIỆN PHÁP KHẮC PHỤC)")
+    if is_col:
+        r_s2 = p_sec2.add_run("II. NỘI DUNG TỰ KIỂM ĐIỂM (ƯU ĐIỂM – HẠN CHẾ – BIỆN PHÁP KHẮC PHỤC)")
+    else:
+        r_s2 = p_sec2.add_run("A. NỘI DUNG KIỂM ĐIỂM (THEO MẪU 02A / 02B - HD KĐ.ĐG)")
     r_s2.bold = True
     r_s2.font.size = Pt(12)
     r_s2.font.color.rgb = RGBColor(196, 18, 48)
 
-    # 1. Ưu điểm
-    p_g = doc.add_paragraph()
-    p_g.paragraph_format.line_spacing = 1.15
-    p_g.paragraph_format.space_after = Pt(3)
-    r_gh = p_g.add_run("1. Ưu điểm, kết quả đạt được:\n")
-    r_gh.bold = True
-    p_g.add_run(good_val)
+    if not is_col:
+        # 1. Ưu điểm, kết quả đạt được (đầy đủ 4 mục theo HD 43-HD/BTCTW)
+        p_g = doc.add_paragraph()
+        p_g.paragraph_format.line_spacing = 1.15
+        p_g.paragraph_format.space_after = Pt(4)
+        p_g.add_run("I. Ưu điểm, kết quả đạt được:\n").bold = True
+        p_g.add_run("1. Về phẩm chất chính trị, đạo đức, lối sống; tinh thần đoàn kết nội bộ; ý thức tổ chức kỷ luật, trách nhiệm nêu gương, việc thực hiện những điều đảng viên không được làm; kỷ luật phát ngôn; liên hệ biểu hiện suy thoái, \"tự diễn biến\", \"tự chuyển hóa\" và học tập, làm theo tư tưởng, đạo đức, phong cách Hồ Chí Minh:\n").bold = True
+        p_g.add_run(f"   {good_val}\n   Bản thân luôn giữ vững lập trường tư tưởng chính trị, không có biểu hiện suy thoái về tư tưởng chính trị, đạo đức, lối sống, \"tự diễn biến\", \"tự chuyển hóa\".\n")
+        p_g.add_run("2. Về thực hiện nhiệm vụ, quyền hạn được giao (gắn với kết quả, tiến độ, chất lượng công việc):\n").bold = True
+        p_g.add_run(f"   Hoàn thành tốt các chỉ tiêu KPI và nhiệm vụ chuyên môn tại {m.get('dept', 'Chi nhánh Bảo Lộc')}, đảm bảo chất lượng, tiến độ và tuân thủ quy trình nghiệp vụ VietinBank.\n")
+        p_g.add_run("3. Việc thực hiện cam kết tu dưỡng, rèn luyện, phấn đấu hằng năm:\n").bold = True
+        p_g.add_run("   Thực hiện nghiêm túc bản cam kết tu dưỡng, rèn luyện, phấn đấu cá nhân đã đăng ký đầu năm.\n")
+        if is_sample_2a:
+            p_g.add_run("4. Kết quả công tác lãnh đạo, chỉ đạo, quản lý, điều hành; mức độ hoàn thành nhiệm vụ của tập thể, đơn vị thuộc quyền quản lý; khả năng quy tụ, xây dựng đoàn kết nội bộ (Mẫu 2A):\n").bold = True
+            p_g.add_run("   Phát huy vai trò nêu gương của cán bộ quản lý/cấp ủy viên, chỉ đạo điều hành sâu sát, quy tụ đoàn kết nội bộ hoàn thành tốt nhiệm vụ chính trị và kinh doanh của đơn vị.\n")
+        else:
+            p_g.add_run("4. Ý thức tổ chức kỷ luật, chấp hành nội quy, quy chế cơ quan, chế độ sinh hoạt Đảng và đóng đảng phí (Mẫu 2B):\n").bold = True
+            p_g.add_run("   Tham gia sinh hoạt chi bộ đầy đủ, đóng đảng phí đúng quy định, chấp hành nghiêm nội quy cơ quan.\n")
 
-    # 2. Hạn chế
-    p_l = doc.add_paragraph()
-    p_l.paragraph_format.line_spacing = 1.15
-    p_l.paragraph_format.space_after = Pt(3)
-    r_lh = p_l.add_run("2. Hạn chế, khuyết điểm và nguyên nhân:\n")
-    r_lh.bold = True
-    p_l.add_run(limit_val)
+        # 2. Hạn chế, khuyết điểm và nguyên nhân
+        p_l = doc.add_paragraph()
+        p_l.paragraph_format.line_spacing = 1.15
+        p_l.paragraph_format.space_after = Pt(4)
+        p_l.add_run("II. Hạn chế, khuyết điểm và nguyên nhân:\n").bold = True
+        p_l.add_run("1. Hạn chế, khuyết điểm:\n").bold = True
+        p_l.add_run(f"   {limit_val}\n")
+        p_l.add_run("2. Nguyên nhân của hạn chế, khuyết điểm (chủ quan, khách quan):\n").bold = True
+        p_l.add_run("   Do áp lực khối lượng công việc kinh doanh và tác nghiệp ngân hàng lớn vào các giai đoạn cao điểm; bản thân có lúc chưa sắp xếp thời gian nghiên cứu chuyên sâu một cách khoa học.\n")
 
-    # 3. Biện pháp
-    p_s = doc.add_paragraph()
-    p_s.paragraph_format.line_spacing = 1.15
-    p_s.paragraph_format.space_after = Pt(6)
-    r_sh = p_s.add_run("3. Phương hướng, biện pháp khắc phục:\n")
-    r_sh.bold = True
-    p_s.add_run(sol_val)
+        # 3. Kết quả khắc phục
+        p_k = doc.add_paragraph()
+        p_k.paragraph_format.line_spacing = 1.15
+        p_k.paragraph_format.space_after = Pt(4)
+        p_k.add_run("III. Kết quả khắc phục những hạn chế, khuyết điểm đã được cấp có thẩm quyền kết luận hoặc được chỉ ra ở các kỳ kiểm điểm trước:\n").bold = True
+        p_k.add_run("   Đã nghiêm túc tiếp thu và từng bước khắc phục hiệu quả các tồn tại được Chi bộ góp ý từ kỳ kiểm điểm trước.\n")
+
+        # 4. Giải trình & Trách nhiệm (nếu là 2A) + Biện pháp khắc phục
+        p_s = doc.add_paragraph()
+        p_s.paragraph_format.line_spacing = 1.15
+        p_s.paragraph_format.space_after = Pt(6)
+        if is_sample_2a:
+            p_s.add_run("IV. Giải trình những vấn đề được gợi ý kiểm điểm (nếu có): Không có.\n").bold = True
+            p_s.add_run("V. Làm rõ trách nhiệm của cá nhân đối với những hạn chế, khuyết điểm của tập thể (nếu có): Nghiêm túc nhận trách nhiệm liên đới trong phạm vi lĩnh vực được phân công phụ trách.\n").bold = True
+            p_s.add_run("VI. Phương hướng, biện pháp khắc phục hạn chế, khuyết điểm:\n").bold = True
+        else:
+            p_s.add_run("IV. Phương hướng, biện pháp khắc phục hạn chế, khuyết điểm:\n").bold = True
+        p_s.add_run(f"   {sol_val}")
+    else:
+        # 1. Ưu điểm
+        p_g = doc.add_paragraph()
+        p_g.paragraph_format.line_spacing = 1.15
+        p_g.paragraph_format.space_after = Pt(3)
+        r_gh = p_g.add_run("1. Ưu điểm, kết quả đạt được:\n")
+        r_gh.bold = True
+        p_g.add_run(good_val)
+
+        # 2. Hạn chế
+        p_l = doc.add_paragraph()
+        p_l.paragraph_format.line_spacing = 1.15
+        p_l.paragraph_format.space_after = Pt(3)
+        r_lh = p_l.add_run("2. Hạn chế, khuyết điểm và nguyên nhân:\n")
+        r_lh.bold = True
+        p_l.add_run(limit_val)
+
+        # 3. Biện pháp
+        p_s = doc.add_paragraph()
+        p_s.paragraph_format.line_spacing = 1.15
+        p_s.paragraph_format.space_after = Pt(6)
+        r_sh = p_s.add_run("3. Phương hướng, biện pháp khắc phục:\n")
+        r_sh.bold = True
+        p_s.add_run(sol_val)
 
     # 6. Phần III: Tự nhận mức xếp loại
     p_sec3 = doc.add_paragraph()
