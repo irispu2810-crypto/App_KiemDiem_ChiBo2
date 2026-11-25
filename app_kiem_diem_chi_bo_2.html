@@ -2251,6 +2251,12 @@
 
       // Tự động load nội dung tương ứng
       if (tabId === 'tab-members') renderMembersTable();
+      if (tabId === 'tab-self-evaluation') {
+        const critCont = document.getElementById('criteria-container');
+        if (critCont && critCont.children.length === 0) {
+          renderEvaluationTargetSelect();
+        }
+      }
       if (tabId === 'tab-peer-reviews') {
         renderPeerAssignmentMatrix();
         renderMyReviewTasks();
@@ -2501,16 +2507,18 @@
     // Bộ chọn vai trò người dùng
     function renderUserSelector() {
       const sel = document.getElementById('current-user-select');
-      sel.innerHTML = '';
+      if (sel) sel.innerHTML = '';
       const tab4Sel = document.getElementById('tab4-reviewer-select');
       if (tab4Sel) tab4Sel.innerHTML = '';
 
       appData.members.forEach(m => {
-        const opt = document.createElement('option');
-        opt.value = m.id;
-        opt.textContent = `${m.name} (${m.role_party})`;
-        if (m.id === appData.current_user_id) opt.selected = true;
-        sel.appendChild(opt);
+        if (sel) {
+          const opt = document.createElement('option');
+          opt.value = m.id;
+          opt.textContent = `${m.name} (${m.role_party})`;
+          if (m.id === appData.current_user_id) opt.selected = true;
+          sel.appendChild(opt);
+        }
 
         if (tab4Sel) {
           const opt2 = document.createElement('option');
@@ -5200,7 +5208,7 @@
       }
     ];
 
-    function setupProjectorSlides() {
+    function updateProjectorDots() {
       const dots = document.getElementById('projector-dots');
       if (!dots) return;
       dots.innerHTML = '';
@@ -5210,6 +5218,10 @@
         dot.onclick = () => { currentSlide = i; renderProjectorSlide(); };
         dots.appendChild(dot);
       });
+    }
+
+    function setupProjectorSlides() {
+      updateProjectorDots();
       renderProjectorSlide();
     }
 
@@ -5222,7 +5234,7 @@
           <div class="w-full">${slide.render()}</div>
         `;
         document.getElementById('projector-step-label').textContent = `Nội dung ${currentSlide + 1} / ${slides.length}`;
-        setupProjectorSlides();
+        updateProjectorDots();
       }
     }
 
