@@ -650,8 +650,8 @@ def render_evaluation_section_in_doc(doc, data, target_val):
         p_c1 = doc.add_paragraph()
         p_c1.paragraph_format.line_spacing = 1.2
         p_c1.add_run("I. Đánh giá, xếp loại chất lượng cán bộ, công chức, viên chức\n").bold = True
-        p_c1.add_run("- Nhận xét, đánh giá của người quản lý, sử dụng cán bộ, công chức, viên chức: ..........................................................................\n")
-        p_c1.add_run("- Mức xếp loại chất lượng công chức, viên chức: ...........................................................")
+        p_c1.add_run(f"- Nhận xét, đánh giá của người quản lý, sử dụng cán bộ, công chức, viên chức: Đồng chí {m.get('name')} chấp hành tốt nội quy lao động, văn hóa doanh nghiệp VietinBank, hoàn thành tốt các chỉ tiêu KPI và nhiệm vụ chuyên môn được giao tại {m.get('dept', 'VietinBank Chi nhánh Bảo Lộc')}.\n")
+        p_c1.add_run(f"- Mức xếp loại chất lượng công chức, viên chức (người lao động): {ranking_val}")
 
         t_tt = doc.add_table(rows=1, cols=2)
         t_tt.alignment = WD_TABLE_ALIGNMENT.CENTER
@@ -670,8 +670,8 @@ def render_evaluation_section_in_doc(doc, data, target_val):
         p_c2.paragraph_format.line_spacing = 1.2
         p_c2.paragraph_format.space_before = Pt(6)
         p_c2.add_run("II. Đánh giá, xếp loại chất lượng đảng viên\n").bold = True
-        p_c2.add_run(f"- Nhận xét, đánh giá của chi ủy: {m.get('host_conclusion', '....................................................................................')}\n")
-        p_c2.add_run("- Chi bộ đề xuất xếp loại mức chất lượng: ...................................................................")
+        p_c2.add_run(f"- Nhận xét, đánh giá của chi ủy: {m.get('host_conclusion', 'Chi bộ thống nhất thông qua bản tự kiểm điểm của đồng chí; đồng chí có lập trường tư tưởng vững vàng, chấp hành tốt kỷ cương và hoàn thành nhiệm vụ được giao.')}\n")
+        p_c2.add_run(f"- Chi bộ đề xuất xếp loại mức chất lượng: {ranking_val}")
 
         table_sign_cb = doc.add_table(rows=1, cols=2)
         table_sign_cb.alignment = WD_TABLE_ALIGNMENT.CENTER

@@ -240,20 +240,25 @@
   <!-- ========================================== -->
   <!-- MÀN HÌNH ĐĂNG NHẬP BẢO MẬT DÀNH CHO 12 ĐẢNG VIÊN -->
   <!-- ========================================== -->
-  <div id="login-overlay" class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-gradient-to-br from-slate-950 via-vtb-navyDark to-slate-900 backdrop-blur-md overflow-y-auto">
-    <div class="card-3d bg-white rounded-3xl shadow-2xl max-w-md w-full p-6 sm:p-8 space-y-6 border border-slate-200 relative overflow-hidden">
+  <div id="login-overlay"
+    class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-gradient-to-br from-slate-950 via-vtb-navyDark to-slate-900 backdrop-blur-md overflow-y-auto">
+    <div
+      class="card-3d bg-white rounded-3xl shadow-2xl max-w-md w-full p-6 sm:p-8 space-y-6 border border-slate-200 relative overflow-hidden">
       <!-- Header thẻ đăng nhập -->
       <div class="text-center space-y-2">
-        <div class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-tr from-vtb-navy to-vtb-red flex items-center justify-center shadow-lg border-2 border-vtb-gold/60">
+        <div
+          class="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-tr from-vtb-navy to-vtb-red flex items-center justify-center shadow-lg border-2 border-vtb-gold/60">
           <span class="text-vtb-gold font-black text-2xl">★</span>
         </div>
         <div>
-          <h4 class="text-[11px] font-black text-slate-500 uppercase tracking-wider">ĐẢNG BỘ VIETINBANK CHI NHÁNH BẢO LỘC</h4>
+          <h4 class="text-[11px] font-black text-slate-500 uppercase tracking-wider">ĐẢNG BỘ VIETINBANK CHI NHÁNH BẢO
+            LỘC</h4>
           <h2 class="text-xl font-black text-vtb-navy uppercase tracking-tight">CHI BỘ 2</h2>
           <p class="text-xs font-black text-vtb-red mt-0.5">KỲ KIỂM ĐIỂM & ĐÁNH GIÁ ĐẢNG VIÊN 2026</p>
         </div>
         <p class="text-[11px] text-slate-500 leading-relaxed pt-1">
-          Hệ thống phân quyền độc lập: Mỗi đồng chí đăng nhập đúng tài khoản để tự chấm điểm, nhận xét chéo và bỏ phiếu kín theo quyền hạn.
+          Hệ thống phân quyền độc lập: Mỗi đồng chí đăng nhập đúng tài khoản để tự chấm điểm, nhận xét chéo và bỏ phiếu
+          kín theo quyền hạn.
         </p>
       </div>
 
@@ -266,7 +271,8 @@
           <input type="text" id="login-username" required autocomplete="username"
             placeholder="vd: nguyenthithao, buikhacduy..."
             class="w-full text-xs font-bold p-3 border border-slate-300 rounded-xl bg-slate-50 focus:bg-white focus:ring-2 focus:ring-vtb-navy focus:border-vtb-navy transition lowercase">
-          <p class="text-[10px] text-slate-400 mt-1 italic">* Tên đảng viên viết liền, không dấu, chữ thường (vd: Nguyễn Thi Thao ➔ nguyenthithao)</p>
+          <p class="text-[10px] text-slate-400 mt-1 italic">* Tên đảng viên viết liền, không dấu, chữ thường (vd: Nguyễn
+            Thi Thao ➔ nguyenthithao)</p>
         </div>
 
         <div>
@@ -274,22 +280,26 @@
             <i class="fa-solid fa-key text-vtb-navy mr-1"></i> Mật khẩu:
           </label>
           <div class="relative">
-            <input type="password" id="login-password" required autocomplete="current-password"
-              value="123456" placeholder="Mặc định: 123456"
+            <input type="password" id="login-password" required autocomplete="current-password" value="123456"
+              placeholder="Mặc định: 123456"
               class="w-full text-xs font-bold p-3 border border-slate-300 rounded-xl bg-slate-50 focus:bg-white focus:ring-2 focus:ring-vtb-navy focus:border-vtb-navy transition pr-10">
-            <button type="button" onclick="togglePasswordVisibility()" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
+            <button type="button" onclick="togglePasswordVisibility()"
+              class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
               <i id="pwd-toggle-icon" class="fa-solid fa-eye text-xs"></i>
             </button>
           </div>
-          <p class="text-[10px] text-slate-400 mt-1 italic">* Mật khẩu khởi tạo chung cho toàn thể đảng viên là: <strong>123456</strong></p>
+          <p class="text-[10px] text-slate-400 mt-1 italic">* Mật khẩu khởi tạo chung cho toàn thể đảng viên là:
+            <strong>123456</strong></p>
         </div>
 
-        <div id="login-error" class="hidden p-2.5 rounded-lg bg-rose-50 border border-rose-200 text-rose-700 text-xs font-bold flex items-center gap-2">
+        <div id="login-error"
+          class="hidden p-2.5 rounded-lg bg-rose-50 border border-rose-200 text-rose-700 text-xs font-bold flex items-center gap-2">
           <i class="fa-solid fa-triangle-exclamation text-rose-600"></i>
           <span id="login-error-msg">Tên đăng nhập hoặc mật khẩu không chính xác!</span>
         </div>
 
-        <button type="submit" id="btn-login-submit" class="btn-3d w-full bg-gradient-to-r from-vtb-navy via-vtb-navyDark to-vtb-navy hover:from-vtb-red hover:to-vtb-redDark text-white py-3 rounded-xl font-black text-xs uppercase tracking-wider shadow-xl transition flex items-center justify-center gap-2">
+        <button type="submit" id="btn-login-submit"
+          class="btn-3d w-full bg-gradient-to-r from-vtb-navy via-vtb-navyDark to-vtb-navy hover:from-vtb-red hover:to-vtb-redDark text-white py-3 rounded-xl font-black text-xs uppercase tracking-wider shadow-xl transition flex items-center justify-center gap-2">
           <i class="fa-solid fa-right-to-bracket text-amber-300"></i>
           <span>Đăng Nhập Vào Hệ Thống</span>
         </button>
@@ -297,14 +307,17 @@
 
       <!-- Nút mở bảng tra cứu danh sách tên đăng nhập -->
       <div class="border-t border-slate-200 pt-3 text-center">
-        <button type="button" onclick="toggleUsernameHelper()" class="text-xs font-bold text-vtb-navy hover:text-vtb-red transition flex items-center justify-center gap-1.5 mx-auto">
+        <button type="button" onclick="toggleUsernameHelper()"
+          class="text-xs font-bold text-vtb-navy hover:text-vtb-red transition flex items-center justify-center gap-1.5 mx-auto">
           <i class="fa-solid fa-circle-question text-amber-500"></i>
           <span>Bấm để tra cứu Tên đăng nhập của 12 đồng chí</span>
         </button>
 
         <!-- Danh sách tra cứu sổ tay tài khoản -->
-        <div id="username-helper-box" class="hidden mt-3 p-3 bg-slate-50 rounded-xl border border-slate-200 text-left text-xs max-h-52 overflow-y-auto custom-scrollbar space-y-1.5">
-          <p class="font-bold text-slate-700 pb-1 border-b text-[11px]">Bấm vào tên để tự động điền tài khoản & mật khẩu:</p>
+        <div id="username-helper-box"
+          class="hidden mt-3 p-3 bg-slate-50 rounded-xl border border-slate-200 text-left text-xs max-h-52 overflow-y-auto custom-scrollbar space-y-1.5">
+          <p class="font-bold text-slate-700 pb-1 border-b text-[11px]">Bấm vào tên để tự động điền tài khoản & mật
+            khẩu:</p>
           <div id="quick-login-list" class="grid grid-cols-1 gap-1">
             <!-- Populated dynamically -->
           </div>
@@ -350,25 +363,30 @@
       <div class="flex items-center flex-wrap gap-2.5">
         <div id="session-user-box"
           class="bg-slate-900/70 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-white/20 flex items-center gap-3 shadow-inner">
-          <div class="w-8 h-8 rounded-lg bg-vtb-gold/20 text-vtb-gold flex items-center justify-center font-bold text-xs border border-vtb-gold/40 shadow-sm">
+          <div
+            class="w-8 h-8 rounded-lg bg-vtb-gold/20 text-vtb-gold flex items-center justify-center font-bold text-xs border border-vtb-gold/40 shadow-sm">
             <i class="fa-solid fa-user-tie"></i>
           </div>
           <div>
             <div class="flex items-center gap-1.5">
               <span id="session-user-name" class="text-xs font-black text-white tracking-wide">NGUYỄN THI THAO</span>
-              <span id="session-user-badge" class="px-2 py-0.5 rounded text-[10px] font-black bg-amber-400 text-slate-950 shadow-sm">Bí thư</span>
+              <span id="session-user-badge"
+                class="px-2 py-0.5 rounded text-[10px] font-black bg-amber-400 text-slate-950 shadow-sm">Bí thư</span>
             </div>
-            <div id="session-user-detail" class="text-[10px] text-blue-200 font-medium">Bí thư Chi bộ - Phó Giám đốc CN</div>
+            <div id="session-user-detail" class="text-[10px] text-blue-200 font-medium">Bí thư Chi bộ - Phó Giám đốc CN
+            </div>
           </div>
           <button type="button" onclick="handleLogout()"
-            class="ml-1 text-[11px] text-rose-200 hover:text-white bg-rose-950/70 hover:bg-rose-700 px-2.5 py-1 rounded-lg border border-rose-500/30 transition flex items-center gap-1 font-bold shadow-sm" title="Đăng xuất khỏi thiết bị này">
+            class="ml-1 text-[11px] text-rose-200 hover:text-white bg-rose-950/70 hover:bg-rose-700 px-2.5 py-1 rounded-lg border border-rose-500/30 transition flex items-center gap-1 font-bold shadow-sm"
+            title="Đăng xuất khỏi thiết bị này">
             <i class="fa-solid fa-right-from-bracket"></i>
             <span class="hidden sm:inline">Đăng xuất</span>
           </button>
         </div>
 
         <button onclick="checkForAppUpdate(true)" id="btn-check-update"
-          class="btn-3d bg-slate-800/90 hover:bg-slate-700 text-blue-200 border border-blue-400/30 text-xs font-bold px-3 py-2 rounded-xl flex items-center gap-1.5 transition" title="Kiểm tra phiên bản mới nhất">
+          class="btn-3d bg-slate-800/90 hover:bg-slate-700 text-blue-200 border border-blue-400/30 text-xs font-bold px-3 py-2 rounded-xl flex items-center gap-1.5 transition"
+          title="Kiểm tra phiên bản mới nhất">
           <i class="fa-solid fa-arrows-rotate text-xs text-cyan-300"></i>
           <span class="hidden md:inline">v2026.11.25</span>
         </button>
@@ -587,6 +605,8 @@
       </div>
     </section>
 
+
+
     <!-- ========================================== -->
     <!-- TAB 2: QUẢN LÝ & IMPORT ĐẢNG VIÊN -->
     <!-- ========================================== -->
@@ -683,6 +703,8 @@
       </div>
     </section>
 
+
+
     <!-- ========================================== -->
     <!-- TAB 3: TỰ KIỂM ĐIỂM & CHẤM ĐIỂM 100Đ -->
     <!-- ========================================== -->
@@ -728,7 +750,8 @@
                 class="text-[10px] px-2 py-0.5 rounded-full font-bold bg-amber-100 text-amber-800 border border-amber-200">Chuẩn
                 2026</span>
             </h4>
-            <p class="text-[11px] text-slate-500">Chuẩn Mẫu 02A-HD KĐ.ĐG & 02B-HD KĐ.ĐG (Quy định 366-QĐ/TW & HD 43-HD/BTCTW) • Thể thức Nghị định 30</p>
+            <p class="text-[11px] text-slate-500">Chuẩn Mẫu 02A-HD KĐ.ĐG & 02B-HD KĐ.ĐG (Quy định 366-QĐ/TW & HD
+              43-HD/BTCTW) • Thể thức Nghị định 30</p>
           </div>
         </div>
 
@@ -790,22 +813,28 @@
           </div>
 
           <!-- Thanh gợi ý câu mẫu từ Google Form theo 5 vị trí công tác -->
-          <div class="bg-gradient-to-r from-purple-50 via-indigo-50/50 to-blue-50 p-3 rounded-xl border border-purple-200/80 flex flex-wrap items-center justify-between gap-2.5 shadow-xs">
+          <div
+            class="bg-gradient-to-r from-purple-50 via-indigo-50/50 to-blue-50 p-3 rounded-xl border border-purple-200/80 flex flex-wrap items-center justify-between gap-2.5 shadow-xs">
             <div class="flex items-center gap-2.5">
-              <span class="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-600 to-indigo-700 text-white flex items-center justify-center text-xs shadow-sm">
+              <span
+                class="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-600 to-indigo-700 text-white flex items-center justify-center text-xs shadow-sm">
                 <i class="fa-solid fa-wand-magic-sparkles"></i>
               </span>
               <div>
                 <span class="text-xs font-bold text-purple-950 flex items-center gap-1.5">
                   Gợi Ý Câu Mẫu Tự Nhận Xét
-                  <span class="text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-purple-200/90 text-purple-900 border border-purple-300">Chuẩn Google Form Chi Bộ 2</span>
+                  <span
+                    class="text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-purple-200/90 text-purple-900 border border-purple-300">Chuẩn
+                    Google Form Chi Bộ 2</span>
                 </span>
-                <p class="text-[11px] text-purple-700">Tự động nạp mẫu câu Ưu điểm, Nhược điểm, Giải pháp theo từng vị trí công tác</p>
+                <p class="text-[11px] text-purple-700">Tự động nạp mẫu câu Ưu điểm, Nhược điểm, Giải pháp theo từng vị
+                  trí công tác</p>
               </div>
             </div>
 
             <div class="flex items-center flex-wrap gap-2">
-              <select id="self-template-job-select" class="text-xs font-bold bg-white border border-purple-300 rounded-lg px-2.5 py-1.5 text-slate-800 shadow-sm focus:ring-1 focus:ring-purple-500">
+              <select id="self-template-job-select"
+                class="text-xs font-bold bg-white border border-purple-300 rounded-lg px-2.5 py-1.5 text-slate-800 shadow-sm focus:ring-1 focus:ring-purple-500">
                 <option value="auto">✨ Tự động theo vị trí công tác</option>
                 <option value="bgd">1. Ban Giám đốc (Bí thư Chi bộ, BGD)</option>
                 <option value="pgd">2. Lãnh đạo Phòng giao dịch</option>
@@ -814,17 +843,22 @@
                 <option value="httd_staff">5. Cán bộ, Kiểm soát viên HTTD</option>
               </select>
 
-              <button type="button" onclick="applySelfTemplateFromJob()" class="btn-3d px-3 py-1.5 bg-purple-700 hover:bg-purple-800 text-white rounded-lg text-xs font-bold shadow-sm flex items-center gap-1.5 transition">
+              <button type="button" onclick="applySelfTemplateFromJob()"
+                class="btn-3d px-3 py-1.5 bg-purple-700 hover:bg-purple-800 text-white rounded-lg text-xs font-bold shadow-sm flex items-center gap-1.5 transition">
                 <i class="fa-solid fa-file-import"></i>
                 <span>Nạp Mẫu Gợi Ý</span>
               </button>
 
-              <button type="button" onclick="openGoogleFormLibraryModal('self')" class="btn-3d px-2.5 py-1.5 bg-white hover:bg-slate-50 text-purple-800 border border-purple-300 rounded-lg text-xs font-bold shadow-sm flex items-center gap-1 transition">
+              <button type="button" onclick="openGoogleFormLibraryModal('self')"
+                class="btn-3d px-2.5 py-1.5 bg-white hover:bg-slate-50 text-purple-800 border border-purple-300 rounded-lg text-xs font-bold shadow-sm flex items-center gap-1 transition">
                 <i class="fa-solid fa-book-open text-purple-600"></i>
                 <span>Thư Viện Câu Mẫu</span>
               </button>
 
-              <a href="https://docs.google.com/forms/d/e/1FAIpQLSe17_POVKb3Zhp63M5pzuH5ecQAkiu80z8y1kYNBdCW_dS2gQ/viewform" target="_blank" class="btn-3d px-2.5 py-1.5 bg-white hover:bg-slate-50 text-indigo-700 border border-indigo-300 rounded-lg text-xs font-bold shadow-sm flex items-center gap-1 transition" title="Mở Google Form gốc">
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLSe17_POVKb3Zhp63M5pzuH5ecQAkiu80z8y1kYNBdCW_dS2gQ/viewform"
+                target="_blank"
+                class="btn-3d px-2.5 py-1.5 bg-white hover:bg-slate-50 text-indigo-700 border border-indigo-300 rounded-lg text-xs font-bold shadow-sm flex items-center gap-1 transition"
+                title="Mở Google Form gốc">
                 <i class="fa-solid fa-arrow-up-right-from-square text-indigo-600"></i>
                 <span class="hidden sm:inline">Google Form</span>
               </a>
@@ -883,31 +917,41 @@
       </div>
     </section>
 
+
+
     <!-- ========================================== -->
     <!-- TAB 4: PHÂN CÔNG & NHẬN XÉT CHÉO -->
     <!-- ========================================== -->
     <section id="tab-peer-reviews" class="tab-pane hidden space-y-6">
       <!-- Banner Tích hợp Google Form Phiếu Nhận Xét Đảng Viên -->
-      <div class="card-3d p-4 bg-gradient-to-r from-purple-50 via-indigo-50/60 to-blue-50 border border-purple-200/90 rounded-2xl flex flex-wrap items-center justify-between gap-3 shadow-md">
+      <div
+        class="card-3d p-4 bg-gradient-to-r from-purple-50 via-indigo-50/60 to-blue-50 border border-purple-200/90 rounded-2xl flex flex-wrap items-center justify-between gap-3 shadow-md">
         <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-600 to-indigo-700 text-white flex items-center justify-center text-lg shadow-md flex-shrink-0">
+          <div
+            class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-600 to-indigo-700 text-white flex items-center justify-center text-lg shadow-md flex-shrink-0">
             <i class="fa-solid fa-clipboard-check"></i>
           </div>
           <div>
             <h4 class="font-extrabold text-purple-950 text-sm flex items-center gap-2">
               Phiếu Tự Nhận Xét & Nhận Xét Đảng Viên Chi Bộ 2
-              <span class="text-[10px] px-2 py-0.5 rounded-full font-bold bg-purple-200 text-purple-900 border border-purple-300">Google Form Chuẩn</span>
+              <span
+                class="text-[10px] px-2 py-0.5 rounded-full font-bold bg-purple-200 text-purple-900 border border-purple-300">Google
+                Form Chuẩn</span>
             </h4>
-            <p class="text-xs text-purple-700">Mỗi đồng chí tự nhận xét bản thân và nhận xét 02 đồng chí khác theo phân công. Đã tích hợp sẵn kho câu mẫu chuẩn nghiệp vụ VietinBank.</p>
+            <p class="text-xs text-purple-700">Mỗi đồng chí tự nhận xét bản thân và nhận xét 02 đồng chí khác theo phân
+              công. Đã tích hợp sẵn kho câu mẫu chuẩn nghiệp vụ VietinBank.</p>
           </div>
         </div>
 
         <div class="flex items-center flex-wrap gap-2">
-          <button type="button" onclick="openGoogleFormLibraryModal('peer')" class="btn-3d px-3.5 py-2 bg-purple-700 hover:bg-purple-800 text-white text-xs font-bold rounded-xl shadow transition flex items-center gap-1.5">
+          <button type="button" onclick="openGoogleFormLibraryModal('peer')"
+            class="btn-3d px-3.5 py-2 bg-purple-700 hover:bg-purple-800 text-white text-xs font-bold rounded-xl shadow transition flex items-center gap-1.5">
             <i class="fa-solid fa-list-check text-amber-300"></i>
             <span>Kho Câu Mẫu Góp Ý (16 Câu)</span>
           </button>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSe17_POVKb3Zhp63M5pzuH5ecQAkiu80z8y1kYNBdCW_dS2gQ/viewform" target="_blank" class="btn-3d px-3.5 py-2 bg-white hover:bg-purple-50 text-purple-900 border border-purple-300 text-xs font-bold rounded-xl shadow-sm transition flex items-center gap-1.5">
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSe17_POVKb3Zhp63M5pzuH5ecQAkiu80z8y1kYNBdCW_dS2gQ/viewform"
+            target="_blank"
+            class="btn-3d px-3.5 py-2 bg-white hover:bg-purple-50 text-purple-900 border border-purple-300 text-xs font-bold rounded-xl shadow-sm transition flex items-center gap-1.5">
             <i class="fa-solid fa-arrow-up-right-from-square text-indigo-600"></i>
             <span>Mở Google Form Gốc</span>
           </a>
@@ -925,32 +969,37 @@
               </svg>
               Điều Phối & Phân Công Nhận Xét Chéo (Mỗi Đ/c Nhận Xét 2–3 Người)
             </h3>
-            <p class="text-xs text-slate-500">Giúp cuộc họp sinh hoạt Đảng thẳng thắn, có chiều sâu, tránh chung chung hình thức</p>
+            <p class="text-xs text-slate-500">Giúp cuộc họp sinh hoạt Đảng thẳng thắn, có chiều sâu, tránh chung chung
+              hình thức</p>
           </div>
 
           <div class="flex items-center flex-wrap gap-2">
             <!-- Phân quyền điều phối: Dành riêng cho Bí thư / Ban Chi ủy -->
             <div id="leader-assign-tools" class="flex items-center flex-wrap gap-2">
               <button onclick="syncFromServer(true)"
-                class="btn-3d text-xs bg-sky-600 hover:bg-sky-700 text-white px-3 py-1.5 rounded-xl font-bold flex items-center gap-1.5 shadow transition" title="Tải nhận xét mới nhất từ máy chủ LAN">
+                class="btn-3d text-xs bg-sky-600 hover:bg-sky-700 text-white px-3 py-1.5 rounded-xl font-bold flex items-center gap-1.5 shadow transition"
+                title="Tải nhận xét mới nhất từ máy chủ LAN">
                 <i class="fa-solid fa-arrows-rotate text-sky-200"></i>
                 <span>Cập Nhật Nhận Xét</span>
               </button>
 
               <button onclick="openImportReviewsModal()"
-                class="btn-3d text-xs bg-teal-600 hover:bg-teal-700 text-white px-3 py-1.5 rounded-xl font-bold flex items-center gap-1.5 shadow transition" title="Nhận và gộp mã nhận xét do Đảng viên gửi qua Zalo / tin nhắn">
+                class="btn-3d text-xs bg-teal-600 hover:bg-teal-700 text-white px-3 py-1.5 rounded-xl font-bold flex items-center gap-1.5 shadow transition"
+                title="Nhận và gộp mã nhận xét do Đảng viên gửi qua Zalo / tin nhắn">
                 <i class="fa-solid fa-file-import text-amber-200"></i>
                 <span>Nhận & Gộp Từ Zalo</span>
               </button>
 
               <button onclick="openReviewMeetingReportModal()"
-                class="btn-3d text-xs bg-gradient-to-r from-red-700 to-rose-800 hover:from-red-800 hover:to-rose-900 text-white px-3.5 py-1.5 rounded-xl font-bold flex items-center gap-1.5 shadow-md transition" title="Kết xuất Báo cáo tổng hợp nhận xét phục vụ Bí thư điều hành cuộc họp">
+                class="btn-3d text-xs bg-gradient-to-r from-red-700 to-rose-800 hover:from-red-800 hover:to-rose-900 text-white px-3.5 py-1.5 rounded-xl font-bold flex items-center gap-1.5 shadow-md transition"
+                title="Kết xuất Báo cáo tổng hợp nhận xét phục vụ Bí thư điều hành cuộc họp">
                 <i class="fa-solid fa-file-word text-amber-300"></i>
                 <span>Báo Cáo Nhận Xét Điều Hành (.docx)</span>
               </button>
 
               <button onclick="openAllReviewsModal()"
-                class="btn-3d text-xs bg-gradient-to-r from-indigo-700 to-purple-800 hover:from-indigo-800 hover:to-purple-900 text-white px-3.5 py-1.5 rounded-xl font-bold flex items-center gap-1.5 shadow-md transition" title="Bí thư xem toàn bộ nhận xét của các Đảng viên trong Chi bộ">
+                class="btn-3d text-xs bg-gradient-to-r from-indigo-700 to-purple-800 hover:from-indigo-800 hover:to-purple-900 text-white px-3.5 py-1.5 rounded-xl font-bold flex items-center gap-1.5 shadow-md transition"
+                title="Bí thư xem toàn bộ nhận xét của các Đảng viên trong Chi bộ">
                 <i class="fa-solid fa-layer-group text-amber-300"></i>
                 <span>Xem Toàn Bộ Nhận Xét</span>
               </button>
@@ -975,7 +1024,8 @@
             </div>
 
             <!-- Nhãn thông báo cho Đảng viên thường: Cố định theo chỉ đạo của Bí thư -->
-            <div id="member-assign-notice" class="hidden text-xs bg-slate-100 text-slate-700 border border-slate-200 px-3 py-1.5 rounded-xl font-bold flex items-center gap-1.5">
+            <div id="member-assign-notice"
+              class="hidden text-xs bg-slate-100 text-slate-700 border border-slate-200 px-3 py-1.5 rounded-xl font-bold flex items-center gap-1.5">
               <i class="fa-solid fa-lock text-amber-600"></i>
               <span>Phân công cố định bởi Bí thư Chi bộ</span>
             </div>
@@ -1030,7 +1080,8 @@
           </div>
           <div class="flex flex-wrap items-center gap-2">
             <button type="button" onclick="sendMyReviewsToLeader()"
-              class="btn-3d text-xs bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-700 hover:to-teal-800 text-white px-3.5 py-1.5 rounded-xl font-bold flex items-center gap-1.5 shadow transition" title="Đóng gói nhận xét và điểm tự chấm của đồng chí để gửi qua Zalo cho Bí thư / Phó Bí thư">
+              class="btn-3d text-xs bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-700 hover:to-teal-800 text-white px-3.5 py-1.5 rounded-xl font-bold flex items-center gap-1.5 shadow transition"
+              title="Đóng gói nhận xét và điểm tự chấm của đồng chí để gửi qua Zalo cho Bí thư / Phó Bí thư">
               <i class="fa-solid fa-paper-plane text-amber-200"></i>
               <span>Gửi Nhận Xét Lên Bí Thư (Zalo)</span>
             </button>
@@ -1050,6 +1101,8 @@
         </div>
       </div>
     </section>
+
+
 
     <!-- ========================================== -->
     <!-- TAB 5: BỎ PHIẾU KÍN ĐIỆN TỬ -->
@@ -1325,6 +1378,8 @@
       </div>
     </section>
 
+
+
     <!-- ========================================== -->
     <!-- TAB 6: BIÊN BẢN HỌP & XUẤT WORD -->
     <!-- ========================================== -->
@@ -1393,7 +1448,8 @@
           <!-- Tiêu đề -->
           <div class="text-center pt-3 pb-2 space-y-1">
             <h2 class="font-bold text-[14pt] uppercase">BIÊN BẢN</h2>
-            <h3 class="font-bold text-[14pt]">Hội nghị kiểm điểm, đánh giá, xếp loại chất lượng<br>tập thể và đảng viên năm 2026</h3>
+            <h3 class="font-bold text-[14pt]">Hội nghị kiểm điểm, đánh giá, xếp loại chất lượng<br>tập thể và đảng viên
+              năm 2026</h3>
           </div>
 
           <!-- Nội dung biên bản -->
@@ -1614,11 +1670,17 @@
                   <i class="fa-solid fa-check-to-slot"></i>
                   <span>Bỏ phiếu / In phiếu</span>
                 </button>
+                <button type="button" onclick="exportVoteFormsDoc('collective')" class="py-2 px-2.5 bg-teal-50 hover:bg-teal-100 text-teal-800 border border-teal-300 rounded-lg text-xs font-bold transition">
+                  Xuất Phiếu Tập thể (.doc)
+                </button>
+                <button type="button" onclick="exportVoteFormsDoc('members')" class="py-2 px-2.5 bg-teal-50 hover:bg-teal-100 text-teal-800 border border-teal-300 rounded-lg text-xs font-bold transition">
+                  Xuất Phiếu 12 ĐV (.doc)
+                </button>
                 <a href="./Phi%E1%BA%BFu%20%20bi%E1%BB%83u%20quy%E1%BA%BFt%20x%E1%BA%BFp%20lo%E1%BA%A1i%20chi%20b%E1%BB%99%20(T%E1%BA%ADp%20th%E1%BB%83).docx" download class="py-2 px-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 rounded-lg text-xs font-bold transition">
-                  Phiếu Tập thể (.docx)
+                  Mẫu gốc Tập thể
                 </a>
                 <a href="./Phi%E1%BA%BFu%20bi%E1%BB%83u%20quy%E1%BA%BFt%20x%E1%BA%BFp%20lo%E1%BA%A1i%20%C4%91%E1%BA%A3ng%20vi%C3%AAn.docx" download class="py-2 px-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 rounded-lg text-xs font-bold transition">
-                  Phiếu Cá nhân (.docx)
+                  Mẫu gốc Cá nhân
                 </a>
               </div>
             </div>
@@ -1630,11 +1692,14 @@
   </main>
 
   <!-- MODAL: MÃ QR CODE TRUY CẬP (ONLINE 24/7 & LAN NỘI BỘ) -->
-  <div id="qr-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-4">
-    <div class="bg-white rounded-3xl max-w-md w-full p-5 sm:p-6 space-y-4 shadow-2xl text-center border-2 border-slate-200">
+  <div id="qr-modal"
+    class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-4">
+    <div
+      class="bg-white rounded-3xl max-w-md w-full p-5 sm:p-6 space-y-4 shadow-2xl text-center border-2 border-slate-200">
       <div class="flex items-center justify-between border-b pb-3">
         <div class="flex items-center space-x-2.5 text-left">
-          <div class="w-9 h-9 rounded-xl bg-vtb-navy text-amber-400 flex items-center justify-center font-bold text-sm shadow">
+          <div
+            class="w-9 h-9 rounded-xl bg-vtb-navy text-amber-400 flex items-center justify-center font-bold text-sm shadow">
             <i class="fa-solid fa-qrcode"></i>
           </div>
           <div>
@@ -1642,16 +1707,19 @@
             <p class="text-[11px] text-slate-500">Chi bộ 2 - VietinBank Chi nhánh Bảo Lộc</p>
           </div>
         </div>
-        <button onclick="closeQRModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center font-bold transition">✕</button>
+        <button onclick="closeQRModal()"
+          class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center font-bold transition">✕</button>
       </div>
 
       <!-- Tab Switcher: Online 24/7 vs LAN -->
       <div class="flex p-1 bg-slate-100 rounded-xl text-xs font-bold border border-slate-200">
-        <button type="button" id="tab-qr-github" onclick="switchQRTab('github')" class="flex-1 py-2 px-3 rounded-lg transition bg-vtb-navy text-white shadow-sm flex items-center justify-center gap-1.5">
+        <button type="button" id="tab-qr-github" onclick="switchQRTab('github')"
+          class="flex-1 py-2 px-3 rounded-lg transition bg-vtb-navy text-white shadow-sm flex items-center justify-center gap-1.5">
           <i class="fa-solid fa-globe text-emerald-400"></i>
           <span>Online 24/7 (Khuyến nghị)</span>
         </button>
-        <button type="button" id="tab-qr-lan" onclick="switchQRTab('lan')" class="flex-1 py-2 px-3 rounded-lg transition text-slate-600 hover:text-slate-900 flex items-center justify-center gap-1.5">
+        <button type="button" id="tab-qr-lan" onclick="switchQRTab('lan')"
+          class="flex-1 py-2 px-3 rounded-lg transition text-slate-600 hover:text-slate-900 flex items-center justify-center gap-1.5">
           <i class="fa-solid fa-wifi text-blue-600"></i>
           <span>Mạng LAN (Wi-Fi)</span>
         </button>
@@ -1659,22 +1727,27 @@
 
       <!-- Nội dung Tab 1: GitHub Pages 24/7 -->
       <div id="content-qr-github" class="space-y-3">
-        <span class="inline-block text-[11px] font-bold px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200">
+        <span
+          class="inline-block text-[11px] font-bold px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200">
           ✓ Truy cập mọi lúc mọi nơi từ 4G/5G/Wi-Fi • Kể cả khi tắt máy tính
         </span>
         <div class="bg-white p-3 rounded-2xl border-2 border-emerald-200 inline-block shadow-inner">
           <img src="qr_github.png" alt="Mã QR Online 24/7" class="w-48 h-48 mx-auto rounded-lg object-contain"
             onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Firispu2810-crypto.github.io%2FApp_KiemDiem_ChiBo2%2F'">
         </div>
-        <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200 text-xs text-slate-800 font-mono break-all font-bold select-all">
+        <div
+          class="bg-slate-50 p-2.5 rounded-xl border border-slate-200 text-xs text-slate-800 font-mono break-all font-bold select-all">
           https://irispu2810-crypto.github.io/App_KiemDiem_ChiBo2/
         </div>
         <div class="flex items-center justify-center gap-2 pt-1">
-          <button onclick="copyToClipboard('https://irispu2810-crypto.github.io/App_KiemDiem_ChiBo2/', 'Đã sao chép link Online 24/7!')" class="btn-3d px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 shadow">
+          <button
+            onclick="copyToClipboard('https://irispu2810-crypto.github.io/App_KiemDiem_ChiBo2/', 'Đã sao chép link Online 24/7!')"
+            class="btn-3d px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 shadow">
             <i class="fa-regular fa-copy"></i>
             <span>Sao Chép Link</span>
           </button>
-          <a href="Ma_QR_GitHub_ChiBo2_VietinBank.png" download="Ma_QR_GitHub_ChiBo2_VietinBank.png" class="btn-3d px-3.5 py-2 bg-slate-800 hover:bg-slate-900 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 shadow">
+          <a href="Ma_QR_GitHub_ChiBo2_VietinBank.png" download="Ma_QR_GitHub_ChiBo2_VietinBank.png"
+            class="btn-3d px-3.5 py-2 bg-slate-800 hover:bg-slate-900 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 shadow">
             <i class="fa-solid fa-download text-amber-300"></i>
             <span>Tải Ảnh Thẻ QR</span>
           </a>
@@ -1683,22 +1756,27 @@
 
       <!-- Nội dung Tab 2: LAN Wi-Fi Hội trường -->
       <div id="content-qr-lan" class="space-y-3 hidden">
-        <span class="inline-block text-[11px] font-bold px-3 py-1 rounded-full bg-blue-100 text-blue-800 border border-blue-200">
+        <span
+          class="inline-block text-[11px] font-bold px-3 py-1 rounded-full bg-blue-100 text-blue-800 border border-blue-200">
           🏢 Đồng bộ trực tiếp với máy tính của Bí thư qua Wi-Fi phòng họp
         </span>
         <div class="bg-white p-3 rounded-2xl border-2 border-blue-200 inline-block shadow-inner">
           <img src="qr_lan_app.png" alt="Mã QR LAN Wi-Fi" class="w-48 h-48 mx-auto rounded-lg object-contain"
             onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=200x200&data='+encodeURIComponent(window.location.origin)">
         </div>
-        <div class="bg-blue-50 p-2.5 rounded-xl border border-blue-200 text-xs text-vtb-navy font-mono break-all font-bold select-all" id="qr-modal-lan-url">
+        <div
+          class="bg-blue-50 p-2.5 rounded-xl border border-blue-200 text-xs text-vtb-navy font-mono break-all font-bold select-all"
+          id="qr-modal-lan-url">
           http://192.168.0.106:8080/
         </div>
         <div class="flex items-center justify-center gap-2 pt-1">
-          <button onclick="copyLanUrl()" class="btn-3d px-3.5 py-2 bg-blue-700 hover:bg-blue-800 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 shadow">
+          <button onclick="copyLanUrl()"
+            class="btn-3d px-3.5 py-2 bg-blue-700 hover:bg-blue-800 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 shadow">
             <i class="fa-regular fa-copy"></i>
             <span>Sao Chép Link LAN</span>
           </button>
-          <a href="Ma_QR_ChiBo2_VietinBank.png" download="Ma_QR_ChiBo2_VietinBank.png" class="btn-3d px-3.5 py-2 bg-slate-800 hover:bg-slate-900 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 shadow">
+          <a href="Ma_QR_ChiBo2_VietinBank.png" download="Ma_QR_ChiBo2_VietinBank.png"
+            class="btn-3d px-3.5 py-2 bg-slate-800 hover:bg-slate-900 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 shadow">
             <i class="fa-solid fa-download text-amber-300"></i>
             <span>Tải Ảnh Thẻ QR</span>
           </a>
@@ -1711,35 +1789,45 @@
           <i class="fa-solid fa-key text-amber-600"></i>
           <span>Thông tin đăng nhập của từng Đảng viên:</span>
         </p>
-        <p class="text-slate-600">• <strong>Tên đăng nhập:</strong> Viết thường, liền không dấu (VD: <em>nguyenthithao</em>, <em>buikhacduy</em>).</p>
-        <p class="text-slate-600">• <strong>Mật khẩu mặc định:</strong> <code>123456</code> (Mỗi đồng chí chỉ bỏ phiếu 01 lần duy nhất).</p>
+        <p class="text-slate-600">• <strong>Tên đăng nhập:</strong> Viết thường, liền không dấu (VD:
+          <em>nguyenthithao</em>, <em>buikhacduy</em>).</p>
+        <p class="text-slate-600">• <strong>Mật khẩu mặc định:</strong> <code>123456</code> (Mỗi đồng chí chỉ bỏ phiếu
+          01 lần duy nhất).</p>
       </div>
 
-      <button onclick="closeQRModal()" class="w-full py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs font-bold rounded-xl transition">
+      <button onclick="closeQRModal()"
+        class="w-full py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs font-bold rounded-xl transition">
         Đóng Cửa Sổ
       </button>
     </div>
   </div>
 
   <!-- MODAL: THƯ VIỆN CÂU MẪU NHẬN XÉT ĐẢNG VIÊN (GOOGLE FORM CHI BỘ 2) -->
-  <div id="google-form-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-5">
-    <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden border border-slate-300">
+  <div id="google-form-modal"
+    class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-5">
+    <div
+      class="bg-white rounded-3xl max-w-4xl w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden border border-slate-300">
       <!-- Modal Header -->
-      <div class="px-6 py-4 bg-gradient-to-r from-purple-800 via-indigo-900 to-vtb-navy text-white flex items-center justify-between border-b border-purple-700/60">
+      <div
+        class="px-6 py-4 bg-gradient-to-r from-purple-800 via-indigo-900 to-vtb-navy text-white flex items-center justify-between border-b border-purple-700/60">
         <div class="flex items-center space-x-3">
-          <div class="w-10 h-10 rounded-xl bg-white/10 border border-white/20 text-amber-300 flex items-center justify-center text-lg shadow-sm">
+          <div
+            class="w-10 h-10 rounded-xl bg-white/10 border border-white/20 text-amber-300 flex items-center justify-center text-lg shadow-sm">
             <i class="fa-solid fa-clipboard-check"></i>
           </div>
           <div>
             <h3 class="text-sm sm:text-base font-bold text-white tracking-wide flex items-center gap-2">
               <span>Thư Viện Câu Mẫu Nhận Xét Đảng Viên</span>
-              <span class="text-[10px] px-2 py-0.5 rounded-full font-extrabold bg-amber-400 text-slate-900">Google Form 2026</span>
+              <span class="text-[10px] px-2 py-0.5 rounded-full font-extrabold bg-amber-400 text-slate-900">Google Form
+                2026</span>
             </h3>
-            <p class="text-[11px] text-purple-200">Phiếu tự nhận xét & nhận xét chéo chuẩn khung tiêu chí Đảng ủy VietinBank</p>
+            <p class="text-[11px] text-purple-200">Phiếu tự nhận xét & nhận xét chéo chuẩn khung tiêu chí Đảng ủy
+              VietinBank</p>
           </div>
         </div>
         <div class="flex items-center gap-2">
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSe17_POVKb3Zhp63M5pzuH5ecQAkiu80z8y1kYNBdCW_dS2gQ/viewform" target="_blank"
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSe17_POVKb3Zhp63M5pzuH5ecQAkiu80z8y1kYNBdCW_dS2gQ/viewform"
+            target="_blank"
             class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-bold text-white border border-white/20 transition">
             <i class="fa-solid fa-arrow-up-right-from-square text-amber-300"></i>
             <span>Mở Form Gốc</span>
@@ -1767,11 +1855,13 @@
             <i class="fa-solid fa-triangle-exclamation text-amber-600 mr-1"></i> 3. Hạn Chế Góp Ý (8 Câu)
           </button>
         </div>
-        <span class="text-xs text-slate-500 italic hidden md:inline">Nhấp "Sao Chép" hoặc "Áp Dụng" để đưa vào nội dung kiểm điểm</span>
+        <span class="text-xs text-slate-500 italic hidden md:inline">Nhấp "Sao Chép" hoặc "Áp Dụng" để đưa vào nội dung
+          kiểm điểm</span>
       </div>
 
       <!-- Modal Body (Dynamic Scrollable) -->
-      <div id="google-form-modal-body" class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 custom-scrollbar bg-slate-50/50">
+      <div id="google-form-modal-body"
+        class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 custom-scrollbar bg-slate-50/50">
         <!-- Rendered dynamically by switchGoogleFormTab() -->
       </div>
 
@@ -1782,7 +1872,8 @@
           <span>Căn cứ theo Hướng dẫn đánh giá, xếp loại đảng viên của Đảng bộ VietinBank CN Bảo Lộc</span>
         </div>
         <div class="flex items-center gap-2">
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSe17_POVKb3Zhp63M5pzuH5ecQAkiu80z8y1kYNBdCW_dS2gQ/viewform" target="_blank"
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSe17_POVKb3Zhp63M5pzuH5ecQAkiu80z8y1kYNBdCW_dS2gQ/viewform"
+            target="_blank"
             class="px-3.5 py-1.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-bold rounded-lg border border-indigo-200 flex items-center gap-1.5 transition">
             <i class="fa-solid fa-arrow-up-right-from-square"></i>
             <span>Mở Google Form</span>
@@ -2023,16 +2114,21 @@
   </div>
 
   <!-- MODAL XEM TRƯỚC VÀ IN PHIẾU BẦU CHUẨN MẪU BIỂU ĐẢNG -->
-  <div id="ballot-print-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-2 sm:p-4">
-    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-5xl h-[92vh] flex flex-col overflow-hidden border border-slate-700">
+  <div id="ballot-print-modal"
+    class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-2 sm:p-4">
+    <div
+      class="bg-white rounded-2xl shadow-2xl w-full max-w-5xl h-[92vh] flex flex-col overflow-hidden border border-slate-700">
       <!-- Modal Header -->
-      <div class="px-6 py-4 bg-gradient-to-r from-vtb-navy to-slate-900 border-b border-slate-800 flex flex-wrap items-center justify-between gap-3">
+      <div
+        class="px-6 py-4 bg-gradient-to-r from-vtb-navy to-slate-900 border-b border-slate-800 flex flex-wrap items-center justify-between gap-3">
         <div class="flex items-center space-x-3">
-          <div class="w-10 h-10 rounded-xl bg-party-red/20 border border-party-red text-party-gold flex items-center justify-center text-lg">
+          <div
+            class="w-10 h-10 rounded-xl bg-party-red/20 border border-party-red text-party-gold flex items-center justify-center text-lg">
             <i class="fa-solid fa-file-signature"></i>
           </div>
           <div>
-            <h3 class="text-sm font-bold text-white tracking-wide" id="ballot-modal-title">Xem Trước & In Phiếu Bầu Chi Bộ 2</h3>
+            <h3 class="text-sm font-bold text-white tracking-wide" id="ballot-modal-title">Xem Trước & In Phiếu Bầu Chi
+              Bộ 2</h3>
             <p class="text-[11px] text-slate-300">Chuẩn mẫu biểu Hướng dẫn của Đảng ủy • Khổ A4</p>
           </div>
         </div>
@@ -2127,28 +2223,36 @@
   <!-- ========================================== -->
   <!-- MODAL 1: BẢNG TỔNG HỢP TOÀN BỘ Ý KIẾN NHẬN XÉT (CHO BÍ THƯ) -->
   <!-- ========================================== -->
-  <div id="all-reviews-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-5">
-    <div class="bg-white w-full max-w-5xl max-h-[92vh] rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-slate-200 animate-fadeIn">
+  <div id="all-reviews-modal"
+    class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-5">
+    <div
+      class="bg-white w-full max-w-5xl max-h-[92vh] rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-slate-200 animate-fadeIn">
       <!-- Header -->
-      <div class="px-5 py-4 bg-gradient-to-r from-indigo-900 via-vtb-navy to-purple-900 text-white flex items-center justify-between shrink-0">
+      <div
+        class="px-5 py-4 bg-gradient-to-r from-indigo-900 via-vtb-navy to-purple-900 text-white flex items-center justify-between shrink-0">
         <div class="flex items-center gap-3">
-          <span class="w-10 h-10 rounded-xl bg-amber-400 text-slate-950 flex items-center justify-center text-lg font-black shadow-md">
+          <span
+            class="w-10 h-10 rounded-xl bg-amber-400 text-slate-950 flex items-center justify-center text-lg font-black shadow-md">
             👑
           </span>
           <div>
             <h3 class="font-extrabold text-base flex items-center gap-2">
               <span>BẢNG TỔNG HỢP Ý KIẾN NHẬN XÉT TOÀN BỘ ĐẢNG VIÊN</span>
-              <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-amber-400 text-slate-950">Dành riêng cho Bí thư</span>
+              <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-amber-400 text-slate-950">Dành riêng cho
+                Bí thư</span>
             </h3>
-            <p class="text-xs text-indigo-200 mt-0.5">Theo dõi toàn diện ý kiến nhận xét chéo của 12 đồng chí phục vụ chủ trì điều hành</p>
+            <p class="text-xs text-indigo-200 mt-0.5">Theo dõi toàn diện ý kiến nhận xét chéo của 12 đồng chí phục vụ
+              chủ trì điều hành</p>
           </div>
         </div>
         <div class="flex items-center gap-2">
-          <button type="button" onclick="openReviewMeetingReportModal()" class="px-3 py-1.5 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-xl shadow transition flex items-center gap-1.5">
+          <button type="button" onclick="openReviewMeetingReportModal()"
+            class="px-3 py-1.5 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-xl shadow transition flex items-center gap-1.5">
             <i class="fa-solid fa-file-word text-amber-200"></i>
             <span>Xuất Báo Cáo (.docx)</span>
           </button>
-          <button type="button" onclick="closeAllReviewsModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition">
+          <button type="button" onclick="closeAllReviewsModal()"
+            class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition">
             <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
@@ -2158,7 +2262,8 @@
       <div class="p-3 bg-slate-50 border-b border-slate-200 flex flex-wrap items-center justify-between gap-3 text-xs">
         <div class="flex items-center gap-2">
           <span class="font-bold text-slate-700">Lọc theo Đảng viên:</span>
-          <select id="all-reviews-filter-select" onchange="renderAllReviewsModalContent(this.value)" class="p-1.5 border border-slate-300 rounded-lg font-bold text-slate-800 bg-white">
+          <select id="all-reviews-filter-select" onchange="renderAllReviewsModalContent(this.value)"
+            class="p-1.5 border border-slate-300 rounded-lg font-bold text-slate-800 bg-white">
             <option value="all">🌟 Xem tất cả 12 đồng chí</option>
           </select>
         </div>
@@ -2169,14 +2274,16 @@
       </div>
 
       <!-- Body Content -->
-      <div id="all-reviews-modal-body" class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 custom-scrollbar bg-slate-50/50">
+      <div id="all-reviews-modal-body"
+        class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 custom-scrollbar bg-slate-50/50">
         <!-- Rendered dynamically -->
       </div>
 
       <!-- Footer -->
       <div class="px-5 py-3 bg-white border-t border-slate-200 flex items-center justify-between shrink-0 text-xs">
         <span class="text-slate-500 italic">Đã đồng bộ 100% dữ liệu tự kiểm điểm và nhận xét chéo Chi bộ 2</span>
-        <button type="button" onclick="closeAllReviewsModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition">
+        <button type="button" onclick="closeAllReviewsModal()"
+          class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition">
           Đóng cửa sổ
         </button>
       </div>
@@ -2186,31 +2293,39 @@
   <!-- ========================================== -->
   <!-- MODAL 2: XEM TRƯỚC VÀ XUẤT BÁO CÁO NHẬN XÉT ĐIỀU HÀNH CUỘC HỌP -->
   <!-- ========================================== -->
-  <div id="review-meeting-report-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-5">
-    <div class="bg-white w-full max-w-5xl max-h-[94vh] rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-slate-200 animate-fadeIn">
+  <div id="review-meeting-report-modal"
+    class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-5">
+    <div
+      class="bg-white w-full max-w-5xl max-h-[94vh] rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-slate-200 animate-fadeIn">
       <!-- Header Toolbar -->
-      <div class="px-5 py-3.5 bg-gradient-to-r from-red-800 via-rose-900 to-red-950 text-white flex items-center justify-between shrink-0">
+      <div
+        class="px-5 py-3.5 bg-gradient-to-r from-red-800 via-rose-900 to-red-950 text-white flex items-center justify-between shrink-0">
         <div class="flex items-center gap-3">
-          <span class="w-9 h-9 rounded-xl bg-amber-400 text-slate-950 flex items-center justify-center text-base font-black shadow-md">
+          <span
+            class="w-9 h-9 rounded-xl bg-amber-400 text-slate-950 flex items-center justify-center text-base font-black shadow-md">
             <i class="fa-solid fa-file-lines"></i>
           </span>
           <div>
             <h3 class="font-black text-sm sm:text-base flex items-center gap-2">
               <span>BÁO CÁO TỔNG HỢP Ý KIẾN NHẬN XÉT, ĐÁNH GIÁ ĐẢNG VIÊN NĂM 2026</span>
             </h3>
-            <p class="text-[11px] text-rose-200">Chuẩn thể thức Nghị định 30/2020/NĐ-CP • Tài liệu Bí thư điều hành cuộc họp</p>
+            <p class="text-[11px] text-rose-200">Chuẩn thể thức Nghị định 30/2020/NĐ-CP • Tài liệu Bí thư điều hành cuộc
+              họp</p>
           </div>
         </div>
         <div class="flex items-center gap-2">
-          <button type="button" onclick="exportReviewMeetingReportDocx()" class="btn-3d px-3.5 py-1.5 bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-black rounded-xl shadow transition flex items-center gap-1.5">
+          <button type="button" onclick="exportReviewMeetingReportDocx()"
+            class="btn-3d px-3.5 py-1.5 bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-black rounded-xl shadow transition flex items-center gap-1.5">
             <i class="fa-solid fa-download"></i>
             <span>Tải File Word (.docx)</span>
           </button>
-          <button type="button" onclick="printReviewMeetingReport()" class="px-3 py-1.5 bg-white/20 hover:bg-white/30 text-white text-xs font-bold rounded-xl shadow transition flex items-center gap-1.5">
+          <button type="button" onclick="printReviewMeetingReport()"
+            class="px-3 py-1.5 bg-white/20 hover:bg-white/30 text-white text-xs font-bold rounded-xl shadow transition flex items-center gap-1.5">
             <i class="fa-solid fa-print"></i>
             <span>In Báo Cáo</span>
           </button>
-          <button type="button" onclick="closeReviewMeetingReportModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition">
+          <button type="button" onclick="closeReviewMeetingReportModal()"
+            class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition">
             <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
@@ -2218,20 +2333,24 @@
 
       <!-- Preview Printable Sheet (A4 Styling) -->
       <div class="flex-1 overflow-y-auto p-4 sm:p-8 bg-slate-100 custom-scrollbar flex justify-center">
-        <div id="review-meeting-report-printable" class="bg-white w-full max-w-[21cm] p-[2.5cm_1.5cm_2cm_3cm] shadow-xl text-slate-900 font-serif leading-relaxed text-[13pt] border border-slate-300 min-h-[29.7cm]">
+        <div id="review-meeting-report-printable"
+          class="bg-white w-full max-w-[21cm] p-[2.5cm_1.5cm_2cm_3cm] shadow-xl text-slate-900 font-serif leading-relaxed text-[13pt] border border-slate-300 min-h-[29.7cm]">
           <!-- Injected dynamically -->
         </div>
       </div>
 
       <!-- Footer Toolbar -->
       <div class="px-5 py-3 bg-white border-t border-slate-200 flex items-center justify-between shrink-0 text-xs">
-        <span class="text-slate-500 italic">Khổ giấy A4 • Lề: Trên 2cm, Dưới 2cm, Trái 3cm, Phải 1.5cm (Nghị định 30)</span>
+        <span class="text-slate-500 italic">Khổ giấy A4 • Lề: Trên 2cm, Dưới 2cm, Trái 3cm, Phải 1.5cm (Nghị định
+          30)</span>
         <div class="flex items-center gap-2">
-          <button type="button" onclick="exportReviewMeetingReportDocx()" class="btn-3d px-4 py-2 bg-red-700 hover:bg-red-800 text-white font-bold rounded-xl transition flex items-center gap-1.5">
+          <button type="button" onclick="exportReviewMeetingReportDocx()"
+            class="btn-3d px-4 py-2 bg-red-700 hover:bg-red-800 text-white font-bold rounded-xl transition flex items-center gap-1.5">
             <i class="fa-solid fa-file-word text-amber-300"></i>
             <span>Xuất File Word (.docx)</span>
           </button>
-          <button type="button" onclick="closeReviewMeetingReportModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition">
+          <button type="button" onclick="closeReviewMeetingReportModal()"
+            class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition">
             Đóng
           </button>
         </div>
@@ -2242,35 +2361,47 @@
   <!-- ========================================== -->
   <!-- MODAL 3: NHẬN & GỘP NHẬN XÉT TỪ ĐẢNG VIÊN (ZALO / ONLINE SYNC) -->
   <!-- ========================================== -->
-  <div id="import-reviews-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-5">
-    <div class="bg-white w-full max-w-2xl rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-slate-200 animate-fadeIn">
+  <div id="import-reviews-modal"
+    class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-5">
+    <div
+      class="bg-white w-full max-w-2xl rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-slate-200 animate-fadeIn">
       <div class="px-5 py-4 bg-gradient-to-r from-teal-700 to-emerald-800 text-white flex items-center justify-between">
         <div class="flex items-center gap-2.5">
-          <span class="w-9 h-9 rounded-xl bg-amber-400 text-slate-950 flex items-center justify-center text-base font-black shadow">
+          <span
+            class="w-9 h-9 rounded-xl bg-amber-400 text-slate-950 flex items-center justify-center text-base font-black shadow">
             <i class="fa-solid fa-file-import"></i>
           </span>
           <div>
             <h3 class="font-extrabold text-sm sm:text-base">Nhận & Gộp Nhận Xét Từ Đảng Viên</h3>
-            <p class="text-[11px] text-emerald-100">Dán tin nhắn có mã [CHIBO2-SYNC] từ Zalo để cập nhật cho Bí thư / Phó Bí thư</p>
+            <p class="text-[11px] text-emerald-100">Dán tin nhắn có mã [CHIBO2-SYNC] từ Zalo để cập nhật cho Bí thư /
+              Phó Bí thư</p>
           </div>
         </div>
-        <button type="button" onclick="closeImportReviewsModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition">
+        <button type="button" onclick="closeImportReviewsModal()"
+          class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition">
           <i class="fa-solid fa-xmark"></i>
         </button>
       </div>
 
       <div class="p-5 space-y-3 text-xs">
         <div class="p-3 bg-blue-50 border border-blue-200 rounded-xl text-blue-900 space-y-1">
-          <p class="font-bold"><i class="fa-solid fa-circle-info text-blue-600 mr-1"></i> Hướng dẫn sử dụng khi chạy Online (GitHub Pages / 4G):</p>
-          <p>1. Các Đảng viên sau khi nhập nhận xét bấm nút <strong>"Gửi Nhận Xét Lên Bí Thư (Zalo)"</strong> và gửi tin nhắn vào nhóm hoặc riêng cho Bí thư / Phó Bí thư.</p>
-          <p>2. Bí thư / Phó Bí thư copy <strong>một hoặc nhiều tin nhắn</strong> dán vào ô bên dưới rồi bấm <strong>"Cập Nhật & Gộp Vào Hệ Thống"</strong>.</p>
+          <p class="font-bold"><i class="fa-solid fa-circle-info text-blue-600 mr-1"></i> Hướng dẫn sử dụng khi chạy
+            Online (GitHub Pages / 4G):</p>
+          <p>1. Các Đảng viên sau khi nhập nhận xét bấm nút <strong>"Gửi Nhận Xét Lên Bí Thư (Zalo)"</strong> và gửi tin
+            nhắn vào nhóm hoặc riêng cho Bí thư / Phó Bí thư.</p>
+          <p>2. Bí thư / Phó Bí thư copy <strong>một hoặc nhiều tin nhắn</strong> dán vào ô bên dưới rồi bấm
+            <strong>"Cập Nhật & Gộp Vào Hệ Thống"</strong>.</p>
         </div>
-        <textarea id="import-reviews-textarea" rows="8" class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-teal-500 text-xs font-mono leading-relaxed" placeholder="Dán nội dung tin nhắn có chứa [CHIBO2-SYNC]...[/CHIBO2-SYNC] vào đây (có thể dán nhiều tin nhắn cùng lúc)..."></textarea>
+        <textarea id="import-reviews-textarea" rows="8"
+          class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-teal-500 text-xs font-mono leading-relaxed"
+          placeholder="Dán nội dung tin nhắn có chứa [CHIBO2-SYNC]...[/CHIBO2-SYNC] vào đây (có thể dán nhiều tin nhắn cùng lúc)..."></textarea>
       </div>
 
       <div class="px-5 py-3 bg-slate-50 border-t border-slate-200 flex items-center justify-end gap-2">
-        <button type="button" onclick="closeImportReviewsModal()" class="px-4 py-2 bg-white border border-slate-300 hover:bg-slate-100 text-slate-700 text-xs font-bold rounded-xl transition">Hủy</button>
-        <button type="button" onclick="processImportReviewsFromText()" class="btn-3d px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold rounded-xl shadow transition flex items-center gap-1.5">
+        <button type="button" onclick="closeImportReviewsModal()"
+          class="px-4 py-2 bg-white border border-slate-300 hover:bg-slate-100 text-slate-700 text-xs font-bold rounded-xl transition">Hủy</button>
+        <button type="button" onclick="processImportReviewsFromText()"
+          class="btn-3d px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold rounded-xl shadow transition flex items-center gap-1.5">
           <i class="fa-solid fa-check-double"></i>
           <span>Cập Nhật & Gộp Vào Hệ Thống</span>
         </button>
@@ -2329,7 +2460,7 @@
     // ==========================================
     // HỆ THỐNG TỰ ĐỘNG CẬP NHẬT PHIÊN BẢN MỚI (AUTO-UPDATE)
     // ==========================================
-    const APP_VERSION = '2026.11.25.14';
+    const APP_VERSION = '2026.11.25.15';
 
     function checkForAppUpdate(manual = false) {
       if (!window.location.protocol.startsWith('http')) {
@@ -2727,35 +2858,35 @@
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })
       })
-      .then(res => res.json().then(data => ({ status: res.status, data })))
-      .then(result => {
-        if (result.status === 200 && result.data.status === 'success') {
-          const member = result.data.member;
-          completeLogin(member);
-        } else {
-          showLoginError(result.data.message || 'Tên đăng nhập hoặc mật khẩu không chính xác!');
-        }
-      })
-      .catch(err => {
-        // Fallback kiểm tra cục bộ cho chế độ file:///
-        const mem = appData.members.find(m => {
-          const u = m.username || toUsernameSlug(m.name);
-          return u === username;
+        .then(res => res.json().then(data => ({ status: res.status, data })))
+        .then(result => {
+          if (result.status === 200 && result.data.status === 'success') {
+            const member = result.data.member;
+            completeLogin(member);
+          } else {
+            showLoginError(result.data.message || 'Tên đăng nhập hoặc mật khẩu không chính xác!');
+          }
+        })
+        .catch(err => {
+          // Fallback kiểm tra cục bộ cho chế độ file:///
+          const mem = appData.members.find(m => {
+            const u = m.username || toUsernameSlug(m.name);
+            return u === username;
+          });
+
+          if (!mem) {
+            showLoginError(`Không tìm thấy tên đăng nhập "${username}". Vui lòng viết liền không dấu (vd: nguyenthithao, buikhacduy...)`);
+            return;
+          }
+
+          const expectedPwd = mem.password || '123456';
+          if (password !== expectedPwd && password !== '123456') {
+            showLoginError('Mật khẩu không chính xác. Mật khẩu khởi tạo chung là 123456!');
+            return;
+          }
+
+          completeLogin(mem);
         });
-
-        if (!mem) {
-          showLoginError(`Không tìm thấy tên đăng nhập "${username}". Vui lòng viết liền không dấu (vd: nguyenthithao, buikhacduy...)`);
-          return;
-        }
-
-        const expectedPwd = mem.password || '123456';
-        if (password !== expectedPwd && password !== '123456') {
-          showLoginError('Mật khẩu không chính xác. Mật khẩu khởi tạo chung là 123456!');
-          return;
-        }
-
-        completeLogin(mem);
-      });
     }
 
     function showLoginError(msg) {
@@ -2769,7 +2900,7 @@
       appData.current_user_id = member.id;
       try {
         localStorage.setItem('chibo2_session_user', JSON.stringify(member));
-      } catch (e) {}
+      } catch (e) { }
 
       hideLoginOverlay();
       applyRolePermissions();
@@ -2781,7 +2912,7 @@
       if (confirm('Đồng chí có chắc chắn muốn đăng xuất khỏi phiên làm việc này không?')) {
         try {
           localStorage.removeItem('chibo2_session_user');
-        } catch (e) {}
+        } catch (e) { }
         showLoginOverlay();
         const uInp = document.getElementById('login-username');
         if (uInp) uInp.value = '';
@@ -3653,8 +3784,6 @@
           const lvl = getHeaderLevel(items[i].stt);
           let sub = 0;
           for (let j = i + 1; j < items.length; j++) {
-            const jIsNum = /^\d/.test(String(items[j].stt || '').trim());
-            if (jIsNum) break;
             if (items[j].isHeader && getHeaderLevel(items[j].stt) <= lvl) break;
             if (!items[j].isHeader) {
               sub += parseFloat(items[j].score !== undefined ? items[j].score : items[j].max) || 0;
@@ -3698,7 +3827,6 @@
           } else {
             const val = (it.score !== undefined) ? it.score : it.max;
             row.className = 'criteria-leaf-row py-2 px-2 flex items-center justify-between gap-4 hover:bg-slate-50 rounded';
-            row.setAttribute('data-stt', String(it.stt || ''));
             row.innerHTML = `
               <div class="flex-1">
                 <span class="font-bold text-slate-700 mr-1.5">${it.stt}</span>
@@ -3726,8 +3854,6 @@
           const lvl = parseInt(rows[i].getAttribute('data-header-level') || '1', 10);
           let sub = 0;
           for (let j = i + 1; j < rows.length; j++) {
-            const jStt = rows[j].getAttribute('data-stt') || '';
-            if (/^\d/.test(jStt.trim())) break;
             if (rows[j].classList.contains('criteria-header-row')) {
               const jLvl = parseInt(rows[j].getAttribute('data-header-level') || '1', 10);
               if (jLvl <= lvl) break;
@@ -3824,7 +3950,7 @@
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ target: targetVal, score, criteria_scores: scoresMap, ranking, good, limit, sol })
-        }).catch(() => {});
+        }).catch(() => { });
       }
       refreshMinutesContent();
     }
@@ -3970,11 +4096,12 @@
       const sel = document.getElementById('tpl-member-select');
       const mem = appData.members.find(x => x.id === parseInt(sel ? sel.value : appData.current_user_id)) || appData.members[0];
       const { dd, mm, yyyy } = parseMeetingDateParts(appData.meeting.date);
+      const k = (dots) => (isBlank ? dots : 'K');
       const fullName = isBlank ? '…………………………………………………' : (mem ? mem.name.toUpperCase() : '');
       const dob = isBlank ? '…………………' : (mem && mem.dob ? mem.dob : '…………………');
       const roleParty = isBlank ? '………………………………………………………………………' : (mem ? (mem.role_party || 'Đảng viên') : 'K');
       const rolePro = isBlank ? '……………………………………………………………………..' : (mem ? (mem.title_pro || 'Cán bộ') : 'K');
-      const dept = isBlank ? '……………………………………' : (mem ? (mem.dept || 'VietinBank Chi nhánh Bảo Lộc') : 'VietinBank Chi nhánh Bảo Lộc');
+      const dept = isBlank ? '……………………………………' : (mem ? `${mem.title_pro || 'Cán bộ'} - ${mem.dept || 'VietinBank Chi nhánh Bảo Lộc'}` : 'VietinBank Chi nhánh Bảo Lộc');
       const slug = isBlank ? 'Mau_Trang' : (mem ? toUsernameSlug(mem.name) : 'Dang_Vien');
 
       const html = `
@@ -3999,32 +4126,32 @@
             </tr>
           </table>
           <p><strong>Họ và tên đang dùng (viết chữ in hoa):</strong> ${fullName} &nbsp;&nbsp;&nbsp; <strong>Sinh ngày:</strong> ${dob}</p>
-          <p><strong>Mới thay đổi nơi ở:</strong> …………………………………………………………………………………………</p>
-          <p><strong>Mới thay đổi về nghề nghiệp; đơn vị công tác:</strong> ${dept}</p>
+          <p><strong>Mới thay đổi nơi ở:</strong> ${k('…………………………………………………………………………………………')}</p>
+          <p><strong>Mới thay đổi về nghề nghiệp; đơn vị công tác:</strong> ${isBlank ? '………………………………………………………………' : 'K (' + dept + ')'}</p>
           <p><strong>Chức vụ mới được giao:</strong></p>
           <p style="margin-left:18px;">- Đảng: ${roleParty}</p>
           <p style="margin-left:18px;">- Chính quyền: ${rolePro}</p>
-          <p style="margin-left:18px;">- Đoàn thể: …………………………………………………………………………………………</p>
-          <p style="margin-left:18px;">- Doanh nghiệp, đơn vị sự nghiệp: ${dept}</p>
+          <p style="margin-left:18px;">- Đoàn thể: ${isBlank ? '…………………………………………………………………………………………' : (mem && mem.union_role ? mem.union_role : 'Đoàn viên Công đoàn cơ sở VietinBank CN Bảo Lộc')}</p>
+          <p style="margin-left:18px;">- Doanh nghiệp, đơn vị sự nghiệp: ${isBlank ? '…………………………………………………' : 'Ngân hàng TMCP Công Thương Việt Nam - Chi nhánh Bảo Lộc'}</p>
           <p><strong>Mới thay đổi về trình độ học vấn; chuyên môn nghiệp vụ:</strong></p>
-          <p style="margin-left:18px;">- Giáo dục phổ thông (lớp mấy): …………… &nbsp;&nbsp; - Chuyên môn nghiệp vụ: …………………………</p>
-          <p style="margin-left:18px;">- Học vị (TS, thạc sĩ): …………… &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Học hàm (Giáo sư, phó giáo sư): …………………</p>
-          <p style="margin-left:18px;">- Lý luận chính trị (Cử nhân, cao cấp, trung cấp, sơ cấp): ………………………………………………</p>
-          <p style="margin-left:18px;">- Ngoại ngữ (Anh, Nga, Pháp... Trình độ A, B, C, D): ……………………………………………………</p>
-          <p><strong>Hình thức khen thưởng mới trong năm</strong> (từ bằng khen, huy chương trở lên và danh hiệu mới được phong: Anh hùng, chiến sĩ thi đua; nhà giáo, nghệ sĩ, thầy thuốc nhân dân hoặc ưu tú): ………………………………………………………</p>
-          <p><strong>Bị xử lý kỷ luật trong năm</strong> (Đảng, chính quyền, pháp luật): ……………………………………………………</p>
-          <p><strong>Gia đình có gì thay đổi trong năm:</strong></p>
-          <p style="margin-left:18px;">- Cha đẻ: …………………………………… &nbsp;&nbsp; - Mẹ đẻ: …………………………………………</p>
-          <p style="margin-left:18px;">- Cha (vợ hoặc chồng): ……………………… &nbsp;&nbsp; - Mẹ (vợ hoặc chồng): …………………………</p>
-          <p style="margin-left:18px;">- Vợ hoặc chồng (họ và tên, kết hôn, ly hôn, từ trần, chức vụ, công việc mới): ……………………………</p>
-          <p style="margin-left:18px;">- Con (họ tên con, mới sinh, mới nhận con nuôi, làm gì, ở đâu...?): ………………………………………</p>
-          <p><strong>Có thay đổi về kinh tế của bản thân và gia đình trong năm:</strong> ………………………………………………</p>
-          <p style="margin-left:18px;">- Tổng mức thu nhập của hộ gia đình: ……………… đồng, bình quân người/hộ: ……………… đồng</p>
-          <p style="margin-left:18px;">- Nhà ở: …………………………………………………………………………………………………</p>
-          <p style="margin-left:18px;">- Đất ở: …………………………………………………………………………………………………</p>
-          <p style="margin-left:18px;">- Hoạt động kinh tế: ……………………………………………………………………………………</p>
-          <p style="margin-left:18px;">- Tài sản mới có giá trị (50 triệu đồng trở lên): ……… Tên tài sản mới: ……………… giá trị: …………… đồng</p>
-          <p><strong>Được miễn công tác và sinh hoạt Đảng ngày:</strong> ………………………………………………………………</p>
+          <p style="margin-left:18px;">- Giáo dục phổ thông (lớp mấy): ${k('……………')} &nbsp;&nbsp; - Chuyên môn nghiệp vụ: ${k('…………………………')}</p>
+          <p style="margin-left:18px;">- Học vị (TS, thạc sĩ): ${k('……………')} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - Học hàm (Giáo sư, phó giáo sư): ${k('…………………')}</p>
+          <p style="margin-left:18px;">- Lý luận chính trị (Cử nhân, cao cấp, trung cấp, sơ cấp): ${k('………………………………………………')}</p>
+          <p style="margin-left:18px;">- Ngoại ngữ (Anh, Nga, Pháp... Trình độ A, B, C, D): ${k('……………………………………………………')}</p>
+          <p><strong>Hình thức khen thưởng mới trong năm</strong> (từ bằng khen, huy chương trở lên và danh hiệu mới được phong: Anh hùng, chiến sĩ thi đua; nhà giáo, nghệ sĩ, thầy thuốc nhân dân hoặc ưu tú): ${k('………………………………………………………')}</p>
+          <p><strong>Bị xử lý kỷ luật trong năm</strong> (Đảng, chính quyền, pháp luật): ${k('……………………………………………………')}</p>
+          <p><strong>Gia đình có gì thay đổi trong năm:</strong> ${k('')}</p>
+          <p style="margin-left:18px;">- Cha đẻ: ${k('……………………………………')} &nbsp;&nbsp; - Mẹ đẻ: ${k('…………………………………………')}</p>
+          <p style="margin-left:18px;">- Cha (vợ hoặc chồng): ${k('………………………')} &nbsp;&nbsp; - Mẹ (vợ hoặc chồng): ${k('…………………………')}</p>
+          <p style="margin-left:18px;">- Vợ hoặc chồng (họ và tên, kết hôn, ly hôn, từ trần, chức vụ, công việc mới): ${k('……………………………')}</p>
+          <p style="margin-left:18px;">- Con (họ tên con, mới sinh, mới nhận con nuôi, làm gì, ở đâu...?): ${k('………………………………………')}</p>
+          <p><strong>Có thay đổi về kinh tế của bản thân và gia đình trong năm:</strong> ${k('………………………………………………')}</p>
+          <p style="margin-left:18px;">- Tổng mức thu nhập của hộ gia đình: ${k('………………')} đồng, bình quân người/hộ: ${k('………………')} đồng</p>
+          <p style="margin-left:18px;">- Nhà ở: ${k('…………………………………………………………………………………………………')}</p>
+          <p style="margin-left:18px;">- Đất ở: ${k('…………………………………………………………………………………………………')}</p>
+          <p style="margin-left:18px;">- Hoạt động kinh tế: ${k('……………………………………………………………………………………')}</p>
+          <p style="margin-left:18px;">- Tài sản mới có giá trị (50 triệu đồng trở lên): ${k('………')} Tên tài sản mới: ${k('………………')} giá trị: ${k('……………')} đồng</p>
+          <p><strong>Được miễn công tác và sinh hoạt Đảng ngày:</strong> ${k('………………………………………………………………')}</p>
           <div style="text-align:right; font-style:italic; margin:10px 0;">Bảo Lộc, ngày ${dd} tháng ${mm} năm ${yyyy}</div>
           <table style="width:100%; border-collapse:collapse; margin-top:8px;">
             <tr>
@@ -4057,11 +4184,23 @@
       const { dd, mm, yyyy } = parseMeetingDateParts(appData.meeting.date);
       const colEval = appData.collective_evaluation || {};
       const colRank = colEval.ranking || 'Hoàn thành xuất sắc nhiệm vụ';
+      const totalMem = appData.members.length;
+      const officialCount = appData.members.filter(m => m.status === 'Chính thức').length;
+      const probCount = totalMem - officialCount;
+      const presentCount = appData.members.filter(m => m.present !== false).length;
+      const absentCount = totalMem - presentCount;
+
+      const countRank = (r) => appData.members.filter(m => (m.self_ranking || 'Hoàn thành tốt nhiệm vụ') === r).length;
+      const cXS = countRank('Hoàn thành xuất sắc nhiệm vụ');
+      const cTot = countRank('Hoàn thành tốt nhiệm vụ');
+      const cHT = countRank('Hoàn thành nhiệm vụ');
+      const cKHT = countRank('Không hoàn thành nhiệm vụ');
+
       const rowsHtml = appData.members.map((m, idx) => `
         <tr>
           <td style="border:1px solid #000; padding:4px; text-align:center;">${idx + 1}</td>
           <td style="border:1px solid #000; padding:4px; font-weight:bold;">${m.name}</td>
-          <td style="border:1px solid #000; padding:4px;">${m.role_party || 'Đảng viên'}</td>
+          <td style="border:1px solid #000; padding:4px;">${m.role_party || 'Đảng viên'} (${m.status || 'Chính thức'})</td>
           <td style="border:1px solid #000; padding:4px; text-align:center;">${m.self_score || 95}</td>
           <td style="border:1px solid #000; padding:4px;">${m.self_ranking || 'Hoàn thành tốt nhiệm vụ'}</td>
         </tr>
@@ -4075,7 +4214,7 @@
                 <div>ĐẢNG BỘ NHCT VIỆT NAM</div>
                 <div>ĐẢNG BỘ CN BẢO LỘC</div>
                 <div style="text-decoration:underline;">CHI BỘ 2</div>
-                <div style="font-weight:normal; margin-top:4px;">Số: …../TTr-CB2</div>
+                <div style="font-weight:normal; margin-top:4px;">Số: 01/TTr-CB2</div>
               </td>
               <td style="width:52%; text-align:center; vertical-align:top; font-size:11.5pt; font-weight:bold;">
                 <div>ĐẢNG CỘNG SẢN VIỆT NAM</div>
@@ -4088,10 +4227,13 @@
             <div style="font-weight:bold;">Về việc đề nghị đánh giá, xếp loại chất lượng tập thể, cá nhân năm ${yyyy}</div>
           </div>
           <p style="text-align:center;"><strong>Kính gửi:</strong> Ban Thường vụ Đảng ủy VietinBank Chi nhánh Bảo Lộc</p>
-          <p style="text-indent:24px; text-align:justify;">Thực hiện Quy định số 366-QĐ/TW và Hướng dẫn của Đảng ủy cấp trên về kiểm điểm, đánh giá, xếp loại chất lượng hằng năm đối với tổ chức đảng, đảng viên; Chi bộ 2 đã tổ chức Hội nghị kiểm điểm năm ${yyyy} vào ngày ${dd}/${mm}/${yyyy}.</p>
-          <p style="text-indent:24px; text-align:justify;">Chi bộ 2 kính trình Đảng ủy Chi nhánh Bảo Lộc xem xét, quyết định công nhận kết quả đánh giá, xếp loại chất lượng tập thể và cá nhân năm ${yyyy} như sau:</p>
-          <p><strong>1. Đối với Tập thể Chi bộ 2:</strong> Đề xuất xếp loại mức <strong>${colRank}</strong> (Điểm tự chấm: ${colEval.score || 97}/100 điểm).</p>
-          <p><strong>2. Đối với Cá nhân Đảng viên (${appData.members.length} đồng chí):</strong></p>
+          <p style="text-indent:24px; text-align:justify;">Thực hiện Quy định số 366-QĐ/TW của Bộ Chính trị và Kế hoạch, Hướng dẫn của Ban Thường vụ Đảng ủy VietinBank Chi nhánh Bảo Lộc về kiểm điểm, đánh giá, xếp loại chất lượng hằng năm đối với tập thể và cá nhân năm ${yyyy};</p>
+          <p style="text-indent:24px; text-align:justify;">Ngày ${dd}/${mm}/${yyyy}, tại ${appData.meeting.location || 'Hội trường VietinBank Chi nhánh Bảo Lộc'}, Chi bộ 2 đã tổ chức Hội nghị kiểm điểm, đánh giá, xếp loại chất lượng cuối năm ${yyyy} với sự tham dự của ${presentCount}/${totalMem} đảng viên (Chính thức: ${officialCount} đồng chí, Dự bị: ${probCount} đồng chí; vắng: ${absentCount} đồng chí).</p>
+          <p style="text-indent:24px; text-align:justify;">Căn cứ kết quả tự kiểm điểm, chấm điểm và bỏ phiếu kín biểu quyết tại Hội nghị, Chi bộ 2 kính trình Ban Thường vụ Đảng ủy Chi nhánh Bảo Lộc xem xét, quyết định công nhận kết quả đánh giá, xếp loại chất lượng tập thể và cá nhân năm ${yyyy} như sau:</p>
+          <p><strong>1. Đối với Tập thể Chi bộ 2:</strong> Đề xuất xếp loại mức <strong>${colRank}</strong> (Điểm tự chấm theo Khung tiêu chí Mục 9 Khối DNNN: ${colEval.score || 97}/100 điểm).</p>
+          <p><strong>2. Đối với Cá nhân Đảng viên (${totalMem} đồng chí):</strong></p>
+          <p style="margin-left:18px;">- Hoàn thành xuất sắc nhiệm vụ: <strong>${cXS}</strong> đồng chí (đảm bảo tỷ lệ không quá 20% số đảng viên hoàn thành tốt nhiệm vụ).</p>
+          <p style="margin-left:18px;">- Hoàn thành tốt nhiệm vụ: <strong>${cTot}</strong> đồng chí; Hoàn thành nhiệm vụ: <strong>${cHT}</strong> đồng chí; Không hoàn thành nhiệm vụ: <strong>${cKHT}</strong> đồng chí.</p>
           <table style="width:100%; border-collapse:collapse; margin:8px 0; font-size:11pt;">
             <thead>
               <tr style="background-color:#f1f5f9; font-weight:bold;">
@@ -4104,12 +4246,12 @@
             </thead>
             <tbody>${rowsHtml}</tbody>
           </table>
-          <p style="text-indent:24px; text-align:justify;">Kính trình Ban Thường vụ Đảng ủy Chi nhánh Bảo Lộc xem xét, quyết định.</p>
+          <p style="text-indent:24px; text-align:justify;">Kính trình Ban Thường vụ Đảng ủy VietinBank Chi nhánh Bảo Lộc xem xét, quyết định.</p>
           <table style="width:100%; margin-top:14px;">
             <tr>
               <td style="width:45%; vertical-align:top; font-size:11pt;">
                 <div><strong>Nơi nhận:</strong></div>
-                <div>- Như trên;</div>
+                <div>- Đảng ủy CN Bảo Lộc (để b/c);</div>
                 <div>- Lưu Chi bộ 2.</div>
               </td>
               <td style="width:55%; text-align:center;">
@@ -4124,6 +4266,108 @@
       `;
       downloadHtmlAsWord(html, `To_Trinh_Xep_Loai_Chi_Bo_2_${yyyy}.doc`);
       showToast('Đã xuất Tờ trình đề nghị xếp loại!', 'success');
+    }
+
+    function exportVoteFormsDoc(kind = 'collective') {
+      const { dd, mm, yyyy } = parseMeetingDateParts(appData.meeting.date);
+      if (kind === 'collective') {
+        const html = `
+          <div style="font-family:'Times New Roman', serif; font-size:13pt; color:#000; line-height:1.4;">
+            <table style="width:100%; border-collapse:collapse; margin-bottom:10px;">
+              <tr>
+                <td style="width:48%; text-align:center; vertical-align:top; font-size:11.5pt; font-weight:bold;">
+                  <div>ĐẢNG BỘ NHCT VIỆT NAM</div>
+                  <div>ĐẢNG BỘ CN BẢO LỘC</div>
+                  <div style="text-decoration:underline;">CHI BỘ 2</div>
+                </td>
+                <td style="width:52%; text-align:center; vertical-align:top; font-size:11.5pt; font-weight:bold;">
+                  <div>ĐẢNG CỘNG SẢN VIỆT NAM</div>
+                  <div style="font-weight:normal; font-style:italic; margin-top:6px;">Bảo Lộc, ngày ${dd} tháng ${mm} năm ${yyyy}</div>
+                </td>
+              </tr>
+            </table>
+            <div style="text-align:center; margin:16px 0;">
+              <div style="font-size:14pt; font-weight:bold;">PHIẾU BIỂU QUYẾT</div>
+              <div style="font-weight:bold;">Đề xuất mức xếp loại chất lượng Tập thể Chi bộ 2 năm ${yyyy}</div>
+              <div style="font-style:italic; font-size:11pt; margin-top:4px;">(Đánh dấu X vào ô đồng chí lựa chọn)</div>
+            </div>
+            <table style="width:100%; border-collapse:collapse; margin-top:12px;">
+              <thead>
+                <tr style="background-color:#f1f5f9; font-weight:bold;">
+                  <th style="border:1px solid #000; padding:8px; width:45px;">STT</th>
+                  <th style="border:1px solid #000; padding:8px;">Tập thể được đánh giá</th>
+                  <th style="border:1px solid #000; padding:8px; width:75px;">Hoàn thành xuất sắc</th>
+                  <th style="border:1px solid #000; padding:8px; width:75px;">Hoàn thành tốt</th>
+                  <th style="border:1px solid #000; padding:8px; width:75px;">Hoàn thành</th>
+                  <th style="border:1px solid #000; padding:8px; width:75px;">Không hoàn thành</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="border:1px solid #000; padding:12px; text-align:center;">1</td>
+                  <td style="border:1px solid #000; padding:12px; font-weight:bold;">Tập thể Chi bộ 2 — Đảng bộ VietinBank CN Bảo Lộc</td>
+                  <td style="border:1px solid #000; padding:12px; text-align:center; font-size:15pt;">☐</td>
+                  <td style="border:1px solid #000; padding:12px; text-align:center; font-size:15pt;">☐</td>
+                  <td style="border:1px solid #000; padding:12px; text-align:center; font-size:15pt;">☐</td>
+                  <td style="border:1px solid #000; padding:12px; text-align:center; font-size:15pt;">☐</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        `;
+        downloadHtmlAsWord(html, `Phieu_Bieu_Quyet_Tap_The_Chi_Bo_2_${yyyy}.doc`);
+        showToast('Đã xuất Phiếu biểu quyết Tập thể Chi bộ 2!', 'success');
+      } else {
+        const rows = appData.members.map((m, idx) => `
+          <tr>
+            <td style="border:1px solid #000; padding:6px; text-align:center;">${idx + 1}</td>
+            <td style="border:1px solid #000; padding:6px; font-weight:bold;">${m.name}</td>
+            <td style="border:1px solid #000; padding:6px;">${m.role_party || 'Đảng viên'}</td>
+            <td style="border:1px solid #000; padding:6px; text-align:center; font-size:14pt;">☐</td>
+            <td style="border:1px solid #000; padding:6px; text-align:center; font-size:14pt;">☐</td>
+            <td style="border:1px solid #000; padding:6px; text-align:center; font-size:14pt;">☐</td>
+            <td style="border:1px solid #000; padding:6px; text-align:center; font-size:14pt;">☐</td>
+          </tr>
+        `).join('');
+        const html = `
+          <div style="font-family:'Times New Roman', serif; font-size:12.5pt; color:#000; line-height:1.35;">
+            <table style="width:100%; border-collapse:collapse; margin-bottom:10px;">
+              <tr>
+                <td style="width:48%; text-align:center; vertical-align:top; font-size:11.5pt; font-weight:bold;">
+                  <div>ĐẢNG BỘ NHCT VIỆT NAM</div>
+                  <div>ĐẢNG BỘ CN BẢO LỘC</div>
+                  <div style="text-decoration:underline;">CHI BỘ 2</div>
+                </td>
+                <td style="width:52%; text-align:center; vertical-align:top; font-size:11.5pt; font-weight:bold;">
+                  <div>ĐẢNG CỘNG SẢN VIỆT NAM</div>
+                  <div style="font-weight:normal; font-style:italic; margin-top:6px;">Bảo Lộc, ngày ${dd} tháng ${mm} năm ${yyyy}</div>
+                </td>
+              </tr>
+            </table>
+            <div style="text-align:center; margin:14px 0;">
+              <div style="font-size:14pt; font-weight:bold;">PHIẾU BIỂU QUYẾT</div>
+              <div style="font-weight:bold;">Đề xuất mức xếp loại chất lượng Đảng viên Chi bộ 2 năm ${yyyy}</div>
+              <div style="font-style:italic; font-size:11pt; margin-top:4px;">(Tỷ lệ Hoàn thành xuất sắc nhiệm vụ tối đa 20% số đảng viên hoàn thành tốt; đánh dấu X vào ô lựa chọn)</div>
+            </div>
+            <table style="width:100%; border-collapse:collapse; font-size:11pt;">
+              <thead>
+                <tr style="background-color:#f1f5f9; font-weight:bold;">
+                  <th style="border:1px solid #000; padding:6px; width:38px;">STT</th>
+                  <th style="border:1px solid #000; padding:6px;">Họ và tên Đảng viên</th>
+                  <th style="border:1px solid #000; padding:6px; width:110px;">Chức vụ</th>
+                  <th style="border:1px solid #000; padding:6px; width:65px;">HTXS</th>
+                  <th style="border:1px solid #000; padding:6px; width:65px;">HTT</th>
+                  <th style="border:1px solid #000; padding:6px; width:65px;">HT</th>
+                  <th style="border:1px solid #000; padding:6px; width:65px;">KHT</th>
+                </tr>
+              </thead>
+              <tbody>${rows}</tbody>
+            </table>
+          </div>
+        `;
+        downloadHtmlAsWord(html, `Phieu_Bieu_Quyet_Dang_Vien_Chi_Bo_2_${yyyy}.doc`);
+        showToast('Đã xuất Phiếu biểu quyết 12 Đảng viên!', 'success');
+      }
     }
 
     function downloadEvaluationWordClientSide(target) {
@@ -4620,7 +4864,7 @@
             ${is2A ? `
               <p style="margin: 3px 0;"><strong>Chức vụ Đảng:</strong> ${mem.role_party || 'Cấp ủy viên'}</p>
               <p style="margin: 3px 0;"><strong>Chức vụ chính quyền:</strong> ${mem.title_pro || 'Lãnh đạo quản lý'}</p>
-              <p style="margin: 3px 0;"><strong>Chức vụ đoàn thể:</strong> ${mem.union_role || 'Không'}</p>
+              <p style="margin: 3px 0;"><strong>Chức vụ đoàn thể:</strong> ${mem.union_role || 'Đoàn viên Công đoàn cơ sở VietinBank CN Bảo Lộc'}</p>
             ` : ''}
             <p style="margin: 3px 0;"><strong>Đơn vị công tác:</strong> ${mem.dept || 'VietinBank Chi nhánh Bảo Lộc'} &nbsp;&nbsp;&nbsp;&nbsp; <strong>Chi bộ:</strong> Chi bộ 2</p>
           </div>
@@ -4671,8 +4915,8 @@
 
           <div style="font-weight: bold; text-transform: uppercase; margin-top: 14px; border-top: 1px solid #000; padding-top: 8px;">C. KẾT QUẢ ĐÁNH GIÁ, XẾP LOẠI</div>
           <div style="font-weight: bold; margin-top: 6px;">I. Đánh giá, xếp loại chất lượng cán bộ, công chức, viên chức</div>
-          <p style="margin: 3px 0;">- Nhận xét, đánh giá của người quản lý, sử dụng cán bộ, công chức, viên chức: ..........................................................................................................................................</p>
-          <p style="margin: 3px 0;">- Mức xếp loại chất lượng công chức, viên chức: ....................................................</p>
+          <p style="margin: 3px 0; text-align: justify;">- Nhận xét, đánh giá của người quản lý, sử dụng cán bộ, công chức, viên chức: Đồng chí ${mem.name} chấp hành tốt nội quy lao động, văn hóa doanh nghiệp VietinBank, hoàn thành tốt các chỉ tiêu KPI và nhiệm vụ chuyên môn được giao tại ${mem.dept || 'VietinBank Chi nhánh Bảo Lộc'}.</p>
+          <p style="margin: 3px 0;">- Mức xếp loại chất lượng công chức, viên chức (người lao động): <strong>${ranking}</strong></p>
           <table style="width: 100%; margin-top: 8px;">
             <tr>
               <td style="width: 45%;"></td>
@@ -4685,8 +4929,8 @@
           </table>
 
           <div style="font-weight: bold; margin-top: 8px;">II. Đánh giá, xếp loại chất lượng đảng viên</div>
-          <p style="margin: 3px 0;">- Nhận xét, đánh giá của chi ủy: <span style="font-style:italic;">${mem.host_conclusion || '....................................................................................'}</span></p>
-          <p style="margin: 3px 0;">- Chi bộ đề xuất xếp loại mức chất lượng: ....................................................................</p>
+          <p style="margin: 3px 0;">- Nhận xét, đánh giá của chi ủy: <span style="font-style:italic;">${mem.host_conclusion || 'Chi bộ thống nhất thông qua bản tự kiểm điểm của đồng chí; đồng chí có lập trường tư tưởng vững vàng, chấp hành tốt kỷ cương và hoàn thành nhiệm vụ được giao.'}</span></p>
+          <p style="margin: 3px 0;">- Chi bộ đề xuất xếp loại mức chất lượng: <strong>${ranking}</strong></p>
           <table style="width: 100%; margin-top: 8px;">
             <tr>
               <td style="width: 45%;"></td>
@@ -5107,7 +5351,7 @@
       // 1. BANNER PHÂN QUYỀN RÕ RÀNG
       const permissionBanner = document.createElement('div');
       permissionBanner.className = 'col-span-1 md:col-span-2 p-4 bg-gradient-to-r from-emerald-50 via-teal-50 to-blue-50 border border-emerald-200 rounded-2xl flex flex-wrap items-center justify-between gap-3 shadow-xs mb-1';
-      
+
       if (isLeader) {
         permissionBanner.innerHTML = `
           <div class="flex items-start gap-3">
@@ -5336,7 +5580,7 @@
       if (otherMembers.length > 0) {
         const otherSection = document.createElement('div');
         otherSection.className = 'col-span-1 md:col-span-2 mt-6 pt-5 border-t border-slate-200 space-y-4';
-        
+
         if (isLeader) {
           otherSection.innerHTML = `
             <div class="flex flex-wrap items-center justify-between gap-2 bg-amber-50/80 border border-amber-200 p-3.5 rounded-xl">
@@ -5356,17 +5600,17 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               ${otherMembers.map(m => {
-                const revList = appData.reviews[m.id] || [];
-                let existingRev = revList.find(r => r.reviewer_id === currentReviewer.id);
-                let goodVal = existingRev ? (existingRev.good || '') : `Đồng chí ${m.name} luôn giữ vững phẩm chất chính trị, chấp hành tốt kỷ luật nghiệp vụ và hoàn thành tốt chức trách nhiệm vụ.`;
-                let limitVal = existingRev ? (existingRev.limit || '') : 'Cần chủ động hơn trong công tác nghiên cứu học tập nghị quyết và bám sát tiến độ chuyên môn.';
-                let solVal = existingRev ? (existingRev.solution || '') : 'Phát huy kết quả đạt được, tăng cường kỷ cương và chủ động phối hợp với các đồng chí trong Chi bộ.';
+            const revList = appData.reviews[m.id] || [];
+            let existingRev = revList.find(r => r.reviewer_id === currentReviewer.id);
+            let goodVal = existingRev ? (existingRev.good || '') : `Đồng chí ${m.name} luôn giữ vững phẩm chất chính trị, chấp hành tốt kỷ luật nghiệp vụ và hoàn thành tốt chức trách nhiệm vụ.`;
+            let limitVal = existingRev ? (existingRev.limit || '') : 'Cần chủ động hơn trong công tác nghiên cứu học tập nghị quyết và bám sát tiến độ chuyên môn.';
+            let solVal = existingRev ? (existingRev.solution || '') : 'Phát huy kết quả đạt được, tăng cường kỷ cương và chủ động phối hợp với các đồng chí trong Chi bộ.';
 
-                // Tìm xem ai khác đã nhận xét đồng chí này
-                const otherRevs = revList.filter(r => r.reviewer_id !== currentReviewer.id);
-                const otherRevNames = otherRevs.map(r => r.reviewer_name).join(', ') || 'Chưa có ý kiến nhận xét chéo';
+            // Tìm xem ai khác đã nhận xét đồng chí này
+            const otherRevs = revList.filter(r => r.reviewer_id !== currentReviewer.id);
+            const otherRevNames = otherRevs.map(r => r.reviewer_name).join(', ') || 'Chưa có ý kiến nhận xét chéo';
 
-                return `
+            return `
                   <div class="border-2 border-amber-200/90 hover:border-amber-400 rounded-2xl p-4 bg-gradient-to-br from-white to-amber-50/20 shadow-sm space-y-3.5 transition">
                     <div class="flex flex-wrap items-center justify-between border-b pb-2.5 gap-2">
                       <div>
@@ -5423,7 +5667,7 @@
                     </div>
                   </div>
                 `;
-              }).join('')}
+          }).join('')}
             </div>
           `;
         } else {
@@ -5521,15 +5765,15 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ target_id: tid, review: reviewObj })
         })
-        .then(r => r.json())
-        .then(() => {
-          showToast('Đã lưu & tự động đồng bộ ý kiến góp ý lên Bí thư!', 'success');
-        })
-        .catch(() => {
-          cloudPromise.then(ok => {
-            showToast(ok ? 'Đã lưu & tự động đẩy nhận xét lên Bí thư!' : 'Đã lưu ý kiến góp ý vào trình duyệt!', 'success');
+          .then(r => r.json())
+          .then(() => {
+            showToast('Đã lưu & tự động đồng bộ ý kiến góp ý lên Bí thư!', 'success');
+          })
+          .catch(() => {
+            cloudPromise.then(ok => {
+              showToast(ok ? 'Đã lưu & tự động đẩy nhận xét lên Bí thư!' : 'Đã lưu ý kiến góp ý vào trình duyệt!', 'success');
+            });
           });
-        });
       } else {
         cloudPromise.then(ok => {
           if (ok) {
@@ -6382,7 +6626,7 @@
 
     function openBallotPrintModal(mode = 'blank', voterId = null) {
       currentBallotPrintMode = mode;
-      
+
       const officialMembers = appData.members.filter(m => m.status === 'Chính thức');
       const select = document.getElementById('ballot-voter-select');
       if (select) {
@@ -6599,8 +6843,8 @@
             </thead>
             <tbody>
               ${officialMembers.map((m, idx) => {
-                const votedRank = memVotes[String(m.id)];
-                return `
+        const votedRank = memVotes[String(m.id)];
+        return `
                   <tr>
                     <td class="border border-black p-1.5 text-center">${idx + 1}</td>
                     <td class="border border-black p-1.5 text-left font-bold">${m.name}</td>
@@ -6611,7 +6855,7 @@
                     <td class="border border-black p-1.5">${renderCheckMark(votedRank === 'KHTNV')}</td>
                   </tr>
                 `;
-              }).join('')}
+      }).join('')}
             </tbody>
           </table>
         </div>
@@ -7142,14 +7386,14 @@
         body.innerHTML = html;
       }
     }
-  
+
     // ==========================================
     // TÍNH NĂNG DÀNH CHO BÍ THƯ: XEM TOÀN BỘ NHẬN XÉT & BÁO CÁO ĐIỀU HÀNH
     // ==========================================
     function openAllReviewsModal(focusMemberId = 'all') {
       const modal = document.getElementById('all-reviews-modal');
       if (!modal) return;
-      
+
       const select = document.getElementById('all-reviews-filter-select');
       if (select) {
         select.innerHTML = '<option value="all">🌟 Xem tất cả 12 đồng chí</option>';
@@ -7191,7 +7435,7 @@
 
         const card = document.createElement('div');
         card.className = 'bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-3.5';
-        
+
         let revsHtml = '';
         if (revList.length === 0) {
           revsHtml = '<p class="text-xs text-slate-400 italic p-3 bg-slate-50 rounded-xl">Chưa có ý kiến góp ý nào được ghi nhận cho đồng chí này.</p>';
@@ -7599,8 +7843,8 @@
         method: 'POST',
         body: JSON.stringify(eventObj)
       })
-      .then(r => r.ok)
-      .catch(() => false);
+        .then(r => r.ok)
+        .catch(() => false);
     }
 
     function applyCloudEvent(ev) {
@@ -7694,7 +7938,7 @@
                 const ev = JSON.parse(wrapper.message);
                 if (applyCloudEvent(ev)) anyChanged = true;
               }
-            } catch (e) {}
+            } catch (e) { }
           });
           if (anyChanged) {
             saveLocalBackup();
@@ -7843,7 +8087,7 @@
       }
 
       if (navigator.share) {
-        navigator.share({ title: `Nhận xét Chi bộ 2 - Đ/c ${cur.name}`, text: shareText }).catch(() => {});
+        navigator.share({ title: `Nhận xét Chi bộ 2 - Đ/c ${cur.name}`, text: shareText }).catch(() => { });
       }
     }
 
