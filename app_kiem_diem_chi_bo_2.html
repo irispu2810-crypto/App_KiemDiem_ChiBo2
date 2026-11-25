@@ -2138,7 +2138,7 @@
     // ==========================================
     // HỆ THỐNG TỰ ĐỘNG CẬP NHẬT PHIÊN BẢN MỚI (AUTO-UPDATE)
     // ==========================================
-    const APP_VERSION = '2026.11.25.09';
+    const APP_VERSION = '2026.11.25.10';
 
     function checkForAppUpdate(manual = false) {
       if (!window.location.protocol.startsWith('http')) {
@@ -5380,23 +5380,31 @@
 
     function resetBallotBox() {
       const cur = getCurrentUser();
-      const isBiThu = (cur.username === 'nguyenthithao' || cur.id === 6 || cur.role_party === 'Bí thư Chi bộ');
+      const isLeader = (
+        cur.username === 'nguyenthithao' ||
+        cur.username === 'ngothikimngan' ||
+        cur.id === 6 ||
+        cur.id === 8 ||
+        cur.role_party === 'Bí thư Chi bộ' ||
+        cur.role_party === 'Phó Bí thư Chi bộ'
+      );
 
-      if (!isBiThu) {
-        alert('Chỉ đồng chí Bí thư Chi bộ (nguyenthithao) mới có quyền xóa toàn bộ phiếu bầu!');
+      if (!isLeader) {
+        alert('Chỉ đồng chí Bí thư hoặc Phó Bí thư Chi bộ mới có quyền xóa toàn bộ phiếu bầu!');
         return;
       }
 
-      const confirmMsg = "⚠️ ĐỒNG CHÍ BÍ THƯ XÁC NHẬN:\n\nĐồng chí có chắc chắn muốn XÓA TOÀN BỘ PHIẾU BẦU để tất cả đảng viên bầu chọn lại?\n\n- Toàn bộ kết quả phiếu bầu của Tập thể và 12 Đảng viên sẽ được thiết lập về 0.\n- Tất cả các đồng chí Đảng viên sẽ được mở khóa để bỏ phiếu lại từ đầu.\n- Hòm phiếu kín sẽ được chuyển về trạng thái 'Đang mở'.\n\nNhấn OK để thực hiện xóa phiếu!";
+      const confirmMsg = `⚠️ ĐỒNG CHÍ ${cur.role_party.toUpperCase()} XÁC NHẬN:\n\nĐồng chí có chắc chắn muốn XÓA TOÀN BỘ PHIẾU BẦU để tất cả đảng viên bầu chọn lại?\n\n- Toàn bộ kết quả phiếu bầu của Tập thể và 12 Đảng viên sẽ được thiết lập về 0.\n- Tất cả các đồng chí Đảng viên sẽ được mở khóa để bỏ phiếu lại từ đầu.\n- Hòm phiếu kín sẽ được chuyển về trạng thái 'Đang mở'.\n\nNhấn OK để thực hiện xóa phiếu!`;
       if (!confirm(confirmMsg)) return;
 
       // Thực hiện xóa và cập nhật giao diện ngay lập tức
       doLocalResetBallots();
 
       const payload = {
-        pin: '686789',
+        pin: cur.pin || '686789',
         user_id: cur.id,
-        username: cur.username || 'nguyenthithao'
+        username: cur.username || '',
+        role_party: cur.role_party || ''
       };
 
       // Gửi lên máy chủ backend Python nếu có

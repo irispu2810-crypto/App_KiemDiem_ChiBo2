@@ -606,22 +606,30 @@ class AppRequestHandler(SimpleHTTPRequestHandler):
         elif parsed.path == '/api/reset_ballot':
             try:
                 payload = json.loads(body.decode('utf-8'))
+                # Xác thực quyền Bí thư & Phó Bí thư Chi bộ
                 pin = str(payload.get('pin', '')).strip()
                 username = str(payload.get('username', '')).strip()
                 user_id = int(payload.get('user_id', 0))
+                role_party = str(payload.get('role_party', '')).strip()
 
-                # Xác thực quyền Bí thư: nguyenthithao, user_id=6 hoặc mã PIN 686789/123456
-                is_bi_thu = (username == 'nguyenthithao' or user_id == 6 or pin in ['686789', '123456'])
-                if not is_bi_thu:
+                with open(DATA_FILE, 'r', encoding='utf-8') as f:
+                    db = json.load(f)
+
+                member = next((m for m in db.get('members', []) if m.get('id') == user_id), None)
+                is_leader = (
+                    username in ['nguyenthithao', 'ngothikimngan']
+                    or user_id in [6, 8]
+                    or pin in ['686789', '688901', '123456']
+                    or role_party in ['Bí thư Chi bộ', 'Phó Bí thư Chi bộ']
+                    or (member and member.get('role_party') in ['Bí thư Chi bộ', 'Phó Bí thư Chi bộ'])
+                )
+                if not is_leader:
                     self.send_response(401)
                     self.send_header('Content-Type', 'application/json; charset=utf-8')
                     self.send_header('Access-Control-Allow-Origin', '*')
                     self.end_headers()
-                    self.wfile.write(json.dumps({'status': 'error', 'message': 'Chỉ đồng chí Bí thư Chi bộ (nguyenthithao) mới có quyền xóa toàn bộ phiếu bầu!'}).encode('utf-8'))
+                    self.wfile.write(json.dumps({'status': 'error', 'message': 'Chỉ đồng chí Bí thư hoặc Phó Bí thư Chi bộ mới có quyền xóa toàn bộ phiếu bầu!'}).encode('utf-8'))
                     return
-
-                with open(DATA_FILE, 'r', encoding='utf-8') as f:
-                    db = json.load(f)
 
                 db['ballots'] = {
                     'is_closed': False,
