@@ -2138,7 +2138,7 @@
     // ==========================================
     // HỆ THỐNG TỰ ĐỘNG CẬP NHẬT PHIÊN BẢN MỚI (AUTO-UPDATE)
     // ==========================================
-    const APP_VERSION = '2026.11.25.03';
+    const APP_VERSION = '2026.11.25.04';
 
     function checkForAppUpdate(manual = false) {
       if (!window.location.protocol.startsWith('http')) {
@@ -3230,6 +3230,104 @@
       }
     }
 
+    function getCriteriaSchema(targetVal) {
+      if (targetVal === 'collective') {
+        return [
+          {
+            group: 'I. CÁC TIÊU CHÍ CHUNG (30 ĐIỂM)', items: [
+              { key: 'c_1_1', stt: '1', name: 'Công tác xây dựng, chỉnh đốn Đảng; củng cố tổ chức đảng và nâng cao chất lượng đảng viên', max: 5 },
+              { key: 'c_1_2', stt: '2', name: 'Năng lực lãnh đạo của cấp ủy; hiệu quả lãnh đạo chính quyền, đoàn thể và đoàn kết nội bộ', max: 5 },
+              { key: 'c_1_3', stt: '3', name: 'Thanh tra, kiểm tra, giám sát, kỷ luật đảng; phòng chống tham nhũng, lãng phí, tiêu cực', max: 5 },
+              { key: 'c_1_4', stt: '4', name: 'Nguyên tắc tập trung dân chủ, tự phê bình và phê bình; chấp hành quy chế làm việc', max: 5 },
+              { key: 'c_1_5', stt: '5', name: 'Lãnh đạo thực hiện nhiệm vụ chính trị, tinh gọn bộ máy, cải cách hành chính, chuyển đổi số', max: 5 },
+              { key: 'c_1_6', stt: '6', name: 'Tinh thần tự soi tự sửa; kết quả khắc phục hạn chế các kỳ trước', max: 5 }
+            ]
+          },
+          {
+            group: 'II. KẾT QUẢ THỰC HIỆN NHIỆM VỤ (70 ĐIỂM - KHỐI DOANH NGHIỆP NHÀ NƯỚC)', items: [
+              { key: 'c_2_1', stt: '1', name: 'Việc cụ thể hóa nghị quyết, chương trình, kế hoạch công tác của cấp ủy cấp trên', max: 10 },
+              { key: 'c_2_2', stt: '2', name: 'Kết quả lãnh đạo, chỉ đạo trên các lĩnh vực được phân công phụ trách', max: 10 },
+              { key: 'c_2_3', stt: '3', name: 'Kết quả thực hiện chỉ tiêu kế hoạch kinh doanh VietinBank giao năm 2026 (Huy động, Tín dụng, Thu phí, Nợ xấu)', max: 40 },
+              { key: 'c_2_4', stt: '4', name: 'Đánh giá, xếp loại các tổ chức trực thuộc và cá nhân liên quan trực tiếp', max: 10 }
+            ]
+          }
+        ];
+      }
+      const memId = parseInt(targetVal);
+      const m = appData.members.find(x => x.id === memId);
+      const isSample2A = m ? isMemberSample2A(m) : false;
+      if (isSample2A) {
+        return [
+          {
+            group: 'I. CÁC TIÊU CHÍ CHUNG (30 ĐIỂM)', items: [
+              { key: 'l_1_1', stt: '1', name: 'Chính trị, tư tưởng: Trung thành với Đảng, bản lĩnh chính trị vững vàng, giữ nghiêm kỷ luật phát ngôn', max: 5 },
+              { key: 'l_1_2', stt: '2', name: 'Phẩm chất đạo đức, lối sống, ý thức tổ chức kỷ luật: Không tham nhũng tiêu cực, gương mẫu', max: 5 },
+              { key: 'l_1_3', stt: '3', name: 'Năng lực lãnh đạo, quản lý; đổi mới sáng tạo, dám nghĩ dám làm vì lợi ích chung', max: 10 },
+              { key: 'l_1_4', stt: '4', name: 'Uy tín, khả năng quy tụ đoàn kết nội bộ và phối hợp công tác', max: 5 },
+              { key: 'l_1_5', stt: '5', name: 'Tinh thần tự phê bình và phê bình, tự soi tự sửa, khắc phục khuyết điểm', max: 5 }
+            ]
+          },
+          {
+            group: 'II. KẾT QUẢ THỰC HIỆN NHIỆM VỤ (70 ĐIỂM)', items: [
+              { key: 'l_2_1', stt: '1', name: 'Lãnh đạo, điều hành chi bộ và đơn vị hoàn thành các chỉ tiêu nhiệm vụ chính trị, kinh doanh', max: 35 },
+              { key: 'l_2_2', stt: '2', name: 'Tiến độ và chất lượng cụ thể hóa các văn bản chỉ đạo của Đảng ủy cấp trên', max: 15 },
+              { key: 'l_2_3', stt: '3', name: 'Kết quả đánh giá, xếp loại đảng viên và cán bộ thuộc quyền quản lý trực tiếp', max: 20 }
+            ]
+          }
+        ];
+      }
+      return [
+        {
+          group: 'I. CÁC TIÊU CHÍ CHUNG (30 ĐIỂM)', items: [
+            { key: 'm_1_1', stt: '1', name: 'Chính trị, phẩm chất đạo đức và ý thức tổ chức kỷ luật (Phục vụ khách hàng, không sai sót)', max: 10 },
+            { key: 'm_1_2', stt: '2', name: 'Năng lực chuyên môn nghiệp vụ, thái độ công tác, đổi mới sáng tạo, văn hóa VietinBank', max: 15 },
+            { key: 'm_1_3', stt: '3', name: 'Tinh thần tự phê bình và phê bình, tự soi tự sửa', max: 5 }
+          ]
+        },
+        {
+          group: 'II. KẾT QUẢ THỰC HIỆN NHIỆM VỤ CHUYÊN MÔN (70 ĐIỂM)', items: [
+            { key: 'm_2_1', stt: '1', name: 'Mức độ hoàn thành định mức KPI công việc theo bản mô tả vị trí việc làm', max: 40 },
+            { key: 'm_2_2', stt: '2', name: 'Tính chính xác, kịp thời, không để phát sinh rủi ro tác nghiệp hoặc ảnh hưởng uy tín chi nhánh', max: 20 },
+            { key: 'm_2_3', stt: '3', name: 'Tham gia học tập nghị quyết, các phong trào thi đua và nhiệm vụ đột xuất', max: 10 }
+          ]
+        }
+      ];
+    }
+
+    function resolveCriteriaWithScores(targetVal) {
+      const groups = getCriteriaSchema(targetVal);
+      let savedScores = {};
+      let targetTotal = 95;
+      if (targetVal === 'collective') {
+        savedScores = appData.collective_evaluation.criteria_scores || {};
+        targetTotal = parseFloat(appData.collective_evaluation.score ?? 97);
+      } else {
+        const m = appData.members.find(x => x.id === parseInt(targetVal));
+        if (m) {
+          savedScores = m.criteria_scores || {};
+          targetTotal = parseFloat(m.self_score ?? 95);
+        }
+      }
+      const allItems = groups.flatMap(g => g.items);
+      if (savedScores && allItems.some(it => savedScores[it.key] !== undefined)) {
+        allItems.forEach(it => {
+          let v = parseFloat(savedScores[it.key]);
+          if (isNaN(v)) v = it.max;
+          v = Math.max(0, Math.min(v, it.max));
+          it.score = Math.round(v * 10) / 10;
+        });
+      } else {
+        allItems.forEach(it => { it.score = it.max; });
+        let diff = Math.round((100 - targetTotal) * 10) / 10;
+        for (let i = allItems.length - 1; i >= 0 && diff > 0; i--) {
+          const deduct = Math.min(allItems[i].score, diff);
+          allItems[i].score = Math.round((allItems[i].score - deduct) * 10) / 10;
+          diff = Math.round((diff - deduct) * 10) / 10;
+        }
+      }
+      return groups;
+    }
+
     function loadEvaluationForm(targetVal) {
       const container = document.getElementById('criteria-container');
       container.innerHTML = '';
@@ -3239,105 +3337,41 @@
         document.getElementById('eval-form-desc').textContent = 'Khung tiêu chí đánh giá chất lượng tổ chức Đảng Khối Doanh nghiệp nhà nước';
 
         const colEval = appData.collective_evaluation;
-        document.getElementById('eval-total-score-display').textContent = (colEval.score || 97) + ' / 100';
-        document.getElementById('eval-ranking-badge').textContent = colEval.ranking || 'Hoàn thành xuất sắc nhiệm vụ';
+        const criteriaList = resolveCriteriaWithScores('collective');
+        renderCriteriaGroups(criteriaList);
+        recalculateSelfScore(false);
+
         document.getElementById('eval-good').value = colEval.good || '';
         document.getElementById('eval-limit').value = colEval.limit || '';
         document.getElementById('eval-sol').value = colEval.sol || '';
-        document.getElementById('eval-self-ranking-select').value = colEval.ranking || 'Hoàn thành xuất sắc nhiệm vụ';
-
-        // Render tiêu chí tập thể (6 tiêu chí chung x 5đ = 30đ; 4 nhóm kết quả = 70đ)
-        const criteriaList = [
-          {
-            group: 'I. CÁC TIÊU CHÍ CHUNG (30 ĐIỂM)', items: [
-              { stt: '1', name: 'Công tác xây dựng, chỉnh đốn Đảng; củng cố tổ chức đảng và nâng cao chất lượng đảng viên', max: 5 },
-              { stt: '2', name: 'Năng lực lãnh đạo của cấp ủy; hiệu quả lãnh đạo chính quyền, đoàn thể và đoàn kết nội bộ', max: 5 },
-              { stt: '3', name: 'Thanh tra, kiểm tra, giám sát, kỷ luật đảng; phòng chống tham nhũng, lãng phí, tiêu cực', max: 5 },
-              { stt: '4', name: 'Nguyên tắc tập trung dân chủ, tự phê bình và phê bình; chấp hành quy chế làm việc', max: 5 },
-              { stt: '5', name: 'Lãnh đạo thực hiện nhiệm vụ chính trị, tinh gọn bộ máy, cải cách hành chính, chuyển đổi số', max: 5 },
-              { stt: '6', name: 'Tinh thần tự soi tự sửa; kết quả khắc phục hạn chế các kỳ trước', max: 5 }
-            ]
-          },
-          {
-            group: 'II. KẾT QUẢ THỰC HIỆN NHIỆM VỤ (70 ĐIỂM - KHỐI DOANH NGHIỆP NHÀ NƯỚC)', items: [
-              { stt: '1', name: 'Việc cụ thể hóa nghị quyết, chương trình, kế hoạch công tác của cấp ủy cấp trên', max: 10 },
-              { stt: '2', name: 'Kết quả lãnh đạo, chỉ đạo trên các lĩnh vực được phân công phụ trách', max: 10 },
-              { stt: '3', name: 'Kết quả thực hiện chỉ tiêu kế hoạch kinh doanh VietinBank giao năm 2026 (Huy động, Tín dụng, Thu phí, Nợ xấu)', max: 40 },
-              { stt: '4', name: 'Đánh giá, xếp loại các tổ chức trực thuộc và cá nhân liên quan trực tiếp', max: 10 }
-            ]
-          }
-        ];
-
-        renderCriteriaGroups(criteriaList);
+        if (colEval.ranking) {
+          document.getElementById('eval-ranking-badge').textContent = colEval.ranking;
+          document.getElementById('eval-self-ranking-select').value = colEval.ranking;
+        }
       } else {
         const memId = parseInt(targetVal);
         const m = appData.members.find(x => x.id === memId);
         if (!m) return;
 
-        const titleProLower = (m.title_pro || '').toLowerCase();
-        const isSample2A = (
-          m.role_party === 'Bí thư Chi bộ' ||
-          m.role_party === 'Phó Bí thư Chi bộ' ||
-          m.role_party === 'Chi ủy viên' ||
-          titleProLower.includes('giám đốc') ||
-          titleProLower.includes('trưởng phòng') ||
-          titleProLower.includes('phó phòng') ||
-          titleProLower.includes('lãnh đạo')
-        );
-        let roleLabel = isSample2A
+        const isSample2A = isMemberSample2A(m);
+        const roleLabel = isSample2A
           ? 'Mẫu 02A-HD KĐ.ĐG (Cá nhân giữ chức vụ lãnh đạo, quản lý)'
           : 'Mẫu 02B-HD KĐ.ĐG (Đảng viên không giữ chức vụ lãnh đạo, quản lý)';
-        let criteriaList = [];
 
-        if (isSample2A) {
-          criteriaList = [
-            {
-              group: 'I. CÁC TIÊU CHÍ CHUNG (30 ĐIỂM)', items: [
-                { stt: '1', name: 'Chính trị, tư tưởng: Trung thành với Đảng, bản lĩnh chính trị vững vàng, giữ nghiêm kỷ luật phát ngôn', max: 5 },
-                { stt: '2', name: 'Phẩm chất đạo đức, lối sống, ý thức tổ chức kỷ luật: Không tham nhũng tiêu cực, gương mẫu', max: 5 },
-                { stt: '3', name: 'Năng lực lãnh đạo, quản lý; đổi mới sáng tạo, dám nghĩ dám làm vì lợi ích chung', max: 10 },
-                { stt: '4', name: 'Uy tín, khả năng quy tụ đoàn kết nội bộ và phối hợp công tác', max: 5 },
-                { stt: '5', name: 'Tinh thần tự phê bình và phê bình, tự soi tự sửa, khắc phục khuyết điểm', max: 5 }
-              ]
-            },
-            {
-              group: 'II. KẾT QUẢ THỰC HIỆN NHIỆM VỤ (70 ĐIỂM)', items: [
-                { stt: '1', name: 'Lãnh đạo, điều hành chi bộ và đơn vị hoàn thành các chỉ tiêu nhiệm vụ chính trị, kinh doanh', max: 35 },
-                { stt: '2', name: 'Tiến độ và chất lượng cụ thể hóa các văn bản chỉ đạo của Đảng ủy cấp trên', max: 15 },
-                { stt: '3', name: 'Kết quả đánh giá, xếp loại đảng viên và cán bộ thuộc quyền quản lý trực tiếp', max: 20 }
-              ]
-            }
-          ];
-        } else {
-          criteriaList = [
-            {
-              group: 'I. CÁC TIÊU CHÍ CHUNG (30 ĐIỂM)', items: [
-                { stt: '1', name: 'Chính trị, phẩm chất đạo đức và ý thức tổ chức kỷ luật (Phục vụ khách hàng, không sai sót)', max: 10 },
-                { stt: '2', name: 'Năng lực chuyên môn nghiệp vụ, thái độ công tác, đổi mới sáng tạo, văn hóa VietinBank', max: 15 },
-                { stt: '3', name: 'Tinh thần tự phê bình và phê bình, tự soi tự sửa', max: 5 }
-              ]
-            },
-            {
-              group: 'II. KẾT QUẢ THỰC HIỆN NHIỆM VỤ CHUYÊN MÔN (70 ĐIỂM)', items: [
-                { stt: '1', name: 'Mức độ hoàn thành định mức KPI công việc theo bản mô tả vị trí việc làm', max: 40 },
-                { stt: '2', name: 'Tính chính xác, kịp thời, không để phát sinh rủi ro tác nghiệp hoặc ảnh hưởng uy tín chi nhánh', max: 20 },
-                { stt: '3', name: 'Tham gia học tập nghị quyết, các phong trào thi đua và nhiệm vụ đột xuất', max: 10 }
-              ]
-            }
-          ];
-        }
+        const criteriaList = resolveCriteriaWithScores(String(memId));
+        renderCriteriaGroups(criteriaList);
+        recalculateSelfScore(false);
 
         document.getElementById('eval-form-title').textContent = `Bảng Tự Chấm Điểm 100đ - Đ/c ${m.name}`;
         document.getElementById('eval-form-desc').textContent = `${m.role_party} - ${m.title_pro} (${roleLabel})`;
 
-        document.getElementById('eval-total-score-display').textContent = (m.self_score || 95) + ' / 100';
-        document.getElementById('eval-ranking-badge').textContent = m.self_ranking || 'Hoàn thành tốt nhiệm vụ';
         document.getElementById('eval-good').value = m.self_good || '';
         document.getElementById('eval-limit').value = m.self_limit || '';
         document.getElementById('eval-sol').value = m.self_sol || '';
-        document.getElementById('eval-self-ranking-select').value = m.self_ranking || 'Hoàn thành tốt nhiệm vụ';
-
-        renderCriteriaGroups(criteriaList);
+        if (m.self_ranking) {
+          document.getElementById('eval-ranking-badge').textContent = m.self_ranking;
+          document.getElementById('eval-self-ranking-select').value = m.self_ranking;
+        }
       }
     }
 
@@ -3354,6 +3388,7 @@
         listDiv.className = 'divide-y divide-slate-100 p-2 text-xs';
 
         g.items.forEach(it => {
+          const val = (it.score !== undefined) ? it.score : it.max;
           const row = document.createElement('div');
           row.className = 'py-2 px-2 flex items-center justify-between gap-4 hover:bg-slate-50 rounded';
           row.innerHTML = `
@@ -3363,7 +3398,7 @@
             </div>
             <div class="flex items-center gap-2 flex-shrink-0">
               <span class="text-slate-400 text-[11px]">(Tối đa ${it.max}đ)</span>
-              <input type="number" step="0.5" max="${it.max}" min="0" value="${it.max}" onchange="recalculateSelfScore()" class="criteria-score-input w-16 text-center font-bold text-xs p-1.5 border border-slate-300 rounded focus:ring-1 focus:ring-vtb-navy">
+              <input type="number" step="0.5" max="${it.max}" min="0" value="${val}" data-key="${it.key}" onchange="recalculateSelfScore(true)" class="criteria-score-input w-16 text-center font-bold text-xs p-1.5 border border-slate-300 rounded focus:ring-1 focus:ring-vtb-navy">
             </div>
           `;
           listDiv.appendChild(row);
@@ -3374,34 +3409,53 @@
       });
     }
 
-    function recalculateSelfScore() {
+    function collectCriteriaScoresFromDOM() {
+      const scoresMap = {};
       let total = 0;
       document.querySelectorAll('.criteria-score-input').forEach(inp => {
-        total += parseFloat(inp.value) || 0;
+        const max = parseFloat(inp.getAttribute('max')) || 0;
+        let val = parseFloat(inp.value);
+        if (isNaN(val) || val < 0) val = 0;
+        if (val > max) {
+          val = max;
+          inp.value = max;
+          showToast(`Điểm tiêu chí không được vượt quá điểm tối đa (${max}đ)!`, 'warning');
+        }
+        val = Math.round(val * 10) / 10;
+        const key = inp.getAttribute('data-key');
+        if (key) scoresMap[key] = val;
+        total += val;
       });
       total = Math.round(total * 10) / 10;
+      return { total, scoresMap };
+    }
+
+    function recalculateSelfScore(autoSuggestRank = true) {
+      const { total } = collectCriteriaScoresFromDOM();
       document.getElementById('eval-total-score-display').textContent = total + ' / 100';
 
-      let rank = 'Hoàn thành tốt nhiệm vụ';
-      if (total >= 95) rank = 'Hoàn thành xuất sắc nhiệm vụ';
-      else if (total >= 70) rank = 'Hoàn thành tốt nhiệm vụ';
-      else if (total >= 50) rank = 'Hoàn thành nhiệm vụ';
-      else rank = 'Không hoàn thành nhiệm vụ';
+      if (autoSuggestRank) {
+        let rank = 'Hoàn thành tốt nhiệm vụ';
+        if (total >= 95) rank = 'Hoàn thành xuất sắc nhiệm vụ';
+        else if (total >= 70) rank = 'Hoàn thành tốt nhiệm vụ';
+        else if (total >= 50) rank = 'Hoàn thành nhiệm vụ';
+        else rank = 'Không hoàn thành nhiệm vụ';
 
-      document.getElementById('eval-ranking-badge').textContent = rank;
-      document.getElementById('eval-self-ranking-select').value = rank;
+        document.getElementById('eval-ranking-badge').textContent = rank;
+        document.getElementById('eval-self-ranking-select').value = rank;
+      }
     }
 
     function autoFillMaxScores() {
       document.querySelectorAll('.criteria-score-input').forEach(inp => {
         inp.value = inp.getAttribute('max');
       });
-      recalculateSelfScore();
+      recalculateSelfScore(true);
     }
 
     function saveCurrentEvaluation() {
       const targetVal = document.getElementById('eval-target-select').value;
-      const score = parseFloat(document.getElementById('eval-total-score-display').textContent) || 95;
+      const { total: score, scoresMap } = collectCriteriaScoresFromDOM();
       const ranking = document.getElementById('eval-self-ranking-select').value;
       const good = document.getElementById('eval-good').value;
       const limit = document.getElementById('eval-limit').value;
@@ -3409,6 +3463,7 @@
 
       if (targetVal === 'collective') {
         appData.collective_evaluation.score = score;
+        appData.collective_evaluation.criteria_scores = scoresMap;
         appData.collective_evaluation.ranking = ranking;
         appData.collective_evaluation.good = good;
         appData.collective_evaluation.limit = limit;
@@ -3418,6 +3473,7 @@
         const mem = appData.members.find(x => x.id === parseInt(targetVal));
         if (mem) {
           mem.self_score = score;
+          mem.criteria_scores = scoresMap;
           mem.self_ranking = ranking;
           mem.self_good = good;
           mem.self_limit = limit;
@@ -3427,13 +3483,13 @@
       }
 
       saveLocalBackup();
-      const selfEvalPayload = { type: 'self_eval', target: targetVal, score, ranking, good, limit, sol, updated_at: new Date().toISOString() };
+      const selfEvalPayload = { type: 'self_eval', target: targetVal, score, criteria_scores: scoresMap, ranking, good, limit, sol, updated_at: new Date().toISOString() };
       pushEventToCloud(selfEvalPayload);
       if (window.location.protocol.startsWith('http') && !window.location.hostname.includes('github.io')) {
         fetch('/api/self_eval', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ target: targetVal, score, ranking, good, limit, sol })
+          body: JSON.stringify({ target: targetVal, score, criteria_scores: scoresMap, ranking, good, limit, sol })
         }).catch(() => {});
       }
       refreshMinutesContent();
@@ -3447,8 +3503,8 @@
       const targetVal = targetSelect ? targetSelect.value : 'collective';
       const target = (mode === 'all') ? 'all' : targetVal;
 
-      // Đồng bộ dữ liệu hiện tại trên form
-      const score = parseFloat(document.getElementById('eval-total-score-display').textContent) || 95;
+      // Đồng bộ dữ liệu & điểm từng tiêu chí hiện tại trên form
+      const { total: score, scoresMap } = collectCriteriaScoresFromDOM();
       const ranking = document.getElementById('eval-self-ranking-select').value;
       const good = document.getElementById('eval-good').value;
       const limit = document.getElementById('eval-limit').value;
@@ -3456,6 +3512,7 @@
 
       if (targetVal === 'collective') {
         appData.collective_evaluation.score = score;
+        appData.collective_evaluation.criteria_scores = scoresMap;
         appData.collective_evaluation.ranking = ranking;
         appData.collective_evaluation.good = good;
         appData.collective_evaluation.limit = limit;
@@ -3464,6 +3521,7 @@
         const mem = appData.members.find(x => x.id === parseInt(targetVal));
         if (mem) {
           mem.self_score = score;
+          mem.criteria_scores = scoresMap;
           mem.self_ranking = ranking;
           mem.self_good = good;
           mem.self_limit = limit;
@@ -4879,7 +4937,14 @@
       renderVoterStatusList();
     }
 
+    function getMaxExcellenceQuota() {
+      const officialCount = appData.members.filter(m => m.status === 'Chính thức').length || appData.members.length || 1;
+      return Math.max(1, Math.floor(officialCount * 0.2));
+    }
+
     function checkMaxExcellenceVotes() {
+      const maxXs = getMaxExcellenceQuota();
+      const officialCount = appData.members.filter(m => m.status === 'Chính thức').length || appData.members.length;
       let xsCount = 0;
       appData.members.forEach(m => {
         const checked = document.querySelector(`input[name="ballot-mem-${m.id}"]:checked`);
@@ -4888,11 +4953,11 @@
 
       const counterElem = document.getElementById('ballot-xs-counter');
       if (counterElem) {
-        counterElem.innerHTML = `Đã chọn: <strong class="${xsCount > 2 ? 'text-rose-600 text-sm' : 'text-emerald-700'}">${xsCount}</strong> / 2 Xuất sắc`;
+        counterElem.innerHTML = `Đã chọn: <strong class="${xsCount > maxXs ? 'text-rose-600 text-sm' : 'text-emerald-700'}">${xsCount}</strong> / ${maxXs} Xuất sắc`;
       }
 
-      if (xsCount > 2) {
-        alert('⚠️ CẢNH BÁO TỶ LỆ KHỐNG CHẾ:\nTheo quy định của Đảng, mức "Hoàn thành xuất sắc nhiệm vụ" không quá 20% số đảng viên hoàn thành tốt (tối đa 02 đồng chí trên 12 đảng viên chi bộ). Vui lòng điều chỉnh lại!');
+      if (xsCount > maxXs) {
+        alert(`⚠️ CẢNH BÁO TỶ LỆ KHỐNG CHẾ:\nTheo quy định của Đảng, mức "Hoàn thành xuất sắc nhiệm vụ" không quá 20% số đảng viên hoàn thành tốt (tối đa ${String(maxXs).padStart(2, '0')} đồng chí trên ${officialCount} đảng viên chính thức). Vui lòng điều chỉnh lại!`);
       }
     }
 
@@ -4929,8 +4994,9 @@
         memberVotes[String(m.id)] = val;
       });
 
-      if (xsCount > 2) {
-        alert('⛔ LÁ PHIẾU KHÔNG HỢP LỆ:\nĐồng chí đã chọn quá 02 đồng chí "Hoàn thành xuất sắc nhiệm vụ" (vượt tỷ lệ khống chế 20% của Đảng). Vui lòng chọn tối đa 2 người!');
+      const maxXsAllowed = getMaxExcellenceQuota();
+      if (xsCount > maxXsAllowed) {
+        alert(`⛔ LÁ PHIẾU KHÔNG HỢP LỆ:\nĐồng chí đã chọn quá ${String(maxXsAllowed).padStart(2, '0')} đồng chí "Hoàn thành xuất sắc nhiệm vụ" (vượt tỷ lệ khống chế 20% của Đảng). Vui lòng chọn tối đa ${maxXsAllowed} người!`);
         return;
       }
 
@@ -5269,15 +5335,42 @@
       html += `
         </div>
 
-        <!-- III. KẾT QUẢ BỎ PHIẾU BÌNH BẦU -->
-        <div class="pt-3">
-          <p class="font-bold text-[13.5pt]">III. KẾT QUẢ BỎ PHIẾU BÌNH BẦU, XẾP LOẠI CHẤT LƯỢNG</p>
-          <p>Hội nghị đã tiến hành bỏ phiếu kín xếp loại chất lượng đối với Tập thể Chi bộ 2 và từng cá nhân đảng viên theo đúng nguyên tắc Điều lệ Đảng:</p>
-          <p>1. <strong>Tập thể Chi bộ 2:</strong> Đạt 11/11 phiếu (100%) đề nghị xếp loại <strong>Hoàn thành xuất sắc nhiệm vụ</strong>.</p>
-          <p>2. <strong>Kết quả xếp loại cá nhân:</strong></p>
-          <p>- Đề nghị xếp loại <strong>Hoàn thành xuất sắc nhiệm vụ</strong> (tối đa 20%): 02 đồng chí (Đ/c NGUYỄN THI THAO, Đ/c NGÔ THỊ KIM NGÂN).</p>
-          <p>- Đề nghị xếp loại <strong>Hoàn thành tốt nhiệm vụ</strong>: 10 đồng chí.</p>
-        </div>
+        <!-- III. KẾT QUẢ BỎ PHIẾU BÌNH BẦU (TỰ ĐỘNG TỔNG HỢP TỪ HÒM PHIẾU) -->
+        ${(() => {
+          const coll = appData.ballots.collective || { HTXSNV: 0, HTTNV: 0, HTNV: 0, KHTNV: 0 };
+          const totalCollVotes = (coll.HTXSNV || 0) + (coll.HTTNV || 0) + (coll.HTNV || 0) + (coll.KHTNV || 0);
+          const denom = totalCollVotes > 0 ? totalCollVotes : officialCount;
+          const collTopVotes = Math.max(coll.HTXSNV || 0, coll.HTTNV || 0, coll.HTNV || 0, coll.KHTNV || 0);
+          const collPct = denom > 0 ? Math.round((collTopVotes / denom) * 100) : 100;
+          let collResultLabel = 'Hoàn thành xuất sắc nhiệm vụ';
+          if ((coll.HTTNV || 0) > (coll.HTXSNV || 0)) collResultLabel = 'Hoàn thành tốt nhiệm vụ';
+          else if ((coll.HTNV || 0) > (coll.HTTNV || 0)) collResultLabel = 'Hoàn thành nhiệm vụ';
+
+          const xsNames = [];
+          let httCount = 0;
+          let htCount = 0;
+          let khtCount = 0;
+          appData.members.forEach(memItem => {
+            const mb = (appData.ballots.members && appData.ballots.members[memItem.id]) || {};
+            const r = mb.final_rank || memItem.self_ranking || 'Hoàn thành tốt nhiệm vụ';
+            if (r.includes('xuất sắc')) xsNames.push('Đ/c ' + memItem.name);
+            else if (r.includes('tốt')) httCount++;
+            else if (r.includes('Không hoàn thành')) khtCount++;
+            else htCount++;
+          });
+          const xsListText = xsNames.length > 0 ? ` (${xsNames.join(', ')})` : '';
+          return `
+            <div class="pt-3">
+              <p class="font-bold text-[13.5pt]">III. KẾT QUẢ BỎ PHIẾU BÌNH BẦU, XẾP LOẠI CHẤT LƯỢNG</p>
+              <p>Hội nghị đã tiến hành bỏ phiếu kín xếp loại chất lượng đối với Tập thể Chi bộ và từng cá nhân đảng viên theo đúng nguyên tắc Điều lệ Đảng:</p>
+              <p>1. <strong>Tập thể Chi bộ:</strong> Đạt ${collTopVotes}/${denom} phiếu (${collPct}%) đề nghị xếp loại <strong>${collResultLabel}</strong>.</p>
+              <p>2. <strong>Kết quả xếp loại cá nhân (${totalMembers} đồng chí):</strong></p>
+              <p>- Đề nghị xếp loại <strong>Hoàn thành xuất sắc nhiệm vụ</strong> (tối đa 20%): ${String(xsNames.length).padStart(2, '0')} đồng chí${xsListText}.</p>
+              <p>- Đề nghị xếp loại <strong>Hoàn thành tốt nhiệm vụ</strong>: ${String(httCount).padStart(2, '0')} đồng chí.</p>
+              <p>- Đề nghị xếp loại <strong>Hoàn thành nhiệm vụ</strong>: ${String(htCount).padStart(2, '0')} đồng chí; <strong>Không hoàn thành nhiệm vụ</strong>: ${String(khtCount).padStart(2, '0')} đồng chí.</p>
+            </div>
+          `;
+        })()}
 
         <!-- IV. KẾT LUẬN -->
         <div class="pt-3">

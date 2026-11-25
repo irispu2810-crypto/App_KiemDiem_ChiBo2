@@ -25,8 +25,8 @@ def get_lan_ip():
 
 lan_ip = get_lan_ip()
 port = 8080
-url_lan = f"http://{lan_ip}:{port}/?v=2026.11.25.03"
-url_github = "https://irispu2810-crypto.github.io/App_KiemDiem_ChiBo2/?v=2026.11.25.03"
+url_lan = f"http://{lan_ip}:{port}/?v=2026.11.25.04"
+url_github = "https://irispu2810-crypto.github.io/App_KiemDiem_ChiBo2/?v=2026.11.25.04"
 
 print("=" * 72)
 print("  ⭐ TỰ ĐỘNG SINH BỘ MÃ QR CODE PHIÊN BẢN MỚI NHẤT - CHI BỘ 2 ⭐")
