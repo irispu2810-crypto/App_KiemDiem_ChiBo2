@@ -2138,7 +2138,7 @@
     // ==========================================
     // HỆ THỐNG TỰ ĐỘNG CẬP NHẬT PHIÊN BẢN MỚI (AUTO-UPDATE)
     // ==========================================
-    const APP_VERSION = '2026.11.25.10';
+    const APP_VERSION = '2026.11.25.11';
 
     function checkForAppUpdate(manual = false) {
       if (!window.location.protocol.startsWith('http')) {
@@ -3719,11 +3719,7 @@
       const sheet = document.getElementById('eval-print-sheet');
       if (!sheet) return;
 
-      const dateStr = appData.meeting.date || '2026-11-21';
-      const parts = dateStr.split('-');
-      const yyyy = parts[0] || '2026';
-      const mm = parts[1] || '11';
-      const dd = parts[2] || '21';
+      const { dd, mm, yyyy } = parseMeetingDateParts(appData.meeting.date);
 
       if (targetVal === 'collective') {
         const colEval = appData.collective_evaluation;
@@ -3953,6 +3949,27 @@
       `;
     }
 
+    function parseMeetingDateParts(dateStr) {
+      const raw = String(dateStr || '').trim();
+      const mIso = raw.match(/^(\d{4})[-/](\d{1,2})[-/](\d{1,2})$/);
+      if (mIso) {
+        return {
+          yyyy: mIso[1],
+          mm: String(mIso[2]).padStart(2, '0'),
+          dd: String(mIso[3]).padStart(2, '0')
+        };
+      }
+      const mDmy = raw.match(/^(\d{1,2})[-/](\d{1,2})[-/](\d{4})$/);
+      if (mDmy) {
+        return {
+          dd: String(mDmy[1]).padStart(2, '0'),
+          mm: String(mDmy[2]).padStart(2, '0'),
+          yyyy: mDmy[3]
+        };
+      }
+      return { dd: '21', mm: '11', yyyy: '2026' };
+    }
+
     function getCriteriaGroupTotals(targetVal) {
       const groups = resolveCriteriaWithScores(targetVal);
       const calcGroup = (g) => {
@@ -3966,11 +3983,7 @@
     }
 
     function buildEvaluationSheetHtml(targetVal) {
-      const dateStr = appData.meeting.date || '2026-11-21';
-      const parts = dateStr.split('-');
-      const yyyy = parts[0] || '2026';
-      const mm = parts[1] || '11';
-      const dd = parts[2] || '21';
+      const { dd, mm, yyyy } = parseMeetingDateParts(appData.meeting.date);
       const { g1, g2, total: critTotal } = getCriteriaGroupTotals(targetVal);
 
       const renderCheckboxes = (ranking) => {
@@ -5967,11 +5980,7 @@
       const sheet = document.getElementById('ballot-print-sheet');
       if (!sheet) return;
 
-      const dateStr = appData.meeting.date || '2026-11-21';
-      const parts = dateStr.split('-');
-      const yyyy = parts[0] || '2026';
-      const mm = parts[1] || '11';
-      const dd = parts[2] || '21';
+      const { dd, mm, yyyy } = parseMeetingDateParts(appData.meeting.date);
 
       const isPersonal = (currentBallotPrintMode === 'personal');
       const voterIdNum = Number(currentBallotVoterId || appData.current_user_id || 1);
