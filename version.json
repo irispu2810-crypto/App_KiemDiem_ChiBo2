@@ -1,5 +1,5 @@
 {
-  "version": "2026.11.25.02",
-  "updated_at": "2026-11-25 10:10",
-  "changelog": "Tự động đẩy nhận xét & điểm số lên Bí thư theo thời gian thực (không cần copy gửi Zalo)"
+  "version": "2026.11.25.03",
+  "updated_at": "2026-11-25 10:28",
+  "changelog": "Sửa triệt để lỗi bộ lọc đồng bộ Cloud ntfy.sh để Bí thư nhận ngay 100% nhận xét từ các Đảng viên"
 }

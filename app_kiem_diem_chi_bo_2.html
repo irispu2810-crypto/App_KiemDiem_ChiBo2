@@ -2138,7 +2138,7 @@
     // ==========================================
     // HỆ THỐNG TỰ ĐỘNG CẬP NHẬT PHIÊN BẢN MỚI (AUTO-UPDATE)
     // ==========================================
-    const APP_VERSION = '2026.11.25.02';
+    const APP_VERSION = '2026.11.25.03';
 
     function checkForAppUpdate(manual = false) {
       if (!window.location.protocol.startsWith('http')) {
@@ -6343,6 +6343,7 @@
 
       renderAllReviewsModalContent(focusMemberId);
       modal.classList.remove('hidden');
+      syncFromServer(false);
     }
 
     function closeAllReviewsModal() {
@@ -6594,6 +6595,7 @@
       if (modal && printable) {
         printable.innerHTML = generateReviewMeetingReportHtml();
         modal.classList.remove('hidden');
+        syncFromServer(false);
       }
     }
 
@@ -6845,13 +6847,18 @@
         const filterSel = document.getElementById('all-reviews-filter-select');
         renderAllReviewsModalContent(filterSel ? filterSel.value : 'all');
       }
+      const reportModal = document.getElementById('review-meeting-report-modal');
+      const reportPrintable = document.getElementById('review-meeting-report-printable');
+      if (reportModal && !reportModal.classList.contains('hidden') && reportPrintable) {
+        reportPrintable.innerHTML = generateReviewMeetingReportHtml();
+      }
       refreshMinutesContent();
       renderTallyTable();
       updateProgressSummary();
     }
 
     function syncFromCloud(showNotice = false) {
-      return fetch(`https://ntfy.sh/${CLOUD_SYNC_TOPIC}/json?poll=1&since=all&t=${Date.now()}`)
+      return fetch(`https://ntfy.sh/${CLOUD_SYNC_TOPIC}/json?poll=1&since=all`, { cache: 'no-store' })
         .then(r => {
           if (!r.ok) throw new Error('Cloud HTTP ' + r.status);
           return r.text();
